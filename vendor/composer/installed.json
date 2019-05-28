@@ -5896,6 +5896,59 @@
         }
     },
     {
+        "name": "drupal/display_field_copy",
+        "version": "1.1.0",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/display_field_copy.git",
+            "reference": "8.x-1.1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/display_field_copy-8.x-1.1.zip",
+            "reference": "8.x-1.1",
+            "shasum": "d3ea094c49a6438ac0ac9a07a1c402d71f81ee19"
+        },
+        "require": {
+            "drupal/core": "~8.0",
+            "drupal/ds": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.1",
+                "datestamp": "1538441280",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            },
+            "patches_applied": {
+                "Implement ds_limit on copied multivalue fields": "https://www.drupal.org/files/issues/2018-06-29/display_field_copy-implement_ds_limit-2874959_with_2822398.patch"
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "davidwbarratt",
+                "homepage": "https://www.drupal.org/user/411675"
+            }
+        ],
+        "description": "Copies the display so it can be shown multiple times on a page.",
+        "homepage": "https://www.drupal.org/project/display_field_copy",
+        "support": {
+            "source": "https://git.drupalcode.org/project/display_field_copy"
+        }
+    },
+    {
         "name": "drupal/draggableviews",
         "version": "1.2.0",
         "version_normalized": "1.2.0.0",
@@ -9861,6 +9914,53 @@
         "homepage": "https://www.drupal.org/project/video_embed_field",
         "support": {
             "source": "https://git.drupalcode.org/project/video_embed_field"
+        }
+    },
+    {
+        "name": "drupal/view_mode_selector",
+        "version": "dev-1.x",
+        "version_normalized": "dev-1.x",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/view_mode_selector.git",
+            "reference": "93d105f77d073ac9eb5253024058991aa3b10cf8"
+        },
+        "require": {
+            "drupal/core": "~8.0"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.x-dev",
+                "datestamp": "1542124980",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Dev releases are not covered by Drupal security advisories."
+                }
+            }
+        },
+        "installation-source": "source",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "axe312",
+                "homepage": "https://www.drupal.org/user/682114"
+            },
+            {
+                "name": "yannickoo",
+                "homepage": "https://www.drupal.org/user/531118"
+            }
+        ],
+        "description": "Provides a new field type for changing the view mode of an entity.",
+        "homepage": "https://www.drupal.org/project/view_mode_selector",
+        "support": {
+            "source": "https://git.drupalcode.org/project/view_mode_selector"
         }
     },
     {
