@@ -1,0 +1,10 @@
+name: 'user import'
+description: 'Some config for importing users, can be deleted after put on dev.'
+type: module
+core: 8.x
+dependencies:
+  - feeds
+  - field
+  - image
+  - path
+  - user

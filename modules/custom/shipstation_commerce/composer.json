@@ -1,0 +1,14 @@
+{
+  "name": "drupal/shipstation_commerce",
+  "type": "drupal-module",
+  "description": "Connects a commerce 2.x store to shipstation for order fulfillment",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/shipstation_commerce",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/shipstation_commerce",
+    "source": "http://cgit.drupalcode.org/shipstation_commerce"
+  },
+  "require": { }
+}

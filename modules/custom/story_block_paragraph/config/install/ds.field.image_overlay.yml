@@ -1,0 +1,11 @@
+id: image_overlay
+label: 'Image Overlay'
+ui_limit: 'story_block|*'
+properties:
+  content:
+    value: '<div class="image-overlay"></div>'
+    format: full_html
+type: token
+type_label: 'Token field'
+entities:
+  paragraph: paragraph

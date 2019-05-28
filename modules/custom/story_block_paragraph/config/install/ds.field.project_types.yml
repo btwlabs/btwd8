@@ -1,0 +1,17 @@
+id: project_types
+label: 'Project Types'
+ui_limit: 'case_study|*'
+properties:
+  block: 'views_block:project_types-block_1'
+  use_block_title: false
+  config:
+    id: 'views_block:project_types-block_1'
+    label: ''
+    provider: views
+    label_display: visible
+    views_label: ''
+    items_per_page: none
+type: block
+type_label: 'Block field'
+entities:
+  node: node

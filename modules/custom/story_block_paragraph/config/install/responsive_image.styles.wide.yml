@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.hero_max_1800
+    - image.style.tablet_max_1024
+id: wide
+label: Wide
+image_style_mappings:
+  -
+    breakpoint_id: responsive_image.viewport_sizing
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: hero_max_1800
+breakpoint_group: responsive_image
+fallback_image_style: tablet_max_1024

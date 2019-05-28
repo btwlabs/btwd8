@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - serialization
+    - shipstation_commerce
+    - user
+_core:
+  default_config_hash: M3jJXqLBT9P3IjcRJ4MnfUxAEcO5Runl3BoiqMZ3FEY
+id: shipstation_resource
+plugin_id: shipstation_resource
+granularity: method
+configuration:
+  GET:
+    supported_formats:
+      - shipstation_xml
+    supported_auth:
+      - cookie
+  POST:
+    supported_formats:
+      - xml
+    supported_auth:
+      - cookie

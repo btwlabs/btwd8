@@ -1,0 +1,4 @@
+# Permissions for the shipstation commerce module
+'use shipstation api':
+  title: 'Get and Post orders via shipstation api view'
+  description: 'This role is for the shipstation (user) to access the rest endpoints'

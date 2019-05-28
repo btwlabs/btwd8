@@ -1,0 +1,109 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.field_fir
+    - field.field.user.user.field_las
+    - field.field.user.user.field_member_status
+    - field.field.user.user.field_membership_expiration
+  module:
+    - user
+label: 'Member Import'
+id: member_import
+description: 'Initial import of users from wordpress.'
+import_period: -1
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  fallback_hub: ''
+  request_timeout: 30
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:user'
+processor_configuration:
+  update_existing: 0
+  update_non_existent: _keep
+  expire: -1
+  skip_hash_check: false
+  owner_id: 0
+  values: {  }
+  authorize: false
+  owner_feed_author: false
+custom_sources:
+  user_registered:
+    label: user_registered
+    value: user_registered
+    machine_name: user_registered
+  user_email:
+    label: user_email
+    value: user_email
+    machine_name: user_email
+  first_name:
+    label: first_name
+    value: first_name
+    machine_name: first_name
+  last_name:
+    label: last_name
+    value: last_name
+    machine_name: last_name
+  user_login:
+    label: user_login
+    value: user_login
+    machine_name: user_login
+  membership_status:
+    label: membership_status
+    value: membership_status
+    machine_name: membership_status
+  membership_expiration:
+    label: membership_expiration
+    value: membership_expiration
+    machine_name: membership_expiration
+  status:
+    label: status
+    value: status
+    machine_name: status
+mappings:
+  -
+    target: created
+    map:
+      value: user_registered
+  -
+    target: mail
+    map:
+      value: user_email
+    unique: {  }
+    settings:
+      defuse: false
+  -
+    target: field_fir
+    map:
+      value: first_name
+    unique: {  }
+  -
+    target: field_las
+    map:
+      value: last_name
+    unique: {  }
+  -
+    target: name
+    map:
+      value: user_login
+    unique: {  }
+  -
+    target: field_member_status
+    map:
+      value: membership_status
+    unique: {  }
+  -
+    target: field_membership_expiration
+    map:
+      value: membership_expiration
+    unique: {  }
+  -
+    target: status
+    map:
+      value: status

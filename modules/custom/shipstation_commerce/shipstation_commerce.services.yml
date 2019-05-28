@@ -1,0 +1,11 @@
+services:
+  serializer.encoder.shipstationXml:
+    class: Drupal\shipstation_commerce\Encoder\ShipstationXmlEncoder
+    tags:
+      - { name: encoder, priority: 0, format: shipstation_xml }
+  serializer.normalizer.shipstation_orders:
+    class: Drupal\shipstation_commerce\Normalizer\ShipstationXmlNormalizer
+    tags:
+      - { name: normalizer, priority: 10 }
+  shipstationData:
+    class: Drupal\shipstation_commerce\ShipstationData

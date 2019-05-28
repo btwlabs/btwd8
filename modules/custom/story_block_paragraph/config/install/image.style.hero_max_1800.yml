@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: hero_max_1800
+label: 'Hero max 1800'
+effects:
+  b3e4f21e-b0ee-4d55-aeae-0b025e882c36:
+    uuid: b3e4f21e-b0ee-4d55-aeae-0b025e882c36
+    id: image_scale
+    weight: 1
+    data:
+      width: 1800
+      height: null
+      upscale: false

@@ -1,0 +1,28 @@
+name: 'Story Block Paragraph'
+type: module
+core: 8.x
+dependencies:
+  - case_study
+  - ds
+  - entity_reference_revisions
+  - field
+  - field_group
+  - file
+  - file_entity
+  - image
+  - link
+  - node
+  - options
+  - paragraphs
+  - path
+  - responsive_bg_image_formatter
+  - responsive_image
+  - taxonomy
+  - text
+  - token
+  - user
+  - video_embed_field
+  - view_mode_selector
+  - views
+  - views_field_formatter
+description: 'Provides Story Block fields and view modes within a Paragraph structure.'

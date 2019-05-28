@@ -1,0 +1,40 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.paragraph.preview
+    - field.field.paragraph.story_block.field_story_block_image_overlay_
+    - field.field.paragraph.story_block.field_story_block_images
+    - field.field.paragraph.story_block.field_story_block_link
+    - field.field.paragraph.story_block.field_story_block_project_types
+    - field.field.paragraph.story_block.field_story_block_text
+    - field.field.paragraph.story_block.field_story_block_video
+    - field.field.paragraph.story_block.field_title
+    - field.field.paragraph.story_block.field_view_mode_selector
+    - paragraphs.paragraphs_type.story_block
+  module:
+    - text
+id: paragraph.story_block.preview
+targetEntityType: paragraph
+bundle: story_block
+mode: preview
+content:
+  field_title:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textfield
+    region: content
+hidden:
+  created: true
+  field_story_block_image_overlay_: true
+  field_story_block_images: true
+  field_story_block_link: true
+  field_story_block_project_types: true
+  field_story_block_text: true
+  field_story_block_video: true
+  field_view_mode_selector: true
+  status: true
+  uid: true

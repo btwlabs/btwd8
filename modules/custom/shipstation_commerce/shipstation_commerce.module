@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * @file
+ * Contains shipstation_commerce.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\user\Entity\Role;
+
+/**
+ * Implements hook_help().
+ */
+function shipstation_commerce_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the shipstation_commerce module.
+    case 'help.page.shipstation_commerce':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Connects a commerce 2.x store to shipstation for order fulfillment') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function shipstation_commerce_theme() {
+  return [
+    'shipstation_commerce' => [
+      'render element' => 'children',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_install().
+ * Need to add the rest resource premission to anon user.
+ */
+function shipstation_commerce_install() {
+  $role_object = Role::load('anonymous');
+  $role_object->grantPermission('restful get shipstation_resource');
+  $role_object->grantPermission('restful post shipstation_resource');
+  $role_object->save();
+}
