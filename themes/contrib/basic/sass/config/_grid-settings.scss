@@ -1,0 +1,24 @@
+// Define global font size
+$font-size: 16px;
+
+// Variables to override default grid settings
+$columns: 4;
+$gutter: 20px;
+
+// Breakpoints
+$small-screen: 320px;
+$medium-screen: 720px;
+$large-screen: 960px;
+$max-screen: 1200px;
+
+// Define the default grid settings
+$neat-grid: (columns: $columns, gutter: $gutter);
+
+// Define your mobile first breakpoints
+$small-screen-up: (columns: 4, gutter: $gutter, media: $small-screen);
+$medium-screen-up: (columns: 8, gutter: $gutter, media: $medium-screen);
+$large-screen-up: (columns: 12, gutter: $gutter, media: $large-screen);
+$max-screen-up: (columns: 12, gutter: $gutter, media: $max-screen);
+
+// Bourbon grid display.
+$grid-visual: #EEEEEE;

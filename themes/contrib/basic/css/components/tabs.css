@@ -1,0 +1,19 @@
+ul.tabs {
+  width: 100%;
+  margin: 0 0 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+ul.tabs li {
+  display: inline-block;
+}
+
+ul.tabs a {
+  display: block;
+  border: 1px solid #ddd;
+  border-bottom: 0;
+  border-radius: 3px 3px 0 0;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBvbmVudHMvY29tcG9uZW50cy90YWJzLnNjc3MiLCJjb21wb25lbnRzL2NvbmZpZy9fdmFyaWFibGVzLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR0E7RUFDRSxZQUFXO0VBQ1gsZ0JBQWU7RUFDZiw4QkM4QmU7Q0RsQmhCOztBQWZEO0VBTUksc0JBQXFCO0NBQ3RCOztBQVBIO0VBVUksZUFBYztFQUNkLHVCQ3NCYTtFRHJCYixpQkFBZ0I7RUFDaEIsMkJBQTBCO0NBQzNCIiwiZmlsZSI6InRvLmNzcyJ9 */
+/*# sourceMappingURL=tabs.css.map */

@@ -1,0 +1,28 @@
+.breadcrumb li {
+  list-style-type: none;
+  display: inline-block;
+}
+
+#navigation li {
+  list-style-type: none;
+  display: inline-block;
+}
+
+.site-name {
+  font-size: 2.2em;
+  line-height: 1.3em;
+  font-weight: 300;
+  padding: 0 0 0.5em;
+  margin: 0;
+}
+
+.pager__item {
+  display: inline;
+}
+
+.pager__item a {
+  display: inline-block;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBvbmVudHMvY29tcG9uZW50cy9fYnJlYWRjcnVtYi5zY3NzIiwiY29tcG9uZW50cy9jb21wb25lbnRzL19uYXZpZ2F0aW9uLnNjc3MiLCJjb21wb25lbnRzL2NvbXBvbmVudHMvX3NpdGUtbmFtZS5zY3NzIiwiY29tcG9uZW50cy9jb21wb25lbnRzL19wYWdlci5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBRUksc0JBQXFCO0VBQ3JCLHNCQUFxQjtDQUN0Qjs7QUNKSDtFQUVJLHNCQUFxQjtFQUNyQixzQkFBcUI7Q0FDdEI7O0FDSkg7RUFDRSxpQkFBZ0I7RUFDaEIsbUJBQWtCO0VBQ2xCLGlCQUFnQjtFQUNoQixtQkFBa0I7RUFDbEIsVUFBUztDQUNWOztBQ1BEO0VBQ0UsZ0JBQWU7Q0FLaEI7O0FBTkQ7RUFJSSxzQkFBcUI7Q0FDdEIiLCJmaWxlIjoidG8uY3NzIn0= */
+/*# sourceMappingURL=components.css.map */

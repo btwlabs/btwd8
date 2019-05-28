@@ -1,0 +1,37 @@
+* {
+  background-color: transparent;
+}
+
+.sidebar,
+#navigation,
+#header-region,
+#footer,
+.breadcrumb,
+.tabs,
+.feed-icon,
+.links {
+  display: none;
+}
+
+.layout-container {
+  width: 100%;
+}
+
+#content,
+.title {
+  margin: 20px 0;
+  width: auto;
+}
+
+a:hover, a:active, a:link, a:visited {
+  color: black;
+}
+
+#content a:link:after, #content a:visited:after {
+  content: " (" attr(href) ") ";
+  font-size: 0.8em;
+  font-weight: normal;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRoZW1lL3RoZW1lL3ByaW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFDRSw4QkFBNkI7Q0FDOUI7O0FBRUQ7Ozs7Ozs7O0VBUUUsY0FBYTtDQUNkOztBQUVEO0VBQ0UsWUFBVztDQUNaOztBQUVEOztFQUVFLGVBQWM7RUFDZCxZQUFXO0NBQ1o7O0FBRUQ7RUFLSSxhQUFZO0NBQ2I7O0FBSUg7RUFHSSw4QkFBNkI7RUFDN0IsaUJBQWdCO0VBQ2hCLG9CQUFtQjtDQUNwQiIsImZpbGUiOiJ0by5jc3MifQ== */
+/*# sourceMappingURL=print.css.map */

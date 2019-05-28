@@ -1,0 +1,45 @@
+.messages {
+  padding: 9px;
+  margin: 1em 0;
+  color: #919191;
+  background-color: #ddd;
+  border: 1px solid #c4c4c4;
+  word-wrap: break-word;
+}
+
+.messages pre {
+  border: 0;
+}
+
+.messages--warning {
+  color: #903023;
+  background-color: #ddc44f;
+  border-color: #d1b328;
+}
+
+.messages--warning pre {
+  background-color: #d1b328;
+}
+
+.messages--error {
+  color: white;
+  background-color: #cd4533;
+  border-color: #a53728;
+}
+
+.messages--error pre {
+  background-color: #a53728;
+}
+
+.messages--status {
+  color: #304319;
+  background-color: #8dbe51;
+  border-color: #73a03c;
+}
+
+.messages--status pre {
+  background-color: #73a03c;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBvbmVudHMvY29tcG9uZW50cy9tZXNzYWdlcy5zY3NzIiwiY29tcG9uZW50cy9jb25maWcvX3ZhcmlhYmxlcy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdBO0VBQ0UsYUFBWTtFQUNaLGNBQWE7RUFDYixlQUErQjtFQUMvQix1QkM2QmU7RUQ1QmYsMEJBQTBDO0VBQzFDLHNCQUFxQjtDQUt0Qjs7QUFYRDtFQVNJLFVBQVM7Q0FDVjs7QUFHSDtFQUNFLGVBQWdDO0VBQ2hDLDBCQ3lCcUI7RUR4QnJCLHNCQUF5QztDQUsxQzs7QUFSRDtFQU1JLDBCQUE2QztDQUM5Qzs7QUFHSDtFQUNFLGFBQVk7RUFDWiwwQkNnQm1CO0VEZm5CLHNCQUF1QztDQUt4Qzs7QUFSRDtFQU1JLDBCQUEyQztDQUM1Qzs7QUFHSDtFQUNFLGVBQWlDO0VBQ2pDLDBCQ0lvQjtFREhwQixzQkFBd0M7Q0FLekM7O0FBUkQ7RUFNSSwwQkFBNEM7Q0FDN0MiLCJmaWxlIjoidG8uY3NzIn0= */
+/*# sourceMappingURL=messages.css.map */

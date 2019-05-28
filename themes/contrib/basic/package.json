@@ -1,0 +1,28 @@
+{
+  "name": "basic",
+  "version": "0.1.0",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "bourbon": "^5.0.0-beta.8",
+    "bourbon-neat": "^2.1.0",
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-babel": "^7.0.0",
+    "gulp-imagemin": "^3.4.0",
+    "gulp-pixrem": "^1.0.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sass-glob": "^1.0.8",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-svgmin": "^1.2.4",
+    "gulp-uglify": "^3.0.0",
+    "gulp-watch": "^4.3.11",
+    "yargs": "^10.0.3"
+  },
+  "description": "Gulp tooling for Basic",
+  "main": "gulpfile.js",
+  "devDependencies": {},
+  "author": "",
+  "license": "MIT"
+}
