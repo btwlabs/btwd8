@@ -33,6 +33,7 @@
         "php": ">=5.6",
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6.5",
+        "drupal/ds": "^3.3",
         "drupal-composer/drupal-scaffold": "^2.5",
         "drupal/address": "^1.4",
         "drupal/addtoany": "^1.10",
@@ -191,6 +192,9 @@
             "drupal/core": {
                 "Selected yet disabled individual options from checkboxes element don't persist through save": "https://www.drupal.org/files/issues/2018-07-06/2911473-39.drupal.Selected-yet-disabled-individual-options-from-checkboxes-element-dont-persist-through-save.patch",
                 "TypeError: Argument 1 passed to _editor_get_file_uuids_by_field() must implement interface Drupal\\\\Core\\\\Entity\\\\EntityInterface": "https://www.drupal.org/files/issues/2019-05-07/drupal-disallow-resaving-entity-when-already-being-saved-2974156-16.patch"
+            },
+            "drupal/ds": {
+                "Add token support to css classes": "https://www.drupal.org/files/issues/2019-05-28/ds-tokens_for_layout_classes-2863420-8.patch"
             }
         }
     }
