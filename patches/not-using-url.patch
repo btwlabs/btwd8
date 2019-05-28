@@ -1,0 +1,12 @@
+diff --git a/src/Plugin/Commerce/ShippingMethod/USPSBase.php b/src/Plugin/Commerce/ShippingMethod/USPSBase.php
+index 1581f0d..77cc1b1 100644
+--- a/src/Plugin/Commerce/ShippingMethod/USPSBase.php
++++ b/src/Plugin/Commerce/ShippingMethod/USPSBase.php
+@@ -10,6 +10,7 @@ use Drupal\commerce_usps\USPSRateRequestInterface;
+ use Drupal\Core\Form\FormStateInterface;
+ use Drupal\Core\StringTranslation\TranslatableMarkup;
+ use Symfony\Component\DependencyInjection\ContainerInterface;
++use Drupal\Core\Url;
+ 
+ abstract class USPSBase extends ShippingMethodBase implements SupportsTrackingInterface {
+ 

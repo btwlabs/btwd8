@@ -166,7 +166,7 @@
               if (drupalSettings.linkToEntity) {
                 // Open a new window to show the details of the event.
                 if (calEvent.url) {
-                  window.open(calEvent.url);
+                  window.open(calEvent.title.split('href="')[1].split('"')[0]);
                   return false;
                 }
               }

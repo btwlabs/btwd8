@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d2a6f015a09efde951697f8e1c91cc69",
+    "content-hash": "b32e9a746bc55b1924893f6db5b6fc92",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3202,6 +3202,9 @@
                         "status": "not-covered",
                         "message": "Alpha releases are not covered by Drupal security advisories."
                     }
+                },
+                "patches_applied": {
+                    "Add necessary fields for ui to edit licenses": "https://www.drupal.org/files/issues/2018-12-02/commerce_license-allow_date_modify-3017085-6.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3619,8 +3622,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/commerce_product_bundle",
                 "issues": "https://www.drupal.org/project/issues/commerce_product_bundle"
-            },
-            "time": "2018-10-26T19:26:00+00:00"
+            }
         },
         {
             "name": "drupal/commerce_reports",
@@ -3857,6 +3859,9 @@
                         "status": "not-covered",
                         "message": "Alpha releases are not covered by Drupal security advisories."
                     }
+                },
+                "patches_applied": {
+                    "Event subscriber assumes $order->original will always exist": "https://www.drupal.org/files/issues/2019-01-13/commerce_stock-handle_missing_original-3025662-2.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4205,6 +4210,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Add use Drupal/Core/Url missing in base shipping method class": "patches/not-using-url.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -5096,6 +5104,10 @@
                     "recurse": false,
                     "replace": false,
                     "merge-extra": false
+                },
+                "patches_applied": {
+                    "Selected yet disabled individual options from checkboxes element don't persist through save": "https://www.drupal.org/files/issues/2018-07-06/2911473-39.drupal.Selected-yet-disabled-individual-options-from-checkboxes-element-dont-persist-through-save.patch",
+                    "TypeError: Argument 1 passed to _editor_get_file_uuids_by_field() must implement interface Drupal\\\\Core\\\\Entity\\\\EntityInterface": "https://www.drupal.org/files/issues/2019-05-07/drupal-disallow-resaving-entity-when-already-being-saved-2974156-16.patch"
                 }
             },
             "autoload": {
@@ -6449,6 +6461,10 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Fix link url to content in Calendar": "https://www.drupal.org/files/issues/2019-05-10/link_to_entity_reference_fields-3017241-9.txt",
+                    "Fix the title to a referenced content": "https://www.drupal.org/files/issues/2019-03-27/link_to_entity_reference_fields-3017241-4.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",

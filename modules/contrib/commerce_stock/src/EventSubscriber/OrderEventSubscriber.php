@@ -147,7 +147,7 @@ class OrderEventSubscriber implements EventSubscriberInterface {
     }
 
     foreach ($order->getItems() as $item) {
-      if (!$original_order->hasItem($item)) {
+      if ($original_order && !$original_order->hasItem($item)) {
         if ($order && !in_array($order->getState()->value, [
           'draft',
           'canceled',

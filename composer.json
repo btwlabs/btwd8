@@ -172,6 +172,26 @@
                 ".editorconfig": "../.editorconfig",
                 ".gitattributes": "../.gitattributes"
             }
+        },
+        "enable-patching": "true",
+        "patches": {
+            "drupal/commerce_license": {
+                "Add necessary fields for ui to edit licenses": "https://www.drupal.org/files/issues/2018-12-02/commerce_license-allow_date_modify-3017085-6.patch"
+            },
+            "drupal/commerce_stock": {
+                "Event subscriber assumes $order->original will always exist": "https://www.drupal.org/files/issues/2019-01-13/commerce_stock-handle_missing_original-3025662-2.patch"
+            },
+            "drupal/fullcalendar_view": {
+                "Fix link url to content in Calendar": "https://www.drupal.org/files/issues/2019-05-10/link_to_entity_reference_fields-3017241-9.txt",
+                "Fix the title to a referenced content": "https://www.drupal.org/files/issues/2019-03-27/link_to_entity_reference_fields-3017241-4.patch"
+            },
+            "drupal/commerce_usps": {
+                "Add use Drupal/Core/Url missing in base shipping method class": "patches/not-using-url.patch"
+            },
+            "drupal/core": {
+                "Selected yet disabled individual options from checkboxes element don't persist through save": "https://www.drupal.org/files/issues/2018-07-06/2911473-39.drupal.Selected-yet-disabled-individual-options-from-checkboxes-element-dont-persist-through-save.patch",
+                "TypeError: Argument 1 passed to _editor_get_file_uuids_by_field() must implement interface Drupal\\\\Core\\\\Entity\\\\EntityInterface": "https://www.drupal.org/files/issues/2019-05-07/drupal-disallow-resaving-entity-when-already-being-saved-2974156-16.patch"
+            }
         }
     }
 }

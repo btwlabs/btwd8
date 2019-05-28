@@ -441,6 +441,16 @@ abstract class EntityStorageBase extends EntityHandlerBase implements EntityStor
     // Track if this entity is new.
     $is_new = $entity->isNew();
 
+    if (!$is_new) {
+      // Check if the entity is already in the process of being updated.
+      if (!empty($entity->is_updating)) {
+        throw new EntityStorageException("Tried to resave an entity of type '{$this->entityTypeId}' with id '{$entity->id()}' while it is already in the process of being saved.");
+      }
+
+      // Set a flag that this entity gets in the process of updating.
+      $entity->is_updating = TRUE;
+    }
+
     // Execute presave logic and invoke the related hooks.
     $id = $this->doPreSave($entity);
 
@@ -449,6 +459,10 @@ abstract class EntityStorageBase extends EntityHandlerBase implements EntityStor
 
     // Execute post save logic and invoke the related hooks.
     $this->doPostSave($entity, !$is_new);
+
+    // Entity saving done, remove flag that indicated that it was in the process
+    // of being updated.
+    unset($entity->is_updating);
 
     return $return;
   }

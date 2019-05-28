@@ -419,6 +419,15 @@ class License extends ContentEntityBase implements LicenseInterface {
     $fields['granted'] = BaseFieldDefinition::create('timestamp')
       ->setLabel(t('Granted'))
       ->setDescription(t('The time that the license was first granted or activated.'))
+      ->setDisplayOptions('form', [
+        'type' => 'datetime_default',
+        'weight' => -1,
+        'settings' => [
+          'format_type' => 'long',
+          'timezone_override' => '',
+        ],
+        'third_party_settings' => [],
+      ])
       ->setDisplayOptions('view', [
         'label' => 'inline',
         'type' => 'timestamp',
@@ -449,6 +458,15 @@ class License extends ContentEntityBase implements LicenseInterface {
     $fields['expires'] = BaseFieldDefinition::create('timestamp')
       ->setLabel(t('Expires'))
       ->setDescription(t('The time that the license will expire, if any.'))
+      ->setDisplayOptions('form', [
+        'type' => 'datetime_default',
+        'weight' => -1,
+        'settings' => [
+          'format_type' => 'long',
+          'timezone_override' => '',
+        ],
+        'third_party_settings' => [],
+      ])
       ->setDisplayOptions('view', [
         'label' => 'inline',
         'type' => 'timestamp',
