@@ -36,7 +36,7 @@ class FormTestDisabledElementsForm extends FormBase {
       ];
     }
 
-    // Multiple values option elements, disabled as a whole.
+    // Multiple values option elements.
     foreach (['checkboxes', 'select'] as $type) {
       $form[$type . '_multiple'] = [
         '#type' => $type,
@@ -53,34 +53,6 @@ class FormTestDisabledElementsForm extends FormBase {
         '#disabled' => TRUE,
       ];
     }
-
-    // Multiple values option elements, only single options disabled.
-    $form['checkboxes_single_select'] = [
-      '#type' => 'checkboxes',
-      '#title' => 'checkboxes (multiple)',
-      '#options' => [
-        'test_1' => 'Test 1',
-        'test_2' => 'Test 2',
-      ],
-      '#multiple' => TRUE,
-      '#default_value' => ['test_2' => 'test_2'],
-      'test_1' => [
-        '#disabled' => TRUE,
-      ],
-    ];
-    $form['checkboxes_single_unselect'] = [
-      '#type' => 'checkboxes',
-      '#title' => 'checkboxes (multiple)',
-      '#options' => [
-        'test_1' => 'Test 1',
-        'test_2' => 'Test 2',
-      ],
-      '#multiple' => TRUE,
-      '#default_value' => ['test_2' => 'test_2'],
-      'test_2' => [
-        '#disabled' => TRUE,
-      ],
-    ];
 
     // Single values option elements.
     foreach (['radios', 'select'] as $type) {
