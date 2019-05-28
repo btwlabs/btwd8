@@ -1,0 +1,11 @@
+name: 'Advanced queue'
+type: module
+description: 'Provides a better Queue API.'
+# core: 8.x
+package: Other
+
+# Information added by Drupal.org packaging script on 2017-11-30
+version: '8.x-1.0-beta3'
+core: '8.x'
+project: 'advancedqueue'
+datestamp: 1512047589

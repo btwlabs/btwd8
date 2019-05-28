@@ -1,0 +1,13 @@
+name: 'Commerce FedEx: Dry Ice (Experimental)'
+type: module
+description: 'Provides the Dry Ice special service for FedEx. WARNING: Experimental! This module is not ready for use.'
+package: Commerce (shipping)
+# core: 8.x
+dependencies:
+  - commerce_fedex
+
+# Information added by Drupal.org packaging script on 2019-01-10
+version: '8.x-1.0-alpha5'
+core: '8.x'
+project: 'commerce_fedex'
+datestamp: 1547162884

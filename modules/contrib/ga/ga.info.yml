@@ -1,0 +1,11 @@
+type: module
+# core: 8.x
+name: Googalytics
+description: Google Analytics Support
+configure: ga.settings
+
+# Information added by Drupal.org packaging script on 2018-01-16
+version: '8.x-1.3'
+core: '8.x'
+project: 'ga'
+datestamp: 1516083487

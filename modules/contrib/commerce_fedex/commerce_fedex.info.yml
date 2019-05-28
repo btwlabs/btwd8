@@ -1,0 +1,13 @@
+name: Commerce FedEx
+type: module
+description: 'Provides FedEx integration with Commerce Shipping.'
+package: Commerce (shipping)
+# core: 8.x
+dependencies:
+  - commerce_shipping
+
+# Information added by Drupal.org packaging script on 2019-01-10
+version: '8.x-1.0-alpha5'
+core: '8.x'
+project: 'commerce_fedex'
+datestamp: 1547162884

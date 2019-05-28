@@ -1,0 +1,14 @@
+name: Slick Development
+type: module
+description: 'Provides Slick carousel development.'
+# core: 8.x
+package: Slick
+configure: slick_devel.settings
+dependencies:
+  - slick:slick
+
+# Information added by Drupal.org packaging script on 2019-03-08
+version: '8.x-1.0-rc2'
+core: '8.x'
+project: 'slick_extras'
+datestamp: 1552059192
