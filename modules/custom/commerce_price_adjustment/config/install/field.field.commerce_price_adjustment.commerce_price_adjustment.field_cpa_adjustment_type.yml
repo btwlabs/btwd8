@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.commerce_price_adjustment.field_cpa_adjustment_type
+  module:
+    - commerce_price_adjustment
+    - options
+id: commerce_price_adjustment.commerce_price_adjustment.field_cpa_adjustment_type
+field_name: field_cpa_adjustment_type
+entity_type: commerce_price_adjustment
+bundle: commerce_price_adjustment
+label: 'Adjustment Type'
+description: 'Select whether the adjustment should apply to the entire order (including other adjustments) or just the purchased order items.'
+required: true
+translatable: false
+default_value:
+  -
+    value: order
+default_value_callback: ''
+settings: {  }
+field_type: list_string

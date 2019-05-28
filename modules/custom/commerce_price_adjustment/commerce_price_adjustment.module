@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains commerce_price_adjustment.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function commerce_price_adjustment_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the commerce_price_adjustment module.
+    case 'help.page.commerce_price_adjustment':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides a flexible price adjustment mechanism for commerce 2.x') . '</p>';
+      return $output;
+
+    default:
+  }
+}

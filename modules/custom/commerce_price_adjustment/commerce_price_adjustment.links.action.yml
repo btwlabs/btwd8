@@ -1,0 +1,5 @@
+entity.commerce_price_adjustment.add_form:
+  route_name: entity.commerce_price_adjustment.add_form
+  title: 'Add Price Adjustment'
+  appears_on:
+    - entity.commerce_price_adjustment.collection

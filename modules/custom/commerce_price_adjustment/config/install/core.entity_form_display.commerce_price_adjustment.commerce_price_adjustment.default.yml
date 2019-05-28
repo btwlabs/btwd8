@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.commerce_price_adjustment.commerce_price_adjustment.field_cpa_adjustment_type
+    - field.field.commerce_price_adjustment.commerce_price_adjustment.field_cpa_label
+    - field.field.commerce_price_adjustment.commerce_price_adjustment.field_cpa_percent_adjustment
+  module:
+    - commerce_price_adjustment
+id: commerce_price_adjustment.commerce_price_adjustment.default
+targetEntityType: commerce_price_adjustment
+bundle: commerce_price_adjustment
+mode: default
+content:
+  field_cpa_adjustment_type:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_cpa_label:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_cpa_percent_adjustment:
+    weight: 2
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  user_id: true

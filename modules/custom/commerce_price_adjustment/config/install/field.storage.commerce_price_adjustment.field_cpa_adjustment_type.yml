@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_price_adjustment
+    - options
+id: commerce_price_adjustment.field_cpa_adjustment_type
+field_name: field_cpa_adjustment_type
+entity_type: commerce_price_adjustment
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: order
+      label: 'Entire Order'
+    -
+      value: items
+      label: 'Only Order Items'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

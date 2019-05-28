@@ -1,0 +1,27 @@
+# Price Adjustment routing definition
+commerce_price_adjustment.settings_tab:
+  route_name: commerce_price_adjustment.settings
+  title: 'Settings'
+  base_route: commerce_price_adjustment.settings
+
+entity.commerce_price_adjustment.canonical:
+  route_name: entity.commerce_price_adjustment.canonical
+  base_route: entity.commerce_price_adjustment.canonical
+  title: 'View'
+
+entity.commerce_price_adjustment.edit_form:
+  route_name: entity.commerce_price_adjustment.edit_form
+  base_route: entity.commerce_price_adjustment.canonical
+  title: 'Edit'
+
+entity.commerce_price_adjustment.version_history:
+  route_name: entity.commerce_price_adjustment.version_history
+  base_route: entity.commerce_price_adjustment.canonical
+  title: 'Revisions'
+
+entity.commerce_price_adjustment.delete_form:
+  route_name:  entity.commerce_price_adjustment.delete_form
+  base_route:  entity.commerce_price_adjustment.canonical
+  title: Delete
+  weight: 10
+

@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.commerce_price_adjustment.field_cpa_label
+  module:
+    - commerce_price_adjustment
+id: commerce_price_adjustment.commerce_price_adjustment.field_cpa_label
+field_name: field_cpa_label
+entity_type: commerce_price_adjustment
+bundle: commerce_price_adjustment
+label: Label
+description: 'This is the label that customers can see when checking out in the system.'
+required: true
+translatable: false
+default_value:
+  -
+    value: 'Custom Adjustment'
+default_value_callback: ''
+settings: {  }
+field_type: string

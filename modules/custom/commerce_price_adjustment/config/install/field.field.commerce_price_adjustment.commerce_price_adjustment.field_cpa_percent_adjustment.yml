@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.commerce_price_adjustment.field_cpa_percent_adjustment
+  module:
+    - commerce_price_adjustment
+id: commerce_price_adjustment.commerce_price_adjustment.field_cpa_percent_adjustment
+field_name: field_cpa_percent_adjustment
+entity_type: commerce_price_adjustment
+bundle: commerce_price_adjustment
+label: 'Percent Adjustment'
+description: 'Enter the percent of the order that should be used to calculate the adjustment.'
+required: true
+translatable: false
+default_value:
+  -
+    value: !!float 5
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: !!float 100
+  prefix: ''
+  suffix: '%'
+field_type: float

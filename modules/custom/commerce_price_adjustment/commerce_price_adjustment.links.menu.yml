@@ -1,0 +1,14 @@
+
+# Price Adjustment menu items definition
+entity.commerce_price_adjustment.collection:
+  title: 'Price Adjustments'
+  route_name: entity.commerce_price_adjustment.collection
+  description: 'Price Adjustments'
+  parent: commerce.store_configuration
+  weight: 100
+
+commerce_price_adjustment.admin.structure.settings:
+  title: 'Price Adjustment settings'
+  description: 'Configure Price Adjustment entities'
+  route_name: commerce_price_adjustment.settings
+  parent: system.admin_structure

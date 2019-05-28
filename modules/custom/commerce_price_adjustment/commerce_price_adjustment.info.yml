@@ -1,0 +1,5 @@
+name: 'Commerce Price Adjustment'
+type: module
+description: 'Provides a flexible price adjustment mechanism for commerce 2.x'
+core: 8.x
+package: 'Commerce'

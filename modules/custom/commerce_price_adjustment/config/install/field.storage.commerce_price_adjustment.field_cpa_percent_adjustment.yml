@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_price_adjustment
+id: commerce_price_adjustment.field_cpa_percent_adjustment
+field_name: field_cpa_percent_adjustment
+entity_type: commerce_price_adjustment
+type: float
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

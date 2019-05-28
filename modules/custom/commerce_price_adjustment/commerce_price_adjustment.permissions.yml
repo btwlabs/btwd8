@@ -1,0 +1,30 @@
+add price adjustment entities:
+  title: 'Create new Price Adjustment entities'
+
+administer price adjustment entities:
+  title: 'Administer Price Adjustment entities'
+  description: 'Allow to access the administration form to configure Price Adjustment entities.'
+  restrict access: true
+
+delete price adjustment entities:
+  title: 'Delete Price Adjustment entities'
+
+edit price adjustment entities:
+  title: 'Edit Price Adjustment entities'
+
+view published price adjustment entities:
+  title: 'View published Price Adjustment entities'
+
+view unpublished price adjustment entities:
+  title: 'View unpublished Price Adjustment entities'
+
+view all price adjustment revisions:
+  title: 'View all Price Adjustment revisions'
+
+revert all price adjustment revisions:
+  title: 'Revert all Price Adjustment revisions'
+  description: 'Role requires permission <em>view Price Adjustment revisions</em> and <em>edit rights</em> for price adjustment entities in question or <em>administer price adjustment entities</em>.'
+
+delete all price adjustment revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Price Adjustment revisions</em> and <em>delete rights</em> for price adjustment entities in question or <em>administer price adjustment entities</em>.'
