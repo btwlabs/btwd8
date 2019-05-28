@@ -21,7 +21,6 @@
 		width: 100%;
 		z-index: 9997;
 		@include clearfix; // for non-fixed nav
-		@include border-bottom($border-color);
 		height: $header-height-medium;
 	}
 	@include breakpoint($large-up) {
@@ -31,7 +30,8 @@
 	
 	// List items
 	nav.menu--main {
-		float: right;
+		//@include align-self($value: flex-end); // .l-constrained container uses flexbox
+	    margin-left: auto; // somehow this makes it align right. magic!
 				
 		.menu {
 			margin: 0;

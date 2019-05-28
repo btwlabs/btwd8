@@ -23,12 +23,12 @@
 		margin: 0 24px;
 	}
 	@include breakpoint($medium-up) {
-		width: 70%;
+		width: 80%;
 		margin-left: auto;
 		margin-right: auto;
 	}
-	@include breakpoint($xlarge-up) {
-		width: 60%;	
+	@include breakpoint($xxlarge-up) {
+		width: 70%;	
 	}
 }
 

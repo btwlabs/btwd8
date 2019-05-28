@@ -64,14 +64,6 @@
 // footer outer wrapper
 .l-footer-wrapper {
 	background-color: $footer-bg-color;	
-	
-	// fixed footer
-	@include breakpoint($medium-up) {
-		position: fixed;
-		bottom: 100px;
-		width: 100%;
-		z-index: 0;
-	}
 }
 
 // constrained container
