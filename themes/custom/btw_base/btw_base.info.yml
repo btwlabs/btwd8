@@ -1,0 +1,23 @@
+name: BTW Base
+type: theme
+base theme: basic
+description: BTW Base Theme.
+version: VERSION
+core: 8.x
+libraries:
+  - btw_base/global
+regions:
+  header: Header
+  help: Help
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  highlighted: Highlighted
+  content: Content
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  footer: Footer
+libraries-override:
+  basic/global: false
+  basic/tabs: false
+  basic/messages: false
+  basic/ie8:  false

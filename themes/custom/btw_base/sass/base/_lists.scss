@@ -1,0 +1,155 @@
+//----------------------------------------------
+//
+//	LISTS - general styles for ordered and 
+//          unordered lists and grids
+//
+//	location: 
+//      /sass/base/_lists.scss
+//
+//----------------------------------------------
+
+
+/*-------------------------------------------
+
+ LISTS - defaults for standard formatting
+
+--------------------------------------------*/
+
+
+// !!!!!!! >>>>>>> review these vs normalize.css
+
+ol {
+  list-style: decimal;
+}
+ol li {
+	list-style-type: decimal;
+}
+ul {
+	list-style: disc;
+}
+ul li {
+	list-style: disc;
+}
+ul ul,
+ol ol {
+	padding-top: 0.5em;
+}
+ul ul li {
+	list-style: circle;
+}
+.node ol,
+.node ul {
+	padding-left: 2em;
+}
+.node ul.inline,
+.node ol.inline {
+	padding-left: 0;
+}
+
+/*-------- Definition Lists --------*/
+dt, .admin h3 {
+	font-size: 1.125rem; /* 18px */
+	margin: 0;
+}
+dd {
+	padding-left: 10px;
+	font-size: 0.938rem; /* 15px */
+	font-style: italic;
+	margin-bottom: 20px;
+}
+
+/* LIST formatting classes */
+
+.upper-roman {
+	list-style-type: upper-roman;
+	font-size: 18px;
+
+	> li {
+		list-style-type: upper-roman;
+		padding-left: 8px;
+	}
+}	
+.upper-alpha {
+	list-style-type: upper-alpha;
+
+	> li {
+		list-style-type: upper-alpha;
+		padding-left: 8px;
+	}
+}	
+.decimal {
+	list-style-type: decimal;
+
+	> li {
+		list-style-type: decimal;
+		padding-left: 8px;
+	}
+}
+
+/*---------------------------------------------------------
+-----------------------------------------------------------
+
+ LIST & GRID styles - without standard list formatting
+  
+-----------------------------------------------------------
+---------------------------------------------------------*/
+
+/*---------------------------------------
+
+ .GRID
+ 
+----------------------------------------*/
+
+.grid  {
+	margin: 0;
+	padding: 0;
+}
+.grid ul {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+.grid li,
+.grid .item-list li,
+.grid-row {
+	list-style-type: none;
+	float: left;
+	padding: 0;
+	margin: 0;
+	position: relative;
+}
+
+/*---------------------------------------
+
+ .LIST
+ 
+----------------------------------------*/
+
+.list {
+	padding: 0;
+}
+.list ul {
+	margin: 0;
+	padding: 0;
+}
+.list-row,
+.item-list li.list-row {
+	padding: $vert-spacing-unit/2 0;
+	@include border-bottom($border-color);
+	list-style-type: none;
+	margin: 0;
+	position: relative;
+	overflow: hidden;
+}
+
+/* first and last row alterations */
+.list-row:nth-of-type(1),
+.item-list li.list-row:first-child,
+.l-region--sidebar .list-row:first-child {
+	padding-top: 0;
+}
+.list-row:last-child,
+.item-list li.list-row:last-child,
+.l-region--sidebar .list-row:last-child {
+	border-bottom: 0;
+}

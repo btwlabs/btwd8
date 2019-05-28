@@ -1,0 +1,42 @@
+//------------------------------------------------------
+//
+//	VARIABLES - STORY BLOCKS - defines  attributes
+//
+//	location: 
+//      /sass/variables/_variables-story-blocks.scss
+//
+//------------------------------------------------------
+
+
+// ----------------------------
+//
+// story blocks
+//
+//-----------------------------
+
+
+// padding for columns
+// flexbox padding for top/bottom can't be in % measurement because it won't work in Firefox
+
+$sb-padding_left-copy_s: 0; // not needed by default, padding is on container in mobile layout
+$sb-padding_left-copy_m: 80px 7% 80px 7%;
+$sb-padding_left-copy_l: 120px 7% 120px 7%;
+$sb-padding_left-copy_xl: 120px 7% 120px 7%;
+
+$sb-padding_right-copy_s: 0; // not needed by default, padding is on container in mobile layout
+$sb-padding_right-copy_m: 80px 7% 10% 7%;
+$sb-padding_right-copy_l: 120px 7% 120px 7%;
+$sb-padding_right-copy_xl: 120px 7% 120px 7%;
+
+// small layout
+$sb-inner-padding-sml: 40px 0 60px 0; // this is currently used on the .story-block-inner container, not on columns
+
+// medium layout
+$sb-inner-padding-med: 8vw 0; // this is currently used on the .story-block-inner container, not on columns
+
+$sb-default-padding: 0;
+
+// default fixed height for sb's with fixed position bg's but no content
+$sb-fixed-bg-height-sml: 400px;
+$sb-fixed-bg-height-med: 500px;
+$sb-fixed-bg-height-lrg: 600px;

@@ -1,0 +1,188 @@
+//----------------------------------------------
+//
+//	TYPOGRAPHY - basic text element styles
+//               and custom font declarations 
+//
+//	location: 
+//      /sass/base/_typography.scss
+//
+//----------------------------------------------
+
+
+
+/*-----------------------------------
+
+ Custom Fonts
+ 
+-----------------------------------*/
+
+// add custom font declarations here >>
+
+
+
+
+/*--------------------------------------------------------
+----------------------------------------------------------
+
+ TEXT STYLES
+ 
+----------------------------------------------------------
+--------------------------------------------------------*/
+
+// Text color when selected
+::-moz-selection,
+::selection {
+	color: $selection-text-color;
+	background-color: $selection-background-color;
+	text-shadow: none;
+}
+
+hr {
+	margin: 0;
+	padding: 0;
+	border: none;
+	height: 1px;
+	background: $border-color;
+}
+
+p, dl, hr, h1, h2, h3, h4, h5, h6, ol,
+ul, pre, table, address, fieldset {
+	margin-bottom: 1em;
+	margin-top: 0;
+}
+
+p {
+	word-wrap: break-word;
+}
+
+.center {
+	text-align: center;
+}
+
+/*---------------------------------------------
+
+ HEADINGS & TITLES - general
+ 
+-----------------------------------------------*/
+
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    @include title-style;
+    letter-spacing: 0;
+}
+
+h1, h2 {
+	font-weight: normal; /* removes ugly bold rendering of custom title fonts - remove as necessary */
+}
+
+.block--views h2.block__title,
+.story-block h2.title,
+.field-name-recent-articles > h2.title,
+.node-type-news-article h1.title,
+.section-contact h1.title {
+	@include responsive-section-title;
+	position: relative;
+}
+
+/*------------------
+
+ h1
+ 
+-------------------*/
+
+h1 {
+	@include responsive-page-title;
+}
+
+h1#page-title,
+h1.page-title,
+.block--blockify h1.title {
+	color: $page-title-color;
+	padding-bottom: 10px;
+	border-bottom: 1px solid $border-color;	
+}
+
+
+/*------------------
+
+ h2
+ 
+--------------------*/
+
+h2, 
+h2.node__title,
+h2.block__title,
+h2.views-title {
+	@include font-size(27px);
+	color: $section-title-color;
+}
+
+
+h2.node__title, 
+h2.block__title {
+	line-height: 1.2;
+}
+
+
+
+/*--------------------
+
+ h3 - h6
+ 
+---------------------*/
+
+h3 {
+	@include font-size(21px);
+}
+h4 {
+	@include font-size(19px);
+}
+h5 {
+	@include font-size(17px);
+}
+h6 {
+	@include font-size(15px);
+}
+
+.smaller {
+	font-size: 80%;
+}
+
+
+/*--------------------
+
+  Blockquotes
+ 
+---------------------*/
+
+blockquote {
+	font-style: italic;
+    font-size: 18px;
+    padding: 30px 0 30px 50px;
+    margin: 40px 0 0;
+    position: relative;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    
+    &:before {
+	    content: "";
+	    display: block;
+	    position: absolute;
+	    left: 0px;
+	    top: 24px;
+	    z-index: 3;
+	    line-height: 1;
+	    width: 40px;
+	    height: 40px;
+	    background: url(../images/icon-quote-open_black.svg) no-repeat scroll left top;
+	    background-size: 100% auto;
+	    opacity: .3;
+    }
+}
+

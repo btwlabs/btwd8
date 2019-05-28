@@ -1,0 +1,55 @@
+//------------------------------------------------------
+//
+//	VARIABLES - BACKGROUNDS - definitions for backgrounds on
+//                            specific pages and default
+//
+//	location: 
+//      /sass/variables/_variables-backgrounds.scss
+//
+//------------------------------------------------------
+
+
+
+// ---------------------------------------
+// Sitewide defaults
+//----------------------------------------
+
+// default sitewide background attributes
+$background-bg-size: 100% auto;
+$background-bg-attachment: fixed;
+$background-position: center top;
+
+// Default background image / color
+$default-bg: #fff;
+$default-mobile-bg: #fff;
+
+
+
+
+// HOME page
+$home-bg: $default-bg;
+$home-mobile-bg: $default-mobile-bg;
+
+// ARTICLE teaser list 
+$article-list-bg: $default-bg;
+$article-list-mobile-bg: $default-mobile-bg;
+
+// ARTICLE node
+$article-node-bg: $default-bg;
+$article-node-mobile-bg: $default-mobile-bg;
+
+// ABOUT-BIO page bg
+$bio-bg: $default-bg;
+$bio-mobile-bg: $default-mobile-bg;
+
+
+
+
+
+// ------------------------------------------
+// Content area background
+// ------------------------------------------
+
+$content-bg: #fff url(../images/backgrounds/example.jpg) repeat scroll $background-position;
+$content-bg-size: auto auto;
+$content-bg-color: #fff;

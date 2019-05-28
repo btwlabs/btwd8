@@ -1,0 +1,151 @@
+//----------------------------------------------
+//
+//	Video Hero - full width video in container
+//
+//	location: 
+//      /sass/components/video-hero.scss
+//
+//
+//----------------------------------------------
+
+
+
+/*.l-video-wrapper {
+    transition: top 0.3s linear 0s;
+    position: relative;
+    width: 100vw;
+    height: calc(100vh - 70px);
+    overflow: hidden;
+    z-index: 0;
+    background: #090c1b url(../images/home-hero_vintage.jpg) no-repeat scroll center center;
+    background-size: cover;
+    
+    @include breakpoint($small-only) {
+	    background-image: url(../images/home-hero-mobile.jpg);
+	    height: calc(100vh - $header-height-small);
+    }
+    @include breakpoint($medium-only) {
+	    background-image: url(../images/home-hero-tablet.jpg);
+	    height: calc(100vh - $header-height-medium);
+    }
+    
+    @include breakpoint($large-up) {
+	    display: block;
+		height: calc(100vh - $header-height-large);
+    }
+    @include breakpoint($xlarge-up) {
+	    display: block;
+		height: calc(100vh - $header-height-xlarge);
+    }
+}
+
+video {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+#overlay {
+	z-index: 2;
+	position: absolute;
+	top: 0;
+	left:0;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(14, 52, 75, 0.45); // colors for blue 2 rgba(40, 40, 53, 0.45)
+	display: none;
+}
+#particles-js {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	z-index: 3;
+}
+
+.l-mobile-splash,
+.l-tablet-splash {
+	position: relative;
+	z-index: 1;
+	
+	&:after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: block;
+		background-color: rgba(28,46,50,0.65);
+		z-index: 2;
+	}
+}*/
+
+
+
+// old with video
+.l-video-wrapper {
+    transition: top 0.3s linear 0s;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 0;
+    
+    @include breakpoint($small-only) {
+	    display: block;
+	    padding-bottom: 100vh;
+    }
+    @include breakpoint($medium-only) {
+	    display: block;
+	    padding-bottom: 100vh;
+    }
+    
+    @include breakpoint($small-up) {
+	    display: block;
+		padding-bottom: 100vh;
+    }
+    @include breakpoint($xlarge-up) {
+	    display: block;
+		padding-bottom: 100vh;
+    }
+}
+
+video {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+#overlay {
+	z-index: 2;
+	position: absolute;
+	top: 0;
+	left:0;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(15, 37, 46, 0.7);
+}
+
+.l-mobile-splash,
+.l-tablet-splash {
+	position: relative;
+	z-index: 1;
+	
+	&:after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: block;
+		background-color: rgba(28,46,50,0.65);
+		z-index: 2;
+	}
+}

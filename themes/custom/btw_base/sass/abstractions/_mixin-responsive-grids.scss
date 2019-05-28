@@ -1,0 +1,66 @@
+//----------------------------------------------
+//
+//	Responsive Grids - mixins for grids
+//
+//	location: 
+//      /sass/abstractions/mixins/_mixin-responsive-grids.scss
+//
+//
+//----------------------------------------------
+
+
+
+// These are mixins to use on the grid-item <li> or whatever element
+@mixin grid-1 {
+	width: 100%;
+	margin: 0 0 $vert-spacing-unit 0;
+}
+
+// two items across
+@mixin grid-2 {
+	width: 48%;
+	margin: 0 3.8% 4% 0;
+	
+	&:nth-child(2n+0) {
+		margin-right: 0;
+	}
+}
+
+// three items across
+@mixin grid-3 {
+	width: 30%;
+	margin: 0 4.9% 5% 0;
+	
+	&:nth-child(3n+0) {
+		margin-right: 0;
+	}
+}
+
+// four items across
+@mixin grid-4 {
+	width: 22%;
+	margin: 0 3.8% 4% 0;
+	
+	&:nth-child(4n+0) {
+		margin-right: 0;
+	}	
+}
+
+// five items across
+@mixin grid-5 {
+	width: 16%;
+	margin: 0 4.9% 5% 0;
+	
+	&:nth-child(5n+0) {
+		margin-right: 0;
+	}	
+}
+
+// six items across
+@mixin grid-6 {
+	
+}
+
+@mixin grid-whatever($grid-item-width,$grid-item-height,$grid-item-margin) {
+	
+}

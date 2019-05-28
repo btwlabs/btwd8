@@ -1,0 +1,63 @@
+//----------------------------------------------
+//
+//	BREADCRUMBS - styling
+//
+//	location: 
+//      /sass/components/
+//
+//
+//----------------------------------------------
+
+
+.front {
+	nav.breadcrumb {
+		display: none;
+	}
+}
+
+/*--breadcrumbs--*/
+
+.block--blockify-blockify-breadcrumb  {
+    padding: 2%;
+    background-color: #efefef;
+    font-size: 18px;
+}
+
+.block-system-breadcrumb-block {
+	background-color: #222;
+}
+
+.breadcrumb {
+	padding: 10px 0;
+	//@include constrained;
+	max-width: 90%;
+	margin: 0 auto;
+	
+	ol {
+		padding:0;
+		margin: 0;
+	}
+	
+	li {
+	    list-style-type: none;
+	    display: inline-block;
+	    font-size: 85%;
+	    color: #999;
+	    margin-right: 5px;
+	    
+	    &:after {
+			content: " » ";
+			margin-left:5px;
+			display: inline-block;
+		}
+		
+		&:last-child:after {
+			content: "";
+		}
+		
+		a:hover {
+			color: #fff;
+		}
+	}
+}
+

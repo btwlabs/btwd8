@@ -1,0 +1,27 @@
+//------------------------------------------------------
+//
+//	COLORBOX - overrides to modules styles or defaults
+//
+//	location: 
+//      /sass/components/_colorbox.scss
+//
+//------------------------------------------------------
+
+
+/* overrides to box-sizing (adds padding & border to total width) */
+#colorbox, 
+#cboxOverlay, 
+#cboxWrapper {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+/*--------------------------------------
+ Colorbox Popups  
+---------------------------------------*/
+
+// change font family to default body font
+#cboxContent {
+	font-family: $base-font-family;
+}

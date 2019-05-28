@@ -1,0 +1,74 @@
+//------------------------------------------------------
+//
+//	MIXINS - LAYOUT 
+//
+//	location: 
+//      /sass/abstractions/mixins-layout.scss
+//
+//------------------------------------------------------
+
+
+// Clearfix
+@mixin clearfix {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+   }
+  &:after {
+    clear: both;
+    font-size: 0;/* Clear Fix correction (add font-size to fix extra padding at bottom of site */
+  }
+}
+
+.clearfix,
+%clearfix {
+	@include clearfix;
+}
+
+// Constrained
+@mixin constrained {
+	@include breakpoint($small-only) {
+		margin: 0 30px;
+	}
+	@include breakpoint($medium-up) {
+		width: 80%;
+		margin: 0 auto;
+	}
+}
+
+// Negate constrained styling on a container to make 100% width
+@mixin unconstrained {
+	width: 100%;
+}
+
+// use on inner blocks that are within a constrained style section
+// the idea is to keep padding consistent with that of story blocks
+@mixin constrained-row {
+	padding: $constrained-row-padding;
+}
+
+// use on inner blocks not using constrained styles 
+@mixin unconstrained-row {
+	padding: $unconstrained-row-padding;
+}
+
+
+// padding on top element to clear the page header
+@mixin clear-header {
+	@include breakpoint($small-only) {
+		padding-top: $header-clear-nav-small;
+	}
+	@include breakpoint($medium-up) {
+		padding-top: $header-clear-nav-medium;
+	}
+	@include breakpoint($large-up){
+		padding-top: $header-clear-nav-large;
+	}
+	@include breakpoint($xlarge-up) {
+		padding-top: $header-clear-nav-xlarge;
+	}
+}
+
+
+

@@ -1,0 +1,16 @@
+//------------------------------------------------------
+//
+//	FIELD COLLECTION RESET - override Field Collection module defaults
+//
+//	location: 
+//      /sass/components/_field-collection-reset.scss
+//
+//------------------------------------------------------
+
+
+.field-collection-view,
+.field-collection-container {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}

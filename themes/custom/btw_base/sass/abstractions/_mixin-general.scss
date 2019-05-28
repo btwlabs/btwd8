@@ -1,0 +1,125 @@
+//------------------------------------------------------
+//
+//	MIXINS - GENERAL - misc mixins 
+//
+//	location: 
+//      /sass/abstractions/mixins-general.scss
+//
+//------------------------------------------------------
+
+
+
+// Transition mixins - default values are defined in /variables/_variables-general.scss
+@mixin transition($property,$time,$function) {
+	-webkit-transition: $property $time $function;
+	-moz-transition: $property $time $function;
+	-o-transition: $property $time $function;
+	transition: $property $time $function;
+}
+
+// Transform - translate (centerX)
+@mixin centerX {
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+// Transform - translate (centerY)
+@mixin centerY {
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+// Transform - translate (centerXY)
+@mixin centerXY {
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+// transition opacity only
+@mixin transition-opacity {
+	-webkit-transition: opacity 0.2s ease-in;
+	-moz-transition: opacity 0.2s ease-in;
+	-o-transition: opacity 0.2s ease-in;
+	transition: opacity 0.2s ease-in;
+}
+
+// Opacity mixin
+@mixin opacity($opacity) {
+	opacity: $opacity;
+	$opacity-ie: $opacity * 100;
+	filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+// Text Truncate
+@mixin text-truncate {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// box shadow
+@mixin box-shadow($offset-x,$offset-y,$blur-radius,$color) {
+	-webkit-box-shadow: $offset-x $offset-y $blur-radius $color;
+	-moz-box-shadow: $offset-x $offset-y $blur-radius $color;
+	box-shadow: $offset-x $offset-y $blur-radius $color;
+}
+
+
+// Gradient vertical
+@mixin linear-gradient($fromColor, $toColor) {
+	background: $toColor; /* Fallback color */
+	background: -webkit-gradient(linear, left top, left bottom, from($fromColor), to($toColor)); /* Saf4+, Chrome */
+	background: -webkit-linear-gradient(top, $fromColor, $toColor); /* Chrome 10+, Saf5.1+, iOS 5+ */
+	background: -moz-linear-gradient(top, $fromColor, $toColor); /* FF3.6 */
+	background: -ms-linear-gradient(top, $fromColor, $toColor); /* IE10+ */
+	background: -o-linear-gradient(top, $fromColor, $toColor); /* Opera 11.10+ */
+	background: linear-gradient(top, $fromColor, $toColor); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+}
+
+// Gradient horizontal
+@mixin linear-gradient-left-right($fromColor, $toColor) {
+	background: $toColor; /* Fallback color */
+	background: -webkit-linear-gradient(left, $fromColor, $toColor); /* Chrome 10+, Saf5.1+, iOS 5+ */
+	background: -moz-linear-gradient(left, $fromColor, $toColor); /* FF3.6 */
+	background: -ms-linear-gradient(left, $fromColor, $toColor); /* IE10+ */
+	background: -o-linear-gradient(left, $fromColor, $toColor); /* Opera 11.10+ */
+	background: linear-gradient(to right, $fromColor, $toColor); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+}
+
+
+//------------------------
+// Visually hide items
+//-------------------------
+@mixin visually-hidden {
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    clip: rect(0 0 0 0);
+}
+
+.visually-hidden {
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    clip: rect(0 0 0 0);
+}
+
+// Hide text but show images
+@mixin hide-text {
+	text-indent: 100%; //get out of the window
+	white-space: nowrap; // don't come back in
+	overflow: hidden; // no really, don't come back in
+}
+

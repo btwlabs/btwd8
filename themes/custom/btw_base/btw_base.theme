@@ -1,0 +1,24 @@
+<?php
+
+use Drupal\Component\Utility\Html;
+
+/**
+ * Preprocess variables for html templates.
+ * @param $variables
+ */
+function btw_base_preprocess_html(&$variables) {
+  // Add a path-based class to body.
+  $variables['path_info']['args'] = FALSE;
+  $path = \Drupal::request()->getPathInfo();
+  if ($variables['is_front']) {
+    $variables['path_info']['args'] = 'home';
+  }
+  else {
+    $variables['path_info']['args'] = Html::cleanCssIdentifier(ltrim($path, '/'));
+  }
+  $variables['attributes']['class'][] = 'page-' .  $variables['path_info']['args'];
+
+  if ($node = \Drupal::request()->attributes->get('node')) {
+    $variables['attributes']['class'][] = 'page-node-' . $node->id();
+  }
+}

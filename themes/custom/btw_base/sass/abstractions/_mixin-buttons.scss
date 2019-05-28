@@ -1,0 +1,182 @@
+//------------------------------------------------------
+//
+//	MIXINS - BUTTONS - define groups of attributes for buttons
+//
+//	location: 
+//      /sass/abstractions/mixins-buttons.scss
+//
+//------------------------------------------------------
+
+
+
+// button mixins
+
+@mixin button {
+	background: $button-bg-color; 
+	text-align: center;
+	color: $button-text-color;
+	display: block;
+	text-decoration: none;
+	text-shadow: none;
+	text-transform: $button-text-transform;
+	@include border-radius($button-border-radius);
+	@include transition(all, 0.3s, ease-in);
+	@include button-padding($button-padding);
+	line-height: 1;
+	border: $button-border-width solid $button-border-color;
+	font-weight: $button-font-weight;
+	position: relative;
+	letter-spacing: 0.1em;
+	
+	@include breakpoint($small-only) {
+		display: block;
+	}
+	@include breakpoint($medium-up) {
+		display: inline-block;
+	}
+	
+	@include breakpoint($large-up) {
+		border: 0; 
+		
+		&:before {
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    border: $button-border-width solid $button-border-color;
+		    display: block;
+		    content: "";
+		    transition: all .3s ease-out;
+		}
+	}
+}
+
+@mixin button-hover {
+	background: $button-bg-hover-color; 
+	color: $button-text-hover-color;
+	border-color: $button-border-hover-color;
+	text-decoration: none;
+	
+	@include breakpoint($large-up) {
+		
+		&:hover:before {
+		    opacity: 0;
+		    -webkit-transform: scale(1.2, 1.4);
+		    transform: scale(1.2, 1.4);
+		    transition: all .3s ease-in;
+		}
+	}
+}
+
+@mixin button-padding($button-padding) {
+	padding: $button-padding;
+}
+
+// button mixin LIGHT BUTTON ON DARK BG
+@mixin button-on-dark {
+	background: $button-bg-color-on-dark; 
+	text-align: center;
+	color: $button-text-color-on-dark;
+	border: $button-border-width solid $button-border-color-on-dark;
+	text-decoration: none;
+	text-transform: $button-text-transform;
+	@include border-radius($button-border-radius);
+	@include transition(all, 0.3s, ease-in);
+	@include button-padding($button-padding);
+	font-weight: $button-font-weight;
+	position: relative;
+	letter-spacing: 0.1em;
+	
+	@include breakpoint($small-only) {
+		display: block;
+	}
+	@include breakpoint($medium-up) {
+		display: inline-block;
+	}
+	
+	@include breakpoint($large-up) {
+		border: 0;
+		
+		&:before {
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    border: $button-border-width solid $button-border-color-on-dark;
+		    display: block;
+		    content: "";
+		    transition: all .3s ease-out;
+		}
+	}
+}
+@mixin button-on-dark-hover {
+	background: $button-bg-hover-color-on-dark; 
+	color: $button-text-hover-color-on-dark;
+	border-color: $button-border-hover-color-on-dark;
+	text-decoration: none;
+	
+	@include breakpoint($large-up) {
+		&:hover:before {
+		    opacity: 0;
+		    -webkit-transform: scale(1.2, 1.4);
+		    transform: scale(1.2, 1.4);
+		    transition: all .3s ease-in;
+		}
+	}
+}
+
+// button mixin DARK BUTTON ON LIGHT BG
+@mixin button-on-light {
+	background: $button-bg-color-on-light; 
+	text-align: center;
+	color: $button-text-color-on-light;
+	border: $button-border-width solid $button-border-color-on-light;
+	text-decoration: none;
+	text-transform: $button-text-transform;
+	@include border-radius($button-border-radius);
+	@include transition(all, 0.3s, ease-in);
+	@include button-padding($button-padding);
+	font-weight: $button-font-weight;
+	position: relative;
+	letter-spacing: 0.1em;
+	
+	@include breakpoint($small-only) {
+		display: block;
+	}
+	@include breakpoint($medium-up) {
+		display: inline-block;
+	}
+	
+	@include breakpoint($large-up) {
+		border: 0;
+		
+		&:before {
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    border: $button-border-width solid $button-border-color-on-light;
+		    display: block;
+		    content: "";
+		    transition: all .3s ease-out;
+		}
+	}
+}
+@mixin button-on-light-hover {
+	background: $button-bg-hover-color-on-light; 
+	color: $button-text-hover-color-on-light;
+	border-color: $button-border-hover-color-on-light;
+	text-decoration: none;
+	
+	@include breakpoint($large-up) {
+		&:hover:before {
+		    opacity: 0;
+		    -webkit-transform: scale(1.2, 1.4);
+		    transform: scale(1.2, 1.4);
+		    transition: all .3s ease-in;
+		}
+	}
+}

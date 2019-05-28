@@ -1,0 +1,16 @@
+//----------------------------------------------
+//
+//	MENUS - general styles for menus
+//
+//	location: 
+//      /sass/base/_lists.scss
+//
+//----------------------------------------------
+
+
+// Override system default list styles and images
+
+.menu .leaf {
+	list-style-image: none;
+	list-style-type: none;
+}

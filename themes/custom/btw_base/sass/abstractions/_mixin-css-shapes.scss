@@ -1,0 +1,83 @@
+//------------------------------------------------------
+//
+//	MIXINS - SHAPES - easy creation of css shapes 
+//
+//	location: 
+//      /sass/abstractions/mixins-borders.scss
+//
+//------------------------------------------------------
+
+
+
+// circle
+@mixin circle($width) {
+	width: $width;
+	height: $width;
+	-webkit-border-radius: $width/2;
+	border-radius: $width/2;
+}
+
+
+// arrow
+@mixin triangle($width, $dir, $color) {
+	@if $dir == up{
+		width: 0;
+		height: 0;
+		border-left: $width solid transparent;
+		border-right: $width solid transparent;
+		border-bottom: $width solid $color;
+	} 
+	@else if $dir == down {
+		width: 0;
+		height: 0;
+		border-left: $width solid transparent;
+		border-right: $width solid transparent;
+		border-top: $width solid $color;
+	}
+	@else if $dir == left {
+		width: 0;
+		height: 0;
+		border-left: $width solid transparent;
+		border-right: $width solid $color;
+		border-top: $width solid transparent;
+	}
+	@else if $dir == right {
+		width: 0;
+		height: 0;
+		border-left: $width solid $color;
+		border-right: $width solid transparent;
+		border-top: $width solid transparent;
+	}
+}
+
+// triangle top left 
+@mixin triangle-topleft($width, $color) {
+	width: 0;
+	height: 0;
+	border-top: $width solid $color;
+	border-right: $width solid transparent;
+}
+
+// triangle top right
+@mixin triangle-topright($width, $color) {
+	width: 0;
+	height: 0;
+	border-top: $width solid $color;
+	border-left: $width solid transparent;
+}
+
+// triangle bottom left {
+@mixin triangle-bottomleft($width, $color) {
+	width: 0;
+	height: 0;
+	border-bottom: $width solid $color;
+	border-right: $width solid transparent;
+}
+
+// triangle bottom right {
+@mixin triangle-bottomright($width, $color) {
+	width: 0;
+	height: 0;
+	border-bottom: $width solid $color;
+	border-left: $width solid transparent;
+}

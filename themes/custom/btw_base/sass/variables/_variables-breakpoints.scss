@@ -1,0 +1,49 @@
+//------------------------------------------------------
+//
+//	VARIABLES - BREAKPOINTS - definitions for content widths
+//                            used in media queries
+//
+//	location: 
+//      /sass/variables/_variables-breakpoints.scss
+//
+//  NOTE:
+//  This utilizes the Sass Breakpoint gem 		- https://github.com/Team-Sass/breakpoint/wiki
+//  and the Singularity grid system				- https://github.com/Team-Sass/Singularity/wiki
+//
+//
+//------------------------------------------------------
+
+
+// Set consistent vertical and horizontal spacing units.
+$vert-spacing-unit: 1em;
+$horz-spacing-unit: 1em;
+
+
+// convert pixel widths to ems in breakpoints
+@import "breakpoint";
+@include breakpoint-set('to ems', true);
+
+
+// Define breakpoints
+$landscape: screen (orientation landscape);
+$portrait: screen (orientation portrait);
+
+$small-up: 0px; 					// min-width: 0 
+$small-only: 0em 40em; 				// min-width: 0 and max-width: 640px
+
+$small-plus: 40em 47.5em;			// min-width: 640px and max-width: 760px;
+
+$small-and-medium: 0em 64em;		// min-width: 0 and max-width: 1024px;
+
+$medium-up: 40.063em; 				// min-width: 641px
+$medium-only: 40.063em 64em; 		// min-width: 641px and max-width: 1024px
+
+$medium-plus: 47.563em 64em;		// min-width: 760px and max-width: 1024px;
+
+$large-up: 64.063em; 				// min-width: 1025px
+$large-only: 64.063em 90em; 		// min-width: 1025px and max-width: 1440px
+
+$xlarge-up: 90.063em; 				// min-width: 1441px
+$xlarge-only: 90.063em 120em; 		// min-width: 1441px and max-width: 1920px
+
+$xxlarge-up: 120.063em;				// min-width: 1921px

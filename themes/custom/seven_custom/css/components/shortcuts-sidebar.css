@@ -1,0 +1,21 @@
+/*--------------------------------------
+//
+//	USER SHORTCUTS menu - sidebar 
+//
+//--------------------------------------*/
+
+#toolbar-item-shortcuts-tray ul.toolbar-menu a {
+    background: #000;
+    margin: 10px 5px;
+    text-align: center;
+    font-size: 18px;
+    padding: 15px 10px;
+    color: #e5e5e5;
+    border-radius: 6px;
+    
+    &:hover {
+	    background-color: $primary-color;
+	    text-decoration: none;
+    }
+}
+

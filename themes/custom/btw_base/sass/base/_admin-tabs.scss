@@ -1,0 +1,66 @@
+//----------------------------------------------
+//
+//	DRUPAL TABS - navigation tab buttons 
+//
+//	location: 
+//      /sass/base/_tabs.scss
+//
+//----------------------------------------------
+
+
+// Tabs container
+nav.tabs {
+	@include constrained;
+    padding: 30px 0;
+}
+
+
+.tabs.primary {
+	margin: 0;
+	padding: 0;
+	background-color: #eee;	
+	overflow: hidden;
+	border: 1px solid $border-color;
+	
+	
+	&:before {
+	    content: "ADMIN";
+	    display: block;
+	    padding: 5px;
+	    background: #FFF;
+	    color: #000;
+	    text-align: center;
+	}
+}
+.tabs.primary li {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style-type: none;
+	
+	&.tabs__tab--active a { // same as a:hover
+		background-color: $tabs-active-bg-color;
+		color: $tabs-active-text-color;
+		border-color: $tabs-active-bg-color;
+	}
+}
+.tabs.primary li a {
+	background-color: $tabs-bg-color;
+	color: $tabs-text-color;
+	display: block;
+	padding: 6px 15px;
+	text-decoration: none;
+	text-transform: uppercase;
+	@include border-bottom($border-color);
+	@include border-radius(0 0 0 0);
+	border-bottom: 0;
+	text-align: center;
+	@include font-size(14px);
+	
+	&:hover {
+		background-color: $tabs-bg-hover-color;
+		color: $tabs-text-hover-color;
+		border-color: $tabs-bg-hover-color;
+		text-decoration: none;
+	}
+}

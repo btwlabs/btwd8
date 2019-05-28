@@ -1,0 +1,148 @@
+//----------------------------------------------
+//
+//	BUTTONS & LINKS - general styles for links
+//
+//	location: 
+//      /sass/base/_buttons_links.scss
+//
+//----------------------------------------------
+
+
+
+/*---------------------------------------------------------
+-----------------------------------------------------------
+
+ General LINK styles
+ 
+-----------------------------------------------------------
+----------------------------------------------------------*/
+
+// these link styles were placed here because it has to load 
+// before .button styles - due to sass globbing and no control  
+// over stylesheet loading order - for button styles to work. 
+
+a,
+a:link,
+a:visited,
+li a.active {
+	@include transition(all, 0.2s, ease-in);
+	color: $link-color;
+	text-decoration: none;
+	
+	&:hover {
+		color: $link-hover-color;
+		text-decoration: underline;
+	}
+}
+
+
+/*---------------------------------------------------------
+-----------------------------------------------------------
+
+ BUTTON styles
+ 
+-----------------------------------------------------------
+----------------------------------------------------------*/
+
+/*-------------------------------------
+
+ Button normal state
+ 
+-------------------------------------*/
+
+
+// THIS CSS applies to buttons with pulse effect on rollover
+.button a,
+a.button {
+	@include button; // sass/abstractions/_mixins-buttons.scss
+	position: relative;
+		
+	&:hover {
+		@include button-hover; // sass/abstractions/_mixins-buttons.scss
+	}
+	
+	@include breakpoint($large-up) {
+		&:before {
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    border: $button-border-width solid $button-border-color;
+		    display: block;
+		    content: "";
+		    transition: all .3s ease-out;
+		}
+		
+		&:hover:before {
+		    opacity: 0;
+		    -webkit-transform: scale(1.2, 1.4);
+		    transform: scale(1.2, 1.4);
+		    transition: all .3s ease-out;
+		}
+	}
+}
+
+// THIS CSS is regular non-animated buttons on light bg
+button,
+input[type="reset"], 
+input[type="submit"], 
+input[type="button"] {
+	background: $button-bg-color; 
+	text-align: center;
+	color: $button-text-color;
+	display: block;
+	text-decoration: none;
+	text-shadow: none;
+	text-transform: $button-text-transform;
+	@include border-radius($button-border-radius);
+	@include transition(all, 0.3s, ease-in);
+	@include button-padding($button-padding);
+	line-height: 1;
+	border: $button-border-width solid $button-border-color;
+	font-weight: $button-font-weight;
+	position: relative;
+	letter-spacing: 0.1em;
+	
+	@include breakpoint($small-only) {
+		display: block;
+	}
+	@include breakpoint($medium-up) {
+		display: inline-block;
+	}
+	
+	&:hover {
+		background: $button-bg-hover-color; 
+		color: $button-text-hover-color;
+		border-color: $button-border-hover-color;
+		text-decoration: none;
+	}
+}
+
+
+/* Exceptions to <a> css animation */
+#colorbox button {
+	-webkit-transition: none;
+	-moz-transition: none;
+	-o-transition: none;
+	transition: none;
+}
+
+// override drupal default active state
+li .button a.active {
+	color: $button-text-color; 
+}
+
+
+/*---------------------------------------------------------
+-----------------------------------------------------------
+
+ BUTTON styles on DARK backgrounds
+ 
+-----------------------------------------------------------
+----------------------------------------------------------*/
+
+.button.is-on-dark {
+	@include button-on-dark; 
+}
+

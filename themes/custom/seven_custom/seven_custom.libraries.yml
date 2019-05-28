@@ -1,0 +1,4 @@
+global-styling:
+  css:
+    component:
+      css/components/shortcuts-sidebar.css: {}

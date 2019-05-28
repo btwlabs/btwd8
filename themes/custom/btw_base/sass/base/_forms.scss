@@ -1,0 +1,127 @@
+//----------------------------------------------
+//
+//	FORMS - general styles for forms
+//
+//	location: 
+//      /sass/base/_forms.scss
+//
+//----------------------------------------------
+
+
+input.focus {
+	color: #F8F4CA;
+}
+.image-widget-data input.form-file {
+	margin-right: 10px;
+	margin-bottom: 20px;
+}
+
+.form-item {
+	margin-bottom: 20px;
+}
+.form-item label, 
+.form-actions label {
+	font-weight: normal;
+	font-size: 18px;
+	//display: block;
+}
+label.option {
+	vertical-align: middle;
+}
+input[type="checkbox"] {
+	cursor: pointer;
+	margin-right: 10px;
+}
+input[type="text"],
+input[type="email"],
+input.form-text,
+textarea  {
+	max-width: 100%;
+	padding: 10px;
+	border: 1px solid $border-color;
+}
+
+input[type="file"] {
+    margin: 15px 0px 0px;
+}
+
+
+// file upload container
+.form-managed-file {
+    border: 1px solid $border-color;
+    padding: 20px;
+    margin: 0 0 10px 0;
+}
+
+
+// Submit Button
+.webform-client-form input.form-submit {
+	@include button;
+    margin: 15px 0;
+   
+    
+    @include breakpoint($medium-up) {
+	    width: auto;
+    }
+    
+    &:hover {
+	    @include button-hover;
+    }
+}
+
+.contact-button-wrapper a {
+	padding: 14px 5px 12px;
+	background-color: $primary-color;
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+	display: block;
+	margin-bottom: 15px;
+	
+	@include breakpoint($large-up) {
+		width: 48%;
+		display: inline-block;
+		margin-bottom: 0;
+		
+		&:nth-of-type(1) {
+			margin-right: 4%;
+		}
+	}
+	
+	&:hover {
+		color: #fff;
+		background-color: $secondary-color;
+		text-decoration: none;
+	}
+}
+
+
+// Radio buttons 
+.form-item-radios {
+	label {
+		margin-left: 15px;
+	}
+}
+
+// select field 
+select {
+	margin-bottom: 10px;
+}
+
+
+// Commerce forms
+.form-item img {
+    width: auto;
+    display: inline-block;
+    vertical-align: top;
+}
+
+// user login form
+.user-login-form {
+	.form-item label, 
+	.form-actions label {
+		font-weight: normal;
+		font-size: 18px;
+		display: block;
+	}
+}

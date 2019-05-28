@@ -1,0 +1,76 @@
+//------------------------------------------------------
+//
+//	MESSAGES - css overrides for system messages
+//
+//	location: 
+//      /sass/components/_messages.scss
+//
+//------------------------------------------------------
+
+
+
+/*--------------------------------------
+
+ System Messages (mobile)
+ 
+---------------------------------------*/
+
+// Mesages Container
+// Keep out top padding/margin so it will completely collapse when empty
+.l-messages {
+	line-height: 1.25;
+	padding: 0;
+	margin: 0;
+	background-color: #fff;
+	border: 0;
+	@include font-size(18px);
+	word-break: break-all;
+	position: relative;
+	z-index: 15;
+}
+.l-messages .l-constrained {
+	margin: 0;
+	width: auto;
+}
+
+.messages {
+	margin: 0;
+	padding: 15px 15px 15px 50px;
+	border: 0;
+	background-position: 15px 15px;
+}
+
+
+// Types of messages
+
+// Warning
+.messages--warning {
+	background-color: #fcf092;
+	color: #000;
+}
+.messages--error {
+	background-color: #f45d5d;
+}
+.messages--status {
+	background-color: #bff697;
+	padding: 5vw 10vw;
+    text-align: center;
+    font-size: 22px;
+    word-break: normal;
+    
+    @include breakpoint($large-up) {
+	    padding: 3vw 10vw;
+    }
+}
+
+.messages--status a,
+.messages--error a,
+.messages--warning a {
+	color: #000; /* color needs to be visible from .messages bg-color value */
+	text-decoration: underline;
+}
+
+// temporary hide
+.messages--error {
+	display: none;
+}

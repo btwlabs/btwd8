@@ -1,0 +1,17 @@
+//------------------------------------------------------
+//
+//	MIXINS - LISTS 
+//
+//	location: 
+//      /sass/abstractions/mixins-lists.scss
+//
+//------------------------------------------------------
+
+
+// Lists without bullets
+@mixin no-bullet($list-item-margin,$list-item-padding) {
+	margin: $list-item-margin;
+	padding: $list-item-padding;
+	list-style-type: none;
+	list-style-image: none;
+}

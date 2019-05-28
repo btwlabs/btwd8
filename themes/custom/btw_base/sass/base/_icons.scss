@@ -1,0 +1,58 @@
+//----------------------------------------------
+//
+//	ICONS - listing of icons used on the site
+//
+//	location: 
+//      /sass/base/_icons.scss
+//
+//----------------------------------------------
+
+
+
+/*-----------------------------------
+
+ Default Icon Fonts
+ 
+-----------------------------------*/
+
+
+
+
+/*---------------------------------------
+
+ Font Icons - reset 
+ 
+---------------------------------------*/
+
+* a:before,
+* a:after {
+	text-transform: none;
+	font-style: normal;
+	text-decoration: none;
+	text-shadow: none;
+	line-height: 1;
+}
+a:hover:before,
+a:hover:after {
+	text-decoration: none;
+}
+
+a:before,
+h1:before,
+h2:before,
+h3:before,
+h4:before,
+h5:before,
+h6:before,
+a:after,
+h1:after,
+h2:after,
+h3:after,
+h4:after,
+h5:after,
+h6:after {
+	font-weight: normal;
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1;
+}

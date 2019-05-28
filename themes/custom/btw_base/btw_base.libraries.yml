@@ -1,0 +1,13 @@
+global:
+  version: VERSION
+  js:
+    js/btw_base.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/drupal.progress
+    - core/jquery.once
+  css:
+    base:
+      css/main.css: {}

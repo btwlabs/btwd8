@@ -1,0 +1,43 @@
+//------------------------------------------------------
+//
+//	VARIABLES - LAYOUT - defines layout attributes
+//
+//	location: 
+//      /sass/variables/_variables-layout.scss
+//
+//------------------------------------------------------
+
+
+// height of header element
+// used for content section clearing fixed top pos items
+
+$header-height-small: 50px;
+$header-height-medium: 60px;
+$header-height-large: 70px;
+$header-height-xlarge: 70px;
+
+$header-clear-nav-small: 50px;
+$header-clear-nav-medium: 60px;
+$header-clear-nav-large: 70px;
+$header-clear-nav-xlarge: 70px;
+
+
+// height of main navigation
+$nav-height-small: 50px;
+$nav-height-medium: 78px;
+$nav-height-large: 100px;
+$nav-height-xlarge: 100px;
+
+
+// default padding on content section rows using constrained styles
+$constrained-row-padding: 8vw 0;
+
+// use on inner blocks not using constrained styles
+$unconstrained-row-padding: 8vw;
+
+// story blocks
+// padding for columns
+$story-block-padding-left-copy: 8vw;
+$story-block-padding-right-copy: 8vw;
+
+$story-block-default-padding: 0;

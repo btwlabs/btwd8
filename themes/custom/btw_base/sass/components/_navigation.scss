@@ -1,0 +1,263 @@
+//------------------------------------------------------
+//
+//	NAVIGATION - Main site navigation - non-mobile
+//
+//	location: 
+//      /sass/components/_navigation.scss
+//
+//------------------------------------------------------
+
+
+
+.l-header {
+	@include breakpoint($small-only) {
+		display: none;
+	}
+	
+	@include breakpoint($medium-up) {
+		display: block;
+		position: relative; // for non-fixed nav
+		left: 0;
+		width: 100%;
+		z-index: 9997;
+		@include clearfix; // for non-fixed nav
+		@include border-bottom($border-color);
+		height: $header-height-medium;
+	}
+	@include breakpoint($large-up) {
+		height: $header-height-large;
+	}
+
+	
+	// List items
+	nav.menu--main {
+		float: right;
+				
+		.menu {
+			margin: 0;
+			padding: 0;
+			overflow: visible;
+			position: relative;
+			background-color: $nav-bar-bg-color;
+			
+			li {
+				margin: 0;
+				padding: 0;
+				list-style-type: none;
+				float: left;
+				position: relative;
+				font-family: $nav-font-family;
+				font-weight: $nav-font-weight;
+				line-height: $nav-line-height;
+				
+				&.leaf {
+					list-style-image: none;
+				}
+				&.menu-item--active-trail {
+					background-color: $nav-button-bg-active-color;
+				}
+				&.collapsed {
+					list-style-image: none;
+				}
+				&.expanded {
+					list-style-image: none;
+				}
+				
+				&:before {
+					@include transition($property,$time,$function);
+					width: 0;
+				}
+				
+				// keeps main nav link in a persistent hover state while cursor moves to subnav list
+				&:hover {
+					
+					&:before {
+						display: block;
+					    content: "";
+					    height: 3px;
+					    background: $primary-color;
+					    text-align: center;
+					    position: absolute;
+					    top: 0;
+					    @include centerX;
+					    animation: nav-border-animation 0.3s ease-in-out forwards;
+					    animation-delay: 0;
+					}
+					> a {
+						background-color: $nav-button-bg-hover-color;
+						color: $nav-text-hover-color;
+					}
+				}
+				
+				// Nav button links
+				> a.main-nav {
+					display: block;
+					color: $nav-text-color;
+					background-color: $nav-button-bg-color;
+					letter-spacing: 0.1em;
+					
+					@include breakpoint($small-only) {
+						@include font-size(17px);
+						padding: 10px;
+					}
+					@include breakpoint($medium-up) {
+						@include font-size(18px);
+						padding: 22px 12px 20px;
+						text-transform: uppercase;
+					}
+					@include breakpoint($large-up) {
+						@include font-size(18px);
+						padding: 25px 20px 27px;
+					}
+					
+					&:hover {
+						color: $nav-text-hover-color;
+						background-color: $nav-button-bg-hover-color;
+						text-decoration: none;
+					}
+					&.active-trail,
+					&.active-trail:hover {
+						background-color: $nav-button-bg-active-color;
+					}
+					
+				}
+				
+				/* sub nav menus */
+				ul.menu {
+					position: absolute;
+					left: 0;
+					visibility: hidden;
+					@include transition-opacity;
+					background-color: $subnav-bar-bg-color;
+					left: -9999px; // hide offscreen when not needed - more accessible than display:none
+					
+					@include breakpoint($medium-only) {
+						top: 65px;
+						min-width: 170px;
+					}
+					@include breakpoint($large-up) {
+						top: 70px;
+						min-width: 170px;
+					}
+					
+					
+				
+					li {
+						float: none;
+						overflow: hidden;
+						
+						a.sub-nav {
+							padding: 10px 15px;
+							color: $subnav-text-color;
+							background-color: $subnav-button-bg-color;
+							@include font-size(14px);
+							font-family: $subnav-font-family;
+							font-weight: $subnav-font-weight;
+							line-height: $subnav-line-height;
+							display: block;
+							
+							@include breakpoint($medium-up) {
+								@include font-size(14px);
+							}
+							@include breakpoint($large-up) {
+								@include font-size(17px);
+							}
+							
+							&:hover,
+							&:active,
+							&.active-trail {
+								color: $subnav-text-hover-color;
+								background-color: $subnav-button-bg-hover-color;
+								text-decoration: none;
+							}
+							&:hover {
+								padding-left: 25px;
+							}
+						}
+						&:hover:before {
+							display: none;
+						}
+					}
+				}
+				
+				// show sub-menu on hover
+				&:hover ul.menu {
+					display: block;
+					opacity: 1;
+					visibility: visible;
+					left: 0;
+				}
+			}
+		}
+	}
+	
+	//-------------------------------------------
+	//
+	//	for fixed position nav on scroll up
+	//
+	//-------------------------------------------
+	
+	&.fixed {
+		
+		.l-constrained {
+			position: fixed;
+			@include transition($property,$time,$function);
+			width: 100%;
+			background: rgba(0,0,0,0.8);
+			border: 0;		
+		}
+		
+		// main nav
+		nav.menu--main {
+			margin-right: 5%;
+			
+			.menu li > a.main-nav {
+				padding: 15px 20px 16px;
+				color: #fff;
+				@include transition($property, $time, $function);
+				
+				&:hover {
+					color: $primary-color;
+				}
+			}
+		}
+		
+		// Sub-nav
+		li ul.menu {
+			
+			@include breakpoint($medium-only) {
+				top: 50px !important;
+			}
+			@include breakpoint($large-up) {
+				top: 50px !important;
+			}
+			
+			li a.sub-nav {
+				@include transition($property, $time, $function);
+				
+				&:hover {
+					padding-left: 20px;
+				}
+			}
+		}
+	}
+}
+
+
+// Animation
+@keyframes nav-border-animation {
+	0% {
+		width: 0;
+	}
+	100% {
+		width: 100%;
+	}
+}
+@-webkit-keyframes nav-border-animation {
+	0% {
+		width: 0;
+	}
+	100% {
+		width: 100%;
+	}
+}

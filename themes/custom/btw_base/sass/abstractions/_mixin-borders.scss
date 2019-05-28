@@ -1,0 +1,52 @@
+//------------------------------------------------------
+//
+//	MIXINS - BORDERS 
+//
+//	location: 
+//      /sass/abstractions/mixins-borders.scss
+//
+//------------------------------------------------------
+
+
+
+// Border radius 
+@mixin border-radius($border-radius) {
+	border-radius: $border-radius;
+}
+
+// border all sides
+@mixin border-all($border-color) {
+	border: 1px solid $border-color;
+}
+
+// border bottom
+@mixin border-bottom($border-color) {
+	border-bottom: 1px solid $border-color;
+}
+
+// border top
+@mixin border-top($border-color) {
+	border-top: 1px solid $border-color;
+}
+
+// border top & bottom
+@mixin border-top-bottom($border-color) {
+	border-bottom: 1px solid $border-color;
+	border-top: 1px solid $border-color;
+}
+
+// border left & right
+@mixin border-left-right($border-color) {
+	border-left: 1px solid $border-color;
+	border-right: 1px solid $border-color;
+}
+
+// border right & bottom 
+@mixin border-right-bottom($border-color) {
+	border-right: 1px solid ($border-color);
+	border-bottom: 1px solid ($border-color);
+}
+
+
+// Double bottom border
+$border-bottom-double: 4px double $border-color;

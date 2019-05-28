@@ -1,0 +1,63 @@
+//----------------------------------------------
+//
+//	MEDIA - general styles for images and video
+//
+//	location: 
+//      /sass/base/_media.scss
+//
+//----------------------------------------------
+
+
+
+/*-------------------------------------
+
+  Site Images
+
+--------------------------------------*/
+
+img, media {
+	max-width: 100%;
+	width: 100%;
+	height: auto;
+	vertical-align: middle; /* kills space between img, a, and container */
+}
+
+// exceptions to 100% img width; images whose container does not have a set width
+table img,
+img.file-icon,
+.feed-icon img,
+body.node-type-banner .field-type-image img,
+#toolbar img,
+.mollom-image-captcha img /* captcha */ {
+	width: auto;
+}
+
+// all images inside links 
+ 
+a img {
+	@include transition(all, 0.2s, ease-in);
+}
+
+/*-------------------------------------
+
+ video
+
+-------------------------------------*/
+
+// Sets video to be 100% width and responsive 
+.embedded-video {
+	height: 0;
+	overflow: hidden;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	position: relative;
+	
+	& iframe {
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+}
+

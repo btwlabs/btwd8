@@ -1,0 +1,113 @@
+//------------------------------------------------------
+//
+//	MIXINS - TYPOGRAPHY 
+//
+//	location: 
+//      /sass/abstractions/mixins-typography.scss
+//
+//------------------------------------------------------
+
+
+
+// Use REMs with a pixel fallback for font sizing.
+@mixin font-size($font-size){
+	font-size: $font-size;
+	font-size: ($font-size / $base-font-size)*1rem;
+}
+
+// Basic sitewide body text
+@mixin base-text-style {
+	font-family: $base-font-family;
+	font-weight: $base-font-weight;
+	font-size: $base-font-size;
+	line-height: $base-line-height;
+	color: $text-color;
+	letter-spacing: $base-letter-spacing;
+}
+
+@mixin responsive-body-text {
+	@include breakpoint($small-only) {
+		@include font-size(19px);
+	}
+	@include breakpoint($large-up) {
+		@include font-size(24px)
+	}
+}
+
+
+// Titles
+@mixin title-style {
+	font-family: $title-font-family;
+	font-weight: $title-font-weight;
+	margin: $title-margin;
+	color: $title-color;
+	line-height: $title-line-height;
+	text-transform: $title-text-transform;
+}
+
+// Page title - responsive sizes
+@mixin responsive-page-title {
+	
+	@include breakpoint($small-up) {
+		@include font-size(35px);
+	}
+	@include breakpoint($medium-up) {
+		@include font-size(40px);
+	}
+	@include breakpoint($large-up) {
+		@include font-size(45px);
+	}
+}
+
+// Section title - responsive sizes
+@mixin responsive-section-title {
+	
+	@include breakpoint($small-only) {
+		//padding-bottom: 10px;
+		//border-bottom: 1px solid $border-color;
+	}
+	@include breakpoint($small-up) {
+		@include font-size(30px);
+	}
+	@include breakpoint($medium-up) {
+		@include font-size(35px);
+	}
+	@include breakpoint($large-up) {
+		@include font-size(40px);
+	}
+
+}
+
+// Section title - responsive sizes
+@mixin responsive-section-subtitle {
+	
+	@include breakpoint($small-only) {
+		//padding-bottom: 10px;
+		//border-bottom: 1px solid $border-color;
+	}
+	@include breakpoint($small-up) {
+		@include font-size(25px);
+	}
+	@include breakpoint($medium-up) {
+		@include font-size(22px);
+	}
+	@include breakpoint($large-up) {
+		@include font-size(30px);
+	}
+}
+
+// Captions
+@mixin caption-light {
+	color: #fff;
+	
+	&:before, &:after {
+		color: #fff;
+	}
+}
+@mixin caption-dark {
+	color: $text-color;
+	
+	&:before, &:after {
+		color: #b6b6b6;
+	}
+}

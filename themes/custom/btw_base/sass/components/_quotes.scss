@@ -1,0 +1,93 @@
+//------------------------------------------------------
+//
+//	QUOTES (basic) - Style overrides for 
+//					common-support-quote styles
+//                  
+//
+//	location: 
+//      /sass/components/_ds-basics.scss
+//
+//------------------------------------------------------
+
+
+
+.common-support-quote-1 {
+	float: none;
+	width: auto !important;
+	color: $quote-text-color;
+	margin-bottom: $vert-spacing-unit;
+	
+	@include breakpoint($small-only) {
+		margin: 0 20px $vert-spacing-unit 20px;
+	}
+	.quote-start {;
+	    height: 0;
+	    display: block;
+	    position: relative;
+	    top: 0;
+	    line-height: 0;
+	    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+	    @include breakpoint($small-only) {
+		    font-size: 120px;
+		    padding: 50px 0 0 0;
+		    width: 70px;
+	    }
+
+	    @include breakpoint($medium-up) {
+		    font-size: 229px;
+		    padding: 80px 0 0 0;
+		    width: 10%;
+	    }
+	    
+	    @include breakpoint($large-up) {
+		    font-size: 300px; 
+	    }
+	}
+	
+	.quote-body {
+		position: relative;
+		
+		@include breakpoint($small-only) {
+			margin: 0;
+			padding: 0;
+		}
+		@include breakpoint($medium-up) {
+			margin: 0 0 0 18%;
+			padding: 0 0 0 7%;
+			border-left: 1px solid $xdark-gray;
+			@include font-size(20px);
+		}
+		@include breakpoint($large-up) {
+			margin: 0 0 0 15%;
+			padding: 0 0 0 7%;
+		}
+	}
+	.quote-author {
+		margin: 0 0 0 15%;
+		padding: 25px 0 0 7%;
+		@include font-size(16px);
+		border-left: 1px solid $xdark-gray;
+		text-align: right;
+
+		@include breakpoint($small-only) {
+			border: 0;
+		}
+		@include breakpoint($medium-up) {
+			margin: 0 0 0 18%;
+			padding: 0 0 0 7%;
+			border-left: 1px solid $xdark-gray;
+		}
+		@include breakpoint($large-up) {
+			margin: 0 0 0 15%;
+			padding: 0 0 0 7%;
+		}		
+	}
+	.quote-url {
+		text-align: right;
+		margin: 0;
+	}
+	.quote-end {
+		display: none;
+	}
+}

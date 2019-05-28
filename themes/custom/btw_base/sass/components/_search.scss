@@ -1,0 +1,73 @@
+//------------------------------------------------------
+//
+//	SEARCH - Basic css styling for search results pages
+//
+//	location: 
+//      /sass/components/_search.scss
+//
+//------------------------------------------------------
+
+
+
+
+/*----------------------------------------------------
+------------------------------------------------------
+
+ SEARCH page
+ 
+------------------------------------------------------
+----------------------------------------------------*/
+
+.page-search {
+	
+	#search-form #edit-basic {
+		margin-bottom: $vert-spacing-unit;
+	}
+	.tabs ul.primary {
+		margin: 0;
+		border: 0;
+	}
+	
+	/* form wrapper */
+	#edit-basic {
+		padding: $vert-spacing-unit/1.5;
+		@include border-all($border-color);
+	}
+	
+	/* label */
+	label[for="edit-keys"] {
+		margin-right: 5px;
+	}
+	
+	/* input */
+	input#edit-keys {
+		width: 150px;
+	}
+	
+	/* submit */
+	#edit-basic .form-submit {
+		margin: 1em 0;
+	}
+}
+
+/* ----Search Results -------*/
+
+.search-results {
+	p:last-child {
+		margin-bottom: 0;
+	}
+	
+	li {
+		border-bottom: 1px dotted #aaa;
+		margin-bottom: 1em;
+	}
+	
+	/* in-context results display */
+	.search-snippet-info {
+		background-color: #f5f5f5;
+		@include font-size(11px);
+		margin-bottom: 20px;
+		padding: 15px;
+		@include border-radius(10px);
+	}
+}

@@ -1,0 +1,250 @@
+//------------------------------------------------------
+//
+//	VARIABLES - COLORS - all colors sitewide defined here
+//
+//	location: 
+//      /sass/variables/_variables-colors.scss
+//
+//------------------------------------------------------
+
+
+// Main Site Colors
+
+$primary-color: #25CBD3; // teal blue
+$secondary-color: #323453; // dark blue violet
+//$secondary-color: #d3135a; // magenta
+
+$accent-bg-color-light: #ABDEE1; // very light teal blue
+$accent-bg-color-dark: #093a46; // dark teal
+
+// for subtle changes to delineate container bg color in main content
+$subtle-accent: rgba(0,0,0,0.05); 
+
+
+
+// neutral colors
+$white: #fff;
+$xlight-gray: #efefef; // text bg area
+$light-gray: #ccc; // borders
+$middle-gray: #777; // light text & icons
+$dark-gray: #424242; // titles and text
+$xdark-gray: #222;
+$black: #000;
+
+
+
+// Body Text
+$text-color: rgba(0,0,0,0.6);
+$text-on-dark-color: #ccc;
+$text-on-light-color: #000;
+
+$link-color: #00A6AD;
+$link-hover-color: $secondary-color;
+$link-visited-color: #000;
+
+
+
+// Titles
+$title-color: rgba(0,0,0,0.8);
+$page-title-color: #000;
+$section-title-color: #000;
+
+$title-on-dark-color: #fff;
+$title-on-light-color: $title-color;
+
+
+
+// Selected text color
+$selection-text-color: #fff;
+$selection-background-color: $primary-color;
+
+
+
+// Button styling NORMAL
+$button-text-color: $text-color;
+$button-text-hover-color: #fff;
+
+$button-bg-color: transparent;
+$button-bg-hover-color: #000;
+
+$button-border-color: $text-color;
+$button-border-hover-color: $button-bg-hover-color;
+
+
+
+// Button styling DARK BUTTON ON LIGHT BG
+$button-text-color-on-light: #fff;
+$button-text-hover-color-on-light: #222;
+
+$button-bg-color-on-light: #222;
+$button-bg-hover-color-on-light: #fff;
+
+$button-border-color-on-light: #222;
+$button-border-hover-color-on-light: #fff;
+
+
+
+// Button styling LIGHT BUTTON ON DARK BG
+$button-text-color-on-dark: #fff;
+$button-text-hover-color-on-dark: #333;
+
+$button-bg-color-on-dark: transparent;
+$button-bg-hover-color-on-dark: #fff;
+
+$button-border-color-on-dark: #fff;
+$button-border-hover-color-on-dark: #fff;
+
+
+// Sitewide Borders
+$border-color: $light-gray;
+$sidebar-border-color: $light-gray;
+
+
+
+// Tables 
+$table-header-bg-color: #eee;
+$table-odd-row-bg-color: #fff;
+$table-even-row-bg-color: #f0f0f0;
+
+
+
+// Navigation
+$nav-text-color: $middle-gray;
+$nav-text-hover-color: $primary-color;
+
+$nav-button-bg-color: transparent;
+$nav-button-bg-hover-color: transparent;
+$nav-button-bg-active-color: transparent;
+
+$nav-bar-bg-color: transparent;
+
+	// Sub-Navigation
+	$subnav-text-color: #fff;
+	$subnav-text-hover-color: #fff;
+	
+	$subnav-button-bg-color: transparent;
+	$subnav-button-bg-hover-color: $primary-color;
+	
+	$subnav-bar-bg-color: #000;
+
+	// mobile nav only
+	$mobile-nav-text-color: #fff;
+	$mobile-nav-bg-color: #115d66;
+	$mobile-nav-text-hover-color: #fff;
+	$mobile-nav-bg-hover-color: $primary-color;
+	$mobile-nav-border-color: rgba(255,255,255,0.2);
+	
+	// mobile header 
+	$mobile-header-bg-color: #fff;
+	
+	
+	// mobile nav close button
+	$mobile-nav-close-text-color: #999;
+	$mobile-nav-close-btn-bg: #000;
+	
+	// mobile subnav
+	$mobile-subnav-text-color: #c5c5c5;
+	$mobile-subnav-bg-color: #0a4951;
+	
+	// Home page non-mobile
+	$home-nav-text-color: #fff;
+	$home-nav-text-hover-color: #fff;
+
+		
+	// mobile site name
+	$site-name-text-color: #000;
+
+
+
+// Story Blocks
+$overlay-bg-color-on-dark: rgba(0,0,0,0.7);
+$overlay-bg-color-on-light: rgba(255,255,255,0.7);
+
+
+// Sidebar blocks
+$sidebar-block-bg-color: rgba(0,0,0,0.8);
+
+$sidebar-text-color: #aaa;
+
+$sidebar-link-color: #ccc;
+$sidebar-link-hover-color: red;
+	
+	// block title
+	$sidebar-block-title-color: #fff;
+	$sidebar-block-title-bg-color: #000;
+
+	// buttons
+	$sidebar-button-text-color: #000;
+	$sidebar-button-text-hover-color: #fff;
+	
+	$sidebar-button-bg-color: #fff;
+	$sidebar-button-bg-hover-color: #000;
+	
+	// more link
+	$sidebar-more-link-text-color: #000;
+	$sidebar-more-link-text-hover-color: #fff;
+	
+	$sidebar-more-link-bg-color: #fff;
+	$sidebar-more-link-bg-hover-color: red;
+
+
+
+// Quotes
+$quote-text-color: $text-color;
+$quote-bg-color-on-light: #eaeaea;
+$quote-bg-color-on-dark: #fff;
+
+
+
+// Footer
+$footer-text-color: #666;
+
+$footer-link-color: #666;
+$footer-link-hover-color: $primary-color;
+
+$footer-bg-color: #0d0e15;
+
+
+
+// Post-Footer
+$post-footer-bg-color: #0d0e15;
+
+
+// Social icons
+$social-icon-color: #fff;
+$social-icon-hover-color: #777;
+
+$social-icon-bg-color: #777;
+$social-icon-bg-hover-color: #000;
+
+$social-icon-border-color: #fff;
+
+
+
+// Messages
+$messages-background-color: #A3E3F8;
+
+
+
+// Dateblock
+$dateblock-day-color: #999;
+$dateblock-month-color: #fff;
+$dateblock-year-color: #999;
+
+$dateblock-text-hover-color: #fff;
+
+$dateblock-bg-color: #000;
+$dateblock-bg-hover-color: #000;
+
+
+
+// Admin Tabs 
+$tabs-text-color: #000;
+$tabs-text-hover-color: #fff;
+
+$tabs-bg-color: #eee;
+$tabs-bg-hover-color: #444;
+
+$tabs-active-text-color: #fff;
+$tabs-active-bg-color: #444;
+

@@ -1,0 +1,17 @@
+//------------------------------------------------------
+//
+//	BODY - base body styles
+//
+//	location: 
+//      /sass/components/_body.scss
+//
+//------------------------------------------------------
+
+html {
+	font-size: 18px;
+	text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+body {
+	@include base-text-style; // see /abstractions/_typography.scss & /variables/_typography.scss
+}
