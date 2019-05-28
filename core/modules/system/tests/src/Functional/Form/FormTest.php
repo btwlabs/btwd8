@@ -621,7 +621,7 @@ class FormTest extends BrowserTestBase {
     // All the elements should be marked as disabled, including the ones below
     // the disabled container.
     $actual_count = count($disabled_elements);
-    $expected_count = 42;
+    $expected_count = 44;
     $this->assertEqual($actual_count, $expected_count, new FormattableMarkup('Found @actual elements with disabled property (expected @expected).', [
       '@actual' => count($disabled_elements),
       '@expected' => $expected_count,
@@ -656,7 +656,7 @@ class FormTest extends BrowserTestBase {
           $expected_value = $form[$key]['#default_value'];
         }
 
-        if ($key == 'checkboxes_multiple') {
+        if (in_array($key, ['checkboxes_multiple', 'checkboxes_single_select', 'checkboxes_single_unselect'])) {
           // Checkboxes values are not filtered out.
           $values[$key] = array_filter($values[$key]);
         }
