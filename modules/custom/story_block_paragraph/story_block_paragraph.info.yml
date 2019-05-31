@@ -2,7 +2,6 @@ name: 'Story Block Paragraph'
 type: module
 core: 8.x
 dependencies:
-  - case_study
   - ds
   - entity_reference_revisions
   - field
