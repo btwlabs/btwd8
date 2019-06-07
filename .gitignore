@@ -1,3 +1,6 @@
+# Ignore lando
+.lando.yml
+
 # Ignore Phpstorm
 *.idea*
 
