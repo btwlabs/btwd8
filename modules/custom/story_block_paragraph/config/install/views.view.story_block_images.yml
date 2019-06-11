@@ -4,6 +4,7 @@ dependencies:
   module:
     - ds
     - file
+    - paragraphs
     - user
 id: story_block_images
 label: 'Story Block Images'

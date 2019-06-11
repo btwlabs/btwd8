@@ -3,6 +3,8 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.center_text_h1_title_bg_image
+    - field.field.paragraph.story_block.field_story_block_classes
+    - field.field.paragraph.story_block.field_story_block_extra_image
     - field.field.paragraph.story_block.field_story_block_image_overlay_
     - field.field.paragraph.story_block.field_story_block_images
     - field.field.paragraph.story_block.field_story_block_link
@@ -28,6 +30,7 @@ third_party_settings:
       settings:
         wrappers:
           ds_content: div
+          ds_hidden: div
         outer_wrapper: div
         attributes: ''
         link_attribute: ''
@@ -35,10 +38,13 @@ third_party_settings:
         classes:
           layout_class:
             'paragraph-[paragraph:id]': 'paragraph-[paragraph:id]'
+            'story-block-[paragraph:title:value]': 'story-block-[paragraph:title:value]'
+            '[paragraph:field_story_block_extra_classes:value]': '[paragraph:field_story_block_extra_classes:value]'
             story-block: story-block
             '[paragraph:field_story_block_image_overlay_:value]': '[paragraph:field_story_block_image_overlay_:value]'
             'story-block-type-[paragraph:field_story_block_project_types:0:target_id]': 'story-block-type-[paragraph:field_story_block_project_types:0:target_id]'
           ds_content: {  }
+          ds_hidden: {  }
     regions:
       ds_content:
         - 'dynamic_token_field:paragraph-image_overlay'
@@ -200,6 +206,8 @@ content:
     region: ds_content
 hidden:
   created: true
+  field_story_block_classes: true
+  field_story_block_extra_image: true
   field_story_block_image_overlay_: true
   field_view_mode_selector: true
   uid: true

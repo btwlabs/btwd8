@@ -2,7 +2,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.paragraph.right_text_bg_image
+    - core.entity_view_mode.paragraph.center_text_full_bg_image
+    - field.field.paragraph.story_block.field_story_block_classes
+    - field.field.paragraph.story_block.field_story_block_extra_image
     - field.field.paragraph.story_block.field_story_block_image_overlay_
     - field.field.paragraph.story_block.field_story_block_images
     - field.field.paragraph.story_block.field_story_block_link
@@ -28,6 +30,7 @@ third_party_settings:
       settings:
         wrappers:
           ds_content: div
+          ds_hidden: div
         outer_wrapper: div
         attributes: ''
         link_attribute: ''
@@ -35,22 +38,23 @@ third_party_settings:
         classes:
           layout_class:
             'paragraph-[paragraph:id]': 'paragraph-[paragraph:id]'
+            'story-block-[paragraph:title:value]': 'story-block-[paragraph:title:value]'
+            '[paragraph:field_story_block_extra_classes:value]': '[paragraph:field_story_block_extra_classes:value]'
             story-block: story-block
             '[paragraph:field_story_block_image_overlay_:value]': '[paragraph:field_story_block_image_overlay_:value]'
             'story-block-type-[paragraph:field_story_block_project_types:0:target_id]': 'story-block-type-[paragraph:field_story_block_project_types:0:target_id]'
           ds_content: {  }
+          ds_hidden: {  }
     regions:
       ds_content:
         - 'dynamic_token_field:paragraph-image_overlay'
         - 'display_field_copy:paragraph-story_block_mobile_image'
-        - field_title
         - group_story_block_inner
+        - field_title
         - field_story_block_images
         - field_story_block_text
         - field_story_block_link
         - field_story_block_video
-        - group_left_group
-        - group_right_group
     fields:
       'display_field_copy:paragraph-story_block_mobile_image':
         plugin_id: 'display_field_copy:paragraph-story_block_mobile_image'
@@ -74,17 +78,15 @@ third_party_settings:
         weight: 0
         label: hidden
         formatter: default
-        ft:
-          id: minimal
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
   field_group:
     group_story_block_inner:
       children:
-        - group_left_group
-        - group_right_group
+        - 'display_field_copy:paragraph-story_block_mobile_image'
+        - field_title
+        - field_story_block_images
+        - field_story_block_text
+        - field_story_block_link
+        - field_story_block_video
       parent_name: ''
       weight: 1
       format_type: html_element
@@ -99,52 +101,14 @@ third_party_settings:
         speed: fast
       label: 'Story Block Inner'
       region: content
-    group_left_group:
-      children:
-        - 'display_field_copy:paragraph-story_block_mobile_image'
-        - field_story_block_images
-      parent_name: group_story_block_inner
-      weight: 23
-      format_type: html_element
-      format_settings:
-        id: ''
-        classes: group-left
-        element: div
-        show_label: false
-        label_element: h3
-        attributes: ''
-        effect: none
-        speed: fast
-      label: 'Left Group'
-      region: content
-    group_right_group:
-      children:
-        - field_title
-        - field_story_block_text
-        - field_story_block_link
-        - field_story_block_video
-      parent_name: group_story_block_inner
-      weight: 25
-      format_type: html_element
-      format_settings:
-        id: ''
-        classes: group-right
-        element: div
-        show_label: false
-        label_element: h3
-        attributes: ''
-        effect: none
-        speed: fast
-      label: 'Right Group'
-      region: content
-id: paragraph.story_block.right_text_bg_image
+id: paragraph.story_block.center_text_full_bg_image
 targetEntityType: paragraph
 bundle: story_block
-mode: right_text_bg_image
+mode: center_text_full_bg_image
 content:
   field_story_block_images:
     type: responsive_bg_image_formatter
-    weight: 1
+    weight: 2
     label: hidden
     settings:
       image_style: wide
@@ -182,14 +146,14 @@ content:
     region: ds_content
   field_story_block_text:
     type: text_default
-    weight: 2
+    weight: 3
     label: hidden
     settings: {  }
     third_party_settings: {  }
     region: ds_content
   field_story_block_video:
     type: video_embed_field_video
-    weight: 6
+    weight: 5
     label: hidden
     settings:
       responsive: true
@@ -207,7 +171,7 @@ content:
     region: ds_content
   field_title:
     type: text_default
-    weight: 0
+    weight: 1
     label: hidden
     settings: {  }
     third_party_settings:
@@ -242,6 +206,8 @@ content:
     region: ds_content
 hidden:
   created: true
+  field_story_block_classes: true
+  field_story_block_extra_image: true
   field_story_block_image_overlay_: true
   field_view_mode_selector: true
   uid: true

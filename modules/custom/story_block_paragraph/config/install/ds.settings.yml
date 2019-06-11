@@ -1,0 +1,15 @@
+disabled: false
+field_template: true
+ft-default: minimal
+ft-show-colon: false
+classes:
+  region:
+    - 'paragraph-[paragraph:id]'
+    - 'story-block-[paragraph:title:value]|Friendly name'
+    - '[paragraph:field_story_block_extra_classes:value]|Friendly name'
+    - story-block
+    - '[paragraph:field_story_block_image_overlay_:value]'
+    - 'story-block-type-[paragraph:field_story_block_project_types:0:target_id]'
+    - 'node-[node:nid]'
+  field: {  }
+use_field_names: true

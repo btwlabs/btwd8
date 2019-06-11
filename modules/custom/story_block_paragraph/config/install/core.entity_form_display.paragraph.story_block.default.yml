@@ -2,6 +2,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.story_block.field_story_block_classes
+    - field.field.paragraph.story_block.field_story_block_extra_image
     - field.field.paragraph.story_block.field_story_block_image_overlay_
     - field.field.paragraph.story_block.field_story_block_images
     - field.field.paragraph.story_block.field_story_block_link
@@ -94,4 +96,6 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_story_block_classes: true
+  field_story_block_extra_image: true
