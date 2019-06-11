@@ -2,12 +2,13 @@ name: 'Story Block Paragraph'
 type: module
 core: 8.x
 dependencies:
+  - crop
   - ds
   - entity_reference_revisions
+  - features
   - field
   - field_group
   - file
-  - file_entity
   - image
   - link
   - node

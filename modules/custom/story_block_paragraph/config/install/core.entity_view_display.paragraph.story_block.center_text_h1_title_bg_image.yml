@@ -6,7 +6,6 @@ dependencies:
     - field.field.paragraph.story_block.field_story_block_image_overlay_
     - field.field.paragraph.story_block.field_story_block_images
     - field.field.paragraph.story_block.field_story_block_link
-    - field.field.paragraph.story_block.field_story_block_project_types
     - field.field.paragraph.story_block.field_story_block_text
     - field.field.paragraph.story_block.field_story_block_video
     - field.field.paragraph.story_block.field_title
@@ -95,6 +94,7 @@ third_party_settings:
         effect: none
         speed: fast
       label: 'Story Block Inner'
+      region: content
 id: paragraph.story_block.center_text_h1_title_bg_image
 targetEntityType: paragraph
 bundle: story_block
@@ -201,6 +201,5 @@ content:
 hidden:
   created: true
   field_story_block_image_overlay_: true
-  field_story_block_project_types: true
   field_view_mode_selector: true
   uid: true
