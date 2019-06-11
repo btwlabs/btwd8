@@ -30,15 +30,31 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_story_block_classes:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_story_block_extra_image:
+    type: image_image
+    weight: 5
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
   field_story_block_image_overlay_:
     type: options_select
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   field_story_block_images:
     type: image_image
-    weight: 3
+    weight: 4
     region: content
     settings:
       progress_indicator: throbber
@@ -46,7 +62,7 @@ content:
     third_party_settings: {  }
   field_story_block_link:
     type: link_default
-    weight: 5
+    weight: 7
     region: content
     settings:
       placeholder_url: ''
@@ -62,7 +78,7 @@ content:
     third_party_settings: {  }
   field_story_block_video:
     type: video_embed_field_textfield
-    weight: 4
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -76,7 +92,7 @@ content:
     third_party_settings: {  }
   field_view_mode_selector:
     type: view_mode_selector_radios
-    weight: 6
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -96,6 +112,4 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden:
-  field_story_block_classes: true
-  field_story_block_extra_image: true
+hidden: {  }

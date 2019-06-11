@@ -38,11 +38,9 @@ third_party_settings:
         classes:
           layout_class:
             'paragraph-[paragraph:id]': 'paragraph-[paragraph:id]'
-            'story-block-[paragraph:title:value]': 'story-block-[paragraph:title:value]'
-            '[paragraph:field_story_block_extra_classes:value]': '[paragraph:field_story_block_extra_classes:value]'
+            '[paragraph:field_story_block_classes:value]': '[paragraph:field_story_block_classes:value]'
             story-block: story-block
             '[paragraph:field_story_block_image_overlay_:value]': '[paragraph:field_story_block_image_overlay_:value]'
-            'story-block-type-[paragraph:field_story_block_project_types:0:target_id]': 'story-block-type-[paragraph:field_story_block_project_types:0:target_id]'
           ds_content: {  }
           ds_hidden: {  }
     regions:
