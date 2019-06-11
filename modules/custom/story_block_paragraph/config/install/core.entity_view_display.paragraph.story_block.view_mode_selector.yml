@@ -3,6 +3,8 @@ status: false
 dependencies:
   config:
     - core.entity_view_mode.paragraph.view_mode_selector
+    - field.field.paragraph.story_block.field_story_block_classes
+    - field.field.paragraph.story_block.field_story_block_extra_image
     - field.field.paragraph.story_block.field_story_block_image_overlay_
     - field.field.paragraph.story_block.field_story_block_images
     - field.field.paragraph.story_block.field_story_block_link
@@ -107,6 +109,8 @@ content:
     region: content
 hidden:
   created: true
+  field_story_block_classes: true
+  field_story_block_extra_image: true
   field_story_block_image_overlay_: true
   field_story_block_images: true
   field_story_block_link: true

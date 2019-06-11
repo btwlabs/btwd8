@@ -12,6 +12,7 @@ dependencies:
   - file
   - image
   - link
+  - menu_ui
   - node
   - options
   - paragraphs
