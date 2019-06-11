@@ -1,3 +1,6 @@
+# Ignore config: Comment the below line to add config to the index.
+sites/default/config
+
 # Ignore lando
 .lando.yml
 
