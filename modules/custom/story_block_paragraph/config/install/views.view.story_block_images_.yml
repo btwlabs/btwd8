@@ -1,12 +1,8 @@
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.paragraph.field_story_block_images
-    - responsive_image.styles.narrow
   module:
     - paragraphs
-    - responsive_image
 id: story_block_images_
 label: 'Story Block Images'
 module: views
@@ -307,8 +303,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-      tags:
-        - 'config:field.storage.paragraph.field_story_block_images'
+      tags: {  }
   page_1:
     display_plugin: page
     id: page_1
@@ -323,5 +318,4 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-      tags:
-        - 'config:field.storage.paragraph.field_story_block_images'
+      tags: {  }
