@@ -32,8 +32,6 @@ install:
  - easy_breadcrumb
  - editor
  - entity_reference_revisions
- - features
- - features_ui
  - field
  - field_group
  - field_ui
@@ -74,7 +72,6 @@ install:
  - search
  - shortcut
  - simple_sitemap
- - story_block_paragraph
  - system
  - taxonomy
  - text
