@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_cards_body
+    - paragraphs.paragraphs_type.cards
+  module:
+    - text
+id: paragraph.cards.field_cards_body
+field_name: field_cards_body
+entity_type: paragraph
+bundle: cards
+label: Body
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
