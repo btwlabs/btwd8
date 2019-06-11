@@ -48,8 +48,9 @@ third_party_settings:
     regions:
       ds_content:
         - 'dynamic_token_field:paragraph-image_overlay'
-        - 'display_field_copy:paragraph-story_block_mobile_image'
         - group_story_block_inner
+        - group_grou
+        - 'display_field_copy:paragraph-story_block_mobile_image'
         - field_story_block_images
         - field_title
         - field_story_block_text
@@ -58,7 +59,7 @@ third_party_settings:
     fields:
       'display_field_copy:paragraph-story_block_mobile_image':
         plugin_id: 'display_field_copy:paragraph-story_block_mobile_image'
-        weight: 0
+        weight: 3
         label: hidden
         formatter: image
         settings:
@@ -81,12 +82,7 @@ third_party_settings:
   field_group:
     group_story_block_inner:
       children:
-        - 'display_field_copy:paragraph-story_block_mobile_image'
-        - field_story_block_images
-        - field_title
-        - field_story_block_text
-        - field_story_block_link
-        - field_story_block_video
+        - group_grou
       parent_name: ''
       weight: 1
       format_type: html_element
@@ -101,6 +97,27 @@ third_party_settings:
         speed: fast
       label: 'Story Block Inner'
       region: content
+    group_grou:
+      children:
+        - 'display_field_copy:paragraph-story_block_mobile_image'
+        - field_story_block_images
+        - field_title
+        - field_story_block_text
+        - field_story_block_link
+        - field_story_block_video
+      parent_name: group_story_block_inner
+      weight: 2
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: ''
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+      label: 'Group Center'
 id: paragraph.story_block.center_text_h1_title_bg_image
 targetEntityType: paragraph
 bundle: story_block
@@ -108,7 +125,7 @@ mode: center_text_h1_title_bg_image
 content:
   field_story_block_images:
     type: responsive_bg_image_formatter
-    weight: 1
+    weight: 4
     label: hidden
     settings:
       image_style: wide
@@ -134,7 +151,7 @@ content:
     region: ds_content
   field_story_block_link:
     type: link
-    weight: 4
+    weight: 7
     label: hidden
     settings:
       trim_length: 80
@@ -146,14 +163,14 @@ content:
     region: ds_content
   field_story_block_text:
     type: text_default
-    weight: 3
+    weight: 6
     label: hidden
     settings: {  }
     third_party_settings: {  }
     region: ds_content
   field_story_block_video:
     type: video_embed_field_video
-    weight: 5
+    weight: 8
     label: hidden
     settings:
       responsive: true
@@ -170,7 +187,7 @@ content:
             classes: {  }
     region: ds_content
   field_title:
-    weight: 2
+    weight: 5
     label: hidden
     settings: {  }
     third_party_settings:
@@ -179,7 +196,7 @@ content:
           id: expert
           settings:
             lb: ''
-            prefix: '<h1>'
+            prefix: ''
             lbw-el: ''
             lbw-cl: ''
             lbw-at: ''
@@ -189,10 +206,11 @@ content:
             fis-el: ''
             fis-cl: ''
             fis-at: ''
-            fi-el: ''
-            fi-cl: ''
+            fi: true
+            fi-el: h1
+            fi-cl: 'title subtitle'
             fi-at: ''
-            suffix: '</h1>'
+            suffix: ''
             lbw: false
             lb-col: false
             ow: false
@@ -200,7 +218,6 @@ content:
             ow-def-cl: false
             fis: false
             fis-def-at: false
-            fi: false
             fi-def-at: false
     type: text_default
     region: ds_content

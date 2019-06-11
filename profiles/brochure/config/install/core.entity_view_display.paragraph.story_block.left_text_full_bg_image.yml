@@ -18,6 +18,7 @@ dependencies:
     - field_group
     - link
     - responsive_bg_image_formatter
+    - responsive_image
     - text
     - video_embed_field
 third_party_settings:
@@ -49,12 +50,13 @@ third_party_settings:
       ds_content:
         - 'dynamic_token_field:paragraph-image_overlay'
         - 'display_field_copy:paragraph-story_block_mobile_image'
+        - field_story_block_extra_image
         - group_story_block_inner
         - field_title
+        - field_story_block_images
         - field_story_block_text
         - group_left_group
         - field_story_block_link
-        - field_story_block_images
         - field_story_block_video
         - group_right_group
     fields:
@@ -128,6 +130,7 @@ third_party_settings:
       region: content
     group_right_group:
       children:
+        - field_story_block_extra_image
         - field_story_block_images
       parent_name: group_story_block_inner
       weight: 8
@@ -148,9 +151,18 @@ targetEntityType: paragraph
 bundle: story_block
 mode: left_text_full_bg_image
 content:
+  field_story_block_extra_image:
+    type: responsive_image
+    weight: 0
+    region: ds_content
+    label: hidden
+    settings:
+      responsive_image_style: ''
+      image_link: ''
+    third_party_settings: {  }
   field_story_block_images:
     type: responsive_bg_image_formatter
-    weight: 3
+    weight: 1
     label: hidden
     settings:
       image_style: wide
@@ -249,7 +261,6 @@ content:
 hidden:
   created: true
   field_story_block_classes: true
-  field_story_block_extra_image: true
   field_story_block_image_overlay_: true
   field_view_mode_selector: true
   uid: true

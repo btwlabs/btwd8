@@ -12,5 +12,5 @@ mandrill_api_timeout: 60
 mandrill_api_classname: \Drupal\mandrill\DrupalMandrill
 mandrill_mail_key_blacklist: user_password_reset
 mandrill_process_async: false
-mandrill_from_email: info@bythewaylabs.com
+mandrill_from_email: admin@example.com
 mandrill_from_name: null
