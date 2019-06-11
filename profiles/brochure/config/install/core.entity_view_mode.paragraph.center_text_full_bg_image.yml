@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.center_text_full_bg_image
+label: 'Center Text Full BG Image'
+targetEntityType: paragraph
+cache: true

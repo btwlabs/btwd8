@@ -1,0 +1,188 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.story_block.field_story_block_classes
+    - field.field.paragraph.story_block.field_story_block_extra_image
+    - field.field.paragraph.story_block.field_story_block_image_overlay_
+    - field.field.paragraph.story_block.field_story_block_images
+    - field.field.paragraph.story_block.field_story_block_link
+    - field.field.paragraph.story_block.field_story_block_text
+    - field.field.paragraph.story_block.field_story_block_video
+    - field.field.paragraph.story_block.field_title
+    - field.field.paragraph.story_block.field_view_mode_selector
+    - paragraphs.paragraphs_type.story_block
+    - responsive_image.styles.narrow
+  module:
+    - ds
+    - field_group
+    - link
+    - responsive_image
+    - text
+    - video_embed_field
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col_wrapper
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          ds_content: div
+          ds_hidden: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class:
+            'paragraph-[paragraph:id]': 'paragraph-[paragraph:id]'
+            'story-block-[paragraph:title:value]': 'story-block-[paragraph:title:value]'
+            '[paragraph:field_story_block_extra_classes:value]': '[paragraph:field_story_block_extra_classes:value]'
+            story-block: story-block
+            'story-block-type-[paragraph:field_story_block_project_types:0:target_id]': 'story-block-type-[paragraph:field_story_block_project_types:0:target_id]'
+          ds_content: {  }
+          ds_hidden: {  }
+    regions:
+      ds_content:
+        - 'dynamic_token_field:paragraph-image_overlay'
+        - group_story_block_inner
+        - field_story_block_images
+        - field_title
+        - field_story_block_text
+        - field_story_block_link
+        - field_story_block_video
+    fields:
+      'dynamic_token_field:paragraph-image_overlay':
+        plugin_id: 'dynamic_token_field:paragraph-image_overlay'
+        weight: 0
+        label: hidden
+        formatter: default
+        ft:
+          id: reset
+          settings:
+            lb: ''
+  field_group:
+    group_story_block_inner:
+      children:
+        - field_story_block_images
+        - field_title
+        - field_story_block_text
+        - field_story_block_link
+        - field_story_block_video
+      parent_name: ''
+      weight: 1
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: story-block-inner
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+      label: 'Story Block Inner'
+      region: content
+id: paragraph.story_block.default
+targetEntityType: paragraph
+bundle: story_block
+mode: default
+content:
+  field_story_block_images:
+    weight: 3
+    label: hidden
+    settings:
+      responsive_image_style: narrow
+      image_link: ''
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw: true
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: ''
+            ow-cl: ''
+            ow-at: ''
+            ow-def-at: true
+            ow-def-cl: true
+            fis: true
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fis-def-at: true
+            fi: true
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            fi-def-at: true
+            suffix: ''
+            lb-col: false
+    type: responsive_image
+    region: ds_content
+  field_story_block_link:
+    weight: 8
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: ds_content
+  field_story_block_text:
+    weight: 6
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: ds_content
+  field_story_block_video:
+    weight: 10
+    label: hidden
+    settings:
+      responsive: true
+      width: 854
+      height: 480
+      autoplay: false
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: video_embed_field_video
+    region: ds_content
+  field_title:
+    weight: 4
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: text_default
+    region: ds_content
+hidden:
+  created: true
+  field_story_block_classes: true
+  field_story_block_extra_image: true
+  field_story_block_image_overlay_: true
+  field_view_mode_selector: true
+  uid: true
