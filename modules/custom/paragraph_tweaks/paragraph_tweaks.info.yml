@@ -1,0 +1,8 @@
+name: 'Paragraph Tweaks'
+type: module
+description: 'Provides some tweaks to paragraphs'
+core: 8.x
+package: 'Custom'
+dependencies:
+  - paragraphs
+  - ds

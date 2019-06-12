@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * @file
+ * Contains paragraph_tweaks.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function paragraph_tweaks_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the paragraph_tweaks module.
+    case 'help.page.paragraph_tweaks':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides some tweaks to paragraphs') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Alter the ds layout render array.
+ *s
+ * @param array $layout_render_array
+ *   The render array.
+ * @param array $context
+ *   An array with the context that is being rendered. Available keys are:
+ *   - entity
+ *   - entity_type
+ *   - bundle
+ *   - view_mode
+ * @param array $vars
+ *   All variables available for render. You can use this to add css classes.
+ */
+function paragraph_tweaks_ds_pre_render_alter(array &$layout_render_array, array $context, array &$vars) {
+  if ($context['entity_type'] == 'paragraph') {
+    /**
+     * @var \Drupal\paragraphs\Entity\Paragraph $paragraph
+     */
+    $paragraph = $context['entity'];
+    $vars['attributes']['id'] = 'paragraph-title--' . \Drupal\Component\Utility\Html::cleanCssIdentifier($paragraph->get('field_title')->first()->getValue()['value']);
+  }
+}
