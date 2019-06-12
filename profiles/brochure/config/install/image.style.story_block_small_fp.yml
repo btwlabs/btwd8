@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: story_block_small_fp
+label: 'story block small fp'
+effects:
+  5a08125c-ac33-4917-a949-88b57a36ca69:
+    uuid: 5a08125c-ac33-4917-a949-88b57a36ca69
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 600
+      height: 360
+      crop_type: focal_point

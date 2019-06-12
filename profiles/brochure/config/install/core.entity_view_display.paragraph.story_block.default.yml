@@ -38,22 +38,27 @@ third_party_settings:
         classes:
           layout_class:
             'paragraph-[paragraph:id]': 'paragraph-[paragraph:id]'
-            'story-block-[paragraph:title:value]': 'story-block-[paragraph:title:value]'
-            '[paragraph:field_story_block_extra_classes:value]': '[paragraph:field_story_block_extra_classes:value]'
+            '[paragraph:field_story_block_classes:value]': '[paragraph:field_story_block_classes:value]'
             story-block: story-block
-            'story-block-type-[paragraph:field_story_block_project_types:0:target_id]': 'story-block-type-[paragraph:field_story_block_project_types:0:target_id]'
+            '[paragraph:field_story_block_image_overlay_:value]': '[paragraph:field_story_block_image_overlay_:value]'
           ds_content: {  }
           ds_hidden: {  }
     regions:
       ds_content:
         - 'dynamic_token_field:paragraph-image_overlay'
         - group_story_block_inner
+        - 'display_field_copy:paragraph-story_block_mobile_image'
         - field_story_block_images
         - field_title
         - field_story_block_text
         - field_story_block_link
         - field_story_block_video
     fields:
+      'display_field_copy:paragraph-story_block_mobile_image':
+        plugin_id: 'display_field_copy:paragraph-story_block_mobile_image'
+        weight: 2
+        label: hidden
+        formatter: image
       'dynamic_token_field:paragraph-image_overlay':
         plugin_id: 'dynamic_token_field:paragraph-image_overlay'
         weight: 0
@@ -66,6 +71,7 @@ third_party_settings:
   field_group:
     group_story_block_inner:
       children:
+        - 'display_field_copy:paragraph-story_block_mobile_image'
         - field_story_block_images
         - field_title
         - field_story_block_text
@@ -129,7 +135,7 @@ content:
     type: responsive_image
     region: ds_content
   field_story_block_link:
-    weight: 8
+    weight: 6
     label: hidden
     settings:
       trim_length: 80
@@ -141,14 +147,14 @@ content:
     type: link
     region: ds_content
   field_story_block_text:
-    weight: 6
+    weight: 5
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: ds_content
   field_story_block_video:
-    weight: 10
+    weight: 7
     label: hidden
     settings:
       responsive: true
