@@ -92,6 +92,9 @@ install:
  - views
  - paragraphs
  - paragraph_tweaks
+ - media
+ - media_video_entity
+ - media_library
 themes:
  - btw_base
  - seven_custom
