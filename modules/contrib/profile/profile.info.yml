@@ -7,10 +7,10 @@ dependencies:
   - drupal:field
   - drupal:user
   - drupal:views
-  - entity:entity (>=8.x-1.0-beta1)
+  - entity:entity
 
-# Information added by Drupal.org packaging script on 2019-03-12
-version: '8.x-1.0-rc4'
+# Information added by Drupal.org packaging script on 2019-06-07
+version: '8.x-1.0-rc5'
 core: '8.x'
 project: 'profile'
-datestamp: 1552407489
+datestamp: 1559926994

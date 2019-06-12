@@ -25,8 +25,8 @@ class ProfileTest extends ProfileTestBase {
       'user' => $this->loggedInUser->id(),
       'profile_type' => $this->type->id(),
     ]);
-    $this->drupalGet($create_url->toString());
-    $this->assertSession()->titleEquals("Create {$this->type->label()} | Drupal");
+    $this->drupalGet($create_url);
+    $this->assertSession()->titleEquals("Edit {$this->type->label()} | Drupal");
     $this->assertSession()->buttonNotExists('Save and make default');
     $edit = [
       'profile_fullname[0][value]' => $profile_fullname,
@@ -39,7 +39,7 @@ class ProfileTest extends ProfileTestBase {
     $profile = $storage->loadDefaultByUser($this->loggedInUser, $this->type->id());
     $this->assertEquals($profile_fullname, $profile->get('profile_fullname')->value);
 
-    $this->drupalGet($profile->toUrl('edit-form')->toString());
+    $this->drupalGet($profile->toUrl('edit-form'));
     $this->assertSession()->titleEquals("Edit {$this->type->label()} profile #{$profile->id()} | Drupal");
 
     $profile_fullname = $this->randomString();
@@ -60,13 +60,13 @@ class ProfileTest extends ProfileTestBase {
     $profile = $this->createProfile($this->type, User::getAnonymousUser());
 
     $this->drupalLogin($this->adminUser);
-    $this->drupalGet($profile->toUrl('edit-form')->toString());
+    $this->drupalGet($profile->toUrl('edit-form'));
     $profile_fullname = $this->randomString();
     $edit = [
       'profile_fullname[0][value]' => $profile_fullname,
     ];
     $this->submitForm($edit, 'Save');
-    $this->assertSession()->addressEquals($profile->toUrl('collection')->toString());
+    $this->assertSession()->addressEquals($profile->toUrl('collection'));
   }
 
   /**

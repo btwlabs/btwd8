@@ -2,9 +2,11 @@
 
 namespace Drupal\Tests\profile\Kernel;
 
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 use Drupal\profile\Entity\Profile;
+use Drupal\profile\Entity\ProfileType;
 use Drupal\profile\ProfileTestTrait;
 use Drupal\user\Entity\User;
 
@@ -57,10 +59,22 @@ class ProfileAccessTest extends EntityKernelTestBase {
     parent::setUp();
     $this->installEntitySchema('profile');
     $this->installEntitySchema('view');
-    $this->installConfig(['profile']);
+    $this->installConfig(['profile', 'user']);
     $this->accessControlHandler = $this->container->get('entity_type.manager')
       ->getAccessControlHandler('profile');
     $this->accessManager = $this->container->get('access_manager');
+
+    $user_form_display = EntityFormDisplay::load("user.user.default");
+    if (!$user_form_display) {
+      $user_form_display = EntityFormDisplay::create([
+        'targetEntityType' => 'user',
+        'bundle' => 'user',
+        'mode' => 'default',
+        'status' => TRUE,
+      ]);
+      $user_form_display->save();
+    }
+
     $this->type = $this->createProfileType('test', 'Test profile', TRUE);
     $this->createUser();
   }
@@ -221,4 +235,93 @@ class ProfileAccessTest extends EntityKernelTestBase {
     $this->assertTrue($profile2->access('update', $web_user2));
   }
 
+  /**
+   * Tests the _profile_access_check access check.
+   *
+   * @dataProvider dataProfileAccessCheck
+   *
+   * @param array $permissions
+   *   The test user's permissions.
+   * @param $multiple_profiles
+   *   The profile type should allow multiple profiles.
+   * @param $assert_access_result
+   *   The access result to assert.
+   */
+  public function testProfileAccessCheck(array $permissions, $multiple_profiles, $assert_access_result) {
+    $type = ProfileType::create([
+      'id' => 'test_access_check',
+      'label' => 'Test',
+      'multiple' => $multiple_profiles,
+    ]);
+    $type->save();
+
+    // Test user without any permissions.
+    $user = $this->createUser([], $permissions);
+    $this->container->get('current_user')->setAccount($user);
+
+    // Verify access through route.
+    $this->assertEquals($assert_access_result, $this->accessManager->checkNamedRoute(
+      'entity.profile.type.user_profile_form',
+      ['user' => $user->id(), 'profile_type' => $type->id()],
+      $user
+    ));
+  }
+
+  /**
+   * Data for ::testProfileAccessCheck
+   */
+  public function dataProfileAccessCheck() {
+    yield [
+      [],
+      FALSE,
+      FALSE,
+    ];
+    yield [
+      ['view own test profile'],
+      FALSE,
+      FALSE,
+    ];
+    yield [
+      ['view own test_access_check profile'],
+      FALSE,
+      FALSE,
+    ];
+    yield [
+      ['view own test_access_check profile'],
+      TRUE,
+      TRUE,
+    ];
+    yield [
+      ['update own test_access_check profile'],
+      FALSE,
+      TRUE,
+    ];
+    yield [
+      ['update own test_access_check profile'],
+      TRUE,
+      FALSE,
+    ];
+    yield [
+      [
+        'view own test_access_check profile',
+        'update own test_access_check profile'
+      ],
+      TRUE,
+      TRUE,
+    ];
+    yield [
+      [
+        'administer profile',
+      ],
+      FALSE,
+      TRUE,
+    ];
+    yield [
+      [
+        'administer profile',
+      ],
+      TRUE,
+      TRUE,
+    ];
+  }
 }

@@ -57,7 +57,6 @@ class ProfileController extends ControllerBase {
    *   A profile submission form.
    */
   public function addProfile(RouteMatchInterface $route_match, UserInterface $user, ProfileTypeInterface $profile_type) {
-
     $profile = $this->entityTypeManager()->getStorage('profile')->create([
       'uid' => $user->id(),
       'type' => $profile_type->id(),
@@ -103,6 +102,25 @@ class ProfileController extends ControllerBase {
   }
 
   /**
+   * The _title_callback for the user profile form route.
+   *
+   * @param \Drupal\profile\Entity\ProfileTypeInterface $profile_type
+   *   The current profile type.
+   *
+   * @return string
+   *   The page title.
+   */
+  public function userPageTitle(ProfileTypeInterface $profile_type) {
+    if ($profile_type->allowsMultiple()) {
+      return $profile_type->label();
+    }
+
+    return $this->t('Edit @label', [
+      '@label' => $profile_type->label(),
+    ]);
+  }
+
+  /**
    * The _title_callback for the add profile form route.
    *
    * @param \Drupal\profile\Entity\ProfileTypeInterface $profile_type
@@ -112,8 +130,9 @@ class ProfileController extends ControllerBase {
    *   The page title.
    */
   public function addPageTitle(ProfileTypeInterface $profile_type) {
-    // @todo: edit profile uses this form too?
-    return $this->t('Create @label', ['@label' => $profile_type->label()]);
+    return $this->t('Create @label', [
+      '@label' => $profile_type->label(),
+    ]);
   }
 
   /**
@@ -132,15 +151,14 @@ class ProfileController extends ControllerBase {
   public function userProfileForm(RouteMatchInterface $route_match, UserInterface $user, ProfileTypeInterface $profile_type) {
     /** @var \Drupal\profile\Entity\ProfileType $profile_type */
 
-    /** @var \Drupal\profile\Entity\ProfileInterface|bool $active_profile */
+    /** @var \Drupal\profile\Entity\ProfileInterface $active_profile */
     $active_profile = $this->entityTypeManager()
       ->getStorage('profile')
       ->loadByUser($user, $profile_type->id());
 
     // If the profile type does not support multiple, only display an add form
     // if there are no entities, or an edit for the current.
-    if (!$profile_type->getMultiple()) {
-
+    if (!$profile_type->allowsMultiple()) {
       // If there is an active profile, provide edit form.
       if ($active_profile) {
         return $this->editProfile($route_match, $user, $active_profile);
