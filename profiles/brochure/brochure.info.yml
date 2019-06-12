@@ -91,6 +91,7 @@ install:
  - ds_extras
  - views
  - paragraphs
+ - paragraph_tweaks
 themes:
  - btw_base
  - seven_custom
