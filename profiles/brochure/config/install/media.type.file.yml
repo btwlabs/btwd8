@@ -3,7 +3,7 @@ status: true
 dependencies: {  }
 id: file
 label: File
-description: "Use local files for reusable media."
+description: 'Use local files for reusable media.'
 source: file
 queue_thumbnail_downloads: false
 new_revision: true

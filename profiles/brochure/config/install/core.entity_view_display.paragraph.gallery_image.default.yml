@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.gallery_image.field_gallery_image
+    - paragraphs.paragraphs_type.gallery_image
+id: paragraph.gallery_image.default
+targetEntityType: paragraph
+bundle: gallery_image
+mode: default
+content:
+  field_gallery_image:
+    type: entity_reference_entity_view
+    weight: 0
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+hidden: {  }
