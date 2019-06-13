@@ -93,8 +93,7 @@ install:
  - paragraphs
  - paragraph_tweaks
  - media
- - media_video_entity
- - media_library
+ - media_entity_browser
 themes:
  - btw_base
  - seven_custom
