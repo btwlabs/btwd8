@@ -26,15 +26,17 @@ function brochure_form_install_configure_submit($form, FormStateInterface $form_
     ->setPassword('123detwtb321')
     ->enforceIsNew()
     ->setEmail('ted@bythewaylabs.com')
-    ->activate()
-    ->save();
+    ->addRole('administrator');
+  $user->activate()
+      ->save();
 
   $user = User::create();
   $user->setUsername('btwjon')
     ->setPassword('123nojwtb321')
     ->enforceIsNew()
     ->setEmail('jon@bythewaylabs.com')
-    ->activate()
+    ->addRole('administrator');
+  $user->activate()
     ->save();
 
   $user = User::create();
@@ -42,7 +44,8 @@ function brochure_form_install_configure_submit($form, FormStateInterface $form_
     ->setPassword('123sinnedwtb321')
     ->enforceIsNew()
     ->setEmail('dennis@bythewaylabs.com')
-    ->activate()
+    ->addRole('administrator');
+  $user->activate()
     ->save();
 
   $user = User::create();
@@ -50,7 +53,8 @@ function brochure_form_install_configure_submit($form, FormStateInterface $form_
     ->setPassword('sixelawtb321')
     ->enforceIsNew()
     ->setEmail('alexis.saransig@jobsity.com')
-    ->activate()
+    ->addRole('administrator');
+  $user->activate()
     ->save();
 
   // Create Menus.
