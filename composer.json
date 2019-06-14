@@ -158,6 +158,13 @@
         ],
         "post-update-cmd": [
             "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "remove-git-submodules": "find . -mindepth 2 -type d -name .git | xargs rm -rf",
+        "post-install-cmd": [
+            "@remove-git-submodules"
+        ],
+        "post-update-cmd": [
+            "@remove-git-submodules"
         ]
     },
     "extra": {

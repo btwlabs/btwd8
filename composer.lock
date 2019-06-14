@@ -3713,8 +3713,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/commerce_product_bundle",
                 "issues": "https://www.drupal.org/project/issues/commerce_product_bundle"
-            },
-            "time": "2018-10-26T19:26:00+00:00"
+            }
         },
         {
             "name": "drupal/commerce_reports",
@@ -9499,8 +9498,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/tamper",
                 "issues": "http://drupal.org/project/issues/tamper"
-            },
-            "time": "2019-06-13T16:54:00+00:00"
+            }
         },
         {
             "name": "drupal/token",
