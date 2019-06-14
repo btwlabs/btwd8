@@ -3,6 +3,7 @@ sites/default/config
 
 # Ignore lando
 .lando.yml
+falses
 
 # Ignore Phpstorm
 *.idea*

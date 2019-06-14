@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitDrupal8
+class ComposerStaticInit9d44b6420e9c13f3d4ddb65920689854
 {
     public static $files = array (
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
@@ -126,6 +126,7 @@ class ComposerStaticInitDrupal8
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
+            'Prophecy\\' => 9,
             'PhpParser\\' => 10,
         ),
         'N' => 
@@ -455,6 +456,10 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
+        'Prophecy\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy',
+        ),
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
@@ -692,7 +697,7 @@ class ComposerStaticInitDrupal8
         array (
             'org\\bovigo\\vfs\\' => 
             array (
-                0 => __DIR__ . '/..' . '/mikey179/vfsStream/src/main/php',
+                0 => __DIR__ . '/..' . '/mikey179/vfsstream/src/main/php',
             ),
         ),
         'W' => 
@@ -722,10 +727,6 @@ class ComposerStaticInitDrupal8
         ),
         'P' => 
         array (
-            'Prophecy\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
-            ),
             'PEAR' => 
             array (
                 0 => __DIR__ . '/..' . '/pear/pear_exception',
@@ -1352,11 +1353,11 @@ class ComposerStaticInitDrupal8
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitDrupal8::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitDrupal8::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitDrupal8::$prefixesPsr0;
-            $loader->fallbackDirsPsr0 = ComposerStaticInitDrupal8::$fallbackDirsPsr0;
-            $loader->classMap = ComposerStaticInitDrupal8::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit9d44b6420e9c13f3d4ddb65920689854::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit9d44b6420e9c13f3d4ddb65920689854::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit9d44b6420e9c13f3d4ddb65920689854::$prefixesPsr0;
+            $loader->fallbackDirsPsr0 = ComposerStaticInit9d44b6420e9c13f3d4ddb65920689854::$fallbackDirsPsr0;
+            $loader->classMap = ComposerStaticInit9d44b6420e9c13f3d4ddb65920689854::$classMap;
 
         }, null, ClassLoader::class);
     }
