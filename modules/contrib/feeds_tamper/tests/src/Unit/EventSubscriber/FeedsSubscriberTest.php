@@ -129,6 +129,32 @@ class FeedsSubscriberTest extends FeedsTamperTestCase {
 
   /**
    * @covers ::afterParse
+   */
+  public function testAfterParseWithEmptyArray() {
+    $tamper = $this->getMock(TamperInterface::class);
+    $tamper->expects($this->any())
+      ->method('tamper')
+      ->will($this->returnValue('Foo'));
+
+    $this->tamperMeta->expects($this->once())
+      ->method('getTampersGroupedBySource')
+      ->will($this->returnValue([
+        'alpha' => [
+          $this->createTamperMock('Foo'),
+        ],
+      ]));
+
+    // Add an item to the parser result.
+    $item = new DynamicItem();
+    $item->set('alpha', []);
+    $this->event->getParserResult()->addItem($item);
+
+    $this->subscriber->afterParse($this->event);
+    $this->assertEquals('Foo', $item->get('alpha'));
+  }
+
+  /**
+   * @covers ::afterParse
    * @covers ::alterItem
    */
   public function testAfterParseWithNoTampers() {

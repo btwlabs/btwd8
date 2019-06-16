@@ -7,8 +7,8 @@ dependencies:
   - hook_event_dispatcher:hook_event_dispatcher
   - webform:webform
 
-# Information added by Drupal.org packaging script on 2019-05-27
-version: '8.x-1.24'
+# Information added by Drupal.org packaging script on 2019-06-15
+version: '8.x-1.25'
 core: '8.x'
 project: 'hook_event_dispatcher'
-datestamp: 1558980490
+datestamp: 1560602293

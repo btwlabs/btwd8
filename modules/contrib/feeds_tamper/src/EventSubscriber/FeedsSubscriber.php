@@ -100,7 +100,7 @@ class FeedsSubscriber implements EventSubscriberInterface {
       try {
         // Get the value for a source.
         $item_value = $item->get($source);
-        $multiple = is_array($item_value);
+        $multiple = is_array($item_value) && !empty($item_value);
 
         /** @var \Drupal\tamper\TamperInterface $tamper */
         foreach ($tampers as $tamper) {
