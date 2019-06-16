@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "62612eff27603e300936bc9598b4e0be",
+    "content-hash": "30eb14d2f69c4f453222b5115a751828",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2699,29 +2699,29 @@
         },
         {
             "name": "drupal/blazy",
-            "version": "1.0.0-rc4",
+            "version": "2.0.0-rc3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/blazy.git",
-                "reference": "8.x-1.0-rc4"
+                "reference": "8.x-2.0-rc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/blazy-8.x-1.0-rc4.zip",
-                "reference": "8.x-1.0-rc4",
-                "shasum": "cea1185469fc6d19a5162f550e12f26cff193062"
+                "url": "https://ftp.drupal.org/files/projects/blazy-8.x-2.0-rc3.zip",
+                "reference": "8.x-2.0-rc3",
+                "shasum": "c72fd3744e3a745dfb2293e1bf86dff7436ff86a"
             },
             "require": {
-                "drupal/core": "*"
+                "drupal/core": "^8.6"
             },
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
-                    "dev-1.x": "1.x-dev"
+                    "dev-2.x": "2.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-rc4",
-                    "datestamp": "1545235980",
+                    "version": "8.x-2.0-rc3",
+                    "datestamp": "1555885681",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
@@ -4267,8 +4267,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/commerce_ups",
                 "issues": "https://www.drupal.org/project/issues/commerce_ups"
-            },
-            "time": "2019-02-17T20:48:03+00:00"
+            }
         },
         {
             "name": "drupal/commerce_usps",
@@ -6591,7 +6590,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/feeds_tamper.git",
-                "reference": "d569ccafa3a86ec652182166840b68cc5a9680cd"
+                "reference": "07e3a1dfa835aba266dcf63f4301c3bc4fb992a2"
             },
             "require": {
                 "drupal/core": "~8.0",
@@ -6608,7 +6607,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.x-dev",
-                    "datestamp": "1545321780",
+                    "datestamp": "1560442385",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -6652,7 +6651,7 @@
                 "source": "http://cgit.drupalcode.org/feeds_tamper",
                 "issues": "http://drupal.org/project/issues/feeds_tamper"
             },
-            "time": "2019-06-13T16:11:51+00:00"
+            "time": "2019-06-14T18:15:31+00:00"
         },
         {
             "name": "drupal/field_group",
@@ -7113,17 +7112,17 @@
         },
         {
             "name": "drupal/hook_event_dispatcher",
-            "version": "1.24.0",
+            "version": "1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/hook_event_dispatcher.git",
-                "reference": "8.x-1.24"
+                "reference": "8.x-1.25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/hook_event_dispatcher-8.x-1.24.zip",
-                "reference": "8.x-1.24",
-                "shasum": "77a2c3b040dd13da6a4d94075ab9c95405037d3e"
+                "url": "https://ftp.drupal.org/files/projects/hook_event_dispatcher-8.x-1.25.zip",
+                "reference": "8.x-1.25",
+                "shasum": "c5373f1c6537f542328281d5f37e2f6ff51e707a"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -7148,8 +7147,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.24",
-                    "datestamp": "1558980481",
+                    "version": "8.x-1.25",
+                    "datestamp": "1560602285",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8536,6 +8535,54 @@
             }
         },
         {
+            "name": "drupal/paragraphs_edit",
+            "version": "2.0.0-alpha6",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/paragraphs_edit.git",
+                "reference": "8.x-2.0-alpha6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/paragraphs_edit-8.x-2.0-alpha6.zip",
+                "reference": "8.x-2.0-alpha6",
+                "shasum": "30ffe95b9160eedfa5aafc1e7a65e252d67d8b4e"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/paragraphs": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.0-alpha6",
+                    "datestamp": "1509009544",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "casey",
+                    "homepage": "https://www.drupal.org/user/32403"
+                }
+            ],
+            "description": "Allows users to edit/clone and delete paragraphs.",
+            "homepage": "https://www.drupal.org/project/paragraphs_edit",
+            "support": {
+                "source": "https://git.drupalcode.org/project/paragraphs_edit"
+            }
+        },
+        {
             "name": "drupal/pathauto",
             "version": "1.4.0",
             "source": {
@@ -9139,33 +9186,33 @@
         },
         {
             "name": "drupal/slick",
-            "version": "1.1.0",
+            "version": "2.0.0-rc3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/slick.git",
-                "reference": "8.x-1.1"
+                "reference": "8.x-2.0-rc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/slick-8.x-1.1.zip",
-                "reference": "8.x-1.1",
-                "shasum": "8565c1e74cfb5e6316c1cdb357868107303f2be4"
+                "url": "https://ftp.drupal.org/files/projects/slick-8.x-2.0-rc3.zip",
+                "reference": "8.x-2.0-rc3",
+                "shasum": "78e172f3e28e6134a083cabb0f7e9ac418411cf7"
             },
             "require": {
-                "drupal/blazy": "~1.0",
+                "drupal/blazy": "~2.0",
                 "drupal/core": "~8.0"
             },
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
-                    "dev-1.x": "1.x-dev"
+                    "dev-2.x": "2.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.1",
-                    "datestamp": "1545236281",
+                    "version": "8.x-2.0-rc3",
+                    "datestamp": "1555885681",
                     "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -9200,74 +9247,22 @@
             }
         },
         {
-            "name": "drupal/slick_extras",
-            "version": "1.0.0-rc2",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/slick_extras.git",
-                "reference": "8.x-1.0-rc2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/slick_extras-8.x-1.0-rc2.zip",
-                "reference": "8.x-1.0-rc2",
-                "shasum": "d8b5bf6df99a89781e90698e5676cfb42af0c691"
-            },
-            "require": {
-                "drupal/core": "~8.0",
-                "drupal/slick": "*"
-            },
-            "require-dev": {
-                "drupal/slick": "*",
-                "drupal/slick_views": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0-rc2",
-                    "datestamp": "1552059184",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "RC releases are not covered by Drupal security advisories."
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "gausarts",
-                    "homepage": "https://www.drupal.org/user/159062"
-                }
-            ],
-            "description": "Provides Slick carousel extras.",
-            "homepage": "https://www.drupal.org/project/slick_extras",
-            "support": {
-                "source": "https://git.drupalcode.org/project/slick_extras"
-            }
-        },
-        {
-            "name": "drupal/slick_views",
+            "name": "drupal/slick_lightbox",
             "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/project/slick_views.git",
+                "url": "https://git.drupalcode.org/project/slick_lightbox.git",
                 "reference": "8.x-1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/slick_views-8.x-1.0.zip",
+                "url": "https://ftp.drupal.org/files/projects/slick_lightbox-8.x-1.0.zip",
                 "reference": "8.x-1.0",
-                "shasum": "fdb8c73f26da5e8f06f478d76b1fa7b5d153428d"
+                "shasum": "207e899673fe970d3bed6ced6a623535be2ce76a"
             },
             "require": {
-                "drupal/core": "*",
-                "drupal/slick": "*"
+                "drupal/core": "~8.0",
+                "drupal/slick": "~2.0"
             },
             "type": "drupal-module",
             "extra": {
@@ -9276,7 +9271,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0",
-                    "datestamp": "1546870081",
+                    "datestamp": "1552054385",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -9285,7 +9280,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0+"
             ],
             "authors": [
                 {
@@ -9293,10 +9288,134 @@
                     "homepage": "https://www.drupal.org/user/159062"
                 }
             ],
-            "description": "Provides Slick carousel integration with Views.",
-            "homepage": "https://www.drupal.org/project/slick_views",
+            "description": "Slick Lightbox, Slick within lightbox.",
+            "homepage": "https://drupal.org/project/slick_lightbox",
+            "keywords": [
+                "Drupal",
+                "carousel",
+                "lightbox",
+                "slideshow"
+            ],
             "support": {
-                "source": "https://git.drupalcode.org/project/slick_views"
+                "source": "http://cgit.drupalcode.org/slick_lightbox",
+                "issues": "https://drupal.org/project/issues/slick_lightbox"
+            }
+        },
+        {
+            "name": "drupal/slick_paragraphs",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/slick_paragraphs.git",
+                "reference": "8.x-2.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/slick_paragraphs-8.x-2.0.zip",
+                "reference": "8.x-2.0",
+                "shasum": "32018d949113f6a42f111dfab648732a0e473612"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/paragraphs": "*",
+                "drupal/slick": "~2.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.0",
+                    "datestamp": "1552057684",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Gaus Surahman",
+                    "homepage": "https://www.drupal.org/u/gausarts",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://www.drupal.org/node/2791135/committers",
+                    "role": "Contributor"
+                }
+            ],
+            "description": "Provides Slick Carousel integration with Paragraphs.",
+            "homepage": "https://drupal.org/project/slick_paragraphs",
+            "keywords": [
+                "Drupal",
+                "Paragraphs",
+                "carousel",
+                "slideshow"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/slick_paragraphs",
+                "issues": "https://drupal.org/project/issues/slick_paragraphs"
+            }
+        },
+        {
+            "name": "drupal/slick_views",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/slick_views.git",
+                "reference": "8.x-2.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/slick_views-8.x-2.0.zip",
+                "reference": "8.x-2.0",
+                "shasum": "bf8b3fb24a017e72fdb159c0f78883daceb62c18"
+            },
+            "require": {
+                "drupal/core": "*",
+                "drupal/slick": "~2.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.0",
+                    "datestamp": "1555885681",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "gausarts",
+                    "homepage": "https://www.drupal.org/user/159062"
+                }
+            ],
+            "description": "Provides Slick carousel integration with Views. Slick carousel, the last carousel you'll ever need.",
+            "homepage": "https://drupal.org/project/slick_views",
+            "keywords": [
+                "Drupal",
+                "carousel",
+                "slideshow",
+                "views"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/slick_views",
+                "issues": "https://drupal.org/project/issues/slick_views"
             }
         },
         {
@@ -9776,8 +9895,7 @@
             "homepage": "https://www.drupal.org/project/view_mode_selector",
             "support": {
                 "source": "https://git.drupalcode.org/project/view_mode_selector"
-            },
-            "time": "2018-11-13T16:00:21+00:00"
+            }
         },
         {
             "name": "drupal/views_data_export",
@@ -16522,8 +16640,6 @@
         "drupal/menu_token": 15,
         "drupal/physical": 5,
         "drupal/profile": 5,
-        "drupal/slick_extras": 10,
-        "drupal/slick_views": 5,
         "drupal/view_mode_selector": 20,
         "drupal/views_data_export": 10
     },

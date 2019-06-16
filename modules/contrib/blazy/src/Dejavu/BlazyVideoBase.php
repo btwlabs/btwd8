@@ -4,9 +4,14 @@ namespace Drupal\blazy\Dejavu;
 
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\blazy\BlazyDefault;
 
 /**
  * Base class for blazy video embed field formatters.
+ *
+ * @deprecated for \Drupal\blazy\Plugin\Field\FieldFormatter\BlazyMediaFormatterBase
+ * Will be removed prior to full release. This means Slick Video which depends
+ * on VEF is deprecated for Slick Media at Blazy 8.2.x with core Media only.
  */
 abstract class BlazyVideoBase extends FormatterBase {
 

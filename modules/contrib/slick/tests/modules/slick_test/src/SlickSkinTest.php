@@ -13,7 +13,7 @@ class SlickSkinTest implements SlickSkinInterface {
    * {@inheritdoc}
    */
   public function skins() {
-    $path  = base_path() . drupal_get_path('module', 'slick_test');
+    $path = base_path() . drupal_get_path('module', 'slick_test');
     $skins = [
       'test' => [
         'name' => 'Test',
@@ -38,7 +38,7 @@ class SlickSkinTest implements SlickSkinInterface {
    * {@inheritdoc}
    */
   public function arrows() {
-    $path  = base_path() . drupal_get_path('module', 'slick_test');
+    $path = base_path() . drupal_get_path('module', 'slick_test');
     $skins = [
       'arrows' => [
         'name' => 'Arrows',
@@ -60,7 +60,7 @@ class SlickSkinTest implements SlickSkinInterface {
    * {@inheritdoc}
    */
   public function dots() {
-    $path  = base_path() . drupal_get_path('module', 'slick_test');
+    $path = base_path() . drupal_get_path('module', 'slick_test');
     $skins = [
       'dots' => [
         'name' => 'Dots',

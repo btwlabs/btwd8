@@ -31,3 +31,24 @@ function blazy_requirements($phase) {
     ],
   ];
 }
+
+/**
+ * Added new services blazy.oembed and blazy.entity.
+ */
+function blazy_update_8201() {
+  // Do nothing to clear cache.
+}
+
+/**
+ * Added a new argument date.formatter to blazy.admin.base service.
+ */
+function blazy_update_8202() {
+  // Do nothing to clear cache.
+}
+
+/**
+ * Added a new argument @entity.repository to blazy.manager.base service.
+ */
+function blazy_update_8203() {
+  // Do nothing to clear cache.
+}
