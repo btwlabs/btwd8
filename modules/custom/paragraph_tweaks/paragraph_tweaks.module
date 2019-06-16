@@ -43,6 +43,18 @@ function paragraph_tweaks_ds_pre_render_alter(array &$layout_render_array, array
      * @var \Drupal\paragraphs\Entity\Paragraph $paragraph
      */
     $paragraph = $context['entity'];
-    $vars['attributes']['id'] = 'paragraph-title--' . \Drupal\Component\Utility\Html::cleanCssIdentifier($paragraph->get('field_title')->first()->getValue()['value']);
+    $vars['attributes']['id'] = 'paragraph-id--' . $paragraph->id();
+    if ($paragraph->hasField('field_title')) {
+      $vars['attributes']['id'] = 'paragraph-id--' . \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($paragraph->get('field_title')->first()->getValue()['value']));;
+    }
+    if ($paragraph->hasField('field_gallery_title')) {
+      $vars['attributes']['id'] = 'paragraph-id--' . \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($paragraph->get('field_gallery_title')->first()->getValue()['value']));;
+    }
+    if ($paragraph->hasField('field_cards_title')) {
+      $vars['attributes']['id'] = 'paragraph-id--' . \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($paragraph->get('field_cards_title')->first()->getValue()['value']));;
+    }
+    if ($paragraph->hasField('field_sub_card_title')) {
+      $vars['attributes']['id'] = 'paragraph-id--' . \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($paragraph->get('field_sub_card_title')->first()->getValue()['value']));;
+    }
   }
 }
