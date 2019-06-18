@@ -4,6 +4,9 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.story_page.body
+    - field.field.node.story_page.field_sb_page_hero_image
+    - field.field.node.story_page.field_sb_page_hero_link
+    - field.field.node.story_page.field_sb_page_story_blocks
     - node.type.story_page
   module:
     - text
@@ -26,4 +29,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  field_sb_page_hero_image: true
+  field_sb_page_hero_link: true
+  field_sb_page_story_blocks: true

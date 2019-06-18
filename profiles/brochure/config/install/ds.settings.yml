@@ -9,5 +9,6 @@ classes:
     - story-block
     - '[paragraph:field_story_block_image_overlay_:value]'
     - 'node-[node:nid]'
+    - gallery-wrapper
   field: {  }
 use_field_names: true

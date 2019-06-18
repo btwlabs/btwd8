@@ -1,0 +1,66 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.remote_video.field_media_oembed_video
+    - media.type.remote_video
+  module:
+    - ds
+    - media
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          ds_content: div
+          ds_hidden: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          ds_content: {  }
+          ds_hidden: {  }
+    regions:
+      ds_content:
+        - field_media_oembed_video
+      ds_hidden:
+        - name
+id: media.remote_video.default
+targetEntityType: media
+bundle: remote_video
+mode: default
+content:
+  field_media_oembed_video:
+    type: oembed
+    weight: 0
+    region: ds_content
+    label: hidden
+    settings:
+      max_width: 1200
+      max_height: 800
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  name:
+    type: string
+    weight: 1
+    region: ds_hidden
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  created: true
+  thumbnail: true
+  uid: true

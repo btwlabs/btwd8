@@ -2,22 +2,139 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.gallery.field_gallery_item
+    - field.field.paragraph.gallery.field_gallery_body
+    - field.field.paragraph.gallery.field_gallery_items
+    - field.field.paragraph.gallery.field_gallery_title
     - paragraphs.paragraphs_type.gallery
+    - views.view.gallery_items
   module:
-    - entity_reference_revisions
+    - ds
+    - field_group
+    - text
+    - views_field_formatter
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          ds_content: div
+          ds_hidden: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class:
+            gallery-wrapper: gallery-wrapper
+          ds_content: {  }
+          ds_hidden: {  }
+    regions:
+      ds_content:
+        - group_info
+        - field_gallery_title
+        - field_gallery_body
+        - field_gallery_items
+  field_group:
+    group_info:
+      children:
+        - field_gallery_title
+        - field_gallery_body
+      parent_name: ''
+      weight: 0
+      format_type: html_element
+      format_settings:
+        label: Info
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+        id: ''
+        classes: gallery-intro
+      label: Info
 id: paragraph.gallery.default
 targetEntityType: paragraph
 bundle: gallery
 mode: default
 content:
-  field_gallery_item:
-    type: entity_reference_revisions_entity_view
-    weight: 0
-    label: above
-    settings:
-      view_mode: default
-      link: ''
+  field_gallery_body:
+    weight: 3
+    label: hidden
+    settings: {  }
     third_party_settings: {  }
-    region: content
+    type: text_default
+    region: ds_content
+  field_gallery_items:
+    type: views_field_formatter
+    weight: 4
+    label: hidden
+    settings:
+      view: 'gallery_items::block_1'
+      arguments:
+        entity_id:
+          checked: '1'
+          weight: '-10'
+        field_value:
+          weight: '-9'
+          checked: 0
+        delta:
+          weight: '-8'
+          checked: 0
+        entity_revision_id:
+          weight: '-7'
+          checked: 0
+      hide_empty: '1'
+      implode_character: ''
+      multiple: 0
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    region: ds_content
+  field_gallery_title:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow-el: ''
+            ow-cl: ''
+            ow-at: ''
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fi: true
+            fi-el: h2
+            fi-cl: 'title subtitle'
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow: false
+            ow-def-at: false
+            ow-def-cl: false
+            fis: false
+            fis-def-at: false
+            fi-def-at: false
+    type: string
+    region: ds_content
 hidden: {  }
