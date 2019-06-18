@@ -9,6 +9,7 @@ install:
  - automated_cron
  - bg_image_formatter
  - big_pipe
+ - blazy
  - block
  - block_content
  - breakpoint
@@ -31,6 +32,8 @@ install:
  - dynamic_page_cache
  - easy_breadcrumb
  - editor
+ - entity_browser
+ - entity_browser_entity_form
  - entity_reference_revisions
  - field
  - field_group
@@ -49,12 +52,15 @@ install:
  - inline_entity_form
  - inline_form_errors
  - layout_discovery
+ - lightgallery
  - link
  - link_attributes
  - mail_login
  - mailsystem
  - mandrill
  - masquerade
+ - media
+ - media_entity_browser
  - menu_block
  - menu_link_attributes
  - menu_ui
@@ -62,6 +68,7 @@ install:
  - node
  - options
  - page_cache
+ - paragraph_tweaks
  - path
  - quickedit
  - rdf
@@ -72,6 +79,8 @@ install:
  - search
  - shortcut
  - simple_sitemap
+ - slick
+ - slick_views
  - system
  - taxonomy
  - text
@@ -91,9 +100,6 @@ install:
  - ds_extras
  - views
  - paragraphs
- - paragraph_tweaks
- - media
- - media_entity_browser
 themes:
  - btw_base
  - seven_custom

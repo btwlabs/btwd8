@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: gallery_video
-label: 'Gallery Video'
-icon_uuid: null
-description: ''
-behavior_plugins: {  }
