@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "30eb14d2f69c4f453222b5115a751828",
+    "content-hash": "6698c06a964e9c48a364cc48d61aaf01",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -6650,8 +6650,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/feeds_tamper",
                 "issues": "http://drupal.org/project/issues/feeds_tamper"
-            },
-            "time": "2019-06-14T18:15:31+00:00"
+            }
         },
         {
             "name": "drupal/field_group",
@@ -9247,78 +9246,22 @@
             }
         },
         {
-            "name": "drupal/slick_lightbox",
-            "version": "1.0.0",
+            "name": "drupal/slick_media",
+            "version": "2.0.0-alpha3",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/project/slick_lightbox.git",
-                "reference": "8.x-1.0"
+                "url": "https://git.drupalcode.org/project/slick_media.git",
+                "reference": "8.x-2.0-alpha3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/slick_lightbox-8.x-1.0.zip",
-                "reference": "8.x-1.0",
-                "shasum": "207e899673fe970d3bed6ced6a623535be2ce76a"
+                "url": "https://ftp.drupal.org/files/projects/slick_media-8.x-2.0-alpha3.zip",
+                "reference": "8.x-2.0-alpha3",
+                "shasum": "977a8a38c83c3fcd701230953747c2b7b6118ec4"
             },
             "require": {
-                "drupal/core": "~8.0",
-                "drupal/slick": "~2.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0",
-                    "datestamp": "1552054385",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "gausarts",
-                    "homepage": "https://www.drupal.org/user/159062"
-                }
-            ],
-            "description": "Slick Lightbox, Slick within lightbox.",
-            "homepage": "https://drupal.org/project/slick_lightbox",
-            "keywords": [
-                "Drupal",
-                "carousel",
-                "lightbox",
-                "slideshow"
-            ],
-            "support": {
-                "source": "http://cgit.drupalcode.org/slick_lightbox",
-                "issues": "https://drupal.org/project/issues/slick_lightbox"
-            }
-        },
-        {
-            "name": "drupal/slick_paragraphs",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/slick_paragraphs.git",
-                "reference": "8.x-2.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/slick_paragraphs-8.x-2.0.zip",
-                "reference": "8.x-2.0",
-                "shasum": "32018d949113f6a42f111dfab648732a0e473612"
-            },
-            "require": {
-                "drupal/core": "~8.0",
-                "drupal/paragraphs": "*",
-                "drupal/slick": "~2.0"
+                "drupal/core": "^8.4",
+                "drupal/slick": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -9326,41 +9269,36 @@
                     "dev-2.x": "2.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.0",
-                    "datestamp": "1552057684",
+                    "version": "8.x-2.0-alpha3",
+                    "datestamp": "1545238380",
                     "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
                     }
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
-                    "name": "Gaus Surahman",
-                    "homepage": "https://www.drupal.org/u/gausarts",
-                    "role": "Maintainer"
+                    "name": "axel.rutz",
+                    "homepage": "https://www.drupal.org/user/229048"
                 },
                 {
-                    "name": "Contributors",
-                    "homepage": "https://www.drupal.org/node/2791135/committers",
-                    "role": "Contributor"
+                    "name": "chr.fritsch",
+                    "homepage": "https://www.drupal.org/user/2103716"
+                },
+                {
+                    "name": "gausarts",
+                    "homepage": "https://www.drupal.org/user/159062"
                 }
             ],
-            "description": "Provides Slick Carousel integration with Paragraphs.",
-            "homepage": "https://drupal.org/project/slick_paragraphs",
-            "keywords": [
-                "Drupal",
-                "Paragraphs",
-                "carousel",
-                "slideshow"
-            ],
+            "description": "Provides Slick carousel integration with Media entity.",
+            "homepage": "https://www.drupal.org/project/slick_media",
             "support": {
-                "source": "http://cgit.drupalcode.org/slick_paragraphs",
-                "issues": "https://drupal.org/project/issues/slick_paragraphs"
+                "source": "https://git.drupalcode.org/project/slick_media"
             }
         },
         {
@@ -9567,7 +9505,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/tamper.git",
-                "reference": "742ab534ab957a67fafa86f9fd955cd364ff5f12"
+                "reference": "876e79b3a6c8caf9f4b1e57f5fd645d4e6111ab3"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -9579,7 +9517,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1560436985",
+                    "datestamp": "1560710581",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -9617,7 +9555,8 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/tamper",
                 "issues": "http://drupal.org/project/issues/tamper"
-            }
+            },
+            "time": "2019-06-16T18:59:54+00:00"
         },
         {
             "name": "drupal/token",
@@ -13691,16 +13630,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.42.1",
+            "version": "v1.42.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "671347603760a88b1e7288aaa9378f33687d7edf"
+                "reference": "21707d6ebd05476854805e4f91b836531941bcd4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/671347603760a88b1e7288aaa9378f33687d7edf",
-                "reference": "671347603760a88b1e7288aaa9378f33687d7edf",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/21707d6ebd05476854805e4f91b836531941bcd4",
+                "reference": "21707d6ebd05476854805e4f91b836531941bcd4",
                 "shasum": ""
             },
             "require": {
@@ -13753,7 +13692,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2019-06-04T11:31:08+00:00"
+            "time": "2019-06-18T15:35:16+00:00"
         },
         {
             "name": "typo3/phar-stream-wrapper",
@@ -16640,6 +16579,7 @@
         "drupal/menu_token": 15,
         "drupal/physical": 5,
         "drupal/profile": 5,
+        "drupal/slick_media": 15,
         "drupal/view_mode_selector": 20,
         "drupal/views_data_export": 10
     },

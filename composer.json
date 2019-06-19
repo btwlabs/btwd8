@@ -114,6 +114,7 @@
         "drupal/sendgrid_integration": "^1.2",
         "drupal/simple_sitemap": "^3.1",
         "drupal/slick": "^2.0",
+        "drupal/slick_media": "^2.0@alpha",
         "drupal/slick_views": "^2.0",
         "drupal/social_media_links": "^2.6",
         "drupal/token": "^1.5",
