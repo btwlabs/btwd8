@@ -32,6 +32,7 @@ third_party_settings:
           ds_hidden: {  }
     regions:
       ds_content:
+        - group_thumbnail_link
         - thumbnail
       ds_hidden:
         - name
@@ -43,7 +44,7 @@ mode: thumbnail
 content:
   field_media_video_file:
     type: file_video
-    weight: 2
+    weight: 3
     region: ds_hidden
     label: hidden
     settings:
@@ -64,7 +65,7 @@ content:
             classes: {  }
   name:
     type: string
-    weight: 1
+    weight: 2
     region: ds_hidden
     label: hidden
     settings:
@@ -72,7 +73,7 @@ content:
     third_party_settings: {  }
   thumbnail:
     type: blazy
-    weight: 0
+    weight: 1
     region: ds_content
     label: hidden
     settings:

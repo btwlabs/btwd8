@@ -2,9 +2,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.media.full
+    - core.entity_view_mode.media.slick
     - field.field.media.image.field_media_image
-    - image.style.max_1300x1300
+    - image.style.max_650x650
     - media.type.image
   module:
     - ds
@@ -33,10 +33,10 @@ third_party_settings:
         - field_media_image
       ds_hidden:
         - name
-id: media.image.full
+id: media.image.slick
 targetEntityType: media
 bundle: image
-mode: full
+mode: slick
 content:
   field_media_image:
     type: image
@@ -44,7 +44,7 @@ content:
     region: ds_content
     label: hidden
     settings:
-      image_style: max_1300x1300
+      image_style: max_650x650
       image_link: ''
     third_party_settings:
       ds:

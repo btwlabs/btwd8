@@ -1,0 +1,5 @@
+patterns: /gallery-carousel
+default_width: 1600
+lightbox_class: ''
+skip_admin_paths: true
+renderer: drupal_colorbox

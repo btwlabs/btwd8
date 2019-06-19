@@ -2,13 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.media.full
-    - field.field.media.image.field_media_image
-    - image.style.max_1300x1300
-    - media.type.image
+    - core.entity_view_mode.media.slick
+    - field.field.media.video.field_media_video_file
+    - media.type.video
   module:
     - ds
-    - image
+    - file
 third_party_settings:
   ds:
     layout:
@@ -30,22 +29,27 @@ third_party_settings:
           ds_hidden: {  }
     regions:
       ds_content:
-        - field_media_image
+        - field_media_video_file
       ds_hidden:
         - name
-id: media.image.full
+id: media.video.slick
 targetEntityType: media
-bundle: image
-mode: full
+bundle: video
+mode: slick
 content:
-  field_media_image:
-    type: image
+  field_media_video_file:
+    type: file_video
     weight: 0
     region: ds_content
     label: hidden
     settings:
-      image_style: max_1300x1300
-      image_link: ''
+      controls: true
+      multiple_file_display_type: sources
+      width: 640
+      height: 480
+      autoplay: false
+      loop: false
+      muted: false
     third_party_settings:
       ds:
         ft:

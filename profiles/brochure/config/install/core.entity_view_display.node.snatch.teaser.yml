@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.snatch.body
+    - field.field.node.snatch.field_snotburger
+    - node.type.snatch
+  module:
+    - text
+    - user
+id: node.snatch.teaser
+targetEntityType: node
+bundle: snatch
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_snotburger: true

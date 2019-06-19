@@ -1,0 +1,39 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_snotburger
+    - node.type.snatch
+    - paragraphs.paragraphs_type.gallery
+  module:
+    - entity_reference_revisions
+id: node.snatch.field_snotburger
+field_name: field_snotburger
+entity_type: node
+bundle: snatch
+label: snotburger
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      gallery: gallery
+    target_bundles_drag_drop:
+      cards:
+        weight: 5
+        enabled: false
+      gallery:
+        enabled: true
+        weight: 6
+      story_block:
+        weight: 7
+        enabled: false
+      sub_card:
+        weight: 8
+        enabled: false
+field_type: entity_reference_revisions

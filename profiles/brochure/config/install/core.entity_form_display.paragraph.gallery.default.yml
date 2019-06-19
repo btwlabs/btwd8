@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.media_entity_browser
     - field.field.paragraph.gallery.field_gallery_body
     - field.field.paragraph.gallery.field_gallery_items
     - field.field.paragraph.gallery.field_gallery_title
+    - image.style.thumbnail
     - paragraphs.paragraphs_type.gallery
   module:
-    - entity_browser
+    - image
     - text
 id: paragraph.gallery.default
 targetEntityType: paragraph
@@ -26,16 +26,10 @@ content:
   field_gallery_items:
     weight: 2
     settings:
-      entity_browser: media_entity_browser
-      field_widget_display: label
-      field_widget_edit: true
-      field_widget_remove: true
-      field_widget_replace: true
-      selection_mode: selection_append
-      open: false
-      field_widget_display_settings: {  }
+      progress_indicator: throbber
+      preview_image_style: thumbnail
     third_party_settings: {  }
-    type: entity_browser_entity_reference
+    type: image_image
     region: content
   field_gallery_title:
     weight: 0

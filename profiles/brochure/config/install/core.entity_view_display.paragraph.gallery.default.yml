@@ -6,12 +6,11 @@ dependencies:
     - field.field.paragraph.gallery.field_gallery_items
     - field.field.paragraph.gallery.field_gallery_title
     - paragraphs.paragraphs_type.gallery
-    - views.view.gallery_items
   module:
     - ds
     - field_group
+    - lightgallery
     - text
-    - views_field_formatter
 third_party_settings:
   ds:
     layout:
@@ -35,9 +34,9 @@ third_party_settings:
     regions:
       ds_content:
         - group_info
+        - field_gallery_items
         - field_gallery_title
         - field_gallery_body
-        - field_gallery_items
   field_group:
     group_info:
       children:
@@ -70,36 +69,54 @@ content:
     type: text_default
     region: ds_content
   field_gallery_items:
-    type: views_field_formatter
-    weight: 4
+    weight: 1
     label: hidden
     settings:
-      view: 'gallery_items::block_1'
-      arguments:
-        entity_id:
-          checked: '1'
-          weight: '-10'
-        field_value:
-          weight: '-9'
-          checked: 0
-        delta:
-          weight: '-8'
-          checked: 0
-        entity_revision_id:
-          weight: '-7'
-          checked: 0
-      hide_empty: '1'
-      implode_character: ''
-      multiple: 0
+      lightgallery_image_style: max_1300x1300
+      title_source: alt
+      mode: lg-slide
+      preload: '1'
+      closable: '1'
+      loop: '1'
+      esc_key: '1'
+      key_press: '1'
+      controls: '1'
+      mouse_wheel: '1'
+      download: '1'
+      counter: '1'
+      drag: '1'
+      touch: '1'
+      lightgallery_thumbs:
+        thumbnails: '1'
+        animate_thumb: '1'
+        current_pager_position: middle
+        thumb_width: '100'
+        thumb_cont_height: '100'
+      lightgallery_autoplay:
+        autoplay: '1'
+        pause: '5000'
+        progress_bar: '1'
+        autoplay_controls: '1'
+      lightgallery_full_screen:
+        full_screen: '1'
+      lightgallery_pager:
+        pager: '1'
+      lightgallery_zoom:
+        zoom: '1'
+        scale: '1'
+      lightgallery_hash:
+        hash: '1'
+        gallery_id: '1'
     third_party_settings:
       ds:
         ds_limit: ''
         ft:
-          id: minimal
+          id: default
           settings:
             lb: ''
             lb-col: false
             classes: {  }
+    type: lightgallery
     region: ds_content
   field_gallery_title:
     weight: 2
