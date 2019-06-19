@@ -1,3 +1,4 @@
+uuid: 542414a9-cf61-49ce-bcaf-c509ac2325d9
 langcode: en
 status: true
 dependencies:
@@ -72,20 +73,22 @@ content:
     weight: 1
     label: hidden
     settings:
-      lightgallery_image_style: max_1300x1300
-      title_source: alt
-      mode: lg-slide
-      preload: '1'
-      closable: '1'
-      loop: '1'
-      esc_key: '1'
-      key_press: '1'
-      controls: '1'
-      mouse_wheel: '1'
-      download: '1'
-      counter: '1'
-      drag: '1'
-      touch: '1'
+      lightgallery_core:
+        lightgallery_image_style: max_1300x1300
+        thumb_image_style: thumbnail
+        title_source: alt
+        mode: lg-slide
+        preload: '1'
+        closable: '1'
+        loop: '1'
+        esc_key: '1'
+        key_press: '1'
+        controls: '1'
+        mouse_wheel: '1'
+        download: '1'
+        counter: '1'
+        drag: '1'
+        touch: '1'
       lightgallery_thumbs:
         thumbnails: '1'
         animate_thumb: '1'
