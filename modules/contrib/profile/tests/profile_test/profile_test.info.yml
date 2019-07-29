@@ -5,8 +5,8 @@ description: 'Test module for Profile.'
 dependencies:
   - profile
 
-# Information added by Drupal.org packaging script on 2019-06-07
-version: '8.x-1.0-rc5'
+# Information added by Drupal.org packaging script on 2019-07-12
+version: '8.x-1.0-rc6'
 core: '8.x'
 project: 'profile'
-datestamp: 1559926994
+datestamp: 1562966888

@@ -44,9 +44,9 @@ class USPSShipment extends USPSShipmentBase implements USPSShipmentInterface {
     $to_address->setApt($address->getAddressLine2());
     $to_address->setCity($address->getLocality());
     $to_address->setState($address->getAdministrativeArea());
-    $to_address->setZip5($address->getPostalCode());
 
-    $this->uspsPackage->setZipDestination($address->getPostalCode());
+    // Due to API limitations, only accept the first 5 digits of the Zip Code.
+    $this->uspsPackage->setZipDestination(substr($address->getPostalCode(), 0, 5));
   }
 
   /**
@@ -59,10 +59,9 @@ class USPSShipment extends USPSShipmentBase implements USPSShipmentInterface {
     $from_address->setAddress($address->getAddressLine1());
     $from_address->setCity($address->getLocality());
     $from_address->setState($address->getAdministrativeArea());
-    $from_address->setZip5($address->getPostalCode());
-    $from_address->setZip4($address->getPostalCode());
 
-    $this->uspsPackage->setZipOrigination($address->getPostalCode());
+    // Due to API limitations, only accept the first 5 digits of the Zip Code.
+    $this->uspsPackage->setZipOrigination(substr($address->getPostalCode(), 0, 5));
   }
 
   /**
@@ -76,7 +75,23 @@ class USPSShipment extends USPSShipmentBase implements USPSShipmentInterface {
    * Sets the services for the shipment.
    */
   protected function setService() {
-    $this->uspsPackage->setService(RatePackage::SERVICE_ALL);
+    $rate_class = RatePackage::SERVICE_ALL;
+
+    // Determine if the shipping method uses a special
+    // rate class.
+    if (!empty($this->configuration['rate_options']['rate_class'])) {
+      switch ($this->configuration['rate_options']['rate_class']) {
+        case 'online':
+        case 'commercial':
+          $rate_class = RatePackage::SERVICE_ONLINE;
+          break;
+        case 'commercial_plus':
+          $rate_class = 'PLUS';
+          break;
+      }
+    }
+
+    $this->uspsPackage->setService($rate_class);
   }
 
   /**

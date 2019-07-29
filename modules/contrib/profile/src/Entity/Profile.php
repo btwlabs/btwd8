@@ -82,8 +82,8 @@ class Profile extends EditorialContentEntityBase implements ProfileInterface {
    */
   public function label() {
     $profile_type = ProfileType::load($this->bundle());
-    $label = $this->t('@type profile #@id', [
-      '@type' => $profile_type->label(),
+    $label = $this->t('@type #@id', [
+      '@type' => $profile_type->getDisplayLabel() ?: $profile_type->label(),
       '@id' => $this->id(),
     ]);
     // Allow the label to be overridden.
@@ -205,15 +205,25 @@ class Profile extends EditorialContentEntityBase implements ProfileInterface {
   /**
    * {@inheritdoc}
    */
-  public function populateFromProfile(ProfileInterface $profile, array $field_names = []) {
-    // Transfer all configurable fields by default.
-    if (empty($field_names)) {
-      foreach ($profile->getFieldDefinitions() as $field_name => $definition) {
-        if (!($definition instanceof BaseFieldDefinition)) {
-          $field_names[] = $field_name;
-        }
+  public function equalToProfile(ProfileInterface $profile, array $field_names = []) {
+    // Compare all configurable fields by default.
+    $field_names = $field_names ?: $this->getConfigurableFieldNames($profile);
+    foreach ($field_names as $field_name) {
+      $profile_field_item_list = $profile->get($field_name);
+      if (!$this->hasField($field_name) || !$this->get($field_name)->equals($profile_field_item_list)) {
+        return FALSE;
       }
     }
+
+    return TRUE;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function populateFromProfile(ProfileInterface $profile, array $field_names = []) {
+    // Transfer all configurable fields by default.
+    $field_names = $field_names ?: $this->getConfigurableFieldNames($profile);
     $profile_values = $profile->toArray();
     foreach ($field_names as $field_name) {
       if (isset($profile_values[$field_name]) && $this->hasField($field_name)) {
@@ -222,6 +232,25 @@ class Profile extends EditorialContentEntityBase implements ProfileInterface {
     }
 
     return $this;
+  }
+
+  /**
+   * Gets the names of all configurable fields on the given profile.
+   *
+   * @param \Drupal\profile\Entity\ProfileInterface $profile
+   *   The profile.
+   *
+   * @return string[]
+   *   The field names.
+   */
+  protected function getConfigurableFieldNames(ProfileInterface $profile) {
+    $field_names = [];
+    foreach ($profile->getFieldDefinitions() as $field_name => $definition) {
+      if (!($definition instanceof BaseFieldDefinition)) {
+        $field_names[] = $field_name;
+      }
+    }
+    return $field_names;
   }
 
   /**
@@ -298,7 +327,8 @@ class Profile extends EditorialContentEntityBase implements ProfileInterface {
 
     $fields['status']
       ->setLabel(t('Active'))
-      ->setDescription(t('Whether the profile is active.'));
+      ->setDescription(t('Whether the profile is active.'))
+      ->setTranslatable(FALSE);
 
     $fields['is_default'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Default'))

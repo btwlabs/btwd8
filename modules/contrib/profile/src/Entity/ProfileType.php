@@ -45,6 +45,7 @@ use Drupal\Core\Entity\EntityStorageInterface;
  *   config_export = {
  *     "id",
  *     "label",
+ *     "display_label",
  *     "multiple",
  *     "registration",
  *     "roles",
@@ -75,6 +76,13 @@ class ProfileType extends ConfigEntityBundleBase implements ProfileTypeInterface
    * @var string
    */
   protected $label;
+
+  /**
+   * The profile type display label.
+   *
+   * @var string
+   */
+  protected $display_label;
 
   /**
    * Whether a user can have multiple profiles of this type.
@@ -110,6 +118,21 @@ class ProfileType extends ConfigEntityBundleBase implements ProfileTypeInterface
    * @var bool
    */
   protected $new_revision = FALSE;
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getDisplayLabel() {
+    return $this->display_label;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setDisplayLabel($display_label) {
+    $this->display_label = $display_label;
+    return $this;
+  }
 
   /**
    * {@inheritdoc}
@@ -214,6 +237,7 @@ class ProfileType extends ConfigEntityBundleBase implements ProfileTypeInterface
       else {
         $register_display->removeComponent($this->id() . '_profiles');
       }
+      $register_display->setStatus(TRUE);
       $register_display->save();
     }
   }

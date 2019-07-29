@@ -36,6 +36,7 @@ class ProfileTypeTest extends ProfileTestBase {
     $edit = [
       'id' => 'customer',
       'label' => 'Customer',
+      'display_label' => 'Customer information',
       'registration' => TRUE,
       'allow_revisions' => TRUE,
       'new_revision' => TRUE,
@@ -46,6 +47,7 @@ class ProfileTypeTest extends ProfileTestBase {
     $profile_type = ProfileType::load($edit['id']);
     $this->assertNotEmpty($profile_type);
     $this->assertEquals('Customer', $profile_type->label());
+    $this->assertEquals('Customer information', $profile_type->getDisplayLabel());
     $this->assertTrue($profile_type->getRegistration());
     $this->assertTrue($profile_type->allowsRevisions());
     $this->assertTrue($profile_type->shouldCreateNewRevision());
@@ -58,6 +60,7 @@ class ProfileTypeTest extends ProfileTestBase {
     $profile_type = ProfileType::create([
       'id' => 'customer',
       'label' => 'Customer',
+      'display_label' => 'Customer information',
       'registration' => FALSE,
       'allow_revisions' => TRUE,
       'new_revision' => TRUE,
@@ -67,6 +70,7 @@ class ProfileTypeTest extends ProfileTestBase {
     $this->drupalGet($profile_type->toUrl('edit-form'));
     $edit = [
       'label' => 'Customer!',
+      'display_label' => 'Customer information!',
       'registration' => TRUE,
       'allow_revisions' => FALSE,
       'new_revision' => TRUE,
@@ -76,6 +80,7 @@ class ProfileTypeTest extends ProfileTestBase {
 
     $profile_type = ProfileType::load('customer');
     $this->assertEquals($edit['label'], $profile_type->label());
+    $this->assertEquals($edit['display_label'], $profile_type->getDisplayLabel());
     $this->assertTrue($profile_type->getRegistration());
     $this->assertFalse($profile_type->allowsRevisions());
     $this->assertFalse($profile_type->shouldCreateNewRevision());

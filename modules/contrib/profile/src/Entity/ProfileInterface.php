@@ -137,12 +137,31 @@ interface ProfileInterface extends ContentEntityInterface, EntityChangedInterfac
   public function setRevisionAuthorId($uid);
 
   /**
+   * Checks whether the other profile is equal to the current profile.
+   *
+   * By default, profiles are compared using configurable fields only,
+   * which means that two profiles can be considered equal even if they
+   * are of different types, or belong to different users.
+   * Pass "type", and/or "uid" as $field_names to avoid this behavior.
+   *
+   * @param \Drupal\profile\Entity\ProfileInterface $profile
+   *   The other profile.
+   * @param string[] $field_names
+   *   The names of fields to compare. If empty, all configurable fields
+   *   will be compared.
+   *
+   * @return bool
+   *   TRUE if the two profiles are equal, FALSE otherwise.
+   */
+  public function equalToProfile(ProfileInterface $profile, array $field_names = []);
+
+  /**
    * Populates the profile with field values from the other profile.
    *
    * @param \Drupal\profile\Entity\ProfileInterface $profile
    *   The other profile.
    * @param string[] $field_names
-   *   The names of field to transfer. If empty, all configurable fields
+   *   The names of fields to transfer. If empty, all configurable fields
    *   will be transferred.
    *
    * @return $this

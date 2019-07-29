@@ -111,13 +111,7 @@ class ProfileController extends ControllerBase {
    *   The page title.
    */
   public function userPageTitle(ProfileTypeInterface $profile_type) {
-    if ($profile_type->allowsMultiple()) {
-      return $profile_type->label();
-    }
-
-    return $this->t('Edit @label', [
-      '@label' => $profile_type->label(),
-    ]);
+    return $profile_type->getDisplayLabel() ?: $profile_type->label();
   }
 
   /**
@@ -130,9 +124,7 @@ class ProfileController extends ControllerBase {
    *   The page title.
    */
   public function addPageTitle(ProfileTypeInterface $profile_type) {
-    return $this->t('Create @label', [
-      '@label' => $profile_type->label(),
-    ]);
+    return $this->t('Add new profile');
   }
 
   /**
@@ -170,17 +162,15 @@ class ProfileController extends ControllerBase {
     // Display active, and link to create a profile.
     else {
       $build = [];
-
       // If there is no active profile, display add form.
       if (!$active_profile) {
         return $this->addProfile($route_match, $user, $profile_type);
       }
 
-      $build['add_profile'] = Link::createFromRoute(
-        $this->t('Add new @type', ['@type' => $profile_type->label()]),
-        'entity.profile.type.user_profile_form.add',
-        ['user' => $user->id(), 'profile_type' => $profile_type->id()])
-        ->toRenderable();
+      $build['add_profile'] = Link::createFromRoute($this->t('Add new profile'), 'entity.profile.type.user_profile_form.add', [
+        'user' => $user->id(),
+        'profile_type' => $profile_type->id(),
+      ])->toRenderable();
 
       // Render the active profiles.
       $build['active_profiles'] = [

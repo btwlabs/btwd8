@@ -8,6 +8,9 @@ profile.type.*:
     label:
       type: label
       label: 'Label'
+    display_label:
+      type: label
+      label: 'Display label'
     multiple:
       type: boolean
       label: 'Allow multiple profiles per user'

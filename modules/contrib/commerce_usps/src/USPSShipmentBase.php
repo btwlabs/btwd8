@@ -37,6 +37,13 @@ class USPSShipmentBase implements USPSShipmentInterface {
   protected $uspsPackage;
 
   /**
+   * The shipping method configuration.
+   *
+   * @var array
+   */
+  protected $configuration;
+
+  /**
    * USPSShipmentBase constructor.
    *
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
@@ -44,6 +51,15 @@ class USPSShipmentBase implements USPSShipmentInterface {
    */
   public function __construct(EventDispatcherInterface $event_dispatcher) {
     $this->eventDispatcher = $event_dispatcher;
+  }
+
+  /**
+   * Store the shipping method configuration.
+   *
+   * @param array $configuration
+   */
+  public function setConfig(array $configuration) {
+    $this->configuration = $configuration;
   }
 
   /**
@@ -58,10 +74,8 @@ class USPSShipmentBase implements USPSShipmentInterface {
   public function getPackage(ShipmentInterface $commerce_shipment) {
     $this->commerceShipment = $commerce_shipment;
 
-    if (!$this->uspsPackage) {
-      $this->buildPackage($commerce_shipment);
-      $this->alterPackage();
-    }
+    $this->buildPackage($commerce_shipment);
+    $this->alterPackage();
 
     return $this->uspsPackage;
   }

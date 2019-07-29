@@ -30,6 +30,7 @@ class USPSShipmentInternational extends USPSShipmentBase implements USPSShipment
     $this->uspsPackage->setField('Container', 'RECTANGULAR');
     $this->setDimensions();
     $this->setOriginZip();
+    $this->setRateClass();
 
     return $this->uspsPackage;
   }
@@ -41,6 +42,23 @@ class USPSShipmentInternational extends USPSShipmentBase implements USPSShipment
     /** @var \CommerceGuys\Addressing\Address $address */
     $address = $this->commerceShipment->getOrder()->getStore()->getAddress();
     $this->uspsPackage->setField('OriginZip', (int) $address->getPostalCode());
+  }
+
+  /**
+   * Set the rate class of the package.
+   */
+  protected function setRateClass() {
+    // Set the appropriate rate class, if configured.
+    if (!empty($this->configuration['rate_options']['rate_class'])) {
+      switch ($this->configuration['rate_options']['rate_class']) {
+        case 'commercial':
+          $this->uspsPackage->setField('CommercialFlag', 'Y');
+          break;
+        case 'commercial_plus':
+          $this->uspsPackage->setField('CommercialPlusFlag', 'Y');
+          break;
+      }
+    }
   }
 
   /**

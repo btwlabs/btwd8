@@ -28,7 +28,7 @@ class ProfileTypeForm extends BundleEntityFormBase {
       '#title' => t('Label'),
       '#type' => 'textfield',
       '#default_value' => $profile_type->label(),
-      '#description' => t('The human-readable name of this profile type.'),
+      '#description' => t('The admin-facing name.'),
       '#required' => TRUE,
       '#size' => 30,
     ];
@@ -40,6 +40,13 @@ class ProfileTypeForm extends BundleEntityFormBase {
         'exists' => '\Drupal\profile\Entity\ProfileType::load',
         'source' => ['label'],
       ],
+    ];
+    $form['display_label'] = [
+      '#title' => t('Display label'),
+      '#type' => 'textfield',
+      '#default_value' => $profile_type->getDisplayLabel(),
+      '#description' => t('The user-facing name. If provided, shown on user pages instead of the admin-facing name.'),
+      '#size' => 30,
     ];
     $form['multiple'] = [
       '#type' => 'checkbox',
@@ -97,6 +104,15 @@ class ProfileTypeForm extends BundleEntityFormBase {
       $actions['save_continue']['#submit'][] = [$this, 'redirectToFieldUi'];
     }
     return $actions;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function buildEntity(array $form, FormStateInterface $form_state) {
+    // Filter out unchecked roles.
+    $form_state->setValue('roles', array_filter($form_state->getValue('roles')));
+    return parent::buildEntity($form, $form_state);
   }
 
   /**

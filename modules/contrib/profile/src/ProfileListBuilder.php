@@ -135,19 +135,21 @@ class ProfileListBuilder extends EntityListBuilder {
   /**
    * {@inheritdoc}
    */
-  public function getOperations(EntityInterface $entity) {
-    $operations = parent::getOperations($entity);
+  public function getDefaultOperations(EntityInterface $entity) {
+    $operations = parent::getDefaultOperations($entity);
 
     $destination = $this->redirectDestination->getAsArray();
     foreach ($operations as $key => $operation) {
       $operations[$key]['query'] = $destination;
     }
 
-    if ($entity->isActive() && !$entity->isDefault()) {
+    /** @var \Drupal\profile\Entity\ProfileInterface $entity */
+    if ($entity->access('update') && $entity->isActive() && !$entity->isDefault()) {
       $operations['set_default'] = [
         'title' => $this->t('Mark as default'),
         'url' => $entity->toUrl('set-default'),
         'parameter' => $entity,
+        'weight' => 20,
       ];
     }
 

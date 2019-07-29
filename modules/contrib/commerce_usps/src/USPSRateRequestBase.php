@@ -64,6 +64,15 @@ abstract class USPSRateRequestBase extends USPSRequest implements USPSRateReques
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function setConfig(array $configuration) {
+    parent::setConfig($configuration);
+    // Set the configuration on the USPS Shipment service.
+    $this->uspsShipment->setConfig($configuration);
+  }
+
+  /**
    * Fetch rates from the USPS API.
    *
    * @param \Drupal\commerce_shipping\Entity\ShipmentInterface $commerce_shipment
@@ -91,7 +100,9 @@ abstract class USPSRateRequestBase extends USPSRequest implements USPSRateReques
     $this->alterRate();
 
     // Fetch the rates.
+    $this->logRequest();
     $this->uspsRequest->getRate();
+    $this->logResponse();
     $response = $this->uspsRequest->getArrayResponse();
 
     return $this->resolveRates($response);
@@ -124,6 +135,25 @@ abstract class USPSRateRequestBase extends USPSRequest implements USPSRateReques
    */
   public function setShipment(ShipmentInterface $commerce_shipment) {
     $this->commerceShipment = $commerce_shipment;
+  }
+
+  /**
+   * Logs the request data.
+   */
+  public function logRequest() {
+    if (!empty($this->configuration['options']['log']['request'])) {
+      $request = $this->uspsRequest->getPostData();
+      \Drupal::logger('commerce_usps')->info('@message', ['@message' => print_r($request, TRUE)]);
+    }
+  }
+
+  /**
+   * Logs the response data.
+   */
+  public function logResponse() {
+    if (!empty($this->configuration['options']['log']['response'])) {
+      \Drupal::logger('commerce_usps')->info('@message', ['@message' => print_r($this->uspsRequest->getResponse(), TRUE)]);
+    }
   }
 
   /**

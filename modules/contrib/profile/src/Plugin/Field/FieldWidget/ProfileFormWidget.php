@@ -167,13 +167,31 @@ class ProfileFormWidget extends WidgetBase implements ContainerFactoryPluginInte
       }
       $form_state->set($property, $profile);
     }
+    // Adding/editing profiles for existing users needs to respect access.
+    if (!$account->isNew()) {
+      $access_control_handler = $this->entityTypeManager->getAccessControlHandler('profile');
+      if ($profile->isNew()) {
+        $access = $access_control_handler->createAccess($profile_type->id(), NULL, [
+          'profile_owner' => $account,
+        ]);
+      }
+      else {
+        $access = $access_control_handler->access($profile, 'update');
+      }
+
+      if (!$access) {
+        $element['#access'] = FALSE;
+        return $element;
+      }
+    }
+
     $element = [
       '#type' => 'details',
       '#description' => '',
       '#open' => TRUE,
       // Remove the "required" clue, it's display-only and confusing.
       '#required' => FALSE,
-      '#field_title' => $profile_type->label(),
+      '#field_title' => $profile_type->getDisplayLabel() ?: $profile_type->label(),
       '#after_build' => [
         [get_class($this), 'removeTranslatabilityClue'],
       ],
@@ -209,7 +227,7 @@ class ProfileFormWidget extends WidgetBase implements ContainerFactoryPluginInte
     $form_process_callback = [get_class($this), 'attachSubmit'];
     // Make sure the #process callback doesn't get added more than once
     // if the widget is used on multiple fields.
-    if (!in_array($form_process_callback, $form['#process'])) {
+    if (!isset($form['#process']) || !in_array($form_process_callback, $form['#process'])) {
       $form['#process'][] = [get_class($this), 'attachSubmit'];
     }
 

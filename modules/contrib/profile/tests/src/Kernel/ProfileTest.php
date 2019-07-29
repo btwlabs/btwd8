@@ -104,7 +104,7 @@ class ProfileTest extends EntityKernelTestBase {
 
     // Save the profile.
     $profile->save();
-    $expected_label = new TranslatableMarkup('@type profile #@id', [
+    $expected_label = new TranslatableMarkup('@type #@id', [
       '@type' => $types['profile_type_0']->label(),
       '@id' => $profile->id(),
     ]);
@@ -151,6 +151,53 @@ class ProfileTest extends EntityKernelTestBase {
     $list = $this->profileStorage->loadByProperties(['uid' => $this->user2->id()]);
     $list_ids = array_keys($list);
     $this->assertEquals($list_ids, [$user2_profile1->id()]);
+  }
+
+  /**
+   * Tests comparing profiles.
+   */
+  public function testCompare() {
+    $field_storage = FieldStorageConfig::create([
+      'field_name' => 'field_fullname',
+      'entity_type' => 'profile',
+      'type' => 'text',
+    ]);
+    $field_storage->save();
+    foreach (['customer_billing', 'customer_shipping'] as $profile_type_id) {
+      $profile_type = ProfileType::create([
+        'id' => $profile_type_id,
+        'label' => $profile_type_id,
+      ]);
+      $profile_type->save();
+
+      $field = FieldConfig::create([
+        'field_storage' => $field_storage,
+        'bundle' => $profile_type_id,
+        'label' => 'Full name',
+      ]);
+      $field->save();
+    }
+
+    $first_profile = Profile::create([
+      'type' => 'customer_billing',
+      'uid' => 1,
+      'field_fullname' => 'John Smith',
+    ]);
+    $second_profile = Profile::create([
+      'type' => 'customer_billing',
+      'uid' => 1,
+      'field_fullname' => '',
+    ]);
+    $third_profile = Profile::create([
+      'type' => 'customer_shipping',
+      'uid' => 2,
+      'field_fullname' => 'John Smith',
+    ]);
+
+    $this->assertTrue($first_profile->equalToProfile($third_profile));
+    $this->assertFalse($first_profile->equalToProfile($third_profile, ['type', 'field_fullname']));
+    $this->assertFalse($first_profile->equalToProfile($second_profile));
+    $this->assertTrue($first_profile->equalToProfile($second_profile, ['type']));
   }
 
   /**

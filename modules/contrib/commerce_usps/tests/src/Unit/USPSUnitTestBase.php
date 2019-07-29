@@ -8,7 +8,6 @@ use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\physical\Length;
 use Drupal\physical\Weight;
 use Drupal\profile\Entity\ProfileInterface;
-use Ups\Entity\PackagingType;
 use CommerceGuys\Addressing\Address;
 use Drupal\commerce_order\Entity\OrderInterface;
 use Drupal\commerce_shipping\Entity\ShipmentInterface;
@@ -58,14 +57,17 @@ abstract class USPSUnitTestBase extends UnitTestCase {
    *   The shipping method plugin configuration.
    */
   protected function setConfig(array $config = []) {
-    $this->configuration = [
+    $this->configuration = $config + [
       'api_information' => [
         'user_id' => '972BLUEO5743',
         'password' => '972BLUEO5743',
         'mode' => 'live',
       ],
+      'rate_options' => [
+        'rate_class' => 'retail',
+      ],
       'default_package_type' => 'usps_small_flat_rate_box',
-    ] + $config;
+    ];
   }
 
   /**
@@ -81,17 +83,31 @@ abstract class USPSUnitTestBase extends UnitTestCase {
   /**
    * Creates a mock Drupal Commerce shipment entity.
    *
-   * @param string $weight_unit
-   *   Weight measurement unit.
-   * @param string $length_unit
-   *   Length measurement unit.
+   * @param array $weight
+   *   A weight array keyed by weight and unit.
+   * @param array $dimensions
+   *   A dimensions array keyed by length, width, height, and unit.
    * @param bool $domestic
    *   FALSE for an intenrational shipment.
    *
    * @return \Drupal\commerce_shipping\Entity\ShipmentInterface
    *   A mocked commerce shipment object.
    */
-  public function mockShipment($weight_unit = 'lb', $length_unit = 'in', $domestic = TRUE) {
+  public function mockShipment($weight = [], $dimensions = [], $domestic = TRUE) {
+
+    // Ensure default values for weight and dimensions.
+    $weight = $weight + [
+      'weight' => 10,
+      'unit' => 'lb',
+    ];
+
+    $dimensions = $dimensions + [
+      'length' => 10,
+      'width' => 3,
+      'height' => 10,
+      'unit' => 'in',
+    ];
+
     // Mock a Drupal Commerce Order and associated objects.
     $order = $this->prophesize(OrderInterface::class);
     $store = $this->prophesize(StoreInterface::class);
@@ -117,13 +133,13 @@ abstract class USPSUnitTestBase extends UnitTestCase {
 
     // Mock a package type including dimensions and remote id.
     $package_type = $this->prophesize(PackageTypeInterface::class);
-    $package_type->getHeight()->willReturn((new Length(10, 'in'))->convert($length_unit));
-    $package_type->getLength()->willReturn((new Length(10, 'in'))->convert($length_unit));
-    $package_type->getWidth()->willReturn((new Length(3, 'in'))->convert($length_unit));
-    $package_type->getRemoteId()->willReturn(PackagingType::PT_UNKNOWN);
+    $package_type->getHeight()->willReturn((new Length($dimensions['height'], 'in'))->convert($dimensions['unit']));
+    $package_type->getLength()->willReturn((new Length($dimensions['length'], 'in'))->convert($dimensions['unit']));
+    $package_type->getWidth()->willReturn((new Length($dimensions['width'], 'in'))->convert($dimensions['unit']));
+    $package_type->getRemoteId()->willReturn('custom');
 
     // Mock the shipments weight and package type.
-    $shipment->getWeight()->willReturn((new Weight(10, 'lb'))->convert($weight_unit));
+    $shipment->getWeight()->willReturn((new Weight($weight['weight'], 'lb'))->convert($weight['unit']));
     $shipment->getPackageType()->willReturn($package_type->reveal());
 
     // Return the mocked shipment object.

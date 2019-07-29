@@ -36,4 +36,12 @@ interface USPSShipmentInterface {
    */
   public function alterPackage();
 
+  /**
+   * Set the shipping method configuration.
+   *
+   * @param array $configuration
+   *   The shipping method configuration.
+   */
+  public function setConfig(array $configuration);
+
 }

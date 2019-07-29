@@ -11,6 +11,27 @@ use Drupal\Core\Entity\RevisionableEntityBundleInterface;
 interface ProfileTypeInterface extends ConfigEntityInterface, RevisionableEntityBundleInterface {
 
   /**
+   * Gets the profile type display label.
+   *
+   * This is the user-facing name, unlike the regular label,
+   * which is admin-facing. Used on user pages.
+   *
+   * @return string
+   *   The display label. If empty, use the regular label instead.
+   */
+  public function getDisplayLabel();
+
+  /**
+   * Sets the profile type display label.
+   *
+   * @param string $display_label
+   *   The display label.
+   *
+   * @return $this
+   */
+  public function setDisplayLabel($display_label);
+
+  /**
    * Gets whether a user can have multiple profiles of this type.
    *
    * @return bool

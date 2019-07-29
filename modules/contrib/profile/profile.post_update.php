@@ -81,5 +81,6 @@ function profile_post_update_configure_register_form_mode() {
       'weight' => ++$weight,
     ]);
   }
+  $register_display->setStatus(TRUE);
   $register_display->save();
 }

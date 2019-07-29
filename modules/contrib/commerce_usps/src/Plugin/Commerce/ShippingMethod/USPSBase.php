@@ -66,6 +66,9 @@ abstract class USPSBase extends ShippingMethodBase implements SupportsTrackingIn
         'password' => '',
         'mode' => 'test',
       ],
+      'rate_options' => [
+        'rate_class' => 'retail',
+      ],
       'options' => [
         'tracking_url' => 'https://tools.usps.com/go/TrackConfirmAction?tLabels=[tracking_code]',
         'log' => [],
@@ -122,6 +125,25 @@ abstract class USPSBase extends ShippingMethodBase implements SupportsTrackingIn
       '#default_value' => $this->configuration['api_information']['mode'],
     ];
 
+    $form['rate_options'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Rate Options'),
+      '#description' => $this->t('Additional options for USPS rate requests.'),
+    ];
+
+    $form['rate_options']['rate_class'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Rate Class'),
+      '#description' => $this->t('The rate class to use for shipping rate prices.'),
+      '#default_value' => $this->configuration['rate_options']['rate_class'],
+      '#options' => [
+        'retail' => $this->t('Retail (default)'),
+        'online' => $this->t('Online'),
+        'commercial' => $this->t('Commercial'),
+        'commercial_plus' => $this->t('Commercial Plus'),
+      ],
+    ];
+
     $form['options'] = [
       '#type' => 'details',
       '#title' => $this->t('USPS Options'),
@@ -158,6 +180,7 @@ abstract class USPSBase extends ShippingMethodBase implements SupportsTrackingIn
       $this->configuration['api_information']['user_id'] = $values['api_information']['user_id'];
       $this->configuration['api_information']['password'] = $values['api_information']['password'];
       $this->configuration['api_information']['mode'] = $values['api_information']['mode'];
+      $this->configuration['rate_options']['rate_class'] = $values['rate_options']['rate_class'];
       $this->configuration['options']['log'] = $values['options']['log'];
     }
     parent::submitConfigurationForm($form, $form_state);

@@ -28,8 +28,28 @@ class USPSRateRequest extends USPSRateRequestBase implements USPSRateRequestInte
 
     // Parse the rate response and create shipping rates array.
     if (!empty($response['RateV4Response']['Package']['Postage'])) {
+
+      // Convert the postage response to an array of rates when
+      // only 1 rate is returned.
+      if (!empty($response['RateV4Response']['Package']['Postage']['Rate'])) {
+        $response['RateV4Response']['Package']['Postage'] = [$response['RateV4Response']['Package']['Postage']];
+      }
+
       foreach ($response['RateV4Response']['Package']['Postage'] as $rate) {
         $price = $rate['Rate'];
+
+        // Attempt to use an alternate rate class if selected.
+        if (!empty($this->configuration['rate_options']['rate_class'])) {
+          switch ($this->configuration['rate_options']['rate_class']) {
+            case 'commercial_plus':
+              $price = !empty($rate['CommercialPlusRate']) ? $rate['CommercialPlusRate'] : $price;
+              break;
+            case 'commercial':
+              $price = !empty($rate['CommercialRate']) ? $rate['CommercialRate'] : $price;
+              break;
+          }
+        }
+
         $service_code = $rate['@attributes']['CLASSID'];
         $service_name = $this->cleanServiceName($rate['MailService']);
 

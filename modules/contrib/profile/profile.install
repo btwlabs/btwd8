@@ -212,3 +212,13 @@ function profile_update_8009() {
 
   return t('The revision metadata fields have been added to profiles.');
 }
+
+/**
+ * Update the status field.
+ */
+function profile_update_8010() {
+  $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  $field_definition = $definition_update_manager->getFieldStorageDefinition('status', 'profile');
+  $field_definition->setTranslatable(FALSE);
+  $definition_update_manager->updateFieldStorageDefinition($field_definition);
+}

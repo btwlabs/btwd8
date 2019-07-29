@@ -26,8 +26,28 @@ class USPSRateRequestInternational extends USPSRateRequestBase implements USPSRa
     $rates = [];
     // Parse the rate response and create shipping rates array.
     if (!empty($response['IntlRateV2Response']['Package']['Service'])) {
+
+      // Convert the service response to an array of rates when
+      // only 1 rate is returned.
+      if (!empty($response['IntlRateV2Response']['Package']['Service']['Postage'])) {
+        $response['IntlRateV2Response']['Package']['Service'] = [$response['IntlRateV2Response']['Package']['Service']];
+      }
+
       foreach ($response['IntlRateV2Response']['Package']['Service'] as $service) {
         $price = $service['Postage'];
+
+        // Attempt to use an alternate rate class if selected.
+        if (!empty($this->configuration['rate_options']['rate_class'])) {
+          switch ($this->configuration['rate_options']['rate_class']) {
+            case 'commercial_plus':
+              $price = !empty($service['CommercialPlusPostage']) ? $service['CommercialPlusPostage'] : $price;
+              break;
+            case 'commercial':
+              $price = !empty($service['CommercialPostage']) ? $service['CommercialPostage'] : $price;
+              break;
+          }
+        }
+
         $service_code = $service['@attributes']['ID'];
         $service_name = $this->cleanServiceName($service['SvcDescription']);
 
