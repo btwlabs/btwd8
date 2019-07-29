@@ -1,6 +1,10 @@
+premium: false
 add_default_commands: true
 tracking_id: ''
 send_pageview: true
+sample_rate: 100
+site_speed_sample_rate: 1
+force_ssl: false
 plugins:
   linkid: false
   displayfeatures: false

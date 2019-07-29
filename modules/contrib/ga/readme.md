@@ -5,7 +5,7 @@ Googalytics Module
 easily extensible by other modules.
 
 No inline Javascript is used, to enable the use of
-[CSP (Content Security Policy)](https://developer.mozilla.org/en-US/docs/Web/Security/CSP)
+[Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/Security/CSP)
 for the prevention of XSS attacks.
 
 

@@ -117,7 +117,7 @@ class EventTest extends UnitTestCase {
    * Test the command array when values are provided in fieldsObject.
    */
   public function testWithFieldsObjectSettingCommmands() {
-    $command = new Event('category', 'action', ['field1' => 'value1']);
+    $command = new Event('category', 'action', NULL, NULL, ['field1' => 'value1']);
 
     $this->assertEquals(
       [['send', 'event', 'category', 'action', ['field1' => 'value1']]],

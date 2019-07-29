@@ -44,6 +44,7 @@ abstract class RecurringPeriodBase extends PluginBase implements ContainerFactor
     IntervalPluginManagerInterface $plugin_manager_interval_intervals
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->setConfiguration($configuration);
     $this->pluginManagerIntervals = $plugin_manager_interval_intervals;
   }
 

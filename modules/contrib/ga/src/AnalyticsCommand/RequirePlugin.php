@@ -30,7 +30,7 @@ class RequirePlugin extends Generic {
    * @param int $priority
    *   The command priority.
    */
-  public function __construct($plugin_name, $fields_object = [], $tracker_name = NULL, $priority = self::DEFAULT_PRIORITY) {
+  public function __construct($plugin_name, array $fields_object = [], $tracker_name = NULL, $priority = self::DEFAULT_PRIORITY) {
     parent::__construct('require', $fields_object, $tracker_name, $priority);
 
     $this->pluginName = $plugin_name;
@@ -44,7 +44,6 @@ class RequirePlugin extends Generic {
       ($this->trackerName ? $this->trackerName . '.' : '') . $this->command,
       $this->pluginName,
     ];
-
 
     if (!empty($this->fieldsObject)) {
       $command[] = $this->fieldsObject;

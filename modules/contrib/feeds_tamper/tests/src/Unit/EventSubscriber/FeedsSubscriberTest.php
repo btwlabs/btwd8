@@ -50,14 +50,14 @@ class FeedsSubscriberTest extends FeedsTamperTestCase {
     parent::setUp();
 
     // Create parse event.
-    $this->event = new ParseEvent($this->getMockFeed(), $this->getMock(FetcherResultInterface::class));
+    $this->event = new ParseEvent($this->getMockFeed(), $this->createMock(FetcherResultInterface::class));
     $this->event->setParserResult(new ParserResult());
 
     // Create tamper meta.
-    $this->tamperMeta = $this->getMock(FeedTypeTamperMetaInterface::class);
+    $this->tamperMeta = $this->createMock(FeedTypeTamperMetaInterface::class);
 
     // Create feed type tamper manager.
-    $tamper_manager = $this->getMock(FeedTypeTamperManagerInterface::class);
+    $tamper_manager = $this->createMock(FeedTypeTamperManagerInterface::class);
     $tamper_manager->expects($this->any())
       ->method('getTamperMeta')
       ->will($this->returnValue($this->tamperMeta));
@@ -77,7 +77,7 @@ class FeedsSubscriberTest extends FeedsTamperTestCase {
    *   A mocked tamper plugin.
    */
   protected function createTamperMock($return_value = NULL) {
-    $tamper = $this->getMock(TamperInterface::class);
+    $tamper = $this->createMock(TamperInterface::class);
     $tamper->expects($this->any())
       ->method('tamper')
       ->will($this->returnValue($return_value));
@@ -90,7 +90,7 @@ class FeedsSubscriberTest extends FeedsTamperTestCase {
    * @covers ::alterItem
    */
   public function testAfterParse() {
-    $tamper = $this->getMock(TamperInterface::class);
+    $tamper = $this->createMock(TamperInterface::class);
     $tamper->expects($this->any())
       ->method('tamper')
       ->will($this->returnValue('Foo'));
@@ -131,7 +131,7 @@ class FeedsSubscriberTest extends FeedsTamperTestCase {
    * @covers ::afterParse
    */
   public function testAfterParseWithEmptyArray() {
-    $tamper = $this->getMock(TamperInterface::class);
+    $tamper = $this->createMock(TamperInterface::class);
     $tamper->expects($this->any())
       ->method('tamper')
       ->will($this->returnValue('Foo'));
@@ -229,7 +229,7 @@ class FeedsSubscriberTest extends FeedsTamperTestCase {
    */
   public function testAfterParseWithTamperItem() {
     // Create a tamper plugin that manipulates the whole item.
-    $tamper = $this->getMock(TamperInterface::class);
+    $tamper = $this->createMock(TamperInterface::class);
     $tamper->expects($this->once())
       ->method('tamper')
       ->will($this->returnCallback([$this, 'callbackWithTamperItem']));
@@ -274,7 +274,7 @@ class FeedsSubscriberTest extends FeedsTamperTestCase {
   public function testAfterParseWithSkippingItem() {
     // Create a tamper plugin that will throw a SkipTamperItemException for some
     // values.
-    $tamper = $this->getMock(TamperInterface::class);
+    $tamper = $this->createMock(TamperInterface::class);
     $tamper->expects($this->exactly(2))
       ->method('tamper')
       ->will($this->returnCallback([$this, 'callbackSkipItem']));
@@ -316,20 +316,20 @@ class FeedsSubscriberTest extends FeedsTamperTestCase {
   public function testAfterParseWithSkippingData() {
     // Create a tamper plugin that will throw a SkipTamperDataException for some
     // values.
-    $tamper1 = $this->getMock(TamperInterface::class);
+    $tamper1 = $this->createMock(TamperInterface::class);
     $tamper1->expects($this->exactly(2))
       ->method('tamper')
       ->will($this->returnCallback([$this, 'callbackSkipData']));
 
     // Create a second tamper plugin that will just set the value to 'Qux'.
-    $tamper2 = $this->getMock(TamperInterface::class);
+    $tamper2 = $this->createMock(TamperInterface::class);
     $tamper2->expects($this->once())
       ->method('tamper')
       ->will($this->returnValue('Qux'));
 
     // Create a third tamper plugin that operates on the 'beta' field, to ensure
     // skipping on the 'alpha' field does not skip the 'beta' field.
-    $tamper3 = $this->getMock(TamperInterface::class);
+    $tamper3 = $this->createMock(TamperInterface::class);
     $tamper3->expects($this->exactly(2))
       ->method('tamper')
       ->will($this->returnValue('Baz'));

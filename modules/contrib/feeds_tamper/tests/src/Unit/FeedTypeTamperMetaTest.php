@@ -29,19 +29,19 @@ class FeedTypeTamperMetaTest extends UnitTestCase {
     parent::setUp();
 
     // Mock the UUID generator and let it always return 'uuid3'.
-    $uuid_generator = $this->getMock(UuidInterface::class);
+    $uuid_generator = $this->createMock(UuidInterface::class);
     $uuid_generator->expects($this->any())
       ->method('generate')
       ->will($this->returnValue('uuid3'));
 
     // Get the tamper manager.
-    $tamper_manager = $this->getMock(TamperManagerInterface::class);
+    $tamper_manager = $this->createMock(TamperManagerInterface::class);
     $tamper_manager->expects($this->any())
       ->method('createInstance')
-      ->will($this->returnValue($this->getMock(TamperInterface::class)));
+      ->will($this->returnValue($this->createMock(TamperInterface::class)));
 
     // Mock the feed type and let it always return two tampers.
-    $feed_type = $this->getMock(FeedTypeInterface::class);
+    $feed_type = $this->createMock(FeedTypeInterface::class);
     $feed_type->expects($this->any())
       ->method('getThirdPartySetting')
       ->with('feeds_tamper', 'tampers')

@@ -1,0 +1,11 @@
+type: module
+# core: 8.x
+name: Googalytics Tokens
+description: Provide custom dimensions and metrics using tokens
+configure: ga_tokens.global
+
+# Information added by Drupal.org packaging script on 2019-07-25
+version: '8.x-1.4'
+core: '8.x'
+project: 'ga'
+datestamp: 1564094285

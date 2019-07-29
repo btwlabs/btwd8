@@ -9,6 +9,14 @@ class Send extends Generic {
 
   const DEFAULT_PRIORITY = -10;
 
+  private static $hitTypes = [
+    "pageview",
+    "event",
+    "social",
+    "timing",
+    "exception",
+  ];
+
   /**
    * The event hitType parameter.
    *
@@ -28,9 +36,9 @@ class Send extends Generic {
    * @param int $priority
    *   The command priority.
    */
-  public function __construct($hit_type, $fields_object = [], $tracker_name = NULL, $priority = self::DEFAULT_PRIORITY) {
+  public function __construct($hit_type, array $fields_object = [], $tracker_name = NULL, $priority = self::DEFAULT_PRIORITY) {
 
-    if (!in_array($hit_type, ["pageview", "event", "social", "timing"])) {
+    if (!in_array($hit_type, self::$hitTypes)) {
       throw new \InvalidArgumentException("Invalid hit type specified.");
     }
 

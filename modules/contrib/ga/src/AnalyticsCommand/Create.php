@@ -3,7 +3,7 @@
 namespace Drupal\ga\AnalyticsCommand;
 
 /**
- * Class Create
+ * Class Create.
  */
 class Create extends Generic {
 
@@ -37,16 +37,28 @@ class Create extends Generic {
    * @param int $priority
    *   The command priority.
    */
-  public function __construct($tracking_id, $cookie_domain = 'auto', $tracker_name = NULL, $fields_object = [], $priority = self::DEFAULT_PRIORITY) {
+  public function __construct($tracking_id, $cookie_domain = 'auto', $tracker_name = NULL, array $fields_object = [], $priority = self::DEFAULT_PRIORITY) {
     parent::__construct('create', $fields_object, $tracker_name, $priority);
     $this->trackingId = $tracking_id;
     $this->cookieDomain = $cookie_domain;
   }
 
+  /**
+   * Get the tracking id.
+   *
+   * @return string
+   *   The tracking id.
+   */
   public function getTrackingId() {
     return $this->trackingId;
   }
 
+  /**
+   * Get the cookie domain.
+   *
+   * @return string
+   *   The cookie domain.
+   */
   public function getCookieDomain() {
     return $this->cookieDomain;
   }

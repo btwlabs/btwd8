@@ -44,7 +44,7 @@ class AutoLink extends Generic {
    * @param int $priority
    *   The command priority.
    */
-  public function __construct($domains, $useAnchor = NULL, $decorateForms = NULL, $tracker_name = NULL, $priority = parent::DEFAULT_PRIORITY) {
+  public function __construct(array $domains, $useAnchor = NULL, $decorateForms = NULL, $tracker_name = NULL, $priority = parent::DEFAULT_PRIORITY) {
     parent::__construct('linker:autoLink', [], $tracker_name, $priority);
 
     $this->domains = $domains;

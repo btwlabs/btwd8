@@ -22,6 +22,9 @@ function ga_page_attachments(array &$attachments) {
   $event = \Drupal::service('event_dispatcher')
     ->dispatch(AnalyticsEvents::COLLECT, new CollectEvent());
 
-  $attachments['#attached']['library'][] = 'ga/analytics';
-  $attachments['#attached']['drupalSettings']['ga']['commands'] = $event->getDrupalSettingCommands();
+  $commands = $event->getDrupalSettingCommands();
+  if (!empty($commands)) {
+    $attachments['#attached']['library'][] = 'ga/analytics';
+    $attachments['#attached']['drupalSettings']['ga']['commands'] = $commands;
+  }
 }

@@ -54,7 +54,7 @@ class Timing extends Send {
    * @param int $priority
    *   The command priority.
    */
-  public function __construct($category, $var, $value, $label = NULL, $fields_object = [], $tracker_name = NULL, $priority = self::DEFAULT_PRIORITY) {
+  public function __construct($category, $var, $value, $label = NULL, array $fields_object = [], $tracker_name = NULL, $priority = self::DEFAULT_PRIORITY) {
     $this->timingCategory = $category;
     $this->timingVar = $var;
     if (!is_int($value)) {

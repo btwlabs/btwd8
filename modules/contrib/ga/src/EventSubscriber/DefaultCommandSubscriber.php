@@ -37,7 +37,7 @@ class DefaultCommandSubscriber implements EventSubscriberInterface {
   /**
    * The current user service.
    *
-   * @var \Drupal\Core\Session\AccountInterface;
+   * @var \Drupal\Core\Session\AccountInterface
    */
   protected $currentUser;
 
@@ -67,6 +67,10 @@ class DefaultCommandSubscriber implements EventSubscriberInterface {
    *   The config factory service.
    * @param \Drupal\ga\CommandRegistryService $commandRegistry
    *   The command registry service.
+   * @param \Drupal\Core\Session\AccountInterface $currentUser
+   *   The current user service.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *   The entity type manager service.
    */
   public function __construct(
     ConfigFactoryInterface $configFactory,
@@ -118,6 +122,18 @@ class DefaultCommandSubscriber implements EventSubscriberInterface {
         // Add options which can be provided when initializing the tracker.
         $fieldsObject = [];
 
+        if ($config->get('sample_rate') !== 100) {
+          $fieldsObject['sampleRate'] = $config->get('sample_rate');
+        }
+
+        if ($config->get('site_speed_sample_rate') !== 1) {
+          $fieldsObject['site_speed_sample_rate'] = $config->get('site_speed_sample_rate');
+        }
+
+        if ($config->get('force_ssl')) {
+          $fieldsObject['forceSSL'] = TRUE;
+        }
+
         if ($config->get('plugins.linker.enable')) {
           $fieldsObject['allowLinker'] = TRUE;
         }
@@ -134,6 +150,10 @@ class DefaultCommandSubscriber implements EventSubscriberInterface {
         $event->addCommand(new Create($tracking_id, 'auto', NULL, $fieldsObject));
       }
       else {
+        if ($config->get('force_ssl')) {
+          $event->addCommand(new Set('forceSSL', TRUE));
+        }
+
         // If a trackingId isn't provided for initializing a tracker, these
         // options can be provided via set commands instead.
         if ($config->get('track_user_id') && $this->currentUser->isAuthenticated()) {

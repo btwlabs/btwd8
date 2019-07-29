@@ -39,6 +39,13 @@ class AdminSettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('add_default_commands'),
     ];
 
+    $form['premium'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Premium Account'),
+      '#description' => $this->t('Premium Google Analytics accounts have additional configuration options available'),
+      '#default_value' => $config->get('premium'),
+    ];
+
     $form['settings'] = [
       '#type' => 'vertical_tabs',
       '#default_tab' => 'basics',
@@ -62,6 +69,28 @@ class AdminSettingsForm extends ConfigFormBase {
       '#maxlength' => 20,
       '#size' => '20',
       '#default_value' => $config->get('tracking_id'),
+    ];
+    $form['basics']['sample_rate'] = [
+      '#type' => 'number',
+      '#min' => 1,
+      '#max' => 100,
+      '#title' => $this->t('Sample Rate'),
+      '#description' => $this->t('Specify what percentage of users should be tracked. This defaults to 100 (no users are sampled out) but large sites may need to use a lower sample rate to stay within Google Analytics processing limits.'),
+      '#default_value' => $config->get('sample_rate'),
+    ];
+    $form['basics']['site_speed_sample_rate'] = [
+      '#type' => 'number',
+      '#min' => 1,
+      '#max' => 10,
+      '#title' => $this->t('Site Speed Sample Rate'),
+      '#description' => $this->t('This setting determines how often site speed tracking beacons will be sent. By default, 1% of users will automatically be tracked.'),
+      '#default_value' => $config->get('site_speed_sample_rate'),
+    ];
+    $form['basics']['force_ssl'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Force SSL'),
+      '#description' => $this->t('By default, tracking beacons sent from https pages will be sent using https while beacons sent from http pages will be sent using http. Enabling this option will force http pages to also send all beacons using https.'),
+      '#default_value' => $config->get('force_ssl'),
     ];
     $form['basics']['send_pageview'] = [
       '#type' => 'checkbox',
@@ -193,7 +222,11 @@ class AdminSettingsForm extends ConfigFormBase {
 
     $this->config('ga.settings')
       ->set('add_default_commands', $form_state->getValue('add_default_commands'))
+      ->set('premium', $form_state->getValue('premium'))
       ->set('tracking_id', $form_state->getValue('tracking_id'))
+      ->set('sample_rate', $form_state->getValue('sample_rate'))
+      ->set('site_speed_sample_rate', $form_state->getValue('site_speed_sample_rate'))
+      ->set('force_ssl', $form_state->getValue('force_ssl'))
       ->set('send_pageview', $form_state->getValue('send_pageview'))
       ->set('plugins.linkid', $form_state->getValue(['plugins', 'linkid']))
       ->set('plugins.displayfeatures', $form_state->getValue(['plugins', 'displayfeatures']))

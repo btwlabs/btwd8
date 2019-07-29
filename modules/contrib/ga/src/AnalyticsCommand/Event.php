@@ -53,7 +53,7 @@ class Event extends Send {
    * @param int $priority
    *   The command priority.
    */
-  public function __construct($event_category, $event_action, $event_label = NULL, $event_value = NULL, $fields_object = [], $tracker_name = NULL, $priority = self::DEFAULT_PRIORITY) {
+  public function __construct($event_category, $event_action, $event_label = NULL, $event_value = NULL, array $fields_object = [], $tracker_name = NULL, $priority = self::DEFAULT_PRIORITY) {
 
     if (!is_null($event_value) && (!is_int($event_value) || $event_value < 0)) {
       throw new \InvalidArgumentException("Event value must be a positive integer");

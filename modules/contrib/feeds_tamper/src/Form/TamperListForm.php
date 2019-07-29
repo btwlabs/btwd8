@@ -90,7 +90,7 @@ class TamperListForm extends FormBase {
     ];
 
     if (!$mappings) {
-      drupal_set_message($this->t('There are no <a href="@url">mappings</a> defined for this importer.', $args), 'warning');
+      $this->messenger()->addWarning($this->t('There are no <a href="@url">mappings</a> defined for this importer.', $args));
       return $form;
     }
 
@@ -146,6 +146,7 @@ class TamperListForm extends FormBase {
    */
   protected function buildTampersTable(array $form, FormStateInterface $form_state, $source, array $targets) {
     $header = [
+      'label' => $this->t('Label'),
       'description' => $this->t('Description'),
       'weight' => $this->t('Weight'),
       'plugin' => $this->t('Plugin'),
@@ -190,12 +191,25 @@ class TamperListForm extends FormBase {
 
     $add_plugin_weight = 0;
     if (!empty($this->tampers[$source])) {
+      // Calculate the range (delta) needed for the weight field. By default,
+      // the range is from -10 to 10, which means 21 slots in total. If there
+      // are however more than 21 tamper instances, the range should increase in
+      // order to be able to assign an unique weight to each tamper instance.
+      $tampers_count = round(count($this->tampers[$source]) / 2);
+      $tamper_weight_delta = ($tampers_count < 10 ? 10 : $tampers_count);
+
       /** @var \Drupal\tamper\TamperInterface $tamper */
       foreach ($this->tampers[$source] as $id => $tamper) {
         $row = [
           '#attributes' => ['class' => ['draggable']],
           '#weight' => $tamper->getSetting('weight'),
         ];
+
+        // Label.
+        $row['label'] = [
+          '#plain_text' => $tamper->getSetting('label') ? $tamper->getSetting('label') : '',
+        ];
+
         // Plugin instance description.
         $row['description'] = [
           '#plain_text' => $tamper->getPluginDefinition()['description'],
@@ -208,6 +222,7 @@ class TamperListForm extends FormBase {
           '#type' => 'weight',
           '#default_value' => $tamper->getSetting('weight'),
           '#attributes' => ['class' => ['tamper-weight']],
+          '#delta' => $tamper_weight_delta,
         ];
         $row['plugin'] = [
           '#plain_text' => $tamper->getPluginDefinition()['label'],
@@ -263,7 +278,7 @@ class TamperListForm extends FormBase {
       }
     }
     $this->feedsFeedType->save();
-    drupal_set_message($this->t('Your changes have been saved.'));
+    $this->messenger()->addStatus($this->t('Your changes have been saved.'));
   }
 
 }

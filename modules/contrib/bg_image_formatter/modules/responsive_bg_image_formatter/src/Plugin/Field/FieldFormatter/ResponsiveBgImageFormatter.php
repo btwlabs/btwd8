@@ -101,6 +101,10 @@ class ResponsiveBgImageFormatter extends BgImageFormatter {
       ];
       template_preprocess_responsive_image($vars);
 
+      if (empty($vars['sources'])) {
+        continue;
+      }
+
       // Split each source into multiple rules.
       foreach (array_reverse($vars['sources']) as $source_i => $source) {
         $attr = $source->toArray();

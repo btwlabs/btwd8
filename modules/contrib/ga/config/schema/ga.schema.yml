@@ -3,6 +3,9 @@ ga.settings:
   type: config_object
   label:  'Google Analytics Settings'
   mapping:
+    premium:
+      type: boolean
+      label: 'Enable Premium Features'
     add_default_commands:
       type: boolean
       label: 'Add default analytics commands to registry'
@@ -12,6 +15,15 @@ ga.settings:
     send_pageview:
       type: boolean
       label: 'Send Pageview Event'
+    sample_rate:
+      type: integer
+      label: 'Sample Rate'
+    force_ssl:
+      type: boolean
+      lable: "Force SSL"
+    site_speed_sample_rate:
+      type: integer
+      label: 'Site Speed Sample Rate'
     plugins:
       type: mapping
       label: 'Plugins'

@@ -29,7 +29,7 @@ class FeedTypeTamperMetaTest extends FeedsTamperKernelTestBase {
     $container = \Drupal::getContainer();
 
     // Mock the UUID generator and let it always return 'uuid3'.
-    $uuid_generator = $this->getMock(UuidInterface::class);
+    $uuid_generator = $this->createMock(UuidInterface::class);
     $uuid_generator->expects($this->any())
       ->method('generate')
       ->will($this->returnValue('uuid3'));
@@ -38,7 +38,7 @@ class FeedTypeTamperMetaTest extends FeedsTamperKernelTestBase {
     $tamper_manager = $container->get('plugin.manager.tamper');
 
     // Mock the feed type and let it always return two tampers.
-    $feed_type = $this->getMock(FeedTypeInterface::class);
+    $feed_type = $this->createMock(FeedTypeInterface::class);
     $feed_type->expects($this->any())
       ->method('getThirdPartySetting')
       ->with('feeds_tamper', 'tampers')

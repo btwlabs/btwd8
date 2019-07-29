@@ -23,7 +23,7 @@ class Pageview extends Send {
    * @param int $priority
    *   The command priority.
    */
-  public function __construct($fields_object = [], $tracker_name = NULL, $priority = self::DEFAULT_PRIORITY) {
+  public function __construct(array $fields_object = [], $tracker_name = NULL, $priority = self::DEFAULT_PRIORITY) {
     parent::__construct('pageview', $fields_object, $tracker_name, $priority);
   }
 
