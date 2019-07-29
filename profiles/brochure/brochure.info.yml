@@ -110,7 +110,6 @@ install:
  - twig_tweak
  - update
  - user
- - video_background
  - video_embed_field
  - view_mode_selector
  - views_field_formatter
