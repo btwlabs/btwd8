@@ -6,7 +6,6 @@ use Drupal\Component\Plugin\PluginManagerInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\ds\Plugin\DsField\DsFieldBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -18,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   deriver = "Drupal\display_field_copy\Plugin\Derivative\DisplayFieldCopy",
  * )
  */
-class DisplayFieldCopy extends DsFieldBase implements ContainerFactoryPluginInterface {
+class DisplayFieldCopy extends DsFieldBase {
 
   /**
    * Field Definition.
@@ -26,13 +25,6 @@ class DisplayFieldCopy extends DsFieldBase implements ContainerFactoryPluginInte
    * @var \Drupal\Core\Field\FieldDefinitionInterface
    */
   protected $fieldDefinition;
-
-  /**
-   * Formatter.
-   *
-   * @var \Drupal\Core\Field\FormatterInterface.
-   */
-  protected $formatter;
 
   /**
    * Formatter Plugin Manager.
@@ -88,27 +80,15 @@ class DisplayFieldCopy extends DsFieldBase implements ContainerFactoryPluginInte
    * {@inheritdoc}
    */
   public function build() {
-
-    /** @var FormatterInterface $formatter */
     $formatter = $this->getFormatter([
       'type' => $this->getFieldConfiguration()['formatter'],
     ]);
 
-    /** @var FieldItemListInterface $items */
     $items = $this->entity()->get($this->getRenderKey());
 
-    // Implement ds_limit.
-    $formatter_config = $this->getConfiguration()['formatter'];
-    if (isset($formatter_config['ds_limit']) && ($formatter_config['ds_limit'] > 0)) {
-      $limit = $formatter_config['ds_limit'];
-      $items = $items->filter(function($item) use ($limit) {
-        static $count = 0;
-        return ($count++) < $limit;
-      });
-    }
-
-    $array = $items->getIterator()->getArrayCopy();
-    $formatter->prepareView([$array]);
+    $formatter->prepareView([
+      $items->getIterator()->getArrayCopy(),
+    ]);
 
     return $formatter->viewElements($items, $this->entity()->language()->getId());
   }
@@ -123,6 +103,24 @@ class DisplayFieldCopy extends DsFieldBase implements ContainerFactoryPluginInte
   /**
    * {@inheritdoc}
    */
+  public function settingsSummary($settings) {
+    $config = $this->getFieldConfiguration();
+
+    // Disabled fields don't store formatter configurations.
+    if (!isset($config['formatter'])) {
+      return [];
+    }
+
+    $formatter = $this->getFormatter([
+      'type' => $config['formatter'],
+    ]);
+
+    return $formatter ? $formatter->settingsSummary() : [];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function settingsForm($form, FormStateInterface $form_state) {
     $formatter_id = $form_state->getUserInput()['fields'][$this->getName()]['plugin']['type'];
 
@@ -130,44 +128,9 @@ class DisplayFieldCopy extends DsFieldBase implements ContainerFactoryPluginInte
       'type' => $formatter_id,
     ]);
 
-    $settings_form = $formatter->settingsForm($form, $form_state);
-
-    // Implement the ds_limit if applicable.
-    $field_info = $this->getFieldDefinition()->getFieldStorageDefinition();
-    if (!empty($field_info) && $field_info->getCardinality() != 1) {
-      $settings = $this->getConfiguration()['formatter'];
-
-      $settings_form = array_merge($settings_form, [
-        'ds_limit' => [
-          '#type' => 'textfield',
-          '#title' => t('UI limit'),
-          '#size' => 2,
-          '#description' => t("Enter a number to limit the number of items or 'delta' to print a specific delta (usually configured in views or found in entity->ds_delta). Leave empty to display them all. Note that depending on the formatter settings, this option might not always work."),
-          '#default_value' => !empty($settings['ds_limit']) ? $settings['ds_limit'] : '',
-        ],
-      ]);
-    }
-
     return [
-      'formatter' => $settings_form,
+      'formatter' => $formatter->settingsForm($form, $form_state),
     ];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function settingsSummary($settings) {
-    /** @var FormatterInterface $formatter */
-    $formatter = $this->getFormatter([
-      'type' => $this->getFieldConfiguration()['formatter'],
-    ]);
-
-    if ($formatter) {
-      return $formatter->settingsSummary();
-    }
-    else {
-      return [];
-    }
   }
 
   /**
@@ -219,6 +182,8 @@ class DisplayFieldCopy extends DsFieldBase implements ContainerFactoryPluginInte
 
   /**
    * Return the field formatter.
+   *
+   * @return \Drupal\Core\Field\FormatterInterface
    */
   protected function getFormatter(array $configuration = []) {
     if (!isset($configuration['settings'])) {
