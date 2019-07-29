@@ -1,5 +1,5 @@
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - system
@@ -7,8 +7,8 @@ dependencies:
     - btw_base
 id: btw_base_powered
 theme: btw_base
-region: header
-weight: 10
+region: mobile_nav
+weight: -5
 provider: null
 plugin: system_powered_by_block
 settings:

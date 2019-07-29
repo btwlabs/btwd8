@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:3e7f7967-aca9-4289-8c12-8816d3a09fef'
+  module:
+    - block_content
+  theme:
+    - btw_base
+id: footerwufoocontactform
+theme: btw_base
+region: footer
+weight: 0
+provider: null
+plugin: 'block_content:3e7f7967-aca9-4289-8c12-8816d3a09fef'
+settings:
+  id: 'block_content:3e7f7967-aca9-4289-8c12-8816d3a09fef'
+  label: 'Footer Wufoo contact form'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

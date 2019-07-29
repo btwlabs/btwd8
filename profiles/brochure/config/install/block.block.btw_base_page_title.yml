@@ -1,12 +1,12 @@
 langcode: en
-status: true
+status: false
 dependencies:
   theme:
     - btw_base
 id: btw_base_page_title
 theme: btw_base
 region: content
-weight: -50
+weight: -2
 provider: null
 plugin: page_title_block
 settings:

@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:video_background:f25a99ca-be3c-4a29-ad93-1c88a1164e2a'
+  module:
+    - block_content
+  theme:
+    - btw_base
+id: homepageherovideo
+theme: btw_base
+region: pre_content
+weight: 0
+provider: null
+plugin: 'block_content:f25a99ca-be3c-4a29-ad93-1c88a1164e2a'
+settings:
+  id: 'block_content:f25a99ca-be3c-4a29-ad93-1c88a1164e2a'
+  label: 'Home Page Hero Video'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

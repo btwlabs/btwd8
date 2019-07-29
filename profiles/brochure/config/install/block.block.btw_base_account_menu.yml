@@ -9,8 +9,8 @@ dependencies:
     - btw_base
 id: btw_base_account_menu
 theme: btw_base
-region: header
-weight: 0
+region: content
+weight: -7
 provider: null
 plugin: 'system_menu_block:account'
 settings:

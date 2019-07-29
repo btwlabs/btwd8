@@ -1,0 +1,67 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+name: basic_page
+label: 'Basic page'
+group: null
+description: 'Blocks for all basic pages'
+requireAllConditions: false
+disabled: false
+conditions:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      page: page
+    negate: 0
+    uuid: f803776e-d425-408b-86a9-fbff4bf8e88c
+    context_mapping:
+      node: '@node.node_route_context:node'
+reactions:
+  blocks:
+    blocks:
+      c30e6f81-8bdd-444c-9a8a-b7f62d49131c:
+        id: page_title_block
+        label: 'Page title'
+        provider: core
+        label_display: 0
+        region: content
+        weight: '-9'
+        context_mapping: {  }
+        theme: btw_base
+        css_class: .page-title
+        unique: 0
+        context_id: basic_page
+        uuid: c30e6f81-8bdd-444c-9a8a-b7f62d49131c
+      03480d7f-a115-4a97-9b25-df35acfc31c9:
+        id: system_main_block
+        label: 'Main page content'
+        provider: system
+        label_display: 0
+        region: content
+        weight: '-8'
+        context_mapping: {  }
+        theme: btw_base
+        css_class: ''
+        unique: 0
+        context_id: basic_page
+        uuid: 03480d7f-a115-4a97-9b25-df35acfc31c9
+      d0746d3f-f409-408d-86cc-ca66f5ad8651:
+        id: system_breadcrumb_block
+        label: Breadcrumbs
+        provider: system
+        label_display: 0
+        region: pre_content
+        weight: '-1'
+        context_mapping: {  }
+        theme: btw_base
+        css_class: breadcrumbs
+        unique: 0
+        context_id: basic_page
+        uuid: d0746d3f-f409-408d-86cc-ca66f5ad8651
+    id: blocks
+    saved: false
+    uuid: 2701eac9-000c-4dbe-9cc7-3f86d54a326c
+    include_default_blocks: 0
+weight: 0

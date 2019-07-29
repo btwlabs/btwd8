@@ -7,11 +7,13 @@ install:
  - admin_toolbar_links_access_filter
  - admin_toolbar_tools
  - automated_cron
+ - better_exposed_filters
  - bg_image_formatter
  - big_pipe
  - blazy
  - block
  - block_content
+ - block_type_templates
  - breakpoint
  - ckeditor
  - color
@@ -19,15 +21,20 @@ install:
  - config
  - config_update
  - contact
+ - contact_block
  - context
  - context_ui
  - contextual
+ - cookieconsent
  - crop
+ - csv_serialization
  - ctools
  - datetime
  - dblog
  - devel
  - display_field_copy
+ - draggableviews
+ - draggableviews_demo
  - ds_switch_view_mode
  - dynamic_page_cache
  - easy_breadcrumb
@@ -44,6 +51,7 @@ install:
  - file_mdm_font
  - filter
  - focal_point
+ - google_analytics
  - help
  - history
  - hook_event_dispatcher
@@ -55,16 +63,23 @@ install:
  - lightgallery
  - link
  - link_attributes
+ - magnific_popup
  - mail_login
  - mailsystem
  - mandrill
  - masquerade
  - media
  - media_entity_browser
+ - media_library
  - menu_block
  - menu_link_attributes
  - menu_ui
  - metatag
+ - metatag_facebook
+ - metatag_google_cse
+ - metatag_twitter_cards
+ - metatag_verification
+ - metatag_views
  - node
  - options
  - page_cache
@@ -76,11 +91,16 @@ install:
  - redirect_404
  - responsive_bg_image_formatter
  - responsive_image
+ - rest
+ - restui
  - search
+ - serialization
  - shortcut
  - simple_sitemap
  - slick
+ - slick_ui
  - slick_views
+ - social_media_links
  - system
  - taxonomy
  - text
@@ -90,6 +110,7 @@ install:
  - twig_tweak
  - update
  - user
+ - video_background
  - video_embed_field
  - view_mode_selector
  - views_field_formatter

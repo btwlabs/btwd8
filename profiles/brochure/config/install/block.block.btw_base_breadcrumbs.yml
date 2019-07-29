@@ -1,5 +1,5 @@
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - system
@@ -7,8 +7,8 @@ dependencies:
     - btw_base
 id: btw_base_breadcrumbs
 theme: btw_base
-region: header
-weight: 0
+region: content
+weight: -3
 provider: null
 plugin: system_breadcrumb_block
 settings:

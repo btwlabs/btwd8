@@ -8,7 +8,7 @@ dependencies:
 id: btw_base_content
 theme: btw_base
 region: content
-weight: 0
+weight: -4
 provider: null
 plugin: system_main_block
 settings:

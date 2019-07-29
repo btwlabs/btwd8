@@ -1,5 +1,5 @@
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - system.menu.footer
@@ -9,8 +9,8 @@ dependencies:
     - btw_base
 id: btw_base_footer
 theme: btw_base
-region: header
-weight: 0
+region: mobile_nav
+weight: -6
 provider: null
 plugin: 'system_menu_block:footer'
 settings:

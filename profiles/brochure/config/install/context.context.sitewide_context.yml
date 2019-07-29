@@ -1,0 +1,236 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+name: sitewide_context
+label: 'Sitewide context'
+group: null
+description: 'Shared block placement for all pages'
+requireAllConditions: false
+disabled: false
+conditions:
+  current_theme:
+    id: current_theme
+    theme: btw_base
+    negate: 0
+    uuid: ef3ef5b3-fd08-4026-b7e1-f68fd024afbc
+    context_mapping: {  }
+reactions:
+  blocks:
+    blocks:
+      36563332-4499-420d-8db0-8531fe4bf147:
+        id: 'block_content:b5e0ecff-6130-4cf1-98a4-eab7b97536aa'
+        label: 'Contact Us'
+        provider: block_content
+        label_display: visible
+        status: true
+        info: ''
+        view_mode: full
+        region: footer
+        weight: '0'
+        context_mapping: {  }
+        theme: btw_base
+        css_class: footer-contact
+        unique: 0
+        context_id: sitewide_context
+        uuid: 36563332-4499-420d-8db0-8531fe4bf147
+      02a4a328-769f-4de1-893e-5a0f1fc4aa59:
+        id: 'block_content:91f71a40-12c7-4e6f-9643-bbe127cd4fd3'
+        label: 'Footer Copyright'
+        provider: block_content
+        label_display: 0
+        status: true
+        info: ''
+        view_mode: full
+        region: post_footer
+        weight: '0'
+        context_mapping: {  }
+        theme: btw_base
+        css_class: footer-copyright
+        unique: 0
+        context_id: sitewide_context
+        uuid: 02a4a328-769f-4de1-893e-5a0f1fc4aa59
+      a4cc3ee7-51cd-4421-8ed4-2e75aa8a1830:
+        id: social_media_links_block
+        label: 'Social Media Links'
+        provider: social_media_links
+        label_display: 0
+        region: post_footer
+        weight: '0'
+        platforms:
+          twitter:
+            value: 'https://twitter.com/realmusictvco'
+            description: ''
+            weight: '-10'
+          contact:
+            value: ''
+            description: ''
+            weight: '-9'
+          linkedin:
+            value: ''
+            description: ''
+            weight: '-8'
+          vimeo:
+            value: ''
+            description: ''
+            weight: '-7'
+          pinterest:
+            value: ''
+            description: ''
+            weight: '-6'
+          rss:
+            value: ''
+            description: ''
+            weight: '-5'
+          vkontakte:
+            value: ''
+            description: ''
+            weight: '-4'
+          slideshare:
+            value: ''
+            description: ''
+            weight: '-3'
+          googleplus:
+            value: ''
+            description: ''
+            weight: '-2'
+          flickr:
+            value: ''
+            description: ''
+            weight: '-1'
+          bitbucket:
+            value: ''
+            description: ''
+            weight: '0'
+          drupal:
+            value: ''
+            description: ''
+            weight: '1'
+          github:
+            value: ''
+            description: ''
+            weight: '2'
+          email:
+            value: ''
+            description: ''
+            weight: '3'
+          instagram:
+            value: 'https://www.instagram.com/realmusictvco/'
+            description: ''
+            weight: '4'
+          youtube_channel:
+            value: ''
+            description: ''
+            weight: '5'
+          youtube:
+            value: ''
+            description: ''
+            weight: '6'
+          tumblr:
+            value: ''
+            description: ''
+            weight: '7'
+          facebook:
+            value: 'https://facebook.com/realmusictvco'
+            description: ''
+            weight: '8'
+          behance:
+            value: ''
+            description: ''
+            weight: '9'
+        appearance:
+          orientation: h
+          show_name: 0
+        link_attributes:
+          target: _blank
+          rel: '<none>'
+        iconset:
+          style: 'fontawesome:2x'
+          installed_iconsets:
+            fontawesome:
+              examples: ''
+        context_mapping: {  }
+        theme: btw_base
+        css_class: social-icons
+        unique: 1
+        context_id: sitewide_context
+        uuid: a4cc3ee7-51cd-4421-8ed4-2e75aa8a1830
+      740862bd-09c6-431e-87f3-e5a9e2604e77:
+        id: local_tasks_block
+        label: Tabs
+        provider: core
+        label_display: 0
+        primary: 1
+        secondary: 1
+        region: pre_content
+        weight: '-1'
+        context_mapping: {  }
+        theme: btw_base
+        css_class: ''
+        unique: 1
+        context_id: sitewide_context
+        uuid: 740862bd-09c6-431e-87f3-e5a9e2604e77
+      e1dc1971-c951-44cf-960b-1a22d7f2908b:
+        id: system_messages_block
+        label: Messages
+        provider: system
+        label_display: 0
+        region: pre_content
+        weight: '-2'
+        context_mapping: {  }
+        theme: btw_base
+        css_class: ''
+        unique: 1
+        context_id: sitewide_context
+        uuid: e1dc1971-c951-44cf-960b-1a22d7f2908b
+      9c9d3617-87f9-4b17-a9d8-53ad22bd9df4:
+        id: local_actions_block
+        label: 'Primary admin actions'
+        provider: core
+        label_display: 0
+        region: pre_content
+        weight: '0'
+        context_mapping: {  }
+        theme: btw_base
+        css_class: ''
+        unique: 1
+        context_id: sitewide_context
+        uuid: 9c9d3617-87f9-4b17-a9d8-53ad22bd9df4
+      dbeb3fa8-b1c3-40c9-a94d-d9d29104163c:
+        id: system_branding_block
+        label: 'Site branding'
+        provider: system
+        label_display: 0
+        use_site_logo: 1
+        use_site_name: 0
+        use_site_slogan: 0
+        region: branding
+        weight: '0'
+        context_mapping: {  }
+        theme: btw_base
+        css_class: ''
+        unique: 1
+        context_id: sitewide_context
+        uuid: dbeb3fa8-b1c3-40c9-a94d-d9d29104163c
+      ad57d6aa-9066-4981-b0d7-1858201b847c:
+        id: 'block_content:3e7f7967-aca9-4289-8c12-8816d3a09fef'
+        label: 'Footer Wufoo contact form'
+        provider: block_content
+        label_display: 0
+        status: true
+        info: ''
+        view_mode: full
+        region: footer
+        weight: '0'
+        context_mapping: {  }
+        theme: btw_base
+        css_class: footer-contact-form
+        unique: 1
+        context_id: sitewide_context
+        uuid: ad57d6aa-9066-4981-b0d7-1858201b847c
+    id: blocks
+    saved: false
+    uuid: 6cd49a13-fb52-416a-8cb3-da8e67602968
+    include_default_blocks: 0
+weight: 0

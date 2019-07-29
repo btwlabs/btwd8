@@ -1,5 +1,5 @@
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - system.menu.footer
@@ -10,7 +10,7 @@ dependencies:
 id: seven_custom_footer
 theme: seven_custom
 region: header
-weight: 0
+weight: -5
 provider: null
 plugin: 'system_menu_block:footer'
 settings:

@@ -7,5 +7,5 @@ fetch:
   timeout: 30
 notification:
   emails:
-    - test@test.test
+    - admin@bythewaylabs.com
   threshold: all

@@ -1,5 +1,5 @@
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - system.menu.tools
@@ -9,8 +9,8 @@ dependencies:
     - btw_base
 id: btw_base_tools
 theme: btw_base
-region: sidebar_first
-weight: 0
+region: content
+weight: 1
 provider: null
 plugin: 'system_menu_block:tools'
 settings:

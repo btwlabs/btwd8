@@ -1,5 +1,5 @@
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - system
@@ -7,7 +7,7 @@ dependencies:
     - btw_base
 id: btw_base_messages
 theme: btw_base
-region: highlighted
+region: mobile_nav
 weight: 0
 provider: null
 plugin: system_messages_block

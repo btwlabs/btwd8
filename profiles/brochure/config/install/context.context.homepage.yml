@@ -1,0 +1,48 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+name: homepage
+label: Homepage
+group: null
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  current_theme:
+    id: current_theme
+    theme: btw_base
+    negate: 0
+    uuid: 9c608227-8a8e-4b9f-83c7-1338ad6a0492
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: 0
+    uuid: e2e0d616-03c1-4f38-b025-ec8b232ceb82
+    context_mapping: {  }
+reactions:
+  blocks:
+    blocks:
+      70d443dc-5031-4382-87f7-b33379e38de6:
+        id: 'block_content:f25a99ca-be3c-4a29-ad93-1c88a1164e2a'
+        label: 'Home Page Hero Video'
+        provider: block_content
+        label_display: 0
+        status: true
+        info: ''
+        view_mode: full
+        region: pre_content
+        weight: '0'
+        context_mapping: {  }
+        theme: btw_base
+        css_class: block-homepageherovideo
+        unique: 0
+        context_id: homepage
+        uuid: 70d443dc-5031-4382-87f7-b33379e38de6
+    id: blocks
+    saved: false
+    uuid: 2710148f-b3f3-44c6-abea-564517a458d0
+    include_default_blocks: 0
+weight: 0

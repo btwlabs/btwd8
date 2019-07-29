@@ -1,5 +1,5 @@
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - search
@@ -7,8 +7,8 @@ dependencies:
     - btw_base
 id: btw_base_search
 theme: btw_base
-region: sidebar_first
-weight: -1
+region: content
+weight: 0
 provider: null
 plugin: search_form_block
 settings:
