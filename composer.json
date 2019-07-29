@@ -205,9 +205,6 @@
             },
             "drupal/ds": {
                 "Add token support to css classes": "https://www.drupal.org/files/issues/2019-05-28/ds-tokens_for_layout_classes-2863420-8.patch"
-            },
-            "drupal/display_field_copy": {
-                "Implement ds_limit on copied multivalue fields": "https://www.drupal.org/files/issues/2018-06-29/display_field_copy-implement_ds_limit-2874959_with_2822398.patch"
             }
         }
     }
