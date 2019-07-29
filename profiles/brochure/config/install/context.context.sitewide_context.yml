@@ -19,38 +19,6 @@ conditions:
 reactions:
   blocks:
     blocks:
-      36563332-4499-420d-8db0-8531fe4bf147:
-        id: 'block_content:b5e0ecff-6130-4cf1-98a4-eab7b97536aa'
-        label: 'Contact Us'
-        provider: block_content
-        label_display: visible
-        status: true
-        info: ''
-        view_mode: full
-        region: footer
-        weight: '0'
-        context_mapping: {  }
-        theme: btw_base
-        css_class: footer-contact
-        unique: 0
-        context_id: sitewide_context
-        uuid: 36563332-4499-420d-8db0-8531fe4bf147
-      02a4a328-769f-4de1-893e-5a0f1fc4aa59:
-        id: 'block_content:91f71a40-12c7-4e6f-9643-bbe127cd4fd3'
-        label: 'Footer Copyright'
-        provider: block_content
-        label_display: 0
-        status: true
-        info: ''
-        view_mode: full
-        region: post_footer
-        weight: '0'
-        context_mapping: {  }
-        theme: btw_base
-        css_class: footer-copyright
-        unique: 0
-        context_id: sitewide_context
-        uuid: 02a4a328-769f-4de1-893e-5a0f1fc4aa59
       a4cc3ee7-51cd-4421-8ed4-2e75aa8a1830:
         id: social_media_links_block
         label: 'Social Media Links'
@@ -213,22 +181,6 @@ reactions:
         unique: 1
         context_id: sitewide_context
         uuid: dbeb3fa8-b1c3-40c9-a94d-d9d29104163c
-      ad57d6aa-9066-4981-b0d7-1858201b847c:
-        id: 'block_content:3e7f7967-aca9-4289-8c12-8816d3a09fef'
-        label: 'Footer Wufoo contact form'
-        provider: block_content
-        label_display: 0
-        status: true
-        info: ''
-        view_mode: full
-        region: footer
-        weight: '0'
-        context_mapping: {  }
-        theme: btw_base
-        css_class: footer-contact-form
-        unique: 1
-        context_id: sitewide_context
-        uuid: ad57d6aa-9066-4981-b0d7-1858201b847c
     id: blocks
     saved: false
     uuid: 6cd49a13-fb52-416a-8cb3-da8e67602968
