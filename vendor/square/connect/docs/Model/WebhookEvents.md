@@ -1,16 +1,13 @@
-# AggregationStrategy
+# WebhookEvents
 
 ### Description
 
-Indicates how a [CatalogPricingRule](#type-catalogpricingrule) can be combined with other rules.
+The type of an event that triggers a webhook notification to an application.
 
 ## Properties
 Name | Type
 ------------ | -------------
-**UNKNOWN** | string
-**BASE** | string
-**STACKABLE** | string
-**EXCLUSIVE** | string
+**inventory.count.updated** | string
 
 Note: All properties are protected and only accessed via getters and setters.
 
