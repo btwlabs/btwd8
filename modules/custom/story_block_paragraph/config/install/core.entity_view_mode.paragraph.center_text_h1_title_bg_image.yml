@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  module:
-    - paragraphs
-id: paragraph.center_text_h1_title_bg_image
-label: 'Center Text H1 Title BG Image'
-targetEntityType: paragraph
-cache: true

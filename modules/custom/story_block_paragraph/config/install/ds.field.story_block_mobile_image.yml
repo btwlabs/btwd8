@@ -1,9 +1,0 @@
-id: story_block_mobile_image
-label: 'Story Block Mobile Image'
-ui_limit: 'story_block|*'
-properties:
-  field_id: paragraph.story_block.field_story_block_images
-type: display_field_copy
-type_label: 'Copy field'
-entities:
-  paragraph: paragraph
