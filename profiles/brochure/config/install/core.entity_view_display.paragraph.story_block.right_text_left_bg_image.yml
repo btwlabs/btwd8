@@ -202,7 +202,7 @@ content:
     third_party_settings:
       ds:
         ft:
-          id: minimal
+          id: default
           settings:
             lb: ''
             lb-col: false
