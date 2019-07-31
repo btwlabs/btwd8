@@ -18,6 +18,43 @@
 
 // add custom font declarations here >>
 
+// Brandon Grotesque - from Adobe Typekit
+
+@import url("https://use.typekit.net/hor5kfk.css");
+
+/* GUIDE:
+Brandon Grotesque Light
+	font-family: brandon-grotesque, sans-serif;
+	font-weight: 300;
+	font-style: normal;
+	
+Brandon Grotesque Regular
+	font-family: brandon-grotesque, sans-serif;
+	font-weight: 400;
+	font-style: normal;
+
+Brandon Grotesque Regular Italic
+	font-family: brandon-grotesque, sans-serif;
+	font-weight: 400;
+	font-style: italic;
+
+Brandon Grotesque Bold
+	font-family: brandon-grotesque, sans-serif;
+	font-weight: 700;
+	font-style: normal;
+
+Brandon Grotesque Bold Italic
+	font-family: brandon-grotesque, sans-serif;
+	font-weight: 700;
+	font-style: italic;
+
+Brandon Grotesque Black
+	font-family: brandon-grotesque, sans-serif;
+	font-weight: 900;
+	font-style: normal;
+*/
+
+
 
 
 
@@ -78,7 +115,7 @@ h6 {
 }
 
 h1, h2 {
-	font-weight: normal; /* removes ugly bold rendering of custom title fonts - remove as necessary */
+	//font-weight: normal; /* removes ugly bold rendering of custom title fonts - remove as necessary */
 }
 
 .block--views h2.block__title,

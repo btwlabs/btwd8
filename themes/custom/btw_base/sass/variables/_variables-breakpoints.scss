@@ -14,10 +14,6 @@
 //------------------------------------------------------
 
 
-// Set consistent vertical and horizontal spacing units.
-$vert-spacing-unit: 1em;
-$horz-spacing-unit: 1em;
-
 
 // convert pixel widths to ems in breakpoints
 @import "breakpoint";
@@ -47,3 +43,16 @@ $xlarge-up: 90.063em; 				// min-width: 1441px
 $xlarge-only: 90.063em 120em; 		// min-width: 1441px and max-width: 1920px
 
 $xxlarge-up: 120.063em;				// min-width: 1921px
+
+
+
+
+
+// Nav breakpoints for fitting in desktop layouts
+
+$nav-small-and-med: 0 61.250em;			// min-width: 0 and max-width: 980px;
+$nav-medium-only: 40.063em 61.250em; 	// min-width: 641px and max-width: 980px;
+$nav-medium-up: 40.063em;
+$nav-large-only: 61.313em 75.000em; 	// min-width: 981px and max-width: 1200px;
+$nav-large-up: 61.313em;				// min-width: 981px
+$nav-xlarge-up: 75.063em;				// min-width: 1201px;

@@ -1,0 +1,185 @@
+{% set main_menu = page.primary_menu|render %}
+{% set secondary_menu = page.secondary_menu|render %}
+<div{{ attributes.addClass(
+  'layout-container',
+  main_menu or secondary_menu ? 'with-navigation',
+  secondary_menu ? 'with-subnav'
+) }}>
+
+  <div id="site-wrapper">
+
+      {% if page.mobile_nav|render %}
+      
+      <div id="mobile-fade"></div>
+
+        <!-- mobile nav that sits outside of main site content -->
+        <div class="l-menu-mobile">
+
+          <div class="l-menu-mobile-top">
+
+            <a class="nav-close-btn" id="mobile-nav-close-btn" href="#top">
+              <div class="nav-close-icon">
+                <span class="x1"></span>
+                <span class="x2"></span>
+              </div>
+              <span class="menu-title">Close Menu</span>
+            </a>
+
+          </div>
+
+          {{ page.mobile_nav }}
+
+        </div>
+      {% endif %}
+
+      <div class="l-mobile-header">
+
+        <div class="l-constrained">
+          
+          <!-- nav toggle button -->
+		  <button class="hamburger hamburger--squeeze" id="mobile-nav-open-btn" type="button">
+			  <span class="hamburger-box">
+				  <span class="hamburger-inner"></span>
+			  </span>
+			  <span class="hamburger-label">Menu</span>
+		  </button>
+
+          <div class="site-name">
+            <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a>
+          </div>
+
+        </div><!-- close l-constrained -->
+
+      </div><!-- close l-mobile-header -->
+
+
+      {% if page.pre_header|render %}
+        <div class="l-pre-header clearfix">
+
+          <div class="pre-header-inner l-constrained">
+            {{ page.pre_header }}
+          </div>
+
+        </div>
+      {% endif %}
+
+      <header class="l-header" role="banner">
+
+        <div class="l-constrained">
+
+          {% if page.branding|render %}
+            <div class="l-branding">
+
+              <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="site-logo">
+                  <img src="/themes/custom/gearz/images/logo-gearz.png" alt="{{ 'Home'|t }}"/>
+                  <div class="site-name">
+                    {{ 'Real Music Tv' }}
+                  </div>
+              </a>
+            </div><!-- l-branding -->
+          {% endif %}
+
+          {% if page.header|render %}
+            {{ page.header }}
+          {% endif %}
+
+        </div><!-- close l-constrained -->
+
+      </header>
+
+
+      <section id="content" class="clearfix">
+
+
+        <!-- pre content region -->
+        {% if page.pre_content|render %}
+          <div class="pre-content l-pre-content-wrapper"><!-- 100% width wrapper -->
+
+            <div class="l-content-inner">
+
+              {{ page.pre_content }}
+
+            </div> <!-- close .l-content-inner -->
+
+          </div> <!-- close pre-content -->
+        {% endif %}
+
+
+        <!-- main content region -->
+        <div class="l-content-main-wrapper"><!-- 100% width wrapper -->
+          <div class="l-constrained">
+            <a id="main-content"></a>
+
+
+            {% if page.content %}
+              <div role="main" class="l-content-main">
+                {{ page.content }}
+              </div>
+            {% endif %}
+
+            {% if page.sidebar %}
+              <aside class="sidebar">
+                {{ page.sidebar }}
+              </aside>
+            {% endif %}
+
+          </div>
+
+        </div> <!-- close l-content-main-wrapper -->
+
+
+		<!-- post content region -->
+          {% if page.post_content|render %}
+            <div class="post-content l-post-content-wrapper"><!-- 100% width wrapper -->
+
+              <div class="l-content-inner">
+
+                  {{ page.post_content }}
+
+              </div> <!-- close .l-content-inner -->
+
+            </div> <!-- close post-content -->
+          {% endif %}
+
+
+      </section>
+
+      {% if page.pre_footer|render %}
+        <div class="l-pre-footer-wrapper">
+
+          <div class="pre-footer-inner l-constrained">
+            {{ page.pre_footer }}
+          </div>
+
+        </div>
+      {% endif %}
+
+      <footer class="l-footer-wrapper" role="contentinfo">
+
+        <div class="l-footer-inner l-constrained">
+          {% if page.footer|render %}
+            <div class="l-footer-region footer-region">
+
+              <div class="footer-inner">
+                {{ page.footer }}
+              </div> <!-- close .footer-inner -->
+
+            </div>
+          {% endif %}
+        </div>
+      </footer>
+
+      {% if page.post_footer|render %}
+        <div class="l-post-footer-wrapper">
+
+          <div class="post-footer-inner l-constrained">
+            {{ page.post_footer }}
+          </div>
+
+        </div>
+      {% endif %}
+
+
+  </div><!-- close #site-wrapper -->
+
+</div><!-- close .layout-container -->

@@ -45,19 +45,48 @@ a img {
 -------------------------------------*/
 
 // Sets video to be 100% width and responsive 
+
+.mfp-embedded-video-popup {
+	width: 100%;
+}
 .embedded-video {
 	height: 0;
 	overflow: hidden;
 	padding-bottom: 56.25%;
 	padding-top: 30px;
 	position: relative;
+	margin: 0 auto;
 	
 	& iframe {
 		height: 100%;
-		left: 0;
+		//left: 0;
 		position: absolute;
 		top: 0;
-		width: 100%;
+		width: 95%;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 }
 
+
+
+// iphone 6,7,8 - landscape
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) 
+and (orientation : landscape) {
+	.embedded-video {
+		padding-top: 40.25%;
+	}
+}
+
+// iphone X - landscape
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px) 
+and (-webkit-device-pixel-ratio : 3)
+and (orientation : landscape) { 
+	.embedded-video {
+		padding-top: 40.25%;
+	}
+}

@@ -1,0 +1,291 @@
+//-------------------------------------------------------
+//
+//	USERS - registration, login, whateva
+//
+//	location: 
+//      /sass/components/_users.scss
+//
+//------------------------------------------------------
+
+
+//--------------------------------------
+//
+//	User Registration form
+//
+//--------------------------------------
+
+.page-user-register {
+	
+	nav.tabs {
+	    max-width: 600px;
+	    margin: 0 auto;
+	    
+	    tabs.primary:before {
+		    display: none;
+	    }
+	}
+}
+
+
+//-------------------------
+//	Registration form
+//	 & User form
+//-------------------------
+form.user-register-form,
+form.user-form {
+	max-width: 600px;
+	margin: 0 auto;
+	
+	.description {
+	    font-size: 13px;
+	    margin: 10px 20px 10px 0;
+	}
+	
+	label,
+	.form-item label {
+	    font-size: 20px;
+	    margin-bottom: 6px;
+	    display: block;
+	    display: inline-block;
+	}
+	.form-item {
+		margin-bottom: 30px;
+	}
+	
+	.form-actions {
+	    margin: 40px 0 0;
+	}
+	
+	input {
+		width: 100%;
+	}
+	input.form-autocomplete {
+		background-position: 99% center;
+	}
+}
+
+
+
+
+//--------------------------------------
+//
+//	AUTHENTICATED USERS - Admin sections
+//
+//--------------------------------------
+
+.section-user {
+	
+	// for some reason the system wants to put a margin around this container on certain admin tab pages
+	.layout-container {
+		margin: 0;
+	}
+	
+	// admin tabs, links
+	nav.tabs {
+		width: 100%;
+		margin: 0 auto;
+	}
+		
+	// Payment Methods Tab
+	
+	.block-local-actions-block {
+	    margin: 0 0 30px 0;
+	}
+	.action-links {
+		li {
+			list-style-type: none;
+			margin-bottom: 30px;
+			text-align: center;
+		}
+	}
+	
+	// order number - title
+	.order-number h2 {
+	    border-bottom: 1px solid #ccc;
+	    padding-bottom: 10px;
+	    color: $text-color;
+	}
+	
+	// Orders - table
+	// responsive table stuff for mobile
+	.view_id-commerce-user-orders,
+	.view_id-commerce-order-item-table {
+	
+		@include breakpoint($small-only) {
+			    display: block;
+			    width: 100%;
+			    overflow-x: auto;
+			    -webkit-overflow-scrolling: touch;
+			    -ms-overflow-style: -ms-autohiding-scrollbar;
+			
+			// "swipe to view full table"
+			&:before {
+			    display: block;
+			    content: "Swipe to view full table";
+			    font-size: 13px;
+			    text-align: center;
+			    margin-bottom: 10px;
+			    color: #999;
+		    }
+		    
+		    table {
+			    width: 100%;
+				max-width: 100%;
+				margin-bottom: 1rem;
+				
+				thead th {
+					font-size: 12px;
+					line-height: 1.2;
+				}
+		    }
+		}
+	}
+	
+	// Main user page - landing
+	article {
+		h4.label {
+		    margin: 0;
+		    display: inline-block;
+		}
+	}
+	
+	// listing of name
+	.field-name-fir,
+	.field-name-las {
+		div {
+			display: inline-block;
+			
+			&:first-child {
+			    font-weight: bold;
+			    display: inline-block;
+			}
+		}
+	}
+
+	
+	//-------------------------------
+	//	Order Details
+	//-------------------------------
+	.field-name-placed,
+	.field-name-state,
+	.field-name-mail,
+	.field-name-shipping-method,
+	.customer-information__shipping {
+		margin-bottom: 40px;
+		
+		> div:first-of-type {
+			font-weight: bold;
+			font-size: 1.2em;
+		}
+
+	}
+	
+	.customer-billing,
+	.customer-information__shipping {	
+		margin-bottom: 40px;
+		
+		.field__label {
+			font-weight: bold;
+			font-size: 1.2em;	
+		}
+	}
+}
+
+//--------------------------------------
+//
+//	USER SHORTCUTS menu - sidebar 
+//
+//--------------------------------------
+
+#toolbar-item-shortcuts-tray ul.toolbar-menu a {
+    background: #000;
+    margin: 10px 5px;
+    text-align: center;
+    font-size: 18px;
+    padding: 15px 10px;
+    color: #e5e5e5;
+    border-radius: 6px;
+    
+    &:hover {
+	    background-color: $primary-color;
+	    text-decoration: none;
+    }
+}
+
+//--------------------------------------
+//
+//	ADMIN USERS - Admin sections
+//
+//--------------------------------------
+
+.role--administrator {
+	
+	
+	.toolbar-menu {
+		a {
+		    color: #000;
+		    font-weight: 500;
+		}
+	}
+	
+	.l-pre-footer-wrapper {
+		background: #f5f5f5;
+	}
+	.pre-footer-inner {
+    	padding: 20px 0;
+	}
+	
+	// form container
+	.block-masquerade {
+	    
+	    @include breakpoint($medium-up) {
+		    display: inline-block;
+		    vertical-align: middle;
+		}
+	}
+	
+	// form
+	.masquerade-block-form {	    
+	    padding: 20px;
+	    
+	    input.form-autocomplete {
+		    margin-right: 10px;
+		    padding: 10px;
+		    height: 52px;
+		    width: 220px;
+		    
+		    @include breakpoint($small-only) {
+			    margin-bottom: 10px;
+			    width: 100%;
+		    }
+		}
+	}
+	
+	// unmasquerade link
+	.menu--masquerade {
+	    padding: 10px 20px;
+	    text-align: left;
+	    
+	    @include breakpoint($medium-up) {
+		    display: inline-block;
+		    vertical-align: middle;
+		    text-align: left;
+		}
+	    
+	    .menu {
+		    margin: 0;
+		    padding: 0;
+		    
+		    li {
+			    list-style-type: none;
+			    margin: 0;
+			    padding: 0;
+			    
+			    a {
+				   text-decoration: underline; 
+			    }
+		    }
+		}
+	}
+}
+

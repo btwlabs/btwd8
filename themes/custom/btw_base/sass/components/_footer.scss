@@ -8,13 +8,13 @@
 //--------------------------------------------------
 
 
-/*-------------------------------------------------
----------------------------------------------------
-	
-	Pre-footer
-	
----------------------------------------------------
--------------------------------------------------*/
+//-------------------------------------------------
+//-------------------------------------------------
+//	
+//	Pre-footer
+//	
+//-------------------------------------------------
+//-------------------------------------------------
 
 .l-pre-footer-wrapper {
 	background-color: $footer-bg-color;
@@ -22,6 +22,7 @@
 		
 	.l-constrained {
 		text-align: center;
+		@include unconstrained;
 	}
 	
 	.footer-call-to-action {
@@ -52,13 +53,13 @@
 
 
 
-/*-------------------------------------------------
----------------------------------------------------
-
- Footer - Layout
- 
----------------------------------------------------
--------------------------------------------------*/
+//-------------------------------------------------
+//-------------------------------------------------
+//
+//	Footer - Layout
+// 
+//-------------------------------------------------
+//-------------------------------------------------
 
 
 // footer outer wrapper
@@ -66,96 +67,49 @@
 	background-color: $footer-bg-color;	
 }
 
-// constrained container
-@include breakpoint($large-up) {
-	.l-footer-wrapper .l-constrained {
-		//width: 90%;
-	}
-}
-
 // footer inner wrapper
-.footer-inner {
+.l-footer-inner {
 	@extend %clearfix;
-	padding: 4em 0 0;
+	padding: 1.5em 0 0;
 	color: $footer-text-color;
 	@include font-size(18px);
-	
 	@include flexbox;
 	
 	// columns for small layouts
-	@include breakpoint($small-only) {
+	@include breakpoint($small-and-medium) {
 		@include flex-direction($value: column);
-		@include flex-wrap($value: nowrap);
+		@include align-items($value: center);
+		@include flex-wrap($value: wrap);
 		text-align: center;
 	}
 	
 	// rows for larger layouts
 	@include breakpoint($medium-up) {
-		@include flex-direction($value: row);
-		@include flex-wrap($value: wrap);
+		padding: 3em 0 0;
+		text-align: left;
 	}
 	
-	// columns
-	.l-region {
-		@include flex($fg: 1, $fs: null, $fb: null);
-		
-		@include breakpoint($medium-up) {
-			padding-right: 5%;
-		}		
+	@include breakpoint($large-up) {
+		@include flex-wrap($value: nowrap);
+		@include flex-direction($value: row);
 	}
-	.region--footer-1,
-	.region--footer-2 {
-		
+
+	
+	.footer-region {		
 		@include breakpoint($small-only) {
 			margin-bottom: $vert-spacing-unit;
 		}
 	}
+
 	
 	// footer nav menus
-	.block--menu {
-		ul.menu {
+	ul.menu {
+		margin: 0;
+		padding: 0;
+		
+		li {
 			margin: 0;
 			padding: 0;
-			
-			li {
-				margin: 0 0 5px 0;
-				padding: 0;
-			}
-		}
-	}
-	
-	// block titles
-	h2 {
-		@include font-size(20px);
-		margin-bottom: 10px;
-		padding-bottom: 10px;
-		@include border-bottom($footer-text-color);
-		text-transform: uppercase;
-		color: $footer-text-color;
-		line-height: 1;
-	}
-	
-	// email and phone #
-	.block-footercontactinfo  {
-		margin-bottom: 20px;
-		
-		span {
-			margin-right: 10px;
-		}
-		a {
-			color: $footer-link-color;
-		}
-	}
-	
-	// social media links
-	.block-social-media-links {
-		.horizontal li {
-			padding-left: 0;
-			padding-right: .5em;
-		}
-		ul {
-			margin: 0;
-			
 		}
 	}
 	
@@ -169,63 +123,175 @@
 	}
 }
 
-/*-----------------------------------
+.l-footer-region {
+    width: 100%;
+}
 
- Footer Nav
- 
-------------------------------------*/
+.footer-inner {
+	@include flexbox;
+    width: 100%;
+    
+    @include breakpoint($small-only) {
+	    @include flex-flow($values: (column wrap));
+    }
+    @include breakpoint($medium-up) {
+	    @include flex-flow($values: (row nowrap));
+    }
+}
 
-.nav-footer {
-	ul {
+
+//-----------------------------------
+//
+// Footer Logo
+// 
+//-----------------------------------
+
+footer {
+	
+	// overrides to header logo
+	.block-system-branding-block {
+		width: auto;
+		max-width: 300px;
+		padding: 15px 0;
 		margin: 0;
-		padding: 0;
+	
+		@include breakpoint($large-up) {
+		    margin: -5px 30px 0 20px;
+		    padding: 0;
+		}
 		
-		li {
-			list-style-type: none;
+		h1 {
+			margin: 0;
 		}
 	}
 }
 
-/*-----------------------------------
 
- Footer Logo
- 
-------------------------------------*/
+//-----------------------------------
+//
+// Footer Contact
+// 
+//-----------------------------------
 
 
+.footer-contact {
+    color: #ccc;
+    
+    @include breakpoint($medium-up) {
+    	@include flex($fg: 1, $fs: null, $fb: 50%);
+    }
+}
+.footer-contact-form {
+	@include breakpoint($medium-up) {
+    	@include flex($fg: 1, $fs: null, $fb: 50%);
+    }
+}
 
 
-/*-------------------------------------------------
----------------------------------------------------
+//-----------------------------------
+//
+// Footer Nav
+// 
+//-----------------------------------
+
+.footer-nav {
 	
-	Post Footer
+	> ul.menu {
+	    margin: 5px 0 0;
+	    padding: 0;
+	    
+	    @include breakpoint($medium-up) {
+	    	@include flexbox;
+	    }
+	    
+	     > li.menu-item {
+		    display: block;
+		    margin: 0 30px 15px 0;
+		    vertical-align: top;
+		    flex: 1 1 auto;
+		    padding-bottom: 10px;
 	
----------------------------------------------------
--------------------------------------------------*/
+		    
+		    a.main-nav {
+			    font-size: 15px;
+			    margin-bottom: 5px;
+			    display: block;
+			    color: #eee;
+			    font-weight: bold;
+			    
+			    &:hover {
+				    color: $primary-color;
+			    }
+			}
+		}
+		
+		ul.menu {
+		    display: block;
+		    
+		    li {
+			    list-style-type: none;
+			    
+			    .sub-nav {
+				    font-size: 15px;
+				    color: #999;
+				}
+		    }
+		}
+	}
+}
+
+
+//-------------------------------------------------
+//-------------------------------------------------
+//
+//	Post Footer
+//	
+//-------------------------------------------------
+//-------------------------------------------------
 
 .l-post-footer-wrapper {
 	padding: 30px 0;
 	background-color: $post-footer-bg-color;
 	text-align: center;
 	@include font-size(16px);
+}
 	
-	@include breakpoint($medium-up) {
-		position: fixed;
-		bottom: 0px;
-		width: 100%;
-		z-index: 0;
+//-----------------------------------
+// Privacy
+//-----------------------------------
+
+.menu--privacy-footer {
+	ul {
+		margin: 0;
+		padding: 0;
+		
+		li {
+			display: inline-block;
+			margin-right: 20px;
+			padding: 0;
+			
+			a {
+				color: $footer-link-color;
+				
+				&:hover {
+					color: $footer-link-hover-color;
+				}
+			}
+		}
 	}
 }
 
+//-----------------------------------
+// Copyright
+//-----------------------------------
 
-/*-----------------------------------
-
- Copyright
- 
-------------------------------------*/
-
-.block-copyrightmessage {
+.footer-copyright {
 	color: $footer-text-color;
+	display: inline-block;
+	
+	p {
+		margin-bottom: 5px;
+	}
 	
 	a {
 		color: $footer-link-color;
@@ -237,61 +303,5 @@
 }
 
 
-/*------------------
- plain credits
--------------------
-	
-	.btw-credits {
-	clear: both;
-	float: none;
-	
-	p {
-		margin: 0 7px 0 0;
-		display: inline-block;
-		vertical-align: middle;
-	}
-	.btw-logo {
-		display: inline-block;
-		vertical-align: middle;
-	}
-}
-*/
 
-// by the way labs credits with logo
-	
-/*.btw-credits {
-	
-	@include breakpoint($large-up) {
-		float: right;
-		position: relative;
-		top: -5px;
-	}
-	
-	.block__content p {
-		margin: 0 0 5px 0;
-		text-align: center;
-		text-transform: uppercase;
-		@include font-size(9px);
-		letter-spacing: 0.3em;
-		line-height: 1;
-		display: inline-block;
-		//vertical-align: middle;
-	}
-	
-	.btw-logo {
-		padding: 5px;
-		max-width: 70px;
-		display: inline-block;
-		vertical-align: middle;
-		border: 1px solid $border-color;
-		
-		a {
-			display: block;
-			height: 0;
-			padding-top: 25px;
-			background: url(../images/logo-btw-full-light.svg) no-repeat scroll left top;
-			background-size: 100% auto;
-			overflow: hidden;
-		}
-	}
-}*/
+

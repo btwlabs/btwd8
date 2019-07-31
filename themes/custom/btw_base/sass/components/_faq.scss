@@ -1,0 +1,24 @@
+//----------------------------------------------
+//
+//	FAQ - default styles for FAQ block 
+//
+//	location: 
+//      /sass/components/_faq.scss
+//
+//----------------------------------------------
+
+
+.block-views-blockfaq-faq-list-accordion-block {
+	h3 {
+		border-bottom: 1px solid #ccc;
+		padding: 20px 30px 20px 0;
+		
+		background-image: url("../images/icons/icon-accordion-closed.svg");
+		background-position: right center;
+		background-repeat: no-repeat;
+	}
+	
+	.views-row.open h3 {
+		  background-image: url("../images/icons/icon-accordion-opened.svg");
+	}
+}

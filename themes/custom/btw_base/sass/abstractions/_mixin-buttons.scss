@@ -34,22 +34,6 @@
 	@include breakpoint($medium-up) {
 		display: inline-block;
 	}
-	
-	@include breakpoint($large-up) {
-		border: 0; 
-		
-		&:before {
-		    position: absolute;
-		    top: 0;
-		    left: 0;
-		    width: 100%;
-		    height: 100%;
-		    border: $button-border-width solid $button-border-color;
-		    display: block;
-		    content: "";
-		    transition: all .3s ease-out;
-		}
-	}
 }
 
 @mixin button-hover {
@@ -57,16 +41,6 @@
 	color: $button-text-hover-color;
 	border-color: $button-border-hover-color;
 	text-decoration: none;
-	
-	@include breakpoint($large-up) {
-		
-		&:hover:before {
-		    opacity: 0;
-		    -webkit-transform: scale(1.2, 1.4);
-		    transform: scale(1.2, 1.4);
-		    transition: all .3s ease-in;
-		}
-	}
 }
 
 @mixin button-padding($button-padding) {
@@ -94,37 +68,12 @@
 	@include breakpoint($medium-up) {
 		display: inline-block;
 	}
-	
-	@include breakpoint($large-up) {
-		border: 0;
-		
-		&:before {
-		    position: absolute;
-		    top: 0;
-		    left: 0;
-		    width: 100%;
-		    height: 100%;
-		    border: $button-border-width solid $button-border-color-on-dark;
-		    display: block;
-		    content: "";
-		    transition: all .3s ease-out;
-		}
-	}
 }
 @mixin button-on-dark-hover {
 	background: $button-bg-hover-color-on-dark; 
 	color: $button-text-hover-color-on-dark;
 	border-color: $button-border-hover-color-on-dark;
 	text-decoration: none;
-	
-	@include breakpoint($large-up) {
-		&:hover:before {
-		    opacity: 0;
-		    -webkit-transform: scale(1.2, 1.4);
-		    transform: scale(1.2, 1.4);
-		    transition: all .3s ease-in;
-		}
-	}
 }
 
 // button mixin DARK BUTTON ON LIGHT BG
@@ -148,35 +97,10 @@
 	@include breakpoint($medium-up) {
 		display: inline-block;
 	}
-	
-	@include breakpoint($large-up) {
-		border: 0;
-		
-		&:before {
-		    position: absolute;
-		    top: 0;
-		    left: 0;
-		    width: 100%;
-		    height: 100%;
-		    border: $button-border-width solid $button-border-color-on-light;
-		    display: block;
-		    content: "";
-		    transition: all .3s ease-out;
-		}
-	}
 }
 @mixin button-on-light-hover {
 	background: $button-bg-hover-color-on-light; 
 	color: $button-text-hover-color-on-light;
 	border-color: $button-border-hover-color-on-light;
 	text-decoration: none;
-	
-	@include breakpoint($large-up) {
-		&:hover:before {
-		    opacity: 0;
-		    -webkit-transform: scale(1.2, 1.4);
-		    transform: scale(1.2, 1.4);
-		    transition: all .3s ease-in;
-		}
-	}
 }

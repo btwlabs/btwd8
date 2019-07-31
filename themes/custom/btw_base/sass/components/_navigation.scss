@@ -8,22 +8,23 @@
 //------------------------------------------------------
 
 
-
+// this selector (.l-header) is here to differentiate between 
+// this menu block and the one used for mobile nav
 .l-header {
-	@include breakpoint($small-only) {
+	@include breakpoint($nav-small-and-med) {
 		display: none;
 	}
 	
-	@include breakpoint($medium-up) {
+	@include breakpoint($nav-large-up) {
 		display: block;
 		position: relative; // for non-fixed nav
 		left: 0;
 		width: 100%;
-		z-index: 9997;
+		z-index: 6;
 		@include clearfix; // for non-fixed nav
 		height: $header-height-medium;
 	}
-	@include breakpoint($large-up) {
+	@include breakpoint($nav-xlarge-up) {
 		height: $header-height-large;
 	}
 
@@ -70,6 +71,7 @@
 				
 				// keeps main nav link in a persistent hover state while cursor moves to subnav list
 				&:hover {
+					background-color: $nav-button-bg-hover-color;
 					
 					&:before {
 						display: block;
@@ -84,7 +86,7 @@
 					    animation-delay: 0;
 					}
 					> a {
-						background-color: $nav-button-bg-hover-color;
+						background-color: $primary-color;
 						color: $nav-text-hover-color;
 					}
 				}
@@ -94,20 +96,24 @@
 					display: block;
 					color: $nav-text-color;
 					background-color: $nav-button-bg-color;
-					letter-spacing: 0.1em;
+					letter-spacing: 0.02em;
+					font-weight: bold;
 					
 					@include breakpoint($small-only) {
 						@include font-size(17px);
 						padding: 10px;
 					}
-					@include breakpoint($medium-up) {
+					@include breakpoint($nav-medium-only) {
 						@include font-size(18px);
-						padding: 22px 12px 20px;
-						text-transform: uppercase;
+						padding: 22px 10px 20px;
 					}
-					@include breakpoint($large-up) {
+					@include breakpoint($nav-large-only) {
 						@include font-size(18px);
-						padding: 25px 20px 27px;
+						padding: 22px 10px 20px;
+					}
+					@include breakpoint($nav-xlarge-up) {
+						@include font-size(20px);
+						padding: 22px 15px 22px;
 					}
 					
 					&:hover {
@@ -120,8 +126,32 @@
 						background-color: $nav-button-bg-active-color;
 					}
 					
+					// USER menu item
+					&.nav-user {
+						display: block;
+					    overflow: hidden;
+					    height: 0;
+					    font-size: 0;
+					    background: url(../images/icons/icon_user.svg) no-repeat scroll center center;
+						background-size: 25px auto;
+					    
+					    &:hover {
+							background-color: $nav-button-bg-hover-color;
+					    }
+					    
+					    @include breakpoint($nav-medium-up) {
+						    padding-top: 40px;
+						    width: 30px;
+						    background-size: 18px auto;
+					    }
+					    @include breakpoint($nav-xlarge-up) {
+						    padding-top: 42px;
+						    width: 50px;
+						    background-size: 25px auto;
+					    }
+					}
 				}
-				
+								
 				/* sub nav menus */
 				ul.menu {
 					position: absolute;
@@ -131,12 +161,16 @@
 					background-color: $subnav-bar-bg-color;
 					left: -9999px; // hide offscreen when not needed - more accessible than display:none
 					
-					@include breakpoint($medium-only) {
-						top: 65px;
+					@include breakpoint($nav-medium-only) {
+						top: $header-clear-nav-medium;
 						min-width: 170px;
 					}
-					@include breakpoint($large-up) {
-						top: 70px;
+					@include breakpoint($nav-large-up) {
+						top: $header-clear-nav-medium;
+						min-width: 170px;
+					}
+					@include breakpoint($nav-xlarge-up) {
+						top: $header-clear-nav-large;
 						min-width: 170px;
 					}
 					
@@ -147,7 +181,7 @@
 						overflow: hidden;
 						
 						a.sub-nav {
-							padding: 10px 15px;
+							padding: 10px 22px;
 							color: $subnav-text-color;
 							background-color: $subnav-button-bg-color;
 							@include font-size(14px);
@@ -156,10 +190,10 @@
 							line-height: $subnav-line-height;
 							display: block;
 							
-							@include breakpoint($medium-up) {
+							@include breakpoint($nav-medium-only) {
 								@include font-size(14px);
 							}
-							@include breakpoint($large-up) {
+							@include breakpoint($nav-large-up) {
 								@include font-size(17px);
 							}
 							
@@ -187,61 +221,51 @@
 					visibility: visible;
 					left: 0;
 				}
-			}
-		}
-	}
-	
-	//-------------------------------------------
-	//
-	//	for fixed position nav on scroll up
-	//
-	//-------------------------------------------
-	
-	&.fixed {
-		
-		.l-constrained {
-			position: fixed;
-			@include transition($property,$time,$function);
-			width: 100%;
-			background: rgba(0,0,0,0.8);
-			border: 0;		
-		}
-		
-		// main nav
-		nav.menu--main {
-			margin-right: 5%;
-			
-			.menu li > a.main-nav {
-				padding: 15px 20px 16px;
-				color: #fff;
-				@include transition($property, $time, $function);
 				
-				&:hover {
-					color: $primary-color;
-				}
-			}
-		}
-		
-		// Sub-nav
-		li ul.menu {
-			
-			@include breakpoint($medium-only) {
-				top: 50px !important;
-			}
-			@include breakpoint($large-up) {
-				top: 50px !important;
-			}
-			
-			li a.sub-nav {
-				@include transition($property, $time, $function);
-				
-				&:hover {
-					padding-left: 20px;
+				// shift user nav sub-menu over to align with right edge
+				// so doesn't go off screen
+				&:last-child:hover ul.menu {
+					left: -80px;
 				}
 			}
 		}
 	}
 }
+
+// Contact Navigation (in pre-header)
+
+
+.nav-contact {
+    margin-right: 30px;
+    
+    @include breakpoint($nav-small-and-med) {
+	    display: none;
+    }
+	
+	ul.menu {
+	    margin: 0;
+	    padding: 0;
+	    
+	    li {
+		    list-style-type: none;
+		    margin: 0;
+		    padding: 0;
+		}
+	}
+	
+	a {
+	    color: #ccc;
+	    padding: 6px 10px;
+	    display: block;
+	    
+	    &:hover {
+		    background: #fc6c11;
+		    color: #fff;
+		    text-decoration: none;
+		}
+	}
+}
+
 
 
 // Animation

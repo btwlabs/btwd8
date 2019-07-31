@@ -23,15 +23,21 @@
     font-size: 18px;
 }
 
-.block-system-breadcrumb-block {
-	background-color: #222;
+.block-system-breadcrumb-block,
+.project__field-name-dynamic-block-fieldnode-breadcrumb {
+	background-color: #ddd;
 }
 
 .breadcrumb {
 	padding: 10px 0;
-	//@include constrained;
-	max-width: 90%;
-	margin: 0 auto;
+	
+	@include breakpoint($small-only) {
+		margin: 0 24px;
+	}
+	
+	@include breakpoint($medium-up) {
+		margin: 0 8vw;
+	}
 	
 	ol {
 		padding:0;
@@ -42,8 +48,9 @@
 	    list-style-type: none;
 	    display: inline-block;
 	    font-size: 85%;
-	    color: #999;
+	    color: #222;
 	    margin-right: 5px;
+	    font-weight: bold;
 	    
 	    &:after {
 			content: " » ";
@@ -56,8 +63,17 @@
 		}
 		
 		a:hover {
-			color: #fff;
+			color: #d91a1a;
 		}
+	}
+}
+
+
+// for pages that don't have the regular block wrapper
+.breadcrumb-wrapper {
+	&.breadcrumb {
+		padding: 10px 8vw;
+		margin: 0;
 	}
 }
 

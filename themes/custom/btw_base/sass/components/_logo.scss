@@ -14,63 +14,34 @@
 	background-color: transparent;
 	height: auto;
 	
-
-}
-
-.block-system-branding-block {
-	
 	@include breakpoint($small-only) {
-		@include border-bottom($border-color);
+		@include border-bottom(#555);
 		padding-left: 15px;
 	}
 	@include breakpoint($medium-up) {
-		width: 80px;
+		width: 170px;
 		float: left;
-		margin: 14px 30px 0 0;
+		margin: -22px 10px 0 20px;
 	}
 	@include breakpoint($large-up) {
-		width: 100px;
-		float: left;
-		margin: 14px 30px 0 0;
+		width: 200px;
+	    float: left;
+	    margin: -30px 20px 0 20px;
+	}
+	@include breakpoint($xlarge-up) {
+		width: 260px;
+	    float: left;
+	    margin: -42px 30px 0 20px;
 	}
 }
 
-// for when nav becomes fixed pos on scroll up
-.fixed {
-	.block-system-branding-block {
-		width: 30px;
-		height: 30px;
-		background: transparent url(../images/logo-btw-icon-white.svg) no-repeat scroll left top;
-		background-size: 100% auto;
-		margin-top: 9px;
-		margin-left: 5%;
-		
-		img {
-			visibility: hidden;
-			height: 30px;
-		}
-	}
-}
-
-.site-name {
-	//display: none; // temporary
-}
-
-a.site-logo {
+.site-logo {
 	display: block;
 	
-	@include breakpoint($small-only) {
-		
-	}
-	@include breakpoint($medium-up) {
-
-	}
-	@include breakpoint($medium-only) {
-
-	}
-	@include breakpoint($large-up) {
-
+	.site-name {
+		visibility: hidden;
+		position: absolute;
+		top: 0;
+		left: 0;
 	}
 }
-
-

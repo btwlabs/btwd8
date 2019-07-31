@@ -10,11 +10,10 @@
 
 // Main Site Colors
 
-$primary-color: #25CBD3; // teal blue
-$secondary-color: #323453; // dark blue violet
-//$secondary-color: #d3135a; // magenta
+$primary-color: #64BAFF; // blue
+$secondary-color: #222222; // dark gray
 
-$accent-bg-color-light: #ABDEE1; // very light teal blue
+$accent-bg-color-light: #efefef; // very light gray
 $accent-bg-color-dark: #093a46; // dark teal
 
 // for subtle changes to delineate container bg color in main content
@@ -35,19 +34,19 @@ $black: #000;
 
 // Body Text
 $text-color: rgba(0,0,0,0.6);
-$text-on-dark-color: #ccc;
+$text-on-dark-color: #ddd;
 $text-on-light-color: #000;
 
-$link-color: #00A6AD;
+$link-color: $primary-color;
 $link-hover-color: $secondary-color;
 $link-visited-color: #000;
 
 
 
 // Titles
-$title-color: rgba(0,0,0,0.8);
-$page-title-color: #000;
-$section-title-color: #000;
+$title-color: #4A4A4A;
+$page-title-color: #4A4A4A;
+$section-title-color: #4A4A4A;
 
 $title-on-dark-color: #fff;
 $title-on-light-color: $title-color;
@@ -61,13 +60,13 @@ $selection-background-color: $primary-color;
 
 
 // Button styling NORMAL
-$button-text-color: $text-color;
-$button-text-hover-color: #fff;
+$button-text-color: #fff;
+$button-text-hover-color: $primary-color;
 
-$button-bg-color: transparent;
-$button-bg-hover-color: #000;
+$button-bg-color: $primary-color;
+$button-bg-hover-color: #fff;
 
-$button-border-color: $text-color;
+$button-border-color: $primary-color;
 $button-border-hover-color: $button-bg-hover-color;
 
 
@@ -86,18 +85,20 @@ $button-border-hover-color-on-light: #fff;
 
 // Button styling LIGHT BUTTON ON DARK BG
 $button-text-color-on-dark: #fff;
-$button-text-hover-color-on-dark: #333;
+$button-text-hover-color-on-dark: #222;
 
-$button-bg-color-on-dark: transparent;
+$button-bg-color-on-dark: $primary-color;
 $button-bg-hover-color-on-dark: #fff;
 
-$button-border-color-on-dark: #fff;
+$button-border-color-on-dark: $primary-color;
 $button-border-hover-color-on-dark: #fff;
 
 
 // Sitewide Borders
 $border-color: $light-gray;
 $sidebar-border-color: $light-gray;
+
+$section-title-border-color: rgba(252,108,17,0.7);
 
 
 
@@ -109,14 +110,14 @@ $table-even-row-bg-color: #f0f0f0;
 
 
 // Navigation
-$nav-text-color: $middle-gray;
-$nav-text-hover-color: $primary-color;
+$nav-text-color: $white;
+$nav-text-hover-color: $white;
 
 $nav-button-bg-color: transparent;
-$nav-button-bg-hover-color: transparent;
+$nav-button-bg-hover-color: #3e4246;
 $nav-button-bg-active-color: transparent;
 
-$nav-bar-bg-color: transparent;
+$nav-bar-bg-color: $black;
 
 	// Sub-Navigation
 	$subnav-text-color: #fff;
@@ -125,17 +126,17 @@ $nav-bar-bg-color: transparent;
 	$subnav-button-bg-color: transparent;
 	$subnav-button-bg-hover-color: $primary-color;
 	
-	$subnav-bar-bg-color: #000;
+	$subnav-bar-bg-color: #3e4246;
 
 	// mobile nav only
 	$mobile-nav-text-color: #fff;
-	$mobile-nav-bg-color: #115d66;
+	$mobile-nav-bg-color: #1c1c1d;
 	$mobile-nav-text-hover-color: #fff;
 	$mobile-nav-bg-hover-color: $primary-color;
 	$mobile-nav-border-color: rgba(255,255,255,0.2);
 	
 	// mobile header 
-	$mobile-header-bg-color: #fff;
+	$mobile-header-bg-color: #000;
 	
 	
 	// mobile nav close button
@@ -143,8 +144,8 @@ $nav-bar-bg-color: transparent;
 	$mobile-nav-close-btn-bg: #000;
 	
 	// mobile subnav
-	$mobile-subnav-text-color: #c5c5c5;
-	$mobile-subnav-bg-color: #0a4951;
+	$mobile-subnav-text-color: #bbb;
+	$mobile-subnav-bg-color: #3e3e3e;
 	
 	// Home page non-mobile
 	$home-nav-text-color: #fff;
@@ -152,7 +153,7 @@ $nav-bar-bg-color: transparent;
 
 		
 	// mobile site name
-	$site-name-text-color: #000;
+	$site-name-text-color: #fff;
 
 
 
@@ -200,7 +201,7 @@ $quote-bg-color-on-dark: #fff;
 $footer-text-color: #666;
 
 $footer-link-color: #666;
-$footer-link-hover-color: $primary-color;
+$footer-link-hover-color: #fff;
 
 $footer-bg-color: #0d0e15;
 
@@ -223,19 +224,6 @@ $social-icon-border-color: #fff;
 
 // Messages
 $messages-background-color: #A3E3F8;
-
-
-
-// Dateblock
-$dateblock-day-color: #999;
-$dateblock-month-color: #fff;
-$dateblock-year-color: #999;
-
-$dateblock-text-hover-color: #fff;
-
-$dateblock-bg-color: #000;
-$dateblock-bg-hover-color: #000;
-
 
 
 // Admin Tabs 

@@ -7,15 +7,17 @@ core: 8.x
 libraries:
   - btw_base/global
 regions:
+  mobile_nav: Mobile Nav
+  pre_header: Pre-Header
+  branding: Branding
   header: Header
-  help: Help
-  page_top: 'Page top'
-  page_bottom: 'Page bottom'
-  highlighted: Highlighted
+  pre_content: Pre-Content
   content: Content
-  sidebar_first: 'Sidebar first'
-  sidebar_second: 'Sidebar second'
+  post_content: Post-Content
+  sidebar: Sidebar
+  pre_footer: Pre-Footer
   footer: Footer
+  post_footer: Post Footer
 libraries-override:
   basic/global: false
   basic/tabs: false

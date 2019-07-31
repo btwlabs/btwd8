@@ -1,0 +1,428 @@
+//------------------------------------------------------
+//
+//	MOBILE NAVIGATION - Styles for Main Site Nav in mobile
+//
+//	location: 
+//      /sass/components/_mobile-navigation.scss
+//
+//------------------------------------------------------
+
+
+// hide the stupid h2 block title since drupal won't allow us to not render it
+h2#block-mainnavigation-mobile-menu {
+    display: none;
+}
+
+
+/*-----------------------------------
+ 
+ mobile header - contains nav toggle 
+ and site name
+   
+------------------------------------*/
+
+
+// Container for userbar, nav
+.l-mobile-header {
+	@extend %clearfix;
+	
+	@include breakpoint($nav-small-and-med){
+		position: relative;
+		width: 100%;
+		z-index: 101;
+		top: 0;
+		left: 0;
+		background-color: $mobile-header-bg-color;
+		height: 50px;
+	}
+	@include breakpoint($nav-large-up) {
+		display: none;
+	}
+	
+	.l-constrained {
+		margin: 0;
+		width: 100%;
+	}
+	
+	/* Site Name */
+	.site-name {
+		display:none;
+		
+		@include breakpoint($nav-small-and-med) {
+			display: block;
+			position: absolute;
+			top: 0;
+			width: 200px;
+		    @include font-size(25px);
+		    text-align: center;
+		    height: 50px;
+		    line-height: 1.2;
+		    vertical-align: middle;
+		    margin: 0;
+		    z-index: 0;
+		    
+		    & a {
+		    	display: block;
+			    color: $site-name-text-color;
+			    width: 100%;
+			    height: 100%;
+			    background: url(../images/logo-gearz.png) no-repeat scroll 15px center;
+			    background-size: 118px auto;
+		    }
+	    }
+	    @include breakpoint($nav-medium-only) {
+		    top: 8px;
+		    height: 70px;
+		    
+		    & a {
+			    background-size: 178px auto;
+		    }
+	    }
+	}
+}
+
+
+
+//-----------------------------------
+//
+//	hamburger nav toggle button
+//
+//-----------------------------------
+
+// container for close menu button inside nav wrapper
+.l-menu-mobile-top {
+	background-color: $mobile-nav-close-btn-bg;
+	height: 50px;
+	
+	// HIDE for now
+	display: none;
+}
+
+// toggle button
+button#mobile-nav-open-btn {
+	float: right;
+	padding: 12px 10px 5px;
+    border: 0;
+    
+    &:focus {
+	    outline: 0;
+	}
+}
+
+/*!
+ * Hamburgers
+ * @description Tasty CSS-animated hamburgers
+ * @author Jonathan Suh @jonsuh
+ * @site https://jonsuh.com/hamburgers
+ * @link https://github.com/jonsuh/hamburgers
+ */
+
+.hamburger {
+	padding: 15px 15px;
+	display: inline-block;
+	cursor: pointer;
+	transition-property: opacity, filter;
+	transition-duration: 0.15s;
+	transition-timing-function: linear;
+	font: inherit;
+	color: inherit;
+	text-transform: none;
+	background-color: transparent;
+	border: 0;
+	margin: 0;
+	overflow: visible;
+	
+	&:hover {
+		opacity: 0.7; 
+	}
+}
+
+.js-nav .hamburger {
+	&:hover {
+		opacity: 0.7; 
+	}
+	
+	.hamburger-inner,
+	.hamburger-inner::before,
+	.hamburger-inner::after {
+		background-color: #fff; 
+	}
+}
+
+.hamburger-box {
+	width: 40px;
+	height: 24px;
+	display: inline-block;
+	position: relative; 
+}
+
+.hamburger-inner {
+	display: block;
+	top: 50%;
+	margin-top: -2px; 
+}
+.hamburger-inner, 
+.hamburger-inner::before, 
+.hamburger-inner::after {
+	width: 34px;
+	height: 3px;
+	background-color: #fff;
+	border-radius: 3px;
+	position: absolute;
+	transition-property: transform;
+	transition-duration: 0.15s;
+	transition-timing-function: ease; 
+}
+.hamburger-inner::before, 
+.hamburger-inner::after {
+	content: "";
+	display: block; 
+}
+.hamburger-inner::before {
+	top: -10px; 
+}
+.hamburger-inner::after {
+	bottom: -10px; 
+}
+    
+//---------------------------
+//	specific animation
+//---------------------------
+.hamburger--squeeze {
+    .hamburger-inner {
+      transition-duration: 0.075s;
+      transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+      &::before {
+        transition: top 0.075s 0.12s ease,
+                    opacity 0.075s ease;
+      }
+
+      &::after {
+        transition: bottom 0.075s 0.12s ease,
+                    transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+      }
+    }
+}
+.js-nav {
+	.hamburger:hover {
+		opacity: 0.7; 
+		
+		.hamburger-inner,
+		.hamburger-inner::before,
+		.hamburger-inner::after {
+			background-color: #fff; 
+		}
+	}
+	.hamburger-inner {
+		transform: rotate(45deg);
+		transition-delay: 0.12s;
+		transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+	
+		&::before {
+			top: 0;
+			opacity: 0;
+			transition: top 0.075s ease, opacity 0.075s 0.12s ease;
+		}
+		
+		&::after {
+			bottom: 0;
+			transform: rotate(-90deg);
+			transition: bottom 0.075s ease,	transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+		}
+	}
+}
+ /* end hamburgers css */
+
+span.hamburger-label {
+    font-size: 12px;
+    position: relative;
+    top: -3px;
+    color: #c8c8c8;
+    //display: block;
+    line-height: 1;
+    font-weight: bold;
+    left: -2px;
+    
+    display: none;
+}
+
+
+
+//-----------------------------------
+// 
+//  Layout
+//   
+//------------------------------------
+
+#site-wrapper {
+	overflow: hidden;
+	width: 100%;
+}
+
+// Outer container which contains all content
+// and pushes off screen when navigation
+// menu is toggled on
+
+.l-inner-wrap { // site canvas
+	width: 100%;
+	height: 100%;
+}
+
+
+
+// clickable transparent content cover that closes mobile nav
+// in addition to "close menu" button
+
+#mobile-fade {
+	display: none;
+	-webkit-transition: 2s ease-in background;
+	transition: 2s ease-in background;
+	background: transparent;
+	
+}
+
+// .js-nav is added as body class via js onClick event
+.js-nav #mobile-fade {
+	width: 100%;
+	height: 1000%;
+	display: block;
+	background: rgba(0,0,0,0.7);
+	position: fixed; // normally absolute
+	top: 0px;
+	left: 0;
+	z-index: 10;
+	-webkit-transition: 2s ease-in background;
+	transition: 2s ease-in background;
+}
+
+// Mobile nav container
+// is translated off screen left until menu is toggled on
+
+//@include breakpoint($nav-small-and-med) {
+
+.l-menu-mobile {
+	position: absolute;
+    right: 0;
+    top: -1022px;
+    width: 100%;
+    height: 1022px;
+    background-color: $mobile-nav-bg-color;
+    backface-visibility: hidden;
+    display: block;
+    z-index: 100;
+    -webkit-transition: .3s ease all;
+	transition: .3s ease all;
+	
+	@include breakpoint($nav-large-up) {
+		display: none;
+	}
+        
+    .js-nav & {
+	    -webkit-transition: .3s ease all;
+		transition: .3s ease all;
+					
+		// latest browser performance
+		-webkit-transform: translate3d(0,0, 0);
+		transform: translate3d(0,0, 0);
+		
+	    -webkit-backface-visibility: hidden;
+	    backface-visibility: hidden;
+	    -webkit-transition: all 500ms ease 0s;
+	    transition: all 500ms ease 0s;
+	    //position: relative;
+	    width: 100%;
+	    top: 50px;
+    }
+}
+
+
+//------------------------------------
+//
+// Main Links styling
+// 
+//-------------------------------------
+
+.mobile-nav {
+	// set current height to make easier to position
+	height: 932px;
+}
+
+.mobile-nav,
+.mobile-nav-contact {
+	height: auto;
+	position: relative;
+}
+.mobile-nav ul,
+.mobile-nav-contact ul {
+	margin: 0;
+	padding: 0;
+	overflow-y: auto;
+}
+.mobile-nav ul li,
+.mobile-nav-contact ul li {
+	text-align: left;
+	float: none;
+	@include no-bullet(0,0);
+	border-bottom: 1px solid rgba(100,100,100,.5);
+	
+	& a {
+		padding: 15px;
+		display: block;
+		text-decoration: none;
+		width: auto;
+		color: $mobile-nav-text-color;
+		@include font-size(22px);
+		font-weight: bold;
+		text-align: center;
+		line-height: 1;
+		
+		&:hover,
+		&:active
+		&.active-trail {
+			background-color: $mobile-nav-bg-hover-color;
+			color: $mobile-nav-text-hover-color;
+			text-decoration: none;
+		}
+		
+	}
+}
+
+
+//---------------------------------------
+//
+// SUB NAV
+// 
+//---------------------------------------
+
+.mobile-nav ul ul {
+	margin-bottom: 10px;
+	
+	li {
+		border: 0;
+	}
+}
+.mobile-nav .sub-nav {
+	padding: 10px;
+	@include font-size(16px);
+	color: $mobile-subnav-text-color;
+	text-align: center;
+}
+
+//---------------------------------------
+//
+//  CUSTOM - hide items
+// 
+//---------------------------------------
+
+.l-menu-mobile a.icon-search {
+    display: none;
+}
+
+// position of activated menu for admin users
+.toolbar-fixed .l-menu-mobile {
+    top: calc(-100% + 90px);
+}
+
+
+

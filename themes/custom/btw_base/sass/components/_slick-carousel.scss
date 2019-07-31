@@ -1,0 +1,177 @@
+//------------------------------------------------------
+//
+//	CAROUSELS - for content lists, default styling
+//
+//	location: 
+//      /sass/components/_slick-carousel.scss
+//
+//------------------------------------------------------
+
+
+//---------------------------------
+//
+// slideshow defaults
+//
+//----------------------------------
+
+// Defaults
+.views-row.slick-slide {
+	transition: all 0.2s ease-in;
+		
+	&:hover {
+		background-color: $xlight-gray;
+	}
+	
+	@include breakpoint($small-plus) {
+		padding: 0 15px;
+	}
+    
+	h3.title {
+	    margin-top: 8px;
+	}
+	.views-field-body {
+	    font-size: 16px;
+	    line-height: 1.4;
+	}
+	.views-field-field-images {
+		margin-bottom: 10px;
+	}
+	.views-field-title h3 {
+		margin-bottom: 10px;
+	}
+}
+
+// Flexbox used to align arrows on either side of the item list
+.slick-slider {
+	@include flexbox;
+	margin: 0;
+	padding: 0;
+	
+	.prev-arrow.slick-arrow,
+	.next-arrow.slick-arrow {
+	    height: 0;
+	    padding-top: 40px;
+	    overflow: hidden;
+	    display: block;
+	    position: relative;
+	    @include align-self($value: center);
+	    @include flex($fg: 0, $fs: 0, $fb: 25px);
+	    cursor: pointer;
+	    
+	    &::before {
+		    content: "";
+		    display: block;
+		    position: absolute;
+		    top: 7px;
+		    opacity: .5;
+		    width: 30px;
+		    height: 24px;
+		    transform: translateY(-50%);
+	    }
+	    
+	    &::hover::before {
+		    opacity: 1;
+	    }
+	}
+	.prev-arrow.slick-arrow::before {
+		background: url(../images/icons/arrow-left.svg) no-repeat scroll center left;
+		background-size: 15px auto;
+		left: 0;
+	}
+	.next-arrow.slick-arrow::before {
+		background: url(../images/icons/arrow-right.svg) no-repeat scroll center right;
+		background-size: 15px auto;
+		right: 0;
+	}
+}
+
+
+.front, // added these for specificity to override the module style sheet
+.not-front {
+	.slick-slider {
+		@include flexbox;
+		margin: 0;
+		padding: 0;
+		@include align-items($value: center);
+		
+		.slick-track {
+			//max-height: 150px;
+		}
+		
+		.prev-arrow.slick-arrow,
+		.next-arrow.slick-arrow {
+		    height: 126px;
+		    padding-top: 0px;
+		    overflow: hidden;
+		    display: block;
+		    position: relative;
+		    @include align-self($value: center);
+		    @include flex($fg: 0, $fs: 0, $fb: 25px);
+		    cursor: pointer;
+		    top: 0;
+			transform: none;
+			font-size: 0;
+			
+			@include breakpoint($small-only) {
+				height: 75px;
+			}
+			@include breakpoint($medium-only) {
+				height: 46px;
+			}
+		    
+		    &::before {
+			    content: "";
+			    display: block;
+			    position: absolute;
+			    top: 50%;
+			    opacity: .5;
+			    width: 30px;
+			    height: 24px;
+			    transform: translateY(-50%);
+		    }
+		    
+		    &::hover::before {
+			    opacity: 1;
+		    }
+		}
+		.prev-arrow.slick-arrow {
+			&:before {
+				background: url(../images/icons/arrow-left.svg) no-repeat scroll center left;
+				background-size: 15px auto;
+				left: 0;
+			}
+			
+			&:hover:before {
+				opacity: 1;
+			}
+		}
+		.next-arrow.slick-arrow {
+			&:before {
+				background: url(../images/icons/arrow-right.svg) no-repeat scroll center right;
+				background-size: 15px auto;
+				right: 0;
+			}
+			
+			&:hover:before {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+
+// arrow image on hover state on home page needs to be white
+//.front {
+//	.slick-slider {
+//		.prev-arrow.slick-arrow {
+//			&:hover:before {
+//				background-image: url(../images/icons/arrow-left-white.svg);
+//			}
+//		}
+//		.next-arrow.slick-arrow {	
+//			&:hover:before {
+//			/background-image: url(../images/icons/arrow-right-white.svg);
+//			}
+//		}
+//	}
+//}

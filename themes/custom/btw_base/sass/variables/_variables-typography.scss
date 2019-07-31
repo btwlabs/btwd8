@@ -4,7 +4,7 @@
 //							 font usage for the site
 //
 //	location: 
-//      /sass/variables/_variables-borders.scss
+//      /sass/variables/_variables-typography.scss
 //
 //------------------------------------------------------
 
@@ -12,26 +12,23 @@
 
 // Font Icons
 
-$arrowicons: IcoMoonArrows;
-$basicicons: IcoMoonBasic;
-$socialicons: IcoMoonSocial;
 
 $icon-line-height: 1;
 
 
 // Base font
 
-$base-font-family: "texta", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$base-font-weight: normal;
+$base-font-family: "brandon-grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-font-weight: 400;
 $base-font-size: 18px;
-$base-line-height: 1.4;
+$base-line-height: 1.6;
 $base-letter-spacing: 0;
 
 
 // Headings
 
-$title-font-family: "texta", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$title-font-weight: normal;
+$title-font-family: "brandon-grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$title-font-weight: 900;
 $title-margin: 0 0 1em 0;
 $title-line-height: 1.2;
 $title-letter-spacing: 0em;
@@ -40,13 +37,13 @@ $title-text-transform: none;
 
 // Navigation 
 
-$nav-font-family: "texta", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$nav-font-weight: normal;
+$nav-font-family: "brandon-grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$nav-font-weight: 400;
 $nav-line-height: 1;
 
 
 // Sub-nav
 
-$subnav-font-family: "texta", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$subnav-font-weight: normal;
+$subnav-font-family: "brandon-grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$subnav-font-weight: 400;
 $subnav-line-height: 1;

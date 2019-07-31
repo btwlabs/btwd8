@@ -56,3 +56,42 @@ h6:after {
     -moz-osx-font-smoothing: grayscale;
     line-height: 1;
 }
+
+
+//-----------------------------------
+//
+//	Social Icons - post-footer
+//
+//-----------------------------------
+
+.social-icons {
+	text-align: center;
+	
+	@include breakpoint($medium-up) {
+		margin-right: 20px;
+	}
+	
+	ul {
+		margin: 0;
+		padding: 0;
+		
+		a {
+			color: #777;
+			padding: 6px 10px;
+			display: block;
+			
+			&:hover {
+				color: #fff;
+			}
+		}
+		
+		.fa-2x {
+			@include font-size(22px);
+			vertical-align: middle;
+		}
+	}
+}
+
+.social-media-links--platforms.horizontal li {
+	padding: 0;
+}

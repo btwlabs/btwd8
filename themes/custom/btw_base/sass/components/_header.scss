@@ -1,0 +1,127 @@
+//----------------------------------------------
+//
+//	HEADER - general layout styles for header and its elements
+//
+//	location: 
+//      /sass/components/_header.scss
+//
+//----------------------------------------------
+
+
+.l-pre-header {
+	.mobile-brand-title {
+		background-color: #1E1F21;
+		
+		h2 {
+		   color: #fff;
+		    line-height: 1;
+		    font-size: 21px;
+		    font-weight: bold;
+		    margin: 0;
+		    padding: 10px;
+		    text-align: center;
+		   
+		   @include breakpoint($medium-only) {
+			   @include font-size(19px);
+		   }
+	    }
+		@include breakpoint($small-only) {
+			display: block;
+		}
+		@include breakpoint($medium-up) {
+			display: none;
+		}
+	}
+}
+
+.l-header {
+	position: relative;
+	
+	@include breakpoint($small-only) {
+		display: none;
+	}
+	
+	@include breakpoint($medium-up) {
+		display: block;
+		position: relative; // for non-fixed nav
+		left: 0;
+		width: 100%;
+		@include clearfix; // for non-fixed nav
+		height: $header-height-medium;
+	}
+	@include breakpoint($large-up) {
+		height: $header-height-large;
+	}
+	
+ 
+    
+    // Search Form
+    .search-form {
+		position: absolute;
+		right: 20px;
+		z-index: 1;
+		
+		background-color: $xlight-gray;
+		padding: 8px;
+		
+		@include breakpoint($medium-up) {
+			display: none;
+			top: 60px;
+		}
+		@include breakpoint($large-up) {
+			top: 64px;
+		}
+		
+		&::before {
+			content: '';
+			display: block;
+			position: absolute;
+			right: 63px;
+			top: -12px;
+		    width: 0;
+		    height: 0;
+		    border-left: 10px solid transparent;
+		    border-right: 10px solid transparent;
+		    border-bottom: 12px solid $xlight-gray;
+		}
+	    
+	    h2,
+	    label {
+		    display: none;
+	    }
+	    
+	    // text input
+	    .form-item {
+		    display: inline-block;
+		    margin: 0 5px 0 0;
+		    
+		    input {
+			    padding: 5px;
+			    border-radius: 4px;
+			    border: 1px solid #aaa;
+			    display: inline-block;
+				vertical-align: top;
+			}
+		}
+		.form-actions {
+			display: inline-block;
+			vertical-align: top;
+		}
+		
+		// submit button
+		input.form-submit {
+		    padding: 9px 10px;
+		    font-size: 14px;
+		    letter-spacing: 0;
+		    color: #fff;
+		    background: $primary-color;
+		    border: 0;
+		    border-radius: 4px;
+		    text-transform: capitalize;
+		    
+		    &::hover {
+			    background-color: #000;
+		    }
+		}
+    }
+}

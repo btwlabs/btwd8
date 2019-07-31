@@ -40,6 +40,10 @@
 // Negate constrained styling on a container to make 100% width
 @mixin unconstrained {
 	width: 100%;
+	
+	@include breakpoint($small-only) {
+		padding: 0 30px;
+	}
 }
 
 // use on inner blocks that are within a constrained style section
