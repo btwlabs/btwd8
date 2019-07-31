@@ -102,6 +102,7 @@ class VideoEmbedField extends FormatterBase implements ContainerFactoryPluginInt
   public static function defaultSettings() {
     $default_settings = [
       'gallery_type' => 'all_items',
+      'autoplay' => TRUE,
       'link_text' => 'Watch Video',
       'link_classes' => ''
     ];
@@ -119,6 +120,11 @@ class VideoEmbedField extends FormatterBase implements ContainerFactoryPluginInt
         '#type' => 'select',
         '#default_value' => $this->getSetting('gallery_type'),
         '#options' => $this->getGalleryTypes(),
+      ],
+      'autoplay' => [
+        '#title' => $this->t('Autoplay the video?'),
+        '#type' => 'checkbox',
+        '#default_value' => $this->getSetting('autoplay')
       ],
       'link_text' => [
         '#title' => $this->t('Link Text'),
@@ -142,6 +148,7 @@ class VideoEmbedField extends FormatterBase implements ContainerFactoryPluginInt
    */
   public function settingsSummary() {
     $summary[] = $this->t('Thumbnail that opens a popup.');
+    $summary[] = $this->t('Video Autoplay') . ':' . (($this->getSetting('autoplay') == TRUE) ? $this->t('yes') : $this->t('no'));
     $summary[] = $this->t('Link Text') . ':' . $this->getSetting('link_text');
     $summary[] = $this->t('Link Classes') . ':' . $this->getSetting('link_classes');
     return $summary;
@@ -165,6 +172,16 @@ class VideoEmbedField extends FormatterBase implements ContainerFactoryPluginInt
     $element = [];
     $gallery_type = $this->getSetting('gallery_type');
     $videos = $this->videoFormatter->viewElements($items, $langcode);
+    // Check each video and set to autoplay if configured.
+    $autoplay = $this->getSetting('autoplay');
+    foreach($videos as &$video) {
+      if (!empty($video['children'])) {
+        if (!empty($video['children']['#query'])) {
+          $video['children']['#query']['autoplay'] = $autoplay;
+        }
+      }
+      $video['children']['#query']['autoplay'] = $autoplay;
+    }
     $trigger_link = '<div class="video-trigger-link' .
       (($this->getSetting('link_classes') != '') ? ' ' : '') .
       $this->getSetting('link_classes') .
