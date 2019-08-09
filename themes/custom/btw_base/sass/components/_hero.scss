@@ -9,8 +9,8 @@
 //----------------------------------------------
 
 
-section.hero {
-    height: 250px;
+.hero-wrapper {
+    padding: 20vw 8vw;
     overflow: hidden;
     width: 100%;
     position: relative;
@@ -19,6 +19,17 @@ section.hero {
 	    height: 30vw;
 	    max-height: 400px;
     }
+    
+    .hero-title-body-wrapper {
+	    text-align: center;
+	    
+	    .title {
+		    color: $hero-title-color;
+	    }
+	    .field-name-body {
+		    color: $hero-text-color;
+	    }
+	}
 }
 
 .hero-image {

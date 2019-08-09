@@ -244,3 +244,21 @@ section#content,
 		}
 	}
 }
+
+
+/*----------------------------------------
+
+ STORY pages
+
+----------------------------------------*/
+
+.story-page {
+	.l-content-main-wrapper {
+		
+		// undo default constraints on container width
+		> .l-constrained {
+			@include unconstrained;
+		}
+	}
+}
+
