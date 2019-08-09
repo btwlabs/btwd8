@@ -2705,22 +2705,21 @@ footer .block-system-branding-block h1 {
   position: relative;
 }
 
-@media (min-width: 64.063em) {
-  .hero-wrapper {
-    height: 30vw;
-    max-height: 400px;
-  }
-}
 .hero-wrapper .hero-title-body-wrapper {
   text-align: center;
+  max-width: 50em;
+  margin: 0 auto;
 }
 
 .hero-wrapper .hero-title-body-wrapper .title {
   color: #fff;
+  margin-bottom: 0.5em;
 }
 
 .hero-wrapper .hero-title-body-wrapper .field-name-body {
   color: #ccc;
+  font-size: 1.5em;
+  line-height: 1.4;
 }
 
 .hero-image {
@@ -4848,6 +4847,15 @@ ul.pager__items li.pager__item--active a {
   text-decoration: none;
 }
 
+.story-block .field-name-story-block-extra-image figure {
+  margin: 0;
+}
+
+@media (min-width: 0em) and (max-width: 40em) {
+  .story-block .field-name-story-block-extra-image figure {
+    margin-top: 40px;
+  }
+}
 .story-block.paragraph--view-mode-default {
   padding: 8vw;
 }

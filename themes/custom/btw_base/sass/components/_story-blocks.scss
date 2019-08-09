@@ -92,6 +92,17 @@
 		}
 	}
 	
+	// Extra image in left/right text and bg image view modes
+	.field-name-story-block-extra-image {
+		figure {
+			margin: 0;
+			
+			@include breakpoint($small-only) {
+				margin-top: 40px;
+			}
+		}
+	}
+	
 	
 	
 	/*------------------------------------------------
