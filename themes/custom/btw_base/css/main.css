@@ -969,6 +969,7 @@ section#content,
 @media (min-width: 0em) and (max-width: 40em) {
   .story-page .l-content-main-wrapper > .l-constrained {
     padding: 0 30px;
+    margin: 0;
   }
 }
 /*-------------------------------------------
@@ -2265,6 +2266,7 @@ blockquote:before {
 @media (min-width: 0em) and (max-width: 40em) {
   .l-pre-footer-wrapper .l-constrained {
     padding: 0 30px;
+    margin: 0;
   }
 }
 .l-pre-footer-wrapper .footer-call-to-action {

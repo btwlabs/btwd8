@@ -43,6 +43,7 @@
 	
 	@include breakpoint($small-only) {
 		padding: 0 30px;
+		margin: 0;
 	}
 }
 
