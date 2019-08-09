@@ -964,14 +964,10 @@ section#content,
 ----------------------------------------*/
 .story-page .l-content-main-wrapper > .l-constrained {
   width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-@media (min-width: 0em) and (max-width: 40em) {
-  .story-page .l-content-main-wrapper > .l-constrained {
-    padding: 0 30px;
-    margin: 0;
-  }
-}
 /*-------------------------------------------
 
  LISTS - defaults for standard formatting

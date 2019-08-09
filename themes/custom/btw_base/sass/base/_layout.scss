@@ -257,7 +257,9 @@ section#content,
 		
 		// undo default constraints on container width
 		> .l-constrained {
-			@include unconstrained;
+			width: 100%;
+			margin: 0;
+			padding: 0;
 		}
 	}
 }
