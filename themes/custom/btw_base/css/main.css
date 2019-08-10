@@ -4909,6 +4909,7 @@ ul.pager__items li.pager__item--active a {
   font-weight: bold;
   position: relative;
   letter-spacing: 0.1em;
+  cursor: pointer;
 }
 
 @media (min-width: 0em) and (max-width: 40em) {

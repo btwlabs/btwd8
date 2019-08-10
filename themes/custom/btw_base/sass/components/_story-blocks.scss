@@ -107,6 +107,7 @@
 	.mfp-video-embed-all-items {
 		.mfp-video-embed-popup {
 			@include button;
+			cursor: pointer;
 			
 			&::hover {
 				@include button-hover;
