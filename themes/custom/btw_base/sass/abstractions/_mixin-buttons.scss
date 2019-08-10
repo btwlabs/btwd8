@@ -43,12 +43,12 @@
 	}
 }
 
-//@mixin button-hover {
-//	background: $button-bg-hover-color; 
-//	color: $button-text-hover-color;
-//	border-color: $button-border-hover-color;
-//	text-decoration: none;
-//}
+@mixin button-hover {
+	background: $button-bg-hover-color; 
+	color: $button-text-hover-color;
+	border-color: $button-border-hover-color;
+	text-decoration: none;
+}
 
 @mixin button-padding($button-padding) {
 	padding: $button-padding;
