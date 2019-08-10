@@ -103,6 +103,12 @@
 		}
 	}
 	
+	// Video Popup Link Field
+	.mfp-video-embed-all-items {
+		.mfp-video-embed-popup {
+			@include button;
+		}
+	}
 	
 	
 	/*------------------------------------------------
@@ -462,10 +468,13 @@
 			.field-name-story-block-videos {		
 				a {
 					@include button-on-light;
-					
-					&:hover {
-						@include button-on-light-hover;
-					}
+				}
+			}
+			
+			// video popup link
+			.mfp-video-embed-all-items {
+				.mfp-video-embed-popup {
+					@include button-on-light;
 				}
 			}
 		}
@@ -521,10 +530,14 @@
 		.field-name-story-block-videos {		
 			a {
 				@include button-on-dark;
-				
-				&:hover {
-					@include button-on-dark-hover;
-				}
+
+			}
+		}
+		
+		// video popup link
+		.mfp-video-embed-all-items {
+			.mfp-video-embed-popup {
+				@include button-on-light;
 			}
 		}
 	}	
