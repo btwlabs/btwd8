@@ -35,7 +35,7 @@
 		display: inline-block;
 	}
 	
-	&::hover {
+	&:hover {
 		background: $button-bg-hover-color; 
 		color: $button-text-hover-color;
 		border-color: $button-border-hover-color;
@@ -76,7 +76,7 @@
 		display: inline-block;
 	}
 	
-	&::hover {
+	&:hover {
 		background: $button-bg-hover-color-on-dark; 
 		color: $button-text-hover-color-on-dark;
 		border-color: $button-border-hover-color-on-dark;
@@ -112,7 +112,7 @@
 		display: inline-block;
 	}
 	
-	&::hover {
+	&:hover {
 		background: $button-bg-hover-color-on-light; 
 		color: $button-text-hover-color-on-light;
 		border-color: $button-border-hover-color-on-light;

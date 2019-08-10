@@ -56,10 +56,6 @@ li a.active {
 a.button {
 	@include button; // sass/abstractions/_mixins-buttons.scss
 	position: relative;
-		
-	//&:hover {
-	//	@include button-hover; // sass/abstractions/_mixins-buttons.scss
-	//}	
 }
 
 // THIS CSS is regular non-animated buttons on light bg

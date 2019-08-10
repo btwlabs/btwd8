@@ -85,10 +85,6 @@
 		a {
 			@include button;
 			@include font-size(20px);
-			
-			//&:hover {
-			//	@include button-hover;
-			//}
 		}
 	}
 	
@@ -108,10 +104,6 @@
 		.mfp-video-embed-popup {
 			@include button;
 			cursor: pointer;
-			
-			//&::hover {
-			//	@include button-hover;
-			//}
 		}
 	}
 	
@@ -480,10 +472,6 @@
 			.mfp-video-embed-all-items {
 				.mfp-video-embed-popup {
 					@include button-on-light;
-					
-					&::hover {
-						@include button-on-light-hover;
-					}
 				}
 			}
 		}
@@ -493,7 +481,7 @@
 // Dark BG Story blocks - for when you can't add the .dark-bg block class to the story block container block
 .dark-bg {
 	@include breakpoint($medium-up) {
-		background-color: #191A1C;
+		//background-color: #191A1C;
 		
 		.image-overlay {
 			display: block;
@@ -546,11 +534,7 @@
 		// video popup link
 		.mfp-video-embed-all-items {
 			.mfp-video-embed-popup {
-				@include button-on-light;
-				
-				&::hover {
-					@include button-on-dark-hover;
-				}
+				@include button-on-dark;
 			}
 		}
 	}	
