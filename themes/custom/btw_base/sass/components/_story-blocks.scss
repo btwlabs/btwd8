@@ -107,6 +107,10 @@
 	.mfp-video-embed-all-items {
 		.mfp-video-embed-popup {
 			@include button;
+			
+			&::hover {
+				@include button-hover;
+			}
 		}
 	}
 	
@@ -475,6 +479,10 @@
 			.mfp-video-embed-all-items {
 				.mfp-video-embed-popup {
 					@include button-on-light;
+					
+					&::hover {
+						@include button-on-light-hover;
+					}
 				}
 			}
 		}
@@ -538,6 +546,10 @@
 		.mfp-video-embed-all-items {
 			.mfp-video-embed-popup {
 				@include button-on-light;
+				
+				&::hover {
+					@include button-on-dark-hover;
+				}
 			}
 		}
 	}	
