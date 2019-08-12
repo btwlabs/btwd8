@@ -85,13 +85,27 @@
 		a {
 			@include button;
 			@include font-size(20px);
+		}
+	}
+	
+	// Extra image in left/right text and bg image view modes
+	.field-name-story-block-extra-image {
+		figure {
+			margin: 0;
 			
-			&:hover {
-				@include button-hover;
+			@include breakpoint($small-only) {
+				margin-top: 40px;
 			}
 		}
 	}
 	
+	// Video Popup Link Field
+	.mfp-video-embed-all-items {
+		.mfp-video-embed-popup {
+			@include button;
+			cursor: pointer;
+		}
+	}
 	
 	
 	/*------------------------------------------------
@@ -451,10 +465,13 @@
 			.field-name-story-block-videos {		
 				a {
 					@include button-on-light;
-					
-					&:hover {
-						@include button-on-light-hover;
-					}
+				}
+			}
+			
+			// video popup link
+			.mfp-video-embed-all-items {
+				.mfp-video-embed-popup {
+					@include button-on-light;
 				}
 			}
 		}
@@ -464,7 +481,7 @@
 // Dark BG Story blocks - for when you can't add the .dark-bg block class to the story block container block
 .dark-bg {
 	@include breakpoint($medium-up) {
-		background-color: #191A1C;
+		//background-color: #191A1C;
 		
 		.image-overlay {
 			display: block;
@@ -510,10 +527,14 @@
 		.field-name-story-block-videos {		
 			a {
 				@include button-on-dark;
-				
-				&:hover {
-					@include button-on-dark-hover;
-				}
+
+			}
+		}
+		
+		// video popup link
+		.mfp-video-embed-all-items {
+			.mfp-video-embed-popup {
+				@include button-on-dark;
 			}
 		}
 	}	

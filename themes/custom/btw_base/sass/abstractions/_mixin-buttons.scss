@@ -34,6 +34,13 @@
 	@include breakpoint($medium-up) {
 		display: inline-block;
 	}
+	
+	&:hover {
+		background: $button-bg-hover-color; 
+		color: $button-text-hover-color;
+		border-color: $button-border-hover-color;
+		text-decoration: none;
+	}
 }
 
 @mixin button-hover {
@@ -68,6 +75,13 @@
 	@include breakpoint($medium-up) {
 		display: inline-block;
 	}
+	
+	&:hover {
+		background: $button-bg-hover-color-on-dark; 
+		color: $button-text-hover-color-on-dark;
+		border-color: $button-border-hover-color-on-dark;
+		text-decoration: none;
+	}
 }
 @mixin button-on-dark-hover {
 	background: $button-bg-hover-color-on-dark; 
@@ -96,6 +110,13 @@
 	}
 	@include breakpoint($medium-up) {
 		display: inline-block;
+	}
+	
+	&:hover {
+		background: $button-bg-hover-color-on-light; 
+		color: $button-text-hover-color-on-light;
+		border-color: $button-border-hover-color-on-light;
+		text-decoration: none;
 	}
 }
 @mixin button-on-light-hover {

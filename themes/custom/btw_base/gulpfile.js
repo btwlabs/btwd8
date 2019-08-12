@@ -17,7 +17,7 @@ var sourcemaps 		= require('gulp-sourcemaps');
  gulp.task('browser-sync', ['sass'], function() {
     browserSync.init({
 		// Change as required, also remember to set in theme settings
-		proxy: "http://realmusictv.lndo.site:8000",
+		proxy: "http://canonical-test.lndo.site:8000",
 		//port: 8000
     });
 });

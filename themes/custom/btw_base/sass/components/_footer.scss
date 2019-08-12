@@ -44,10 +44,6 @@
 			@include font-size(28px);
 			display: inline-block;
 		}
-		
-		&:hover {
-			@include button-on-dark-hover;
-		}
 	}
 }
 

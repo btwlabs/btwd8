@@ -9,47 +9,27 @@
 //----------------------------------------------
 
 
-section.hero {
-    height: 250px;
+.hero-wrapper {
+    padding: 20vw 8vw;
     overflow: hidden;
     width: 100%;
     position: relative;
     
-    @include breakpoint($large-up) {
-	    height: 30vw;
-	    max-height: 400px;
-    }
-}
-
-.hero-image {
-	height: 250px;
-    width: 100%;
-    @include flexbox;
-    @include justify-content($value: center);
-    
-    @include breakpoint($large-up) {
-	    height: 30vw;
-		max-height: 400px;
-    }
-    
-    // Color Overlay
-    &:after {
-	    display: block;
-	    content: "";
-	    width: 100%;
-	    height: 100%;
-	    position: absolute;
-	    left: 0;
-	    top: 0;
-	    background: rgba(0,0,0,0.75);
-    }
-	
-	img {
-	    width: 100%;
-	    height: auto;
-	    object-fit: cover;
-	    display: block;
-    }
+    .hero-title-body-wrapper {
+	    text-align: center;
+	    max-width: 50em;
+		margin: 0 auto;
+	    
+	    .title {
+		    color: $hero-title-color;
+		    margin-bottom: 0.5em;
+	    }
+	    .field-name-body {
+		    color: $hero-text-color;
+		    font-size: 1.5em;
+			line-height: 1.4;
+	    }
+	}
 }
 
 

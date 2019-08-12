@@ -34,10 +34,6 @@
 		.field-name-field-story-block-videos {		
 			a {
 				@include button-on-dark;
-				
-				&:hover {
-					@include button-on-dark-hover;
-				}
 			}
 		}
 	}
