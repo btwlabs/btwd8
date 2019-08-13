@@ -13,10 +13,6 @@ sites/*/files
 sites/*/private
 files/*
 
-# Ignore composer files for the upstream
-composer.json
-composer.lock
-
 # Avoid accidental modification of pantheon.upstream.yml in sites
 # created from this upstream
 pantheon.upstream.yml
