@@ -37,7 +37,6 @@
 	// Column Wrapper
 	// flex parent
 	.story-block-inner {
-		//@include constrained;
 		position: relative;
 		@include flexbox;
 		@include flex-flow($values: (row wrap));
@@ -46,14 +45,10 @@
 		@include align-items($value: stretch);
 		
 		@include breakpoint($small-only) {
-			padding: $sb-inner-padding-sml;
 			margin-left: 30px;
 			margin-right: 30px;
 		}
-		@include breakpoint($medium-up) {
-			padding: $sb-default-padding;
-		}	
-	}	
+	}
 	
 	// Columns
 	// flex children
@@ -381,7 +376,7 @@
 	-------------------------------------------------*/
 	
 	// Center Text, h1 with BG image
-	&.paragraph--view-mode-center-text-h1-title-full-bg-image {
+	&.paragraph--view-mode-center-text-h1-title-bg-image {
 		
 		.story-block-inner {
 			display: block; // override flexbox
