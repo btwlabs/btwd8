@@ -4777,6 +4777,7 @@ video {
       -ms-flex: 0 0 33.333%;
           flex: 0 0 33.333%;
   padding: 0 3vw;
+  text-align: center;
 }
 
 @media (min-width: 0em) {
@@ -4801,7 +4802,7 @@ video {
   margin-bottom: 30px;
 }
 
-.paragraph--type-cards .field-name-sub-card-link a {
+.paragraph--type-cards .field-name-field-sub-card-link a {
   background: #64BAFF;
   text-align: center;
   color: #fff;
@@ -4822,23 +4823,23 @@ video {
 }
 
 @media (min-width: 0em) and (max-width: 40em) {
-  .paragraph--type-cards .field-name-sub-card-link a {
+  .paragraph--type-cards .field-name-field-sub-card-link a {
     display: block;
   }
 }
 @media (min-width: 40.063em) {
-  .paragraph--type-cards .field-name-sub-card-link a {
+  .paragraph--type-cards .field-name-field-sub-card-link a {
     display: inline-block;
   }
 }
-.paragraph--type-cards .field-name-sub-card-link a:hover {
+.paragraph--type-cards .field-name-field-sub-card-link a:hover {
   background: #fff;
   color: #64BAFF;
   border-color: #fff;
   text-decoration: none;
 }
 
-.paragraph--type-cards .field-name-sub-card-link a:hover {
+.paragraph--type-cards .field-name-field-sub-card-link a:hover {
   background: #fff;
   color: #64BAFF;
   border-color: #fff;

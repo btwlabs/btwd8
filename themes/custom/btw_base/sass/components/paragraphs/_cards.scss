@@ -24,6 +24,7 @@
     .card {
 	    flex: 0 0 33.333%;
 	    padding: 0 3vw;
+	    text-align: center;
 	}
 	
 	// h3 title
@@ -37,7 +38,7 @@
 	}
 	
 	// Card link
-	.field-name-sub-card-link {
+	.field-name-field-sub-card-link {
 		a {
 		    @include button;
 		    
