@@ -290,8 +290,7 @@ nav.tabs {
   padding: 6px 15px;
   text-decoration: none;
   text-transform: uppercase;
-  border-bottom: 1px solid #ccc;
-  border-radius: 0 0 0 0;
+  border-radius: 0;
   border-bottom: 0;
   text-align: center;
   font-size: 14px;
@@ -359,47 +358,7 @@ li a.active:hover {
 
 -------------------------------------*/
 .button a,
-a.button {
-  background: #64BAFF;
-  text-align: center;
-  color: #fff;
-  display: block;
-  text-decoration: none;
-  text-shadow: none;
-  text-transform: uppercase;
-  border-radius: 4px;
-  -webkit-transition: all 0.3s ease-in;
-  -o-transition: all 0.3s ease-in;
-  transition: all 0.3s ease-in;
-  padding: 15px 25px;
-  line-height: 1;
-  border: 2px solid #64BAFF;
-  font-weight: bold;
-  position: relative;
-  letter-spacing: 0.1em;
-  position: relative;
-}
-
-@media (min-width: 0em) and (max-width: 40em) {
-  .button a,
-a.button {
-    display: block;
-  }
-}
-@media (min-width: 40.063em) {
-  .button a,
-a.button {
-    display: inline-block;
-  }
-}
-.button a:hover,
-a.button:hover {
-  background: #fff;
-  color: #64BAFF;
-  border-color: #fff;
-  text-decoration: none;
-}
-
+a.button,
 button,
 input[type=reset],
 input[type=submit],
@@ -421,10 +380,13 @@ input[type=button] {
   font-weight: bold;
   position: relative;
   letter-spacing: 0.1em;
+  position: relative;
 }
 
 @media (min-width: 0em) and (max-width: 40em) {
-  button,
+  .button a,
+a.button,
+button,
 input[type=reset],
 input[type=submit],
 input[type=button] {
@@ -432,13 +394,49 @@ input[type=button] {
   }
 }
 @media (min-width: 40.063em) {
-  button,
+  .button a,
+a.button,
+button,
 input[type=reset],
 input[type=submit],
 input[type=button] {
     display: inline-block;
   }
 }
+.button a:hover,
+a.button:hover,
+button:hover,
+input[type=reset]:hover,
+input[type=submit]:hover,
+input[type=button]:hover {
+  background: #fff;
+  color: #64BAFF;
+  border-color: #fff;
+  text-decoration: none;
+}
+
+@media (min-width: 0em) and (max-width: 40em) {
+  .button a,
+a.button,
+button,
+input[type=reset],
+input[type=submit],
+input[type=button] {
+    display: block;
+  }
+}
+@media (min-width: 40.063em) {
+  .button a,
+a.button,
+button,
+input[type=reset],
+input[type=submit],
+input[type=button] {
+    display: inline-block;
+  }
+}
+.button a:hover,
+a.button:hover,
 button:hover,
 input[type=reset]:hover,
 input[type=submit]:hover,
@@ -1481,6 +1479,25 @@ blockquote:before {
   background: url(../images/icon-quote-open_black.svg) no-repeat scroll left top;
   background-size: 100% auto;
   opacity: 0.3;
+}
+
+/*--------------------
+
+  Span tags within titles
+  HTML editor mode
+
+---------------------*/
+span.title-span-1 {
+  display: block;
+  font-size: 50%;
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+span.title-span-2 {
+  display: block;
+  color: red;
+  font-size: 65%;
 }
 
 @-webkit-keyframes fadeIn {

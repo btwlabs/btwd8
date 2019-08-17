@@ -224,3 +224,21 @@ blockquote {
     }
 }
 
+/*--------------------
+
+  Span tags within titles
+  HTML editor mode
+ 
+---------------------*/
+
+span.title-span-1 {
+    display: block;
+    font-size: 50%;
+    color: #aaa;
+    text-transform: uppercase;
+}
+span.title-span-2 {
+    display: block;
+    color: red;
+    font-size: 65%;
+}

@@ -50,34 +50,14 @@ li a.active {
  
 -------------------------------------*/
 
-
-// THIS CSS applies to buttons with pulse effect on rollover
 .button a,
-a.button {
-	@include button; // sass/abstractions/_mixins-buttons.scss
-	position: relative;
-}
-
-// THIS CSS is regular non-animated buttons on light bg
+a.button,
 button,
 input[type="reset"], 
 input[type="submit"], 
 input[type="button"] {
-	background: $button-bg-color; 
-	text-align: center;
-	color: $button-text-color;
-	display: block;
-	text-decoration: none;
-	text-shadow: none;
-	text-transform: $button-text-transform;
-	@include border-radius($button-border-radius);
-	@include transition(all, 0.3s, ease-in);
-	@include button-padding($button-padding);
-	line-height: 1;
-	border: $button-border-width solid $button-border-color;
-	font-weight: $button-font-weight;
+	@include button; // sass/abstractions/_mixins-buttons.scss
 	position: relative;
-	letter-spacing: 0.1em;
 	
 	@include breakpoint($small-only) {
 		display: block;
