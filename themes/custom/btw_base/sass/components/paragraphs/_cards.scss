@@ -30,6 +30,7 @@
 	// h3 title
 	.card-title {
 		@include responsive-card-title;
+		margin-bottom: 0.5em;
 	}
 	
 	// Card img
@@ -46,5 +47,13 @@
 			    @include button-hover;
 		    }
 		}
+	}
+	
+	// Sub Cards
+	.paragraph--type-sub-card { // ultimately add .icon-img to the selector once the ability to add classes to sub cards is enabled
+		.field-name-sub-card-image {
+		    margin: 0 auto 30px;
+		    max-width: 150px;
+	    }
 	}
 }

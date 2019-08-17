@@ -388,7 +388,7 @@
 		.story-block-inner {
 			display: block; // override flexbox
 		}
-		h1 {
+		.title {
 			text-align: center;
 			@include responsive-page-title;
 		}
@@ -400,6 +400,12 @@
 	&.paragraph--view-mode-center-text-full-bg-image {
 		.story-block-inner {
 			display: block; // override flexbox
+		}
+		.title {
+			text-align: center;
+		}
+		.field-name-story-block-text {
+			text-align: center;
 		}
 	}
 }
