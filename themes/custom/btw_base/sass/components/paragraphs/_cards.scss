@@ -1,0 +1,35 @@
+//----------------------------------------------
+//
+//	CARD PARAGRAPH BLOCKS - basic styles for card paragraph blocks
+//
+//	location: 
+//      /sass/components/paragraps/_cards.scss
+//
+//----------------------------------------------
+
+
+.paragraph--type-cards {
+    padding: 8vw;
+    
+    .cards-wrapper {
+	    display: flex;
+	    margin: 4vw 0;
+	}
+    .card {
+	    flex: 0 0 33.333%;
+	    padding: 0 3vw;
+	}
+	.field-name-sub-card-image {
+	    margin-bottom: 30px;
+	}
+	
+	.field-name-sub-card-link {
+		a {
+		    @include button;
+		    
+		    &:hover {
+			    @include button-hover;
+		    }
+		}
+	}
+}

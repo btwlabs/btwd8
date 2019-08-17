@@ -1334,6 +1334,7 @@ h6 {
 
 .block--views h2.block__title,
 .story-block h2.title,
+.cards-block h2.title,
 .field-name-recent-articles > h2.title,
 .node-type-news-article h1.title,
 .section-contact h1.title {
@@ -1343,6 +1344,7 @@ h6 {
 @media (min-width: 0em) {
   .block--views h2.block__title,
 .story-block h2.title,
+.cards-block h2.title,
 .field-name-recent-articles > h2.title,
 .node-type-news-article h1.title,
 .section-contact h1.title {
@@ -1353,6 +1355,7 @@ h6 {
 @media (min-width: 40.063em) {
   .block--views h2.block__title,
 .story-block h2.title,
+.cards-block h2.title,
 .field-name-recent-articles > h2.title,
 .node-type-news-article h1.title,
 .section-contact h1.title {
@@ -1363,6 +1366,7 @@ h6 {
 @media (min-width: 64.063em) {
   .block--views h2.block__title,
 .story-block h2.title,
+.cards-block h2.title,
 .field-name-recent-articles > h2.title,
 .node-type-news-article h1.title,
 .section-contact h1.title {
@@ -4738,6 +4742,72 @@ video {
   display: block;
   background-color: rgba(28, 46, 50, 0.65);
   z-index: 2;
+}
+
+.paragraph--type-cards {
+  padding: 8vw;
+}
+
+.paragraph--type-cards .cards-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 4vw 0;
+}
+
+.paragraph--type-cards .card {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 33.333%;
+          flex: 0 0 33.333%;
+  padding: 0 3vw;
+}
+
+.paragraph--type-cards .field-name-sub-card-image {
+  margin-bottom: 30px;
+}
+
+.paragraph--type-cards .field-name-sub-card-link a {
+  background: #64BAFF;
+  text-align: center;
+  color: #fff;
+  display: block;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: uppercase;
+  border-radius: 4px;
+  -webkit-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  padding: 15px 25px;
+  line-height: 1;
+  border: 2px solid #64BAFF;
+  font-weight: bold;
+  position: relative;
+  letter-spacing: 0.1em;
+}
+
+@media (min-width: 0em) and (max-width: 40em) {
+  .paragraph--type-cards .field-name-sub-card-link a {
+    display: block;
+  }
+}
+@media (min-width: 40.063em) {
+  .paragraph--type-cards .field-name-sub-card-link a {
+    display: inline-block;
+  }
+}
+.paragraph--type-cards .field-name-sub-card-link a:hover {
+  background: #fff;
+  color: #64BAFF;
+  border-color: #fff;
+  text-decoration: none;
+}
+
+.paragraph--type-cards .field-name-sub-card-link a:hover {
+  background: #fff;
+  color: #64BAFF;
+  border-color: #fff;
+  text-decoration: none;
 }
 
 .story-block {
