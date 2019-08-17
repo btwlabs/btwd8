@@ -14,6 +14,7 @@
 	background-position: center center;
 	position: relative;
 	
+	// hide bg image - each SB has a mobile img field
 	@include breakpoint($small-only) {
 		background-image: none;
 	}
@@ -34,8 +35,11 @@
 		}
 	}
 	
-	// Column Wrapper
-	// flex parent
+	//----------------------
+	//	Column Wrapper
+	//	-flex parent
+	//----------------------
+
 	.story-block-inner {
 		position: relative;
 		@include flexbox;
@@ -50,8 +54,11 @@
 		}
 	}
 	
-	// Columns
-	// flex children
+	//-----------------------
+	//	Columns
+	//	-flex children
+	//-----------------------
+	
 	.group-left,
 	.group-right {
 		@include flex-grow($int: 0);
@@ -64,7 +71,7 @@
 		background-size: cover;
 	}
 	
-	// story block title h2 or h3
+	// story block title h2
 	.title {
 		@include responsive-section-title;
 	}
@@ -121,7 +128,7 @@
 	------------------------------------------------*/
 	
 	// center text bg img
-	&.paragraph--view-mode-center-text-h1-title-full-bg-image,
+	&.paragraph--view-mode-center-text-h1-title-bg-image,
 	&.paragraph--view-mode-center-text-full-bg-image,
 	// left or right text, full bg image
 	&.paragraph--view-mode-right-text-full-bg-image,
@@ -133,7 +140,7 @@
 	}
 
 	// center copy with bg image
-	&.paragraph--view-mode-center-text-h1-title-full-bg-image,
+	&.paragraph--view-mode-center-text-h1-title-bg-image,
 	&.paragraph--view-mode-center-text-full-bg-image {
 		
 		.story-block-inner {
@@ -435,14 +442,18 @@
 			// make overlay only cover half
 			&.paragraph--view-mode-right-text-full-bg-image {
 				.image-overlay {
-					right: 0;
-					width: 50%;
+					//right: 0;
+					//width: 50%;
+					background: rgba(255,255,255,0.7);
+					background: linear-gradient(90deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.70) 55%);
 				}
 			}
 			&.paragraph--view-mode-left-text-full-bg-image {
 				.image-overlay {
-					left: 0;
-					width: 50%;
+					//left: 0;
+					//width: 50%;
+					background: rgba(31,31,31,0.7);
+					background: linear-gradient(90deg, rgba(31,31,31,0.70) 40%, rgba(31,31,31,0) 55%);
 				}
 			}
 	
@@ -494,7 +505,7 @@
 				//right: 0;
 				//width: 50%;
 				background: rgba(31,31,31,0.7);
-				background: linear-gradient(90deg, rgba(31,31,31,0) 40%, rgba(31,31,31,0.70) 72%);
+				background: linear-gradient(90deg, rgba(31,31,31,0) 40%, rgba(31,31,31,0.70) 55%);
 			}
 		}
 		&.paragraph--view-mode-left-text-full-bg-image {
@@ -502,7 +513,7 @@
 				//left: 0;
 				//width: 50%;
 				background: rgba(31,31,31,0.7);
-				background: linear-gradient(90deg, rgba(31,31,31,0.70) 40%, rgba(31,31,31,0) 72%);
+				background: linear-gradient(90deg, rgba(31,31,31,0.70) 40%, rgba(31,31,31,0) 55%);
 			}
 		}
 		

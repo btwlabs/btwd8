@@ -8,21 +8,35 @@
 //----------------------------------------------
 
 
+
+// Paragraph Outer Wrapper
 .paragraph--type-cards {
     padding: 8vw;
     
+    
+    // Cards Wrapper
     .cards-wrapper {
 	    display: flex;
 	    margin: 4vw 0;
 	}
+	
+	// Individual card
     .card {
 	    flex: 0 0 33.333%;
 	    padding: 0 3vw;
 	}
+	
+	// h3 title
+	.card-title {
+		@include responsive-card-title;
+	}
+	
+	// Card img
 	.field-name-sub-card-image {
 	    margin-bottom: 30px;
 	}
 	
+	// Card link
 	.field-name-sub-card-link {
 		a {
 		    @include button;
