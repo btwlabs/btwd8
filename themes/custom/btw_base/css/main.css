@@ -311,7 +311,7 @@ html {
 }
 
 body {
-  font-family: "brandon-grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.6;
@@ -1321,7 +1321,7 @@ h5,
 h6 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "brandon-grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 900;
   margin: 0 0 1em 0;
   color: #4A4A4A;
@@ -2003,7 +2003,7 @@ span.title-span-2 {
  Colorbox Popups  
 ---------------------------------------*/
 #cboxContent {
-  font-family: "brandon-grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .block-views-blockfaq-faq-list-accordion-block h3 {
@@ -3048,7 +3048,7 @@ span.hamburger-label {
   list-style-type: none;
   float: left;
   position: relative;
-  font-family: "brandon-grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   line-height: 1;
   /* sub nav menus */
@@ -3217,7 +3217,7 @@ span.hamburger-label {
   background-color: transparent;
   font-size: 14px;
   font-size: 0.7777777778rem;
-  font-family: "brandon-grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   line-height: 1;
   display: block;
