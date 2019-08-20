@@ -1498,6 +1498,7 @@ span.title-span-2 {
   display: block;
   color: red;
   font-size: 65%;
+  margin-top: 0.4em;
 }
 
 .align-left {
@@ -4773,11 +4774,17 @@ video {
   padding: 8vw;
 }
 
+.paragraph--type-cards .cards-intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 .paragraph--type-cards .cards-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 4vw 0;
+  margin: 5vw 0;
 }
 
 .paragraph--type-cards .card {
@@ -5517,6 +5524,11 @@ video {
     color: #222;
     border-color: #fff;
     text-decoration: none;
+  }
+}
+@media (min-width: 40.063em) {
+  .dark-bg.no-overlay .image-overlay {
+    background-color: transparent;
   }
 }
 /*# sourceMappingURL=main.css.map */

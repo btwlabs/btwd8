@@ -549,5 +549,11 @@
 				@include button-on-dark;
 			}
 		}
+		
+		&.no-overlay {
+			.image-overlay {
+				background-color: transparent;
+			}
+		}
 	}	
 }
