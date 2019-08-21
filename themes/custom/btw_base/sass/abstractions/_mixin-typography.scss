@@ -96,6 +96,23 @@
 	}
 }
 
+// Cards title - responsive sizes
+@mixin responsive-card-title {
+	@include breakpoint($small-only) {
+		//padding-bottom: 10px;
+		//border-bottom: 1px solid $border-color;
+	}
+	@include breakpoint($small-up) {
+		@include font-size(25px);
+	}
+	@include breakpoint($medium-up) {
+		@include font-size(22px);
+	}
+	@include breakpoint($large-up) {
+		@include font-size(30px);
+	}
+}
+
 // Captions
 @mixin caption-light {
 	color: #fff;

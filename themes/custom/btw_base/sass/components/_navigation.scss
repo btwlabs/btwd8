@@ -65,7 +65,7 @@
 				}
 				
 				&:before {
-					@include transition($property,$time,$function);
+					transition: all 0.2s ease;
 					width: 0;
 				}
 				

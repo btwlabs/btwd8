@@ -8,6 +8,8 @@
 //------------------------------------------------------
 
 
+// global variable for border radius
+$border-radius: 4px;
 
 // Border radius 
 @mixin border-radius($border-radius) {

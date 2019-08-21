@@ -70,12 +70,7 @@
 
             {% if page.branding|render %}
               <div class="l-branding">
-                <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="site-logo">
-                  <img src="/themes/custom/gearz/images/logo-gearz.png" alt="{{ 'Home'|t }}"/>
-                  <div class="site-name">
-                    {{ 'Real Music Tv' }}
-                    </div>
-                </a>
+                {{ page.branding }}
               </div><!-- l-branding -->
             {% endif %}
 

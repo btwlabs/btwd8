@@ -16,7 +16,7 @@
 */
 #}
 <div class="video-wrapper">
-  <video class="html5-video" muted="" autoplay="" loop="" preload="auto" width="auto" height="auto">
+  <video class="html5-video" playsinline autoplay loop muted width="auto" height="auto">
       {% for file in files %}
           <source {{ file.source_attributes }} />
       {% endfor %}

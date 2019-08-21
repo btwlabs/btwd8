@@ -120,6 +120,7 @@ h1, h2 {
 
 .block--views h2.block__title,
 .story-block h2.title,
+.cards-block h2.title,
 .field-name-recent-articles > h2.title,
 .node-type-news-article h1.title,
 .section-contact h1.title {
@@ -223,3 +224,30 @@ blockquote {
     }
 }
 
+/*--------------------
+
+  Span tags within titles
+  HTML editor mode
+ 
+---------------------*/
+
+span.title-span-1 {
+    display: block;
+    font-size: 50%;
+    color: #aaa;
+    text-transform: uppercase;
+}
+span.title-span-2 {
+    display: block;
+    color: red;
+    font-size: 65%;
+    margin-top: 0.4em;
+}
+
+// alignment classes for default overrides
+.align-left {
+	text-align: left;
+}
+.align-right {
+	text-align: right;
+}

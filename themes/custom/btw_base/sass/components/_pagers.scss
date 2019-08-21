@@ -235,7 +235,7 @@ ul.pager__items {
     span:nth-of-type(2) {
 	    @include breakpoint($medium-up) {
 	    	left: -100%;
-			@include transition($property,$time,$function);
+			transition: all 0.2s ease;
 	    }
 	    
 	    &:before {
@@ -261,7 +261,7 @@ ul.pager__items {
 		margin-left: 35px;
 		padding-right: 20px;
 		left: 0;
-		@include transition($property,$time,$function);
+		transition: all 0.2s ease;
 		display: inline-block;
 		vertical-align: middle;
 	}
@@ -322,7 +322,7 @@ ul.pager__items {
 		// move offscreen and set animation transition time
 		@include breakpoint($medium-up) {
 	    	right: -100%;
-			@include transition($property,$time,$function);
+			transition: all 0.2s ease;
 	    }
 	    
 	    &:before {
@@ -347,7 +347,7 @@ ul.pager__items {
 		right: 0;
 		margin-right: 35px;
 		padding-left: 20px;
-		@include transition($property,$time,$function);
+		transition: all 0.2s ease;
 	}
     
     // ----- animate on hover -----

@@ -46,7 +46,6 @@ h2#block-mainnavigation-mobile-menu {
 	
 	/* Site Name */
 	.site-name {
-		display:none;
 		
 		@include breakpoint($nav-small-and-med) {
 			display: block;
@@ -66,8 +65,8 @@ h2#block-mainnavigation-mobile-menu {
 			    color: $site-name-text-color;
 			    width: 100%;
 			    height: 100%;
-			    background: url(../images/logo-gearz.png) no-repeat scroll 15px center;
-			    background-size: 118px auto;
+			    background: transparent; // replace with link to logo img
+			    background-size: auto;
 		    }
 	    }
 	    @include breakpoint($nav-medium-only) {
