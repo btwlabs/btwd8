@@ -5,6 +5,9 @@ sites/default/config
 .lando.yml
 falses
 
+# Ignore dev modules
+modules/contrib/stage_file_proxy
+
 # Ignore composer lock file as this is a library of sorts.
 composer.lock
 
