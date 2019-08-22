@@ -1490,19 +1490,23 @@ blockquote:before {
 .pre-title {
   display: inline-block;
   font-size: 50%;
-  color: #aaa;
   text-transform: uppercase;
+  color: #fff;
+  padding: 4px 10px;
+  background: #aaa;
+  margin-bottom: 10px;
+  border-radius: 0px;
 }
 
 .main-title {
   display: block;
-  color: red;
-  font-size: 65%;
-  margin-top: 0.4em;
 }
 
 .post-title {
   display: inline-block;
+  color: rgba(77, 77, 77, 0.6);
+  font-size: 0.6em;
+  margin-top: 0.4em;
 }
 
 span.title-span-1 {
