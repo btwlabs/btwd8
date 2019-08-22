@@ -230,6 +230,24 @@ blockquote {
   HTML editor mode
  
 ---------------------*/
+.pre-title {
+	display: inline-block;
+	font-size: 50%;
+	color: #aaa;
+	text-transform: uppercase;
+}
+.main-title {
+	display: block;
+	color: red;
+    font-size: 65%;
+    margin-top: 0.4em;
+}
+.post-title {
+	display: inline-block;
+}
+
+
+
 
 span.title-span-1 {
     display: block;

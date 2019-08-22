@@ -1487,6 +1487,24 @@ blockquote:before {
   HTML editor mode
 
 ---------------------*/
+.pre-title {
+  display: inline-block;
+  font-size: 50%;
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+.main-title {
+  display: block;
+  color: red;
+  font-size: 65%;
+  margin-top: 0.4em;
+}
+
+.post-title {
+  display: inline-block;
+}
+
 span.title-span-1 {
   display: block;
   font-size: 50%;
@@ -4777,14 +4795,13 @@ video {
 .paragraph--type-cards .cards-intro {
   text-align: center;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0 auto 5vw;
 }
 
 .paragraph--type-cards .cards-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 5vw 0;
 }
 
 .paragraph--type-cards .card {
@@ -5165,6 +5182,12 @@ video {
   .story-block.paragraph--view-mode-left-text-right-image .group-right figure {
     margin: 0;
   }
+
+  .story-block.paragraph--view-mode-left-text-right-image .group-right figcaption {
+    text-align: center;
+    font-size: 0.8em;
+    margin: 0.05em 0 0;
+  }
 }
 @media (min-width: 0em) and (max-width: 40em) {
   .story-block.paragraph--view-mode-right-text-left-image .group-left .field-name-field-story-block-images {
@@ -5179,6 +5202,12 @@ video {
 
   .story-block.paragraph--view-mode-right-text-left-image .group-left figure {
     margin: 0;
+  }
+
+  .story-block.paragraph--view-mode-right-text-left-image .group-left figcaption {
+    text-align: center;
+    font-size: 0.8em;
+    margin: 0.05em 0 0;
   }
 
   .story-block.paragraph--view-mode-right-text-left-image .group-right {
