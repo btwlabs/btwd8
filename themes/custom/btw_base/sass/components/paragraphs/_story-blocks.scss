@@ -506,6 +506,11 @@
 			}
 		}
 		
+		figcaption {
+			@include caption-dark;
+		}
+
+		
 		// video popup link
 		.mfp-video-embed-all-items {
 			.mfp-video-embed-popup {
@@ -571,6 +576,9 @@
 			a {
 				@include button-on-dark;
 			}
+		}
+		figcaption {
+			@include caption-light;
 		}
 		
 		// video popup link

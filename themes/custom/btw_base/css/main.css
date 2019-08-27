@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url("https://use.typekit.net/hor5kfk.css");
 html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
@@ -1235,37 +1234,6 @@ a.tabledrag-handle-hover .handle {
  Custom Fonts
 
 -----------------------------------*/
-/* GUIDE:
-Brandon Grotesque Light
-	font-family: brandon-grotesque, sans-serif;
-	font-weight: 300;
-	font-style: normal;
-
-Brandon Grotesque Regular
-	font-family: brandon-grotesque, sans-serif;
-	font-weight: 400;
-	font-style: normal;
-
-Brandon Grotesque Regular Italic
-	font-family: brandon-grotesque, sans-serif;
-	font-weight: 400;
-	font-style: italic;
-
-Brandon Grotesque Bold
-	font-family: brandon-grotesque, sans-serif;
-	font-weight: 700;
-	font-style: normal;
-
-Brandon Grotesque Bold Italic
-	font-family: brandon-grotesque, sans-serif;
-	font-weight: 700;
-	font-style: italic;
-
-Brandon Grotesque Black
-	font-family: brandon-grotesque, sans-serif;
-	font-weight: 900;
-	font-style: normal;
-*/
 /*--------------------------------------------------------
 ----------------------------------------------------------
 
@@ -1506,20 +1474,6 @@ blockquote:before {
   display: inline-block;
   color: rgba(77, 77, 77, 0.6);
   font-size: 0.6em;
-  margin-top: 0.4em;
-}
-
-span.title-span-1 {
-  display: block;
-  font-size: 50%;
-  color: #aaa;
-  text-transform: uppercase;
-}
-
-span.title-span-2 {
-  display: block;
-  color: red;
-  font-size: 65%;
   margin-top: 0.4em;
 }
 
@@ -4921,6 +4875,27 @@ video {
   max-width: 150px;
 }
 
+.paragraph--type-cards .card-2 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 50%;
+          flex: 0 0 50%;
+  padding: 0 3vw;
+}
+
+.paragraph--type-cards .card-3 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 33.333%;
+          flex: 0 0 33.333%;
+  padding: 0 3vw;
+}
+
+.paragraph--type-cards .card-4 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 25%;
+          flex: 0 0 25%;
+  padding: 0 3vw;
+}
+
 .story-block {
   background-size: cover;
   background-position: center center;
@@ -5458,6 +5433,15 @@ video {
   }
 }
 @media (min-width: 40.063em) {
+  .light-bg figcaption {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .light-bg figcaption:before, .light-bg figcaption:after {
+    color: rgba(0, 0, 0, 0.6);
+  }
+}
+@media (min-width: 40.063em) {
   .light-bg .mfp-video-embed-all-items .mfp-video-embed-popup {
     background: #222;
     text-align: center;
@@ -5568,6 +5552,15 @@ video {
     color: #222;
     border-color: #fff;
     text-decoration: none;
+  }
+}
+@media (min-width: 40.063em) {
+  .dark-bg figcaption {
+    color: #fff;
+  }
+
+  .dark-bg figcaption:before, .dark-bg figcaption:after {
+    color: #fff;
   }
 }
 @media (min-width: 40.063em) {

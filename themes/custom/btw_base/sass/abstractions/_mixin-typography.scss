@@ -115,16 +115,16 @@
 
 // Captions
 @mixin caption-light {
-	color: #fff;
+	color: $caption-light-color;
 	
 	&:before, &:after {
-		color: #fff;
+		color: $caption-light-color;
 	}
 }
 @mixin caption-dark {
-	color: $text-color;
+	color: $caption-dark-color;
 	
 	&:before, &:after {
-		color: #b6b6b6;
+		color: $caption-dark-color;
 	}
 }
