@@ -49,7 +49,7 @@
 @mixin responsive-page-title {
 	
 	@include breakpoint($small-up) {
-		@include font-size(35px);
+		@include font-size(30px);
 	}
 	@include breakpoint($medium-up) {
 		@include font-size(40px);
@@ -62,10 +62,6 @@
 // Section title - responsive sizes
 @mixin responsive-section-title {
 	
-	@include breakpoint($small-only) {
-		//padding-bottom: 10px;
-		//border-bottom: 1px solid $border-color;
-	}
 	@include breakpoint($small-up) {
 		@include font-size(30px);
 	}
@@ -81,10 +77,6 @@
 // Section title - responsive sizes
 @mixin responsive-section-subtitle {
 	
-	@include breakpoint($small-only) {
-		//padding-bottom: 10px;
-		//border-bottom: 1px solid $border-color;
-	}
 	@include breakpoint($small-up) {
 		@include font-size(25px);
 	}
@@ -98,10 +90,7 @@
 
 // Cards title - responsive sizes
 @mixin responsive-card-title {
-	@include breakpoint($small-only) {
-		//padding-bottom: 10px;
-		//border-bottom: 1px solid $border-color;
-	}
+
 	@include breakpoint($small-up) {
 		@include font-size(25px);
 	}

@@ -1038,26 +1038,75 @@ dd {
 
 ----------------------------------------*/
 .grid {
-  margin: 0;
-  padding: 0;
-}
-
-.grid ul {
-  margin: 0;
+  margin: 0 0 3rem 0;
   padding: 0;
   overflow: hidden;
+  display: -webkit-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -moz-justify-content: space-between;
+  justify-content: space-between;
 }
 
+@supports (display: grid) {
+  .grid {
+    display: grid;
+    overflow: auto;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 40px 3.8%;
+  }
+}
 .grid li,
-.grid .item-list li,
-.grid-row {
+.grid .grid-row {
   list-style-type: none;
-  float: left;
   padding: 0;
   margin: 0;
   position: relative;
 }
 
+@supports not (display: grid) {
+  @media (min-width: 0em) and (max-width: 40em) {
+    .grid .grid-row {
+      width: 100%;
+      margin: 0 0 1em 0;
+    }
+  }
+  @media (min-width: 40.063em) {
+    .grid .grid-row {
+      width: 48%;
+      margin: 0 3.8% 4% 0;
+    }
+
+    .grid .grid-row:nth-child(2n+0) {
+      margin-right: 0;
+    }
+  }
+  @media (min-width: 64.063em) {
+    .grid .grid-row {
+      width: 30%;
+      margin: 0 4.9% 5% 0;
+    }
+
+    .grid .grid-row:nth-child(3n+0) {
+      margin-right: 0;
+    }
+  }
+  @media (min-width: 90.063em) {
+    .grid .grid-row {
+      width: 22%;
+      margin: 0 3.8% 4% 0;
+    }
+
+    .grid .grid-row:nth-child(4n+0) {
+      margin-right: 0;
+    }
+  }
+}
 /*---------------------------------------
 
  .LIST
@@ -1266,6 +1315,7 @@ ul, pre, table, address, fieldset {
 
 p {
   word-wrap: break-word;
+  margin-bottom: 1.5em;
 }
 
 .center {
@@ -1343,8 +1393,8 @@ h6 {
 -------------------*/
 @media (min-width: 0em) {
   h1 {
-    font-size: 35px;
-    font-size: 1.9444444444rem;
+    font-size: 30px;
+    font-size: 1.6666666667rem;
   }
 }
 @media (min-width: 40.063em) {
@@ -2465,8 +2515,8 @@ footer .block-system-branding-block h1 {
 
 @media (min-width: 0em) {
   .hero-wrapper .hero-title-body-wrapper .title {
-    font-size: 35px;
-    font-size: 1.9444444444rem;
+    font-size: 30px;
+    font-size: 1.6666666667rem;
   }
 }
 @media (min-width: 40.063em) {
@@ -5320,8 +5370,8 @@ video {
 
 @media (min-width: 0em) {
   .story-block.paragraph--view-mode-center-text-h1-title-bg-image .title {
-    font-size: 35px;
-    font-size: 1.9444444444rem;
+    font-size: 30px;
+    font-size: 1.6666666667rem;
   }
 }
 @media (min-width: 40.063em) {
