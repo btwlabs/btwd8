@@ -4925,35 +4925,37 @@ video {
   background-size: cover;
   background-position: center center;
   position: relative;
-  /*------------------------------------------------
+  /*-----------------------------------------------
 
   	DEFAULT View mode - encourage admin to change 
   	from default with color and text
 
-  -------------------------------------------------*/
-  /*------------------------------------------------
+  ------------------------------------------------*/
+  /*-----------------------------------------------
   -------------------------------------------------
 
   	FULL WIDTH BACKGROUND img - view modes
 
   -------------------------------------------------
   ------------------------------------------------*/
-  /*---------------------------------------------
+  /*----------------------------------------------
+  ------------------------------------------------
 
   	Single Text Column with FULL WIDTH bg image
 
+  ------------------------------------------------	
   ----------------------------------------------*/
   /*-----------------------------------------------
   -------------------------------------------------
 
-  	Text Column and Image Column (no backgrounds)
+  	Text Column + Image Column (no backgrounds)
 
   -------------------------------------------------	
   -----------------------------------------------*/
   /*----------------------------------------------
   ------------------------------------------------	
 
-  	Text Column with BG image column
+  	Text Column + BG image column
 
   ------------------------------------------------
   ----------------------------------------------*/
@@ -4992,6 +4994,10 @@ video {
     display: block;
   }
 }
+.story-block.no-overlay .image-overlay {
+  background-color: transparent;
+}
+
 .story-block .story-block-inner {
   position: relative;
   display: -webkit-box;
@@ -5385,35 +5391,35 @@ video {
 
 ----------------------------------------------*/
 @media (min-width: 40.063em) {
-  .light-bg .story-block .image-overlay {
+  .light-bg .image-overlay {
     background-color: rgba(255, 255, 255, 0.7);
   }
 
-  .light-bg .story-block.paragraph--view-mode-right-text-full-bg-image .image-overlay {
+  .light-bg.paragraph--view-mode-right-text-full-bg-image .image-overlay {
     background: rgba(255, 255, 255, 0.7);
     background: -webkit-gradient(linear, left top, right top, color-stop(40%, rgba(255, 255, 255, 0)), color-stop(55%, rgba(255, 255, 255, 0.7)));
     background: -o-linear-gradient(left, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.7) 55%);
     background: linear-gradient(90deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.7) 55%);
   }
 
-  .light-bg .story-block.paragraph--view-mode-left-text-full-bg-image .image-overlay {
+  .light-bg.paragraph--view-mode-left-text-full-bg-image .image-overlay {
     background: rgba(31, 31, 31, 0.7);
     background: -webkit-gradient(linear, left top, right top, color-stop(40%, rgba(31, 31, 31, 0.7)), color-stop(55%, rgba(31, 31, 31, 0)));
     background: -o-linear-gradient(left, rgba(31, 31, 31, 0.7) 40%, rgba(31, 31, 31, 0) 55%);
     background: linear-gradient(90deg, rgba(31, 31, 31, 0.7) 40%, rgba(31, 31, 31, 0) 55%);
   }
 
-  .light-bg .story-block .title,
-.light-bg .story-block h1 {
+  .light-bg .title,
+.light-bg h1 {
     color: #4A4A4A;
   }
 
-  .light-bg .story-block .field-name-story-block-text {
+  .light-bg .field-name-story-block-text {
     color: #000;
   }
 
-  .light-bg .story-block .field-name-story-block-link a,
-.light-bg .story-block .field-name-story-block-videos a {
+  .light-bg .field-name-story-block-link a,
+.light-bg .field-name-story-block-videos a {
     background: #222;
     text-align: center;
     color: #fff;
@@ -5431,20 +5437,20 @@ video {
   }
 }
 @media (min-width: 40.063em) and (min-width: 0em) and (max-width: 40em) {
-  .light-bg .story-block .field-name-story-block-link a,
-.light-bg .story-block .field-name-story-block-videos a {
+  .light-bg .field-name-story-block-link a,
+.light-bg .field-name-story-block-videos a {
     display: block;
   }
 }
 @media (min-width: 40.063em) and (min-width: 40.063em) {
-  .light-bg .story-block .field-name-story-block-link a,
-.light-bg .story-block .field-name-story-block-videos a {
+  .light-bg .field-name-story-block-link a,
+.light-bg .field-name-story-block-videos a {
     display: inline-block;
   }
 }
 @media (min-width: 40.063em) {
-  .light-bg .story-block .field-name-story-block-link a:hover,
-.light-bg .story-block .field-name-story-block-videos a:hover {
+  .light-bg .field-name-story-block-link a:hover,
+.light-bg .field-name-story-block-videos a:hover {
     background: #fff;
     color: #222;
     border-color: #fff;
@@ -5452,7 +5458,7 @@ video {
   }
 }
 @media (min-width: 40.063em) {
-  .light-bg .story-block .mfp-video-embed-all-items .mfp-video-embed-popup {
+  .light-bg .mfp-video-embed-all-items .mfp-video-embed-popup {
     background: #222;
     text-align: center;
     color: #fff;
@@ -5470,21 +5476,26 @@ video {
   }
 }
 @media (min-width: 40.063em) and (min-width: 0em) and (max-width: 40em) {
-  .light-bg .story-block .mfp-video-embed-all-items .mfp-video-embed-popup {
+  .light-bg .mfp-video-embed-all-items .mfp-video-embed-popup {
     display: block;
   }
 }
 @media (min-width: 40.063em) and (min-width: 40.063em) {
-  .light-bg .story-block .mfp-video-embed-all-items .mfp-video-embed-popup {
+  .light-bg .mfp-video-embed-all-items .mfp-video-embed-popup {
     display: inline-block;
   }
 }
 @media (min-width: 40.063em) {
-  .light-bg .story-block .mfp-video-embed-all-items .mfp-video-embed-popup:hover {
+  .light-bg .mfp-video-embed-all-items .mfp-video-embed-popup:hover {
     background: #fff;
     color: #222;
     border-color: #fff;
     text-decoration: none;
+  }
+}
+@media (min-width: 40.063em) {
+  .light-bg.no-overlay .image-overlay {
+    background-color: transparent;
   }
 }
 @media (min-width: 40.063em) {

@@ -35,6 +35,12 @@
 		}
 	}
 	
+	&.no-overlay {
+		.image-overlay {
+			background-color: transparent;
+		}
+	}
+	
 	//----------------------
 	//	2 Column Wrapper
 	//	-flex parent
@@ -110,18 +116,18 @@
 	}
 	
 	
-	/*------------------------------------------------
+	/*-----------------------------------------------
 		
 		DEFAULT View mode - encourage admin to change 
 		from default with color and text
 		
-	-------------------------------------------------*/
+	------------------------------------------------*/
 	
 	&.paragraph--view-mode-default {
 	    padding: 8vw;
 	}
 	
-	/*------------------------------------------------
+	/*-----------------------------------------------
 	-------------------------------------------------
 		
 		FULL WIDTH BACKGROUND img - view modes
@@ -166,13 +172,17 @@
 		}
 	}
 	
-	/*---------------------------------------------
+	/*----------------------------------------------
+	------------------------------------------------
 		
 		Single Text Column with FULL WIDTH bg image
-		
+	
+	------------------------------------------------	
 	----------------------------------------------*/
 	
-	// LEFT text, full width bg img
+	//--------------------------------
+	//	LEFT text, full width bg img
+	//--------------------------------
 	&.paragraph--view-mode-left-text-full-bg-image {
 
 		@include breakpoint($medium-up) {
@@ -200,7 +210,9 @@
 		}		
 	}
 	
-	// RIGHT text, full width bg img
+	//--------------------------------
+	//	RIGHT text, full width bg img
+	//--------------------------------
 	&.paragraph--view-mode-right-text-full-bg-image {
 
 		@include breakpoint($medium-up) {
@@ -232,7 +244,7 @@
 	/*-----------------------------------------------
 	-------------------------------------------------
 		
-		Text Column and Image Column (no backgrounds)
+		Text Column + Image Column (no backgrounds)
 	
 	-------------------------------------------------	
 	-----------------------------------------------*/
@@ -316,7 +328,7 @@
 	/*----------------------------------------------
 	------------------------------------------------	
 		
-		Text Column with BG image column
+		Text Column + BG image column
 	
 	------------------------------------------------
 	----------------------------------------------*/
@@ -452,54 +464,58 @@
 ----------------------------------------------*/
 
 .light-bg {
-	.story-block {
 		
-		@include breakpoint($medium-up) {
+	@include breakpoint($medium-up) {
+		.image-overlay {
+			background-color: $overlay-bg-color-on-light;
+		}
+		
+		// on SB with full img bg and L or R text (not centered or h1), 
+		// make overlay only cover half
+		&.paragraph--view-mode-right-text-full-bg-image {
 			.image-overlay {
-				background-color: $overlay-bg-color-on-light;
+				//right: 0;
+				//width: 50%;
+				background: rgba(255,255,255,0.7);
+				background: linear-gradient(90deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.70) 55%);
 			}
-			
-			// on SB with full img bg and L or R text (not centered or h1), 
-			// make overlay only cover half
-			&.paragraph--view-mode-right-text-full-bg-image {
-				.image-overlay {
-					//right: 0;
-					//width: 50%;
-					background: rgba(255,255,255,0.7);
-					background: linear-gradient(90deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.70) 55%);
-				}
+		}
+		&.paragraph--view-mode-left-text-full-bg-image {
+			.image-overlay {
+				//left: 0;
+				//width: 50%;
+				background: rgba(31,31,31,0.7);
+				background: linear-gradient(90deg, rgba(31,31,31,0.70) 40%, rgba(31,31,31,0) 55%);
 			}
-			&.paragraph--view-mode-left-text-full-bg-image {
-				.image-overlay {
-					//left: 0;
-					//width: 50%;
-					background: rgba(31,31,31,0.7);
-					background: linear-gradient(90deg, rgba(31,31,31,0.70) 40%, rgba(31,31,31,0) 55%);
-				}
+		}
+
+		.title,
+		h1 {
+			color: $title-on-light-color;
+		}
+		
+		.field-name-story-block-text {
+			color: $text-on-light-color;
+		}
+		
+		// button link
+		.field-name-story-block-link,
+		.field-name-story-block-videos {		
+			a {
+				@include button-on-light;
 			}
-	
-			.title,
-			h1 {
-				color: $title-on-light-color;
+		}
+		
+		// video popup link
+		.mfp-video-embed-all-items {
+			.mfp-video-embed-popup {
+				@include button-on-light;
 			}
-			
-			.field-name-story-block-text {
-				color: $text-on-light-color;
-			}
-			
-			// button link
-			.field-name-story-block-link,
-			.field-name-story-block-videos {		
-				a {
-					@include button-on-light;
-				}
-			}
-			
-			// video popup link
-			.mfp-video-embed-all-items {
-				.mfp-video-embed-popup {
-					@include button-on-light;
-				}
+		}
+		
+		&.no-overlay {
+			.image-overlay {
+				background-color: transparent;
 			}
 		}
 	}
@@ -554,7 +570,6 @@
 		.field-name-story-block-videos {		
 			a {
 				@include button-on-dark;
-
 			}
 		}
 		
