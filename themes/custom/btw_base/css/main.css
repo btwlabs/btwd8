@@ -747,7 +747,7 @@ h6:after {
 
 @media (min-width: 0em) and (max-width: 40em) {
   .l-constrained {
-    margin: 0 24px;
+    margin: 0 20px;
   }
 }
 @media (min-width: 40.063em) {
@@ -2513,12 +2513,42 @@ footer .block-system-branding-block h1 {
   margin-bottom: 0.5em;
 }
 
+@media (min-width: 0em) {
+  .hero-wrapper .hero-title-body-wrapper .title {
+    font-size: 35px;
+    font-size: 1.9444444444rem;
+  }
+}
+@media (min-width: 40.063em) {
+  .hero-wrapper .hero-title-body-wrapper .title {
+    font-size: 40px;
+    font-size: 2.2222222222rem;
+  }
+}
+@media (min-width: 64.063em) {
+  .hero-wrapper .hero-title-body-wrapper .title {
+    font-size: 45px;
+    font-size: 2.5rem;
+  }
+}
 .hero-wrapper .hero-title-body-wrapper .field-name-body {
   color: #ccc;
   font-size: 1.5em;
   line-height: 1.4;
 }
 
+@media (min-width: 0em) and (max-width: 40em) {
+  .hero-wrapper .hero-title-body-wrapper .field-name-body {
+    font-size: 19px;
+    font-size: 1.0555555556rem;
+  }
+}
+@media (min-width: 64.063em) {
+  .hero-wrapper .hero-title-body-wrapper .field-name-body {
+    font-size: 24px;
+    font-size: 1.3333333333rem;
+  }
+}
 .l-branding {
   background-color: transparent;
   height: auto;
@@ -4897,35 +4927,50 @@ video {
   position: relative;
   /*------------------------------------------------
 
-  	DEFAULT View mode - encourage to change from default
-  	with color and text
+  	DEFAULT View mode - encourage admin to change 
+  	from default with color and text
 
   -------------------------------------------------*/
   /*------------------------------------------------
+  -------------------------------------------------
 
-  	VIEW MODES with FULL WIDTH BACKGROUND IMAGES
+  	FULL WIDTH BACKGROUND img - view modes
 
+  -------------------------------------------------
   ------------------------------------------------*/
   /*---------------------------------------------
 
   	Single Text Column with FULL WIDTH bg image
 
   ----------------------------------------------*/
-  /*---------------------------------------------
+  /*-----------------------------------------------
+  -------------------------------------------------
 
   	Text Column and Image Column (no backgrounds)
 
-  ----------------------------------------------*/
-  /*---------------------------------------------
+  -------------------------------------------------	
+  -----------------------------------------------*/
+  /*----------------------------------------------
+  ------------------------------------------------	
 
   	Text Column with BG image column
 
+  ------------------------------------------------
   ----------------------------------------------*/
-  /*------------------------------------------------
+  /*---------------------------------------------
+  -----------------------------------------------
+
+  	Mobile image
+
+  -----------------------------------------------	
+  ----------------------------------------------*/
+  /*----------------------------------------------
+  ------------------------------------------------
 
   	Center Text column with FULL WIDTH bg image
 
-  -------------------------------------------------*/
+  -----------------------------------------------
+  ----------------------------------------------*/
 }
 
 @media (min-width: 0em) and (max-width: 40em) {
@@ -4971,7 +5016,7 @@ video {
 
 @media (min-width: 0em) and (max-width: 40em) {
   .story-block .story-block-inner {
-    padding: 30px;
+    padding: 0 20px 50px;
   }
 }
 .story-block .group-left,
@@ -5028,6 +5073,11 @@ video {
     font-size: 1.3333333333rem;
   }
 }
+.story-block .field-name-story-block-link,
+.story-block .field-name-story-block-videos {
+  margin: 2em 0 0;
+}
+
 .story-block .field-name-story-block-link a,
 .story-block .field-name-story-block-videos a {
   background: #64BAFF;
@@ -5047,8 +5097,6 @@ video {
   font-weight: bold;
   position: relative;
   letter-spacing: 0.1em;
-  font-size: 20px;
-  font-size: 1.1111111111rem;
 }
 
 @media (min-width: 0em) and (max-width: 40em) {
@@ -5128,13 +5176,12 @@ video {
   }
 }
 .story-block.paragraph--view-mode-center-text-h1-title-bg-image .story-block-inner, .story-block.paragraph--view-mode-center-text-full-bg-image .story-block-inner {
-  padding: 8vw 0;
   position: relative;
 }
 
 @media (min-width: 0em) and (max-width: 40em) {
   .story-block.paragraph--view-mode-center-text-h1-title-bg-image .story-block-inner, .story-block.paragraph--view-mode-center-text-full-bg-image .story-block-inner {
-    padding: 0 30px 60px;
+    padding: 0 20px 60px;
   }
 }
 @media (min-width: 40.063em) {
@@ -5157,13 +5204,33 @@ video {
 
   .story-block.paragraph--view-mode-left-text-full-bg-image .group-right {
     width: 50%;
-    padding: 4vw;
+    padding: 8vw 8vw 8vw 0;
+  }
+
+  .story-block.paragraph--view-mode-left-text-full-bg-image .group-right figure {
+    margin: 0;
+  }
+
+  .story-block.paragraph--view-mode-left-text-full-bg-image .group-right figcaption {
+    text-align: center;
+    font-size: 0.8em;
+    margin: 0.05em 0 0;
   }
 }
 @media (min-width: 40.063em) {
   .story-block.paragraph--view-mode-right-text-full-bg-image .group-left {
     width: 50%;
-    padding: 4vw;
+    padding: 8vw 0 8vw 8vw;
+  }
+
+  .story-block.paragraph--view-mode-right-text-full-bg-image .group-left figure {
+    margin: 0;
+  }
+
+  .story-block.paragraph--view-mode-right-text-full-bg-image .group-left figcaption {
+    text-align: center;
+    font-size: 0.8em;
+    margin: 0.05em 0 0;
   }
 
   .story-block.paragraph--view-mode-right-text-full-bg-image .group-right {
@@ -5229,41 +5296,20 @@ video {
     padding: 0;
   }
 }
-@media (min-width: 40.063em) and (min-width: 0em) and (max-width: 40em) {
-  .story-block.paragraph--view-mode-left-text-right-bg-image .group-left {
-    -webkit-box-ordinal-group: 3;
-    -moz-order: 2;
-    -ms-flex-order: 2;
-    order: 2;
-    padding-top: 5%;
-  }
-}
-@media (min-width: 40.063em) and (min-width: 40.063em) {
+@media (min-width: 40.063em) {
   .story-block.paragraph--view-mode-left-text-right-bg-image .group-left {
     width: 50%;
     padding: 8vw;
   }
-}
-@media (min-width: 40.063em) and (min-width: 0em) and (max-width: 40em) {
-  .story-block.paragraph--view-mode-left-text-right-bg-image .group-right {
-    -webkit-box-ordinal-group: 2;
-    -moz-order: 1;
-    -ms-flex-order: 1;
-    order: 1;
-    height: 400px;
-    background-position: center center;
-  }
-}
-@media (min-width: 40.063em) and (min-width: 40.063em) {
+
   .story-block.paragraph--view-mode-left-text-right-bg-image .group-right {
     width: 50%;
-    padding: 4vw;
+    background-position: center center;
   }
 }
 @media (min-width: 40.063em) {
   .story-block.paragraph--view-mode-right-text-left-bg-image .group-left {
     width: 50%;
-    padding: 4vw;
     background-position: center center;
   }
 
@@ -5274,7 +5320,7 @@ video {
 }
 @media (min-width: 0em) and (max-width: 40em) {
   .story-block .field-name-display-field-copyparagraph-story-block-mobile-image {
-    margin: 0 -30px 30px;
+    margin: 0 -20px 20px;
   }
 }
 @media (min-width: 40.063em) {
@@ -5330,22 +5376,6 @@ video {
 }
 .story-block.paragraph--view-mode-center-text-full-bg-image .story-block-inner {
   display: block;
-}
-
-.story-block-images .l-constrained {
-  width: 100%;
-}
-
-.story-block-images ul {
-  margin: 0;
-  padding: 0;
-}
-
-.story-block-images ul li {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  list-style-image: none;
 }
 
 /*---------------------------------------------

@@ -23,11 +23,13 @@
 	    .title {
 		    color: $hero-title-color;
 		    margin-bottom: 0.5em;
+		    @include responsive-page-title;
 	    }
 	    .field-name-body {
 		    color: $hero-text-color;
 		    font-size: 1.5em;
 			line-height: 1.4;
+			@include responsive-body-text;
 	    }
 	}
 }
