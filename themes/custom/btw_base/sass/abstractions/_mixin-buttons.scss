@@ -9,15 +9,17 @@
 
 
 
-// button mixins
+//--------------------------------------------------
+//
+//	Default buttons
+//
+//------------------------------------------------
 
 @mixin button {
 	background: $button-bg-color; 
 	text-align: center;
 	color: $button-text-color;
-	display: block;
 	text-decoration: none;
-	text-shadow: none;
 	text-transform: $button-text-transform;
 	@include border-radius($button-border-radius);
 	@include transition(all, 0.3s, ease-in);
@@ -54,7 +56,14 @@
 	padding: $button-padding;
 }
 
-// button mixin LIGHT BUTTON ON DARK BG
+
+
+//--------------------------------------------------
+//
+//	LIGHT BUTTON ON DARK BG mixin
+//
+//--------------------------------------------------
+
 @mixin button-on-dark {
 	background: $button-bg-color-on-dark; 
 	text-align: center;
@@ -90,7 +99,13 @@
 	text-decoration: none;
 }
 
-// button mixin DARK BUTTON ON LIGHT BG
+
+//--------------------------------------------------
+//
+//	DARK BUTTON ON LIGHT BG mixin
+//
+//--------------------------------------------------
+
 @mixin button-on-light {
 	background: $button-bg-color-on-light; 
 	text-align: center;

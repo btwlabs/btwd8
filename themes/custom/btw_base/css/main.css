@@ -365,9 +365,7 @@ input[type=button] {
   background: #64BAFF;
   text-align: center;
   color: #fff;
-  display: block;
   text-decoration: none;
-  text-shadow: none;
   text-transform: uppercase;
   border-radius: 4px;
   -webkit-transition: all 0.3s ease-in;
@@ -574,9 +572,7 @@ input[type=file] {
   background: #64BAFF;
   text-align: center;
   color: #fff;
-  display: block;
   text-decoration: none;
-  text-shadow: none;
   text-transform: uppercase;
   border-radius: 4px;
   -webkit-transition: all 0.3s ease-in;
@@ -4830,9 +4826,7 @@ video {
   background: #64BAFF;
   text-align: center;
   color: #fff;
-  display: block;
   text-decoration: none;
-  text-shadow: none;
   text-transform: uppercase;
   border-radius: 4px;
   -webkit-transition: all 0.3s ease-in;
@@ -5064,9 +5058,7 @@ video {
   background: #64BAFF;
   text-align: center;
   color: #fff;
-  display: block;
   text-decoration: none;
-  text-shadow: none;
   text-transform: uppercase;
   border-radius: 4px;
   -webkit-transition: all 0.3s ease-in;
@@ -5113,9 +5105,7 @@ video {
   background: #64BAFF;
   text-align: center;
   color: #fff;
-  display: block;
   text-decoration: none;
-  text-shadow: none;
   text-transform: uppercase;
   border-radius: 4px;
   -webkit-transition: all 0.3s ease-in;
