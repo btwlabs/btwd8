@@ -1034,13 +1034,13 @@ dd {
 ---------------------------------------------------------*/
 /*---------------------------------------
 
- .GRID
+	GRID CSS - for items to display in a
+			   grid layout
 
 ----------------------------------------*/
 .grid {
   margin: 0 0 3rem 0;
   padding: 0;
-  overflow: hidden;
   display: -webkit-box;
   display: -moz-flex;
   display: -ms-flexbox;
@@ -1056,7 +1056,6 @@ dd {
 @supports (display: grid) {
   .grid {
     display: grid;
-    overflow: auto;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 40px 3.8%;
   }

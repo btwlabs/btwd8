@@ -96,14 +96,14 @@ dd {
 
 /*---------------------------------------
 
- .GRID
+	GRID CSS - for items to display in a
+			   grid layout
  
 ----------------------------------------*/
 
 .grid {
 	margin: 0 0 3rem 0;
 	padding: 0;
-	overflow: hidden;	
 	@include flexbox;
 	@include flex-wrap($value: wrap);
 	@include justify-content($value: space-between);
@@ -111,7 +111,6 @@ dd {
 	// use mixins "grid-1", "grid-2" etc to establish unit widths per instance
 	@supports (display:grid) {
 		display: grid;
-		overflow: auto;
 		grid-template-columns: repeat(auto-fit,minmax(250px, 1fr));
 		grid-gap: 40px 3.8%;
 	}	
