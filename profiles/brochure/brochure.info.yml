@@ -93,6 +93,10 @@ install:
  - responsive_image
  - rest
  - restui
+ - schema_metatag
+ - schema_organization
+ - schema_video_object
+ - schema_web_site
  - search
  - serialization
  - shortcut

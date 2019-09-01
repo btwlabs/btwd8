@@ -209,6 +209,7 @@ content:
     label: hidden
     settings:
       gallery_type: first_item
+      autoplay: true
       link_text: 'Watch Video'
       link_classes: ''
     third_party_settings:
@@ -243,7 +244,7 @@ content:
             fis-at: ''
             fi: true
             fi-el: h2
-            fi-cl: 'title subtitle'
+            fi-cl: title
             fi-at: ''
             suffix: ''
             lbw: false
