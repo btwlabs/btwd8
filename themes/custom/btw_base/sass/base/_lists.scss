@@ -96,28 +96,52 @@ dd {
 
 /*---------------------------------------
 
- .GRID
+	GRID CSS - for items to display in a
+			   grid layout
  
 ----------------------------------------*/
 
-.grid  {
-	margin: 0;
+.grid {
+	margin: 0 0 3rem 0;
 	padding: 0;
+	@include flexbox;
+	@include flex-wrap($value: wrap);
+	@include justify-content($value: space-between);
+	
+	// use mixins "grid-1", "grid-2" etc to establish unit widths per instance
+	@supports (display:grid) {
+		display: grid;
+		grid-template-columns: repeat(auto-fit,minmax(250px, 1fr));
+		grid-gap: 40px 3.8%;
+	}	
+    
+    li,
+	.grid-row {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+		position: relative;
+	}
+	// for flexbox fallback
+	@supports not (display:grid) {
+		.grid-row {
+			@include breakpoint($small-only) {
+				@include flexgrid-1;
+			}
+			@include breakpoint($medium-up) {
+				@include flexgrid-2;
+			}
+			@include breakpoint($large-up) {
+				@include flexgrid-3;
+			}
+			@include breakpoint($xlarge-up) {
+				@include flexgrid-4;
+			}
+		}
+	}
 }
-.grid ul {
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-}
-.grid li,
-.grid .item-list li,
-.grid-row {
-	list-style-type: none;
-	float: left;
-	padding: 0;
-	margin: 0;
-	position: relative;
-}
+
+	
 
 /*---------------------------------------
 

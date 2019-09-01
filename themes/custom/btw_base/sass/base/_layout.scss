@@ -20,7 +20,7 @@
 
 .l-constrained {
 	@include breakpoint($small-only) {
-		margin: 0 24px;
+		margin: 0 20px;
 	}
 	@include breakpoint($medium-up) {
 		width: 80%;

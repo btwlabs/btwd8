@@ -42,16 +42,6 @@ gulp.task('sass', function () {
 
 
 /**
- * @task clearcache
- * Clear all caches
- */
-gulp.task('clearcache', function(done) {
-	return cp.spawn('drush', ['cache-rebuild'], {stdio: 'inherit'})
-	.on('close', done);
-});
-
-
-/**
  * @task reload
  * Refresh the page after clearing cache
  */

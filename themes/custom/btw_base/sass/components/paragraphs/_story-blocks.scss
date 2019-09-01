@@ -1,9 +1,9 @@
 //----------------------------------------------
 //
-//	STORY BLOCKS - basic styles for paragraph story blocks
+//	STORY BLOCK Paragraph types - default styles
 //
 //	location: 
-//      /sass/components/story-blocks/_story-blocks.scss
+//      /sass/components/paragraphs/_story-blocks.scss
 //
 //----------------------------------------------
 
@@ -35,8 +35,14 @@
 		}
 	}
 	
+	&.no-overlay {
+		.image-overlay {
+			background-color: transparent;
+		}
+	}
+	
 	//----------------------
-	//	Column Wrapper
+	//	2 Column Wrapper
 	//	-flex parent
 	//----------------------
 
@@ -49,8 +55,7 @@
 		@include align-items($value: stretch);
 		
 		@include breakpoint($small-only) {
-			margin-left: 30px;
-			margin-right: 30px;
+			padding: 0 20px 50px;
 		}
 	}
 	
@@ -71,7 +76,7 @@
 		background-size: cover;
 	}
 	
-	// story block title h2
+	// story block title
 	.title {
 		@include responsive-section-title;
 	}
@@ -84,9 +89,10 @@
 	// content field link - default with no indication .dark-bg or .light-bg
 	.field-name-story-block-link,
 	.field-name-story-block-videos {
+		margin: 2em 0 0;
+		
 		a {
 			@include button;
-			@include font-size(20px);
 		}
 	}
 	
@@ -110,30 +116,34 @@
 	}
 	
 	
-	/*------------------------------------------------
+	/*-----------------------------------------------
 		
-		DEFAULT View mode - encourage to change from default
-		with color and text
+		DEFAULT View mode - encourage admin to change 
+		from default with color and text
 		
-	-------------------------------------------------*/
+	------------------------------------------------*/
 	
 	&.paragraph--view-mode-default {
 	    padding: 8vw;
 	}
 	
-	/*------------------------------------------------
+	/*-----------------------------------------------
+	-------------------------------------------------
 		
-		VIEW MODES with FULL WIDTH BACKGROUND IMAGES
-		
+		FULL WIDTH BACKGROUND img - view modes
+	
+	-------------------------------------------------
 	------------------------------------------------*/
 	
 	// center text bg img
 	&.paragraph--view-mode-center-text-h1-title-bg-image,
 	&.paragraph--view-mode-center-text-full-bg-image,
+	
 	// left or right text, full bg image
 	&.paragraph--view-mode-right-text-full-bg-image,
 	&.paragraph--view-mode-left-text-full-bg-image {
 		
+		// hide background img - has separate mobile img field
 		@include breakpoint($small-only) {
 			background-image: none;
 		}
@@ -144,8 +154,11 @@
 	&.paragraph--view-mode-center-text-full-bg-image {
 		
 		.story-block-inner {
-			padding: 8vw 0;
 			position: relative;
+			
+			@include breakpoint($small-only) {
+				padding: 0 20px 60px;
+			}
 			
 			@include breakpoint($medium-up) {
 				padding: 8vw;
@@ -159,20 +172,19 @@
 		}
 	}
 	
-	/*---------------------------------------------
+	/*----------------------------------------------
+	------------------------------------------------
 		
 		Single Text Column with FULL WIDTH bg image
-		
+	
+	------------------------------------------------	
 	----------------------------------------------*/
 	
-	// LEFT text, full width bg img
+	//--------------------------------
+	//	LEFT text, full width bg img
+	//--------------------------------
 	&.paragraph--view-mode-left-text-full-bg-image {
 
-		@include breakpoint($small-only) {
-			.group-left {
-				
-			}
-		}
 		@include breakpoint($medium-up) {
 			
 			// image column
@@ -184,14 +196,23 @@
 			// text column
 			.group-right {
 				width: 50%;
-				padding: 4vw;
+				padding: 8vw 8vw 8vw 0;
+				
+				figure {
+					margin: 0;
+				}
+				figcaption {
+				    text-align: center;
+				    font-size: .8em;
+				    margin: .05em 0 0;
+				}
 			}
-			
-			
 		}		
 	}
 	
-	// RIGHT text, full width bg img
+	//--------------------------------
+	//	RIGHT text, full width bg img
+	//--------------------------------
 	&.paragraph--view-mode-right-text-full-bg-image {
 
 		@include breakpoint($medium-up) {
@@ -199,7 +220,16 @@
 			// image column
 			.group-left {
 				width: 50%;
-				padding: 4vw;
+				padding: 8vw 0 8vw 8vw;
+				
+				figure {
+					margin: 0;
+				}
+				figcaption {
+				    text-align: center;
+				    font-size: .8em;
+				    margin: .05em 0 0;
+				}
 			}
 			
 			// text column
@@ -211,13 +241,17 @@
 	}
 	
 	
-	/*---------------------------------------------
+	/*-----------------------------------------------
+	-------------------------------------------------
 		
-		Text Column and Image Column (no backgrounds)
-		
-	----------------------------------------------*/
+		Text Column + Image Column (no backgrounds)
+	
+	-------------------------------------------------	
+	-----------------------------------------------*/
 
-	// LEFT text RIGHT image
+	//------------------------------
+	//	LEFT text RIGHT image
+	//------------------------------
 	&.paragraph--view-mode-left-text-right-image {
 		
 		// hide non-mobile image
@@ -243,11 +277,18 @@
 				figure {
 					margin: 0;
 				}
+				figcaption {
+				    text-align: center;
+				    font-size: .8em;
+				    margin: .05em 0 0;
+				}
 			}
 		}		
 	}
 	
-	// RIGHT text LEFT image
+	//------------------------------
+	//	RIGHT text LEFT image
+	//------------------------------
 	&.paragraph--view-mode-right-text-left-image {
 		
 		// hide non-mobile image
@@ -267,6 +308,11 @@
 				figure {
 					margin: 0;
 				}
+				figcaption {
+				    text-align: center;
+				    font-size: .8em;
+				    margin: .05em 0 0;
+				}
 			}
 			
 			// text column
@@ -279,10 +325,12 @@
 	
 
 	
-	/*---------------------------------------------
+	/*----------------------------------------------
+	------------------------------------------------	
 		
-		Text Column with BG image column
-		
+		Text Column + BG image column
+	
+	------------------------------------------------
 	----------------------------------------------*/
 	
 	// for column bg images, negate constrained styling
@@ -297,56 +345,41 @@
 		}
 	}
 	
-	// LEFT text, RIGHT image
+	//------------------------------
+	//	LEFT text, RIGHT BG image
+	//------------------------------
 	&.paragraph--view-mode-left-text-right-bg-image {
 		
 		@include breakpoint($medium-up) {
 			
-			// text column
+			// TEXT column
 			.group-left {
-				
-				// need to reorder so image is on top in mobile only
-				@include breakpoint($small-only) {
-					@include order($int: 2); // flexbox mixins - order
-					padding-top: 5%; // lower to push text closer to the image above it
-				}
-				
-				@include breakpoint($medium-up) {
-					width: 50%;
-					padding: 8vw;
-				}				
+				width: 50%;
+				padding: 8vw;
 			}
 			
-			// image column
+			// IMG column
 			.group-right {
-				
-				@include breakpoint($small-only) {
-					@include order($int: 1); // flexbox mixins - order
-					height: 400px;
-					background-position: center center;
-				}
-				
-				@include breakpoint($medium-up) {
-					width: 50%;
-					padding: 4vw;
-				}
+				width: 50%;
+				background-position: center center;
 			}
 		}
 	}
 	
-	// RIGHT text, LEFT image
+	//------------------------------
+	//	RIGHT text, LEFT BG image
+	//------------------------------
 	&.paragraph--view-mode-right-text-left-bg-image {
 		
 		@include breakpoint($medium-up) {
 			
-			// image column
+			// IMG column
 			.group-left {
 				width: 50%;
-				padding: 4vw;
 				background-position: center center;
 			}
 			
-			// text column
+			// TEXT column
 			.group-right {
 				width: 50%;
 				padding: 8vw;
@@ -354,12 +387,21 @@
 		}
 	}
 	
-	// hide mobile image in medium-up layouts
+	/*---------------------------------------------
+	-----------------------------------------------
+		
+		Mobile image
+		
+	-----------------------------------------------	
+	----------------------------------------------*/
+	
 	.field-name-display-field-copyparagraph-story-block-mobile-image {
 		
 		@include breakpoint($small-only) {
-			margin: -8vw -30px 30px;
+			margin: 0 -20px 20px;
 		}
+		
+		// hide mobile image in medium-up layouts
 		@include breakpoint($medium-up) {
 			display: none;
 		}
@@ -376,57 +418,42 @@
 	
 	
 	
-	/*------------------------------------------------
+	/*----------------------------------------------
+	------------------------------------------------
 		
 		Center Text column with FULL WIDTH bg image
-		
-	-------------------------------------------------*/
+	
+	-----------------------------------------------
+	----------------------------------------------*/
 	
 	// Center Text, h1 with BG image
 	&.paragraph--view-mode-center-text-h1-title-bg-image {
+		text-align: center;
+		
+		@include breakpoint($small-only) {
+			text-align: left;
+		}
 		
 		.story-block-inner {
 			display: block; // override flexbox
 		}
 		.title {
-			text-align: center;
 			@include responsive-page-title;
 		}
-		.field-name-story-block-text {
-			text-align: center;
-		}
 	}
+	
 	// Center text with BG image
 	&.paragraph--view-mode-center-text-full-bg-image {
+		text-align: center;
+		
+		@include breakpoint($small-only) {
+			text-align: left;
+		}
 		.story-block-inner {
 			display: block; // override flexbox
 		}
-		.title {
-			text-align: center;
-		}
-		.field-name-story-block-text {
-			text-align: center;
-		}
 	}
 }
-
-
-.story-block-images {
-	.l-constrained {
-		width: 100%;
-	}
-	
-	// reset list-style, margin, padding to none
-	ul {
-		margin: 0;
-		padding: 0;
-		
-		li {
-			@include no-bullet(0,0);
-		}
-	}
-}
-
 
 
 /*---------------------------------------------
@@ -437,54 +464,63 @@
 ----------------------------------------------*/
 
 .light-bg {
-	.story-block {
 		
-		@include breakpoint($medium-up) {
+	@include breakpoint($medium-up) {
+		.image-overlay {
+			background-color: $overlay-bg-color-on-light;
+		}
+		
+		// on SB with full img bg and L or R text (not centered or h1), 
+		// make overlay only cover half
+		&.paragraph--view-mode-right-text-full-bg-image {
 			.image-overlay {
-				background-color: $overlay-bg-color-on-light;
+				//right: 0;
+				//width: 50%;
+				background: rgba(255,255,255,0.7);
+				background: linear-gradient(90deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.70) 55%);
 			}
-			
-			// on SB with full img bg and L or R text (not centered or h1), 
-			// make overlay only cover half
-			&.paragraph--view-mode-right-text-full-bg-image {
-				.image-overlay {
-					//right: 0;
-					//width: 50%;
-					background: rgba(255,255,255,0.7);
-					background: linear-gradient(90deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.70) 55%);
-				}
+		}
+		&.paragraph--view-mode-left-text-full-bg-image {
+			.image-overlay {
+				//left: 0;
+				//width: 50%;
+				background: rgba(31,31,31,0.7);
+				background: linear-gradient(90deg, rgba(31,31,31,0.70) 40%, rgba(31,31,31,0) 55%);
 			}
-			&.paragraph--view-mode-left-text-full-bg-image {
-				.image-overlay {
-					//left: 0;
-					//width: 50%;
-					background: rgba(31,31,31,0.7);
-					background: linear-gradient(90deg, rgba(31,31,31,0.70) 40%, rgba(31,31,31,0) 55%);
-				}
+		}
+
+		.title,
+		h1 {
+			color: $title-on-light-color;
+		}
+		
+		.field-name-story-block-text {
+			color: $text-on-light-color;
+		}
+		
+		// button link
+		.field-name-story-block-link,
+		.field-name-story-block-videos {		
+			a {
+				@include button-on-light;
 			}
-	
-			.title,
-			h1 {
-				color: $title-on-light-color;
+		}
+		
+		figcaption {
+			@include caption-dark;
+		}
+
+		
+		// video popup link
+		.mfp-video-embed-all-items {
+			.mfp-video-embed-popup {
+				@include button-on-light;
 			}
-			
-			.field-name-story-block-text {
-				color: $text-on-light-color;
-			}
-			
-			// button link
-			.field-name-story-block-link,
-			.field-name-story-block-videos {		
-				a {
-					@include button-on-light;
-				}
-			}
-			
-			// video popup link
-			.mfp-video-embed-all-items {
-				.mfp-video-embed-popup {
-					@include button-on-light;
-				}
+		}
+		
+		&.no-overlay {
+			.image-overlay {
+				background-color: transparent;
 			}
 		}
 	}
@@ -539,8 +575,10 @@
 		.field-name-story-block-videos {		
 			a {
 				@include button-on-dark;
-
 			}
+		}
+		figcaption {
+			@include caption-light;
 		}
 		
 		// video popup link

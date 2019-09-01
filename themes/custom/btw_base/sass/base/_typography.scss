@@ -18,42 +18,6 @@
 
 // add custom font declarations here >>
 
-// Brandon Grotesque - from Adobe Typekit
-
-@import url("https://use.typekit.net/hor5kfk.css");
-
-/* GUIDE:
-Brandon Grotesque Light
-	font-family: brandon-grotesque, sans-serif;
-	font-weight: 300;
-	font-style: normal;
-	
-Brandon Grotesque Regular
-	font-family: brandon-grotesque, sans-serif;
-	font-weight: 400;
-	font-style: normal;
-
-Brandon Grotesque Regular Italic
-	font-family: brandon-grotesque, sans-serif;
-	font-weight: 400;
-	font-style: italic;
-
-Brandon Grotesque Bold
-	font-family: brandon-grotesque, sans-serif;
-	font-weight: 700;
-	font-style: normal;
-
-Brandon Grotesque Bold Italic
-	font-family: brandon-grotesque, sans-serif;
-	font-weight: 700;
-	font-style: italic;
-
-Brandon Grotesque Black
-	font-family: brandon-grotesque, sans-serif;
-	font-weight: 900;
-	font-style: normal;
-*/
-
 
 
 
@@ -90,6 +54,7 @@ ul, pre, table, address, fieldset {
 
 p {
 	word-wrap: break-word;
+	margin-bottom: 1.5em;
 }
 
 .center {
@@ -230,19 +195,26 @@ blockquote {
   HTML editor mode
  
 ---------------------*/
-
-span.title-span-1 {
-    display: block;
-    font-size: 50%;
-    color: #aaa;
+.pre-title {
+	display: inline-block;
+	font-size: 50%;
     text-transform: uppercase;
+    color: #fff;
+    padding: 4px 10px;
+    background: #aaa;
+    margin-bottom: 10px;
+    border-radius: 0px;
 }
-span.title-span-2 {
-    display: block;
-    color: red;
-    font-size: 65%;
+.main-title {
+	display: block;
+}
+.post-title {
+	display: inline-block;
+	color: lighten($text-color, 30%);
+    font-size: 0.6em;
     margin-top: 0.4em;
 }
+
 
 // alignment classes for default overrides
 .align-left {
