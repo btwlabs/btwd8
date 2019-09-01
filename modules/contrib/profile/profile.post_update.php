@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Config\ExtensionInstallStorage;
+use Drupal\Core\Config\InstallStorage;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\profile\Entity\ProfileType;
 use Drupal\system\Entity\Action;
@@ -83,4 +85,27 @@ function profile_post_update_configure_register_form_mode() {
   }
   $register_display->setStatus(TRUE);
   $register_display->save();
+}
+
+/**
+ * Replace the "profiles" view with the updated version.
+ */
+function profile_post_update_replace_view() {
+  /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $view_storage */
+  $view_storage = \Drupal::entityTypeManager()->getStorage('view');
+  /** @var \Drupal\Core\Config\Entity\ConfigEntityInterface $view */
+  $view = $view_storage->load('profiles');
+  if (!$view) {
+    return;
+  }
+  $config_storage = \Drupal::service('config.storage');
+  $extension_config_storage = new ExtensionInstallStorage($config_storage, InstallStorage::CONFIG_INSTALL_DIRECTORY);
+  $config_data = $extension_config_storage->read('views.view.profiles');
+
+  $view->setSyncing(TRUE);
+  // The UUID must remain unchanged between updates.
+  $uuid = $view->uuid();
+  $view = $view_storage->updateFromStorageRecord($view, $config_data);
+  $view->set('uuid', $uuid);
+  $view->save();
 }

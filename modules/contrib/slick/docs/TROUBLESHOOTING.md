@@ -6,18 +6,18 @@ Please read this before submitting issues. This 4-year+-old brief is worth
 reading to save you from headaches.
 
 1. When upgrading from Slick v1.3.6 to later version, try to re-save options at:
-  * admin/config/media/slick
-  * admin/structure/types/manage/CONTENT_TYPE/display
-  * admin/structure/views/view/VIEW_NAME
+   * admin/config/media/slick
+   * admin/structure/types/manage/CONTENT_TYPE/display
+   * admin/structure/views/view/VIEW_NAME
 
-  Only if trouble to see the new options, or when options don't apply properly.
-  Most likely true when the library adds/changes options, or the module
-  does something new. This is normal for any library even commercial ones, so
-  bear with it.
+     Only if trouble to see the new options, or when options don't apply
+     properly. Most likely true when the library adds/changes options, or the
+     module does something new. This is normal for any library even commercial
+     ones, so bear with it.
 
 2. Always clear the cache, and re-generate JS (if aggregation is on) when
-  updating the module to ensure things are picked up:
-  * /admin/config/development/performance
+   updating the module to ensure things are picked up:
+   * /admin/config/development/performance
 
 3. If you are customizing template files, or theme functions, be sure to
    re-check against the latest.
@@ -61,12 +61,12 @@ reading to save you from headaches.
    * Fade option with slideToShow > 1 will screw up.
    * variableWidth ignores slidesToShow.
    * Too much centerPadding at small device affects slidesToShow.
-   * Infinite option will create duplicates or clone slides which look more
-     obvious if slidesToShow > 1. Simply disable it if not desired.
-     This means that lightboxes (Colorbox, Photobox, PhotoSwipe) will have dups.
    * If thumbnail display is Infinite, the main one must be infinite too, else
      incorrect syncing.
    * adaptiveHeight is no good for vertical.
+   * Infinite option will create duplicates or clone slides which look more
+     obvious if slidesToShow > 1. Simply disable it if not desired.
+     This means that lightboxes (Colorbox, Photobox, PhotoSwipe) will have dups.   
    * Colorbox integration is not working well with lazyload onDemand.  
      **Solution:**
 

@@ -9,10 +9,12 @@ use Drupal\commerce_shipping\OrderShipmentSummaryInterface;
 use Drupal\commerce_shipping\PackerManagerInterface;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
+use Drupal\Core\Entity\EntityTypeBundleInfo;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Render\Element;
+use Drupal\profile\Entity\ProfileInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -28,6 +30,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPluginInterface {
+
+  /**
+   * The entity type bundle info.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeBundleInfo
+   */
+  protected $entityTypeBundleInfo;
 
   /**
    * The inline form manager.
@@ -63,6 +72,8 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
    *   The parent checkout flow.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
+   * @param \Drupal\Core\Entity\EntityTypeBundleInfo $entity_type_bundle_info
+   *   The entity type bundle info.
    * @param \Drupal\commerce\InlineFormManager $inline_form_manager
    *   The inline form manager.
    * @param \Drupal\commerce_shipping\PackerManagerInterface $packer_manager
@@ -70,9 +81,10 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
    * @param \Drupal\commerce_shipping\OrderShipmentSummaryInterface $order_shipment_summary
    *   The order shipment summary.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, CheckoutFlowInterface $checkout_flow, EntityTypeManagerInterface $entity_type_manager, InlineFormManager $inline_form_manager, PackerManagerInterface $packer_manager, OrderShipmentSummaryInterface $order_shipment_summary) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, CheckoutFlowInterface $checkout_flow, EntityTypeManagerInterface $entity_type_manager, EntityTypeBundleInfo $entity_type_bundle_info, InlineFormManager $inline_form_manager, PackerManagerInterface $packer_manager, OrderShipmentSummaryInterface $order_shipment_summary) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $checkout_flow, $entity_type_manager);
 
+    $this->entityTypeBundleInfo = $entity_type_bundle_info;
     $this->inlineFormManager = $inline_form_manager;
     $this->packerManager = $packer_manager;
     $this->orderShipmentSummary = $order_shipment_summary;
@@ -88,6 +100,7 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
       $plugin_definition,
       $checkout_flow,
       $container->get('entity_type.manager'),
+      $container->get('entity_type.bundle.info'),
       $container->get('plugin.manager.commerce_inline_form'),
       $container->get('commerce_shipping.packer_manager'),
       $container->get('commerce_shipping.order_shipment_summary')
@@ -168,7 +181,7 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
   public function buildPaneSummary() {
     $summary = [];
     if ($this->isVisible()) {
-      $summary = $this->orderShipmentSummary->build($this->order);
+      $summary = $this->orderShipmentSummary->build($this->order, 'checkout');
     }
     return $summary;
   }
@@ -178,18 +191,18 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
    */
   public function buildPaneForm(array $pane_form, FormStateInterface $form_state, array &$complete_form) {
     $store = $this->order->getStore();
-    $shipping_profile = $form_state->get('shipping_profile');
-    if (!$shipping_profile) {
-      $shipping_profile = $this->getShippingProfile();
-      $form_state->set('shipping_profile', $shipping_profile);
-    }
     $available_countries = [];
     foreach ($store->get('shipping_countries') as $country_item) {
       $available_countries[] = $country_item->value;
     }
+    $shipping_profile = $this->getShippingProfile();
+    /** @var \Drupal\commerce\Plugin\Commerce\InlineForm\EntityInlineFormInterface $inline_form */
     $inline_form = $this->inlineFormManager->createInstance('customer_profile', [
-      'parent_entity_type' => 'commerce_shipment',
+      'profile_scope' => 'shipping',
       'available_countries' => $available_countries,
+      'address_book_uid' => $this->order->getCustomerId(),
+      // Don't copy the profile to address book until the order is placed.
+      'copy_on_save' => FALSE,
     ], $shipping_profile);
 
     // Prepare the form for ajax.
@@ -227,7 +240,16 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
 
     $shipments = $this->order->shipments->referencedEntities();
     $recalculate_shipping = $form_state->get('recalculate_shipping');
-    $force_packing = empty($shipments) && empty($this->configuration['require_shipping_profile']);
+    if ($recalculate_shipping) {
+      // Use the shipping profile set in validatePaneForm().
+      $shipping_profile = $form_state->get('shipping_profile');
+    }
+    else {
+      // Take the processed profile from the inline form, it
+      // might have been pre-filled from the address book.
+      $shipping_profile = $inline_form->getEntity();
+    }
+    $force_packing = empty($shipments) && $this->canCalculateRates($shipping_profile);
     if ($recalculate_shipping || $force_packing) {
       list($shipments, $removed_shipments) = $this->packerManager->packToShipments($this->order, $shipping_profile, $shipments);
 
@@ -247,10 +269,8 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
         '#type' => $single_shipment ? 'container' : 'fieldset',
         '#title' => $shipment->getTitle(),
       ];
-      $form_display = EntityFormDisplay::collectRenderDisplay($shipment, 'default');
+      $form_display = EntityFormDisplay::collectRenderDisplay($shipment, 'checkout');
       $form_display->removeComponent('shipping_profile');
-      $form_display->removeComponent('title');
-      $form_display->removeComponent('tracking_code');
       $form_display->buildForm($shipment, $pane_form['shipments'][$index], $form_state);
       $pane_form['shipments'][$index]['#shipment'] = $shipment;
     }
@@ -294,9 +314,8 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
 
     foreach ($shipment_indexes as $index) {
       $shipment = clone $pane_form['shipments'][$index]['#shipment'];
-      $form_display = EntityFormDisplay::collectRenderDisplay($shipment, 'default');
+      $form_display = EntityFormDisplay::collectRenderDisplay($shipment, 'checkout');
       $form_display->removeComponent('shipping_profile');
-      $form_display->removeComponent('title');
       $form_display->extractFormValues($shipment, $pane_form['shipments'][$index], $form_state);
       $form_display->validateFormValues($shipment, $pane_form['shipments'][$index], $form_state);
     }
@@ -316,9 +335,8 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
     foreach (Element::children($pane_form['shipments']) as $index) {
       /** @var \Drupal\commerce_shipping\Entity\ShipmentInterface $shipment */
       $shipment = clone $pane_form['shipments'][$index]['#shipment'];
-      $form_display = EntityFormDisplay::collectRenderDisplay($shipment, 'default');
+      $form_display = EntityFormDisplay::collectRenderDisplay($shipment, 'checkout');
       $form_display->removeComponent('shipping_profile');
-      $form_display->removeComponent('title');
       $form_display->extractFormValues($shipment, $pane_form['shipments'][$index], $form_state);
       $shipment->setShippingProfile($profile);
       $shipment->save();
@@ -348,18 +366,46 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
   protected function getShippingProfile() {
     $shipping_profile = NULL;
     /** @var \Drupal\commerce_shipping\Entity\ShipmentInterface $shipment */
-    foreach ($this->order->shipments->referencedEntities() as $shipment) {
+    foreach ($this->order->get('shipments')->referencedEntities() as $shipment) {
       $shipping_profile = $shipment->getShippingProfile();
       break;
     }
     if (!$shipping_profile) {
+      $profile_type_id = 'customer';
+      // Check whether the order type has another profile type ID specified.
+      $order_type_id = $this->order->bundle();
+      $order_bundle_info = $this->entityTypeBundleInfo->getBundleInfo('commerce_order');
+      if (!empty($order_bundle_info[$order_type_id]['shipping_profile_type'])) {
+        $profile_type_id = $order_bundle_info[$order_type_id]['shipping_profile_type'];
+      }
+
       $shipping_profile = $this->entityTypeManager->getStorage('profile')->create([
-        'type' => 'customer',
-        'uid' => $this->order->getCustomerId(),
+        'type' => $profile_type_id,
+        'uid' => 0,
       ]);
     }
 
     return $shipping_profile;
+  }
+
+  /**
+   * Gets whether shipping rates can be calculated for the given profile.
+   *
+   * Ensures that a required shipping address is present and valid.
+   *
+   * @param \Drupal\profile\Entity\ProfileInterface $profile
+   *   The profile.
+   *
+   * @return bool
+   *   TRUE if shipping rates can be calculated, FALSE otherwise.
+   */
+  protected function canCalculateRates(ProfileInterface $profile) {
+    if (!empty($this->configuration['require_shipping_profile'])) {
+      $violations = $profile->get('address')->validate();
+      return count($violations) === 0;
+    }
+
+    return TRUE;
   }
 
 }

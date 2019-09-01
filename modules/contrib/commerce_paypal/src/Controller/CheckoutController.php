@@ -4,12 +4,15 @@ namespace Drupal\commerce_paypal\Controller;
 
 use Drupal\commerce_order\Entity\OrderInterface;
 use Drupal\commerce_payment\Entity\PaymentGatewayInterface;
+use Drupal\commerce_payment\Exception\PaymentGatewayException;
 use Drupal\commerce_paypal\CheckoutSdkFactoryInterface;
 use Drupal\commerce_paypal\Plugin\Commerce\PaymentGateway\CheckoutInterface;
 use Drupal\Component\Serialization\Json;
 use Drupal\Core\Access\AccessException;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\Core\Url;
 use GuzzleHttp\Exception\ClientException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -44,6 +47,13 @@ class CheckoutController extends ControllerBase {
   protected $logger;
 
   /**
+   * The messenger.
+   *
+   * @var \Drupal\Core\Messenger\MessengerInterface
+   */
+  protected $messenger;
+
+  /**
    * Constructs a PayPalCheckoutController object.
    *
    * @param \Drupal\commerce_paypal\CheckoutSdkFactoryInterface $checkout_sdk_factory
@@ -52,11 +62,14 @@ class CheckoutController extends ControllerBase {
    *   The entity type manager.
    * @param \Psr\Log\LoggerInterface $logger
    *   The logger.
+   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
+   *   The messenger.
    */
-  public function __construct(CheckoutSdkFactoryInterface $checkout_sdk_factory, EntityTypeManagerInterface $entity_type_manager, LoggerInterface $logger) {
+  public function __construct(CheckoutSdkFactoryInterface $checkout_sdk_factory, EntityTypeManagerInterface $entity_type_manager, LoggerInterface $logger, MessengerInterface $messenger) {
     $this->checkoutSdkFactory = $checkout_sdk_factory;
     $this->entityTypeManager = $entity_type_manager;
     $this->logger = $logger;
+    $this->messenger = $messenger;
   }
 
   /**
@@ -66,7 +79,8 @@ class CheckoutController extends ControllerBase {
     return new static(
       $container->get('commerce_paypal.checkout_sdk_factory'),
       $container->get('entity_type.manager'),
-      $container->get('logger.channel.commerce_paypal')
+      $container->get('logger.channel.commerce_paypal'),
+      $container->get('messenger')
     );
   }
 
@@ -82,26 +96,26 @@ class CheckoutController extends ControllerBase {
    *   A response.
    */
   public function onCreate(PaymentGatewayInterface $commerce_payment_gateway, OrderInterface $commerce_order) {
-    $payment_gateway_plugin = $commerce_payment_gateway->getPlugin();
-    if (!$payment_gateway_plugin instanceof CheckoutInterface) {
+    if (!$commerce_payment_gateway->getPlugin() instanceof CheckoutInterface) {
       throw new AccessException('Invalid payment gateway provided.');
+    }
+    $order_payment_gateway_plugin = FALSE;
+    if (!$commerce_order->get('payment_gateway')->isEmpty()) {
+      /** @var \Drupal\commerce_payment\Entity\PaymentGatewayInterface $payment_gateway */
+      $payment_gateway = $commerce_order->get('payment_gateway')->entity;
+      $order_payment_gateway_plugin = $payment_gateway->getPlugin();
+    }
+    // The reference to the payment_gateway is required by the
+    // on approve route.
+    if (!$order_payment_gateway_plugin instanceof CheckoutInterface) {
+      $commerce_order->set('payment_gateway', $commerce_payment_gateway);
+      $commerce_order->save();
     }
     $config = $commerce_payment_gateway->getPluginConfiguration();
     $sdk = $this->checkoutSdkFactory->get($config);
-    /**
-     * @var \Drupal\commerce_payment\Entity\PaymentMethodInterface|NULL $payment_method;
-     */
-    $payment_method = !$commerce_order->get('payment_method')->isEmpty() ? $commerce_order->get('payment_method')->entity : NULL;
     try {
       $response = $sdk->createOrder($commerce_order);
       $body = Json::decode($response->getBody()->getContents());
-
-      // If order was already referencing a payment method, update it.
-      if (!empty($payment_method) && $payment_method->bundle() == 'paypal_checkout') {
-        $payment_method->setRemoteId($body['id']);
-        $payment_method->save();
-      }
-
       return new JsonResponse(['id' => $body['id']]);
     }
     catch (ClientException $exception) {
@@ -113,8 +127,6 @@ class CheckoutController extends ControllerBase {
   /**
    * React to the PayPal checkout "onApprove" JS SDK callback.
    *
-   * @param PaymentGatewayInterface $commerce_payment_gateway
-   *   The payment gateway.
    * @param \Drupal\commerce_order\Entity\OrderInterface $commerce_order
    *   The order.
    * @param \Symfony\Component\HttpFoundation\Request $request
@@ -123,33 +135,48 @@ class CheckoutController extends ControllerBase {
    * @return \Symfony\Component\HttpFoundation\Response
    *   A response.
    */
-  public function onApprove(PaymentGatewayInterface $commerce_payment_gateway, OrderInterface $commerce_order, Request $request) {
-    $payment_gateway_plugin = $commerce_payment_gateway->getPlugin();
+  public function onApprove(OrderInterface $commerce_order, Request $request) {
+    $order = $commerce_order;
+    /** @var \Drupal\commerce_payment\Entity\PaymentGatewayInterface $payment_gateway */
+    $payment_gateway = $order->get('payment_gateway')->entity;
+    $payment_gateway_plugin = $payment_gateway->getPlugin();
     if (!$payment_gateway_plugin instanceof CheckoutInterface) {
-      throw new AccessException('Invalid payment gateway provided.');
+      throw new AccessException('Unsupported payment gateway provided.');
     }
     $body = Json::decode($request->getContent());
-    if (!isset($body['id'])) {
-      throw new AccessException('Missing PayPal order ID.');
+    if (!isset($body['flow']) || !in_array($body['flow'], ['mark', 'shortcut'])) {
+      throw new AccessException('Unsupported flow.');
     }
-    $config = $payment_gateway_plugin->getConfiguration();
-    $sdk = $this->checkoutSdkFactory->get($config);
-
     try {
-      $request = $sdk->getOrder($body['id']);
-      $paypal_order = Json::decode($request->getBody()->getContents());
-      $response = $payment_gateway_plugin->onApprove($commerce_order, $paypal_order);
-    }
-    catch (ClientException $exception) {
-      $this->logger->error($exception->getMessage());
-      throw new AccessException('Could not load the order from PayPal.');
-    }
+      // Note that we're using a custom route instead of the payment return
+      // one since the payment return callback cannot be called from the cart
+      // page.
+      $payment_gateway_plugin->onReturn($order, $request);
+      $step_id = $order->get('checkout_step')->value;
 
-    if (empty($response)) {
-      $response = new Response('', 200);
+      // Redirect to the next checkout step, the current checkout step is
+      // known, which isn't the case when in the "shortcut" flow.
+      if (!empty($step_id)) {
+        /** @var \Drupal\commerce_checkout\Entity\CheckoutFlowInterface $checkout_flow */
+        $checkout_flow = $order->get('checkout_flow')->entity;
+        $checkout_flow_plugin = $checkout_flow->getPlugin();
+        $redirect_step_id = $checkout_flow_plugin->getNextStepId($step_id);
+        $order->set('checkout_step', $redirect_step_id);
+      }
+      $order->save();
+      $redirect_url = Url::fromRoute('commerce_checkout.form', [
+        'commerce_order' => $order->id(),
+        'step' => $step_id,
+      ])->toString();
+      return new JsonResponse(['redirectUrl' => $redirect_url]);
     }
-
-    return $response;
+    catch (PaymentGatewayException $e) {
+      // When the payment fails, we don't instruct the JS to redirect, the page
+      // will be reloaded to show errors.
+      $this->logger->error($e->getMessage());
+      $this->messenger->addError(t('Payment failed at the payment server. Please review your information and try again.'));
+      return new JsonResponse();
+    }
   }
 
 }

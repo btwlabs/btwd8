@@ -2,7 +2,7 @@ name: Commerce Payment
 type: module
 description: 'Provides payment functionality.'
 package: Commerce
-# core: 8.x
+core: 8.x
 configure: commerce_payment.configuration
 dependencies:
   - commerce:commerce
@@ -14,8 +14,7 @@ config_devel:
     - field.storage.user.commerce_remote_id
     - field.field.user.user.commerce_remote_id.yml
 
-# Information added by Drupal.org packaging script on 2019-04-04
-version: '8.x-2.13'
-core: '8.x'
+# Information added by Drupal.org packaging script on 2019-08-30
+version: '8.x-2.14'
 project: 'commerce'
-datestamp: 1554337696
+datestamp: 1567123389

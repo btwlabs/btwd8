@@ -69,12 +69,14 @@ class ShipmentTypeTest extends CommerceBrowserTestBase {
     $edit = [
       'id' => 'foo',
       'label' => 'Foo label',
+      'profileType' => 'customer',
     ];
     $this->submitForm($edit, 'Save');
 
     $shipment_type = ShipmentType::load($edit['id']);
     $this->assertNotEmpty($shipment_type);
     $this->assertEquals('Foo label', $shipment_type->label());
+    $this->assertEquals('customer', $shipment_type->getProfileTypeId());
   }
 
   /**
@@ -84,16 +86,58 @@ class ShipmentTypeTest extends CommerceBrowserTestBase {
     $shipment_type = $this->createEntity('commerce_shipment_type', [
       'id' => 'foo',
       'label' => 'Foo label',
+      'profileType' => 'customer',
     ]);
 
+    $profile_type = $this->createEntity('profile_type', [
+      'id' => 'another_customer',
+      'label' => 'Another customer profile type',
+    ]);
+    $profile_type->setThirdPartySetting('commerce_order', 'customer_profile_type', TRUE);
+    $profile_type->save();
+
     $this->drupalGet('admin/commerce/config/shipment-types/foo/edit');
+    // Verify that profile type can be changed.
+    $select = $this->getSession()->getPage()->findField('profileType');
+    $this->assertNotEmpty($select);
+    $this->assertFalse($select->hasAttribute('disabled'));
     $edit = [
       'label' => $this->randomMachineName(8),
+      'profileType' => 'another_customer',
     ];
     $this->submitForm($edit, 'Save');
 
     $changed = ShipmentType::load($shipment_type->id());
     $this->assertEquals($edit['label'], $changed->label());
+    $this->assertEquals('another_customer', $changed->getProfileTypeId());
+
+    // Create a shipment.
+    $shipment = $this->createEntity('commerce_shipment', [
+      'type' => 'foo',
+      'order_id' => 10,
+      'items' => [
+        new ShipmentItem([
+          'order_item_id' => 10,
+          'title' => 'Test',
+          'quantity' => 1,
+          'weight' => new Weight(0, 'g'),
+          'declared_value' => new Price('1', 'USD'),
+        ]),
+      ],
+    ]);
+    $shipment->save();
+    $shipment = $this->reloadEntity($shipment);
+    $this->assertEquals('foo', $shipment->bundle());
+
+    $this->drupalGet('admin/commerce/config/shipment-types/foo/edit');
+    // Confirm that the profile type cannot be changed.
+    $select = $this->getSession()->getPage()->findField('profileType');
+    $this->assertNotEmpty($select);
+    $this->assertTrue($select->hasAttribute('disabled'));
+    $this->submitForm($edit, 'Save');
+
+    $changed = ShipmentType::load($shipment_type->id());
+    $this->assertEquals('another_customer', $changed->getProfileTypeId());
   }
 
   /**

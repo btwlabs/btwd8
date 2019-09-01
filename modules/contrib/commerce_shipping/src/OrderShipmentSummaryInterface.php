@@ -16,10 +16,12 @@ interface OrderShipmentSummaryInterface {
    *
    * @param \Drupal\commerce_order\Entity\OrderInterface $order
    *   The order.
+   * @param string $view_mode
+   *   The view mode used to render the shipments.
    *
    * @return array
    *   The renderable array with the shipment summary.
    */
-  public function build(OrderInterface $order);
+  public function build(OrderInterface $order, $view_mode = 'user');
 
 }

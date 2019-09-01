@@ -43,10 +43,9 @@ function profile_tokens($type, array $tokens, array $data = [], array $options =
 
         /** @var \Drupal\profile\ProfileStorageInterface $storage */
         $storage = \Drupal::entityTypeManager()->getStorage('profile');
-        $profile = $storage->loadByUser($user, $profile_type, TRUE);
+        $profile = $storage->loadByUser($user, $profile_type);
 
         if (!empty($profile)) {
-
           // If the token contains prefixes, invoke the field token generators.
           if (count($parts) > 1 && $profile_tokens = \Drupal::token()->findWithPrefix($tokens, $profile_type)) {
             $profile_token_data = [

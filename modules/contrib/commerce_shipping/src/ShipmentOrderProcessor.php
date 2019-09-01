@@ -49,10 +49,24 @@ class ShipmentOrderProcessor implements OrderProcessorInterface {
 
     /** @var \Drupal\commerce_shipping\Entity\ShipmentInterface[] $shipments */
     $shipments = $order->get('shipments')->referencedEntities();
+    if (!$shipments) {
+      // The referencedEntities() method may return an empty array even if the
+      // entity reference field is not empty if the referenced entity does not
+      // exist.
+      // @see https://www.drupal.org/project/drupal/issues/2820574
+      return;
+    }
+
     if ($this->shouldRepack($order, $shipments)) {
       $first_shipment = reset($shipments);
       $shipping_profile = $first_shipment->getShippingProfile();
-      list($shipments, $removed_shipments) = $this->packerManager->packToShipments($order, $shipping_profile, $shipments);
+      // If the shipping profile does not exist, delete all shipments.
+      if (!$shipping_profile) {
+        $removed_shipments = $shipments;
+      }
+      else {
+        list($shipments, $removed_shipments) = $this->packerManager->packToShipments($order, $shipping_profile, $shipments);
+      }
       foreach ($shipments as $shipment) {
         if ($shipment->hasTranslationChanges()) {
           $shipment->save();

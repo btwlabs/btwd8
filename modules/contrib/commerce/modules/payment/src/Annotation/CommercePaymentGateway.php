@@ -26,18 +26,18 @@ class CommercePaymentGateway extends Plugin {
   /**
    * The payment gateway label.
    *
-   * @ingroup plugin_translatable
-   *
    * @var \Drupal\Core\Annotation\Translation
+   *
+   * @ingroup plugin_translatable
    */
   public $label;
 
   /**
    * The payment gateway display label.
    *
-   * @ingroup plugin_translatable
-   *
    * @var \Drupal\Core\Annotation\Translation
+   *
+   * @ingroup plugin_translatable
    */
   public $display_label;
 
@@ -100,6 +100,16 @@ class CommercePaymentGateway extends Plugin {
    * @var string[]
    */
   public $credit_card_types = [];
+
+  /**
+   * Whether the payment gateway requires billing information to be collected.
+   *
+   * Defaults to TRUE because prior to Commerce 2.14 payment gateways could
+   * assume that billing information is always collected.
+   *
+   * @var bool
+   */
+  public $requires_billing_information = TRUE;
 
   /**
    * Constructs a new CommercePaymentGateway object.

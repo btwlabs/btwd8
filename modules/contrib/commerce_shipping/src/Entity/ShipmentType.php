@@ -40,6 +40,7 @@ use Drupal\commerce\Entity\CommerceBundleEntityBase;
  *     "id",
  *     "label",
  *     "uuid",
+ *     "profileType",
  *     "traits",
  *   },
  *   links = {
@@ -51,5 +52,27 @@ use Drupal\commerce\Entity\CommerceBundleEntityBase;
  * )
  */
 class ShipmentType extends CommerceBundleEntityBase implements ShipmentTypeInterface {
+
+  /**
+   * The profile type ID.
+   *
+   * @var string
+   */
+  protected $profileType = 'customer';
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getProfileTypeId() {
+    return $this->profileType;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setProfileTypeId($profile_type_id) {
+    $this->profileType = $profile_type_id;
+    return $this;
+  }
 
 }

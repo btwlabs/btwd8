@@ -10,7 +10,7 @@
   'use strict';
 
   var _blazy = Drupal.blazy || {};
-  var _ajax = Drupal.Ajax;
+  var _ajax = Drupal.Ajax || {};
   var _proto = _ajax.prototype;
   var _revTimer;
 

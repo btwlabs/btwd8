@@ -19,7 +19,7 @@ class CommerceShippingServiceProvider extends ServiceProviderBase {
     $modules = $container->getParameter('container.modules');
 
     if (isset($modules['commerce_tax'])) {
-      $container->register('commerce_shipping.customer_profile_subscriber', 'Drupal\commerce_shipping\EventSubscriber\CustomerProfileSubscriber')
+      $container->register('commerce_shipping.tax_subscriber', 'Drupal\commerce_shipping\EventSubscriber\TaxSubscriber')
         ->addTag('event_subscriber');
     }
   }

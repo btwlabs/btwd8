@@ -8,9 +8,14 @@ use Drupal\commerce_price\Price;
 use Drupal\commerce_product\Entity\ProductVariationType;
 use Drupal\commerce_shipping\Entity\PackageType;
 use Drupal\commerce_shipping\Entity\Shipment;
+use Drupal\commerce_shipping\Entity\ShipmentType;
 use Drupal\commerce_shipping\ShipmentItem;
 use Drupal\Core\Url;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\physical\Weight;
+use Drupal\profile\Entity\Profile;
+use Drupal\profile\Entity\ProfileType;
 use Drupal\Tests\commerce\FunctionalJavascript\CommerceWebDriverTestBase;
 use Drupal\views\Entity\View;
 
@@ -20,6 +25,28 @@ use Drupal\views\Entity\View;
  * @group commerce_shipping
  */
 class ShipmentAdminTest extends CommerceWebDriverTestBase {
+
+  /**
+   * The default profile's address.
+   *
+   * @var array
+   */
+  protected $defaultAddress = [
+    'country_code' => 'US',
+    'administrative_area' => 'SC',
+    'locality' => 'Greenville',
+    'postal_code' => '29616',
+    'address_line1' => '9 Drupal Ave',
+    'given_name' => 'Bryan',
+    'family_name' => 'Centarro',
+  ];
+
+  /**
+   * The default profile.
+   *
+   * @var \Drupal\profile\Entity\ProfileInterface
+   */
+  protected $defaultProfile;
 
   /**
    * A sample order.
@@ -40,13 +67,26 @@ class ShipmentAdminTest extends CommerceWebDriverTestBase {
    */
   public static $modules = [
     'commerce_shipping_test',
+    'telephone',
   ];
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getAdministratorPermissions() {
+    return array_merge([
+      'administer commerce_order',
+      'administer commerce_shipment',
+      'access commerce_order overview',
+    ], parent::getAdministratorPermissions());
+  }
 
   /**
    * {@inheritdoc}
    */
   protected function setUp() {
     parent::setUp();
+
     $product_variation_type = ProductVariationType::load('default');
     $product_variation_type->setTraits(['purchasable_entity_shippable']);
     $product_variation_type->setGenerateTitle(FALSE);
@@ -143,17 +183,49 @@ class ShipmentAdminTest extends CommerceWebDriverTestBase {
         ],
       ],
     ]);
-  }
 
-  /**
-   * {@inheritdoc}
-   */
-  protected function getAdministratorPermissions() {
-    return array_merge([
-      'administer commerce_order',
-      'administer commerce_shipment',
-      'access commerce_order overview',
-    ], parent::getAdministratorPermissions());
+    // Create a different shipping profile type, which also has a Phone field.
+    $bundle_entity_duplicator = $this->container->get('entity.bundle_entity_duplicator');
+    $customer_profile_type = ProfileType::load('customer');
+    $shipping_profile_type = $bundle_entity_duplicator->duplicate($customer_profile_type, [
+      'id' => 'customer_shipping',
+      'label' => 'Customer (Shipping)',
+    ]);
+    // Add a telephone field to the new profile type.
+    $field_storage = FieldStorageConfig::create([
+      'field_name' => 'field_phone',
+      'entity_type' => 'profile',
+      'type' => 'telephone',
+    ]);
+    $field_storage->save();
+    $field = FieldConfig::create([
+      'field_storage' => $field_storage,
+      'bundle' => $shipping_profile_type->id(),
+      'label' => 'Phone',
+    ]);
+    $field->save();
+    $form_display = commerce_get_entity_display('profile', 'customer_shipping', 'form');
+    $form_display->setComponent('field_phone', [
+      'type' => 'telephone_default',
+    ]);
+    $form_display->save();
+    $view_display = commerce_get_entity_display('profile', 'customer_shipping', 'view');
+    $view_display->setComponent('field_phone', [
+      'type' => 'basic_string',
+    ]);
+    $view_display->save();
+
+    $shipment_type = ShipmentType::load('default');
+    $shipment_type->setProfileTypeId('customer_shipping');
+    $shipment_type->save();
+
+    $this->defaultProfile = Profile::create([
+      'type' => 'customer_shipping',
+      'uid' => $this->adminUser,
+      'address' => $this->defaultAddress,
+      'field_phone' => '202-555-0108',
+    ]);
+    $this->defaultProfile->save();
   }
 
   /**
@@ -238,18 +310,9 @@ class ShipmentAdminTest extends CommerceWebDriverTestBase {
     list($order_item) = $this->order->getItems();
     $this->assertSession()->pageTextContains($order_item->label());
     $page->checkField('shipment_items[1]');
-    $address = [
-      'given_name' => 'John',
-      'family_name' => 'Smith',
-      'address_line1' => '1098 Alta Ave',
-      'locality' => 'Mountain View',
-      'administrative_area' => 'CA',
-      'postal_code' => '94043',
-    ];
-    $address_prefix = 'shipping_profile[0][profile][address][0][address]';
-    foreach ($address as $property => $value) {
-      $page->fillField($address_prefix . '[' . $property . ']', $value);
-    }
+
+    $this->assertRenderedAddress($this->defaultAddress, 'shipping_profile[0][profile]');
+    $this->assertSession()->pageTextContains('202-555-0108');
     $this->assertSession()->pageTextContains('Shipping method');
     $first_radio_button = $page->findField('Standard shipping: $9.99');
     $second_radio_button = $page->findField('Overnight shipping: $19.99');
@@ -269,6 +332,11 @@ class ShipmentAdminTest extends CommerceWebDriverTestBase {
     $this->assertEquals($this->order->id(), $shipment->getOrderId());
     $this->assertEquals('9.99', $shipment->getAmount()->getNumber());
     $this->assertSession()->pageTextContains($shipment->label());
+    $shipping_profile = $shipment->getShippingProfile();
+    $this->assertEquals('customer_shipping', $shipping_profile->bundle());
+    $this->assertEquals('202-555-0108', $shipping_profile->get('field_phone')->value);
+    $this->assertEquals($this->defaultAddress, array_filter($shipping_profile->get('address')->first()->toArray()));
+    $this->assertEquals($this->defaultProfile->id(), $shipping_profile->getData('address_book_profile_id'));
     $this->assertSession()->pageTextContains('$9.99');
     $this->assertTrue($page->hasButton('Finalize shipment'));
     $this->assertTrue($page->hasButton('Cancel shipment'));
@@ -282,7 +350,7 @@ class ShipmentAdminTest extends CommerceWebDriverTestBase {
    * Tests editing a shipment.
    */
   public function testShipmentEdit() {
-    $method = $this->createEntity('commerce_shipping_method', [
+    $shipping_method = $this->createEntity('commerce_shipping_method', [
       'name' => 'The best shipping',
       'stores' => [$this->store->id()],
       'plugin' => [
@@ -296,6 +364,22 @@ class ShipmentAdminTest extends CommerceWebDriverTestBase {
         ],
       ],
     ]);
+
+    $address = [
+      'country_code' => 'US',
+      'postal_code' => '53177',
+      'locality' => 'Milwaukee',
+      'address_line1' => 'Pabst Blue Ribbon Dr',
+      'administrative_area' => 'WI',
+      'given_name' => 'Frederick',
+      'family_name' => 'Pabst',
+    ];
+    $shipping_profile = Profile::create([
+      'type' => 'customer_shipping',
+      'uid' => 0,
+      'address' => $address,
+    ]);
+    $shipping_profile->save();
 
     /** @var \Drupal\commerce_shipping\Entity\ShipmentInterface $shipment */
     $shipment = $this->createEntity('commerce_shipment', [
@@ -312,13 +396,14 @@ class ShipmentAdminTest extends CommerceWebDriverTestBase {
           'declared_value' => new Price('1', 'USD'),
         ]),
       ],
+      'shipping_profile' => $shipping_profile,
     ]);
     /** @var \Drupal\commerce_shipping_test\Plugin\Commerce\ShippingMethod\DynamicRate $shipping_method_plugin */
     $shipping_method_plugin = \Drupal::service('plugin.manager.commerce_shipping_method')->createInstance('dynamic');
     $shipping_services = $shipping_method_plugin->getServices();
     $shipment
       ->setData('owned_by_packer', TRUE)
-      ->setShippingMethod($method)
+      ->setShippingMethod($shipping_method)
       ->setShippingService(key($shipping_services))
       ->save();
     $this->assertTrue($shipment->getAmount()->compareTo(new Price('9.99', 'USD')));
@@ -332,35 +417,43 @@ class ShipmentAdminTest extends CommerceWebDriverTestBase {
     $session->fieldValueEquals('title[0][value]', $shipment->label());
     $this->assertTrue($page->hasField($shipment->getItems()[0]->getTitle()));
 
-    // Fill in the address.
-    $address = [
-      'given_name' => 'John',
-      'family_name' => 'Smith',
-      'address_line1' => '1098 Alta Ave',
-      'locality' => 'Mountain View',
-      'administrative_area' => 'CA',
-      'postal_code' => '94043',
-    ];
-    $address_prefix = 'shipping_profile[0][profile][address][0][address]';
-    foreach ($address as $property => $value) {
-      $page->fillField($address_prefix . '[' . $property . ']', $value);
+    $this->assertRenderedAddress($address, 'shipping_profile[0][profile]');
+    // Select the default profile instead.
+    $this->getSession()->getPage()->fillField('shipping_profile[0][profile][select_address]', $this->defaultProfile->id());
+    $this->waitForAjaxToFinish();
+    $this->assertRenderedAddress($this->defaultAddress, 'shipping_profile[0][profile]');
+    // Edit the default profile and change the street.
+    $this->getSession()->getPage()->pressButton('shipping_edit');
+    $this->waitForAjaxToFinish();
+    foreach ($this->defaultAddress as $property => $value) {
+      $prefix = 'shipping_profile[0][profile][address][0][address]';
+      $this->assertSession()->fieldValueEquals($prefix . '[' . $property . ']', $value);
     }
+    $this->getSession()->getPage()->fillField('shipping_profile[0][profile][address][0][address][address_line1]', '10 Drupal Ave');
+    // The copy checkbox should be hidden and checked.
+    $this->assertSession()->fieldNotExists('shipping_profile[0][profile][copy_to_address_book]');
 
     // Change the package type.
     $package_type = PackageType::load('package_type_a');
     $page->fillField('package_type', 'commerce_package_type:' . $package_type->uuid());
     $page->pressButton('Recalculate shipping');
     $this->waitForAjaxToFinish();
-    $page->pressButton('Save');
-
-    // Ensure the new package type is selected.
-    $page->clickLink('Edit');
-    $session->fieldValueEquals('package_type', 'commerce_package_type:' . $package_type->uuid());
-    $shipment = \Drupal::entityTypeManager()->getStorage('commerce_shipment')->loadUnchanged($shipment->id());
+    $this->submitForm([], 'Save');
 
     // Ensure the shipment has been updated.
+    $shipment = $this->reloadEntity($shipment);
+    $this->assertEquals('commerce_package_type:' . $package_type->uuid(), $shipment->getPackageType()->getId());
     $this->assertFalse($shipment->getData('owned_by_packer', TRUE));
     $this->assertSame(0, $shipment->getAmount()->compareTo(new Price('199.80', 'USD')));
+
+    $shipping_profile = $this->reloadEntity($shipping_profile);
+    $this->assertEquals('customer_shipping', $shipping_profile->bundle());
+    $expected_address = ['address_line1' => '10 Drupal Ave'] + $this->defaultAddress;
+    $this->assertEquals($expected_address, array_filter($shipping_profile->get('address')->first()->toArray()));
+    $this->assertEquals($this->defaultProfile->id(), $shipping_profile->getData('address_book_profile_id'));
+    // Confirm that the address book profile was updated.
+    $this->defaultProfile = $this->reloadEntity($this->defaultProfile);
+    $this->assertEquals($expected_address, array_filter($this->defaultProfile->get('address')->first()->toArray()));
   }
 
   /**

@@ -139,4 +139,4 @@ Note, non-BEM classes are added by JS.
 </div>
 ````
 
-asNavFor should target slick-initialized class/ID attributes.
+`asNavFor` should target `slick-initialized` class/ID attributes.

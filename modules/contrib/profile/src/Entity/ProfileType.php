@@ -215,10 +215,9 @@ class ProfileType extends ConfigEntityBundleBase implements ProfileTypeInterface
   public function postSave(EntityStorageInterface $storage, $update = TRUE) {
     parent::postSave($storage, $update);
 
-    // Rebuild module data to generate bundle permissions and link tasks.
-    if (!$update) {
-      system_rebuild_module_data();
-    }
+    // Rebuild the user page tab.
+    \Drupal::service('router.builder')->setRebuildNeeded();
+    // Update the "register" form display, if needed.
     $original_registration = isset($this->original) ? $this->original->getRegistration() : FALSE;
     $registration = $this->getRegistration();
     if ($original_registration != $registration) {
@@ -226,8 +225,18 @@ class ProfileType extends ConfigEntityBundleBase implements ProfileTypeInterface
       if (!$register_display) {
         // The "register" form mode isn't customized by default.
         $default_display = EntityFormDisplay::load('user.user.default');
+        if (!$default_display) {
+          // @todo Remove once we require Drupal 8.8. See #2835616.
+          $default_display = EntityFormDisplay::create([
+            'targetEntityType' => 'user',
+            'bundle' => 'user',
+            'mode' => 'default',
+            'status' => TRUE,
+          ]);
+        }
         $register_display = $default_display->createCopy('register');
       }
+
       if ($registration) {
         $register_display->setComponent($this->id() . '_profiles', [
           'type' => 'profile_form',

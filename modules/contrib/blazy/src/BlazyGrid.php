@@ -34,11 +34,14 @@ class BlazyGrid {
       $item_settings = isset($item['#build']) && isset($item['#build']['settings']) ? $item['#build']['settings'] : $item_settings;
       unset($item['settings'], $item['attributes'], $item['item']);
 
+      // Good for Bootstrap .well/ .card class, must cast or BS will reset.
+      $content_classes = empty($item_settings['grid_content_class']) ? [] : (array) $item_settings['grid_content_class'];
+
       // Supports both single formatter field and complex fields such as Views.
       $content['content'] = $is_grid ? [
         '#theme'      => 'container',
         '#children'   => $item,
-        '#attributes' => ['class' => ['grid__content']],
+        '#attributes' => ['class' => array_merge(['grid__content'], $content_classes)],
       ] : $item;
 
       if (!empty($item_settings['grid_item_class'])) {
@@ -91,7 +94,8 @@ class BlazyGrid {
       // Adds common grid attributes for CSS3 column, Foundation, etc.
       if ($settings['grid_large'] = $settings['grid']) {
         foreach (['small', 'medium', 'large'] as $grid) {
-          if (!empty($settings['grid_' . $grid])) {
+          // Only makes sense if grid is larger than 1.
+          if (!empty($settings['grid_' . $grid]) && $settings['grid_' . $grid] > 1) {
             $element['#attributes']['class'][] = $grid . '-block-' . $style . '-' . $settings['grid_' . $grid];
           }
         }

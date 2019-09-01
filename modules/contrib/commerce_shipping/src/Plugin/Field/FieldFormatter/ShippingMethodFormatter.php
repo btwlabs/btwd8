@@ -26,13 +26,17 @@ class ShippingMethodFormatter extends FormatterBase {
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
     /** @var \Drupal\commerce_shipping\Entity\ShipmentInterface $shipment */
-    $shipment = $items[0]->getEntity();
+    $shipment = $items->getEntity();
     $shipping_service_id = $shipment->getShippingService();
 
     $elements = [];
     foreach ($items as $delta => $item) {
       /** @var \Drupal\commerce_shipping\Entity\ShippingMethodInterface $shipping_method */
       $shipping_method = $item->entity;
+      if (!$shipping_method) {
+        // The shipping method could not be loaded, it was probably deleted.
+        continue;
+      }
       $shipping_services = $shipping_method->getPlugin()->getServices();
       if (isset($shipping_services[$shipping_service_id])) {
         $elements[$delta] = [

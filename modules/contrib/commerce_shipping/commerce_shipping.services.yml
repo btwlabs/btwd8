@@ -37,10 +37,15 @@ services:
     tags:
       - { name: event_subscriber }
 
+  commerce_shipping.profile_subscriber:
+    class: Drupal\commerce_shipping\EventSubscriber\ProfileSubscriber
+    tags:
+      - { name: event_subscriber }
+
   commerce_shipping.route_subscriber:
     class: Drupal\commerce_shipping\EventSubscriber\RouteSubscriber
     tags:
-    - { name: event_subscriber }
+      - { name: event_subscriber }
 
   plugin.manager.commerce_shipping_method:
     class: Drupal\commerce_shipping\ShippingMethodManager

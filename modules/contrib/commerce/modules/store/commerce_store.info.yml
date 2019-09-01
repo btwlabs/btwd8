@@ -2,7 +2,7 @@ name: Commerce Store
 type: module
 description: 'Defines the Store entity and associated features.'
 package: Commerce
-# core: 8.x
+core: 8.x
 configure: entity.commerce_store.collection
 dependencies:
   - commerce:commerce
@@ -18,8 +18,7 @@ config_devel:
     - views.view.commerce_stores
     - system.action.commerce_delete_store_action
 
-# Information added by Drupal.org packaging script on 2019-04-04
-version: '8.x-2.13'
-core: '8.x'
+# Information added by Drupal.org packaging script on 2019-08-30
+version: '8.x-2.14'
 project: 'commerce'
-datestamp: 1554337696
+datestamp: 1567123389

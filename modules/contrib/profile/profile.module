@@ -89,6 +89,21 @@ function profile_entity_field_access($operation, FieldDefinitionInterface $field
 }
 
 /**
+ * Implements hook_jsonapi_entity_field_filter_access().
+ */
+function profile_jsonapi_entity_field_filter_access(FieldDefinitionInterface $field_definition, AccountInterface $account) {
+  if ($field_definition->getTargetEntityTypeId() == 'profile') {
+    if ($field_definition instanceof FieldConfigInterface) {
+      $is_private = $field_definition->getThirdPartySetting('profile', 'profile_private', FALSE);
+      if ($is_private) {
+        return AccessResult::forbiddenIf(!$account->hasPermission('administer profile'));
+      }
+    }
+  }
+  return AccessResult::neutral();
+}
+
+/**
  * Implements hook_theme().
  */
 function profile_theme() {
@@ -190,25 +205,6 @@ function profile_entity_form_display_alter(EntityFormDisplayInterface $form_disp
   if (empty($bundle_info[$profile_type_id]['revision_ui'])) {
     $form_display->removeComponent('revision_log_message');
   }
-}
-
-/**
- * Pre render callback for profile embedded views to ensure a title is set.
- *
- * @param $element
- *
- * @return mixed
- */
-function profile_views_add_title_pre_render($element) {
-  /** @var \Drupal\views\ViewExecutable $view */
-  if (isset($element['#title'])) {
-    $view = $element['view_build']['#view'];
-    if (!empty($view->result)) {
-      $view->setTitle($element['#title']);
-    }
-  }
-
-  return $element;
 }
 
 /**

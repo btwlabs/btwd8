@@ -97,6 +97,15 @@ interface PaymentGatewayInterface extends PluginWithFormsInterface, Configurable
   public function getCreditCardTypes();
 
   /**
+   * Gets whether the payment gateway collects billing information.
+   *
+   * @return bool
+   *   TRUE if the payment gateway collects billing information,
+   *   FALSE otherwise.
+   */
+  public function collectsBillingInformation();
+
+  /**
    * Builds the available operations for the given payment.
    *
    * @param \Drupal\commerce_payment\Entity\PaymentInterface $payment

@@ -40,4 +40,11 @@ class CommerceShippingMethod extends Plugin {
    */
   public $services = [];
 
+  /**
+   * The shipment workflow.
+   *
+   * @var string
+   */
+  public $workflow = 'shipment_default';
+
 }

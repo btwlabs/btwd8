@@ -48,6 +48,9 @@ commerce_payment.commerce_payment_gateway.plugin.paypal_checkout:
         tagline:
           type: boolean
           label: 'Display tagline'
+    enable_on_cart:
+      type: boolean
+      label: 'Show the Smart payment buttons on the cart page'
 commerce_payment.commerce_payment_gateway.plugin.paypal_express_checkout:
   type: commerce_payment_gateway_configuration
   mapping:

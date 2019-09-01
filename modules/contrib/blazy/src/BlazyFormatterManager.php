@@ -136,7 +136,7 @@ class BlazyFormatterManager extends BlazyManager {
     // Sets dimensions once, if cropped, to reduce costs with ton of images.
     // This is less expensive than re-defining dimensions per image.
     $this->cleanUpBreakpoints($settings);
-    if (!empty($settings['first_uri']) && !$settings['resimage']) {
+    if (!empty($settings['first_uri']) && empty($settings['resimage'])) {
       $this->setDimensionsOnce($settings, $this->firstItem);
     }
 

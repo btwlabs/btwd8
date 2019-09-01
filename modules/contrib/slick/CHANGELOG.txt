@@ -1,4 +1,11 @@
 
+Slick 8.x-2.0-dev, 2019-04-27
+-----------------------------
+- Updated docs.
+- Updated Ajaxin integration.
+- Fixed for colorbox regression with indices due to the previous slick.colorbox
+  library weight change.
+
 Slick 8.x-2.0-dev, 2019-04-18
 -----------------------------
 - Issue #3048629 by fskreuz: Add pauseOnFocus option.

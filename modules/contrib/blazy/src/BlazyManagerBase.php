@@ -81,13 +81,6 @@ abstract class BlazyManagerBase implements BlazyManagerInterface {
   private $cropStyles;
 
   /**
-   * Checks if blazy is attached.
-   *
-   * @var bool
-   */
-  private $isBlazyAttached;
-
-  /**
    * The blazy IO settings.
    *
    * @var object
@@ -215,13 +208,11 @@ abstract class BlazyManagerBase implements BlazyManagerInterface {
     }
 
     $io = $this->getIoSettings($attach);
-    if (!isset($this->isBlazyAttached)) {
-      // Core Blazy libraries, enforced to prevent JS error when optional.
-      $load['library'][] = 'blazy/load';
-      $load['drupalSettings']['blazy'] = $this->configLoad('blazy');
-      $load['drupalSettings']['blazyIo'] = $io;
-      $this->isBlazyAttached = TRUE;
-    }
+
+    // Core Blazy libraries, enforced to prevent JS error when optional.
+    $load['library'][] = 'blazy/load';
+    $load['drupalSettings']['blazy'] = $this->configLoad('blazy');
+    $load['drupalSettings']['blazyIo'] = $io;
 
     // Adds AJAX helper to revalidate Blazy/ IO, if using VIS, or alike.
     if (!empty($attach['use_ajax'])) {
