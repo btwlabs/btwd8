@@ -48,27 +48,33 @@ a img {
 
 .mfp-embedded-video-popup {
 	width: 100%;
+	max-width: 1200px;
 }
 .embedded-video {
 	height: 0;
 	overflow: hidden;
 	padding-bottom: 56.25%;
-	padding-top: 30px;
 	position: relative;
-	margin: 0 auto;
+	margin: 35px auto 0;
 	
 	& iframe {
 		height: 100%;
-		//left: 0;
 		position: absolute;
 		top: 0;
-		width: 95%;
+		width: 99%;
 		left: 50%;
 		transform: translateX(-50%);
 	}
 }
 
-
+// modal
+button.mfp-close {
+    background: #fff;
+    width: 35px;
+    height: 35px;
+    line-height: 1;
+    font-size: 26px;
+}
 
 // iphone 6,7,8 - landscape
 @media only screen 
@@ -76,7 +82,18 @@ and (min-device-width : 375px)
 and (max-device-width : 667px) 
 and (orientation : landscape) {
 	.embedded-video {
-		padding-top: 40.25%;
+		margin: 0 auto;
+	}
+	.video-embed-field-responsive-video {
+	    height: 340px;
+	    width: 100%;
+	    margin: 0 auto;
+	}
+	button.mfp-close {
+       right: -30px;
+	}
+	.mfp-embedded-video-popup {
+	    width: 75%;
 	}
 }
 
@@ -87,6 +104,17 @@ and (max-device-width : 812px)
 and (-webkit-device-pixel-ratio : 3)
 and (orientation : landscape) { 
 	.embedded-video {
-		padding-top: 40.25%;
+		margin: 0 auto;
+	}
+	.video-embed-field-responsive-video {
+	    height: 340px;
+	    width: 100%;
+	    margin: 0 auto;
+	}
+	button.mfp-close {
+       right: -30px;
+	}
+	.mfp-embedded-video-popup {
+	    width: 75%;
 	}
 }

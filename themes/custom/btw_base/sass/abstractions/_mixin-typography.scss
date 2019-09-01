@@ -27,10 +27,10 @@
 
 @mixin responsive-body-text {
 	@include breakpoint($small-only) {
-		@include font-size(19px);
+		@include font-size(18px);
 	}
 	@include breakpoint($large-up) {
-		@include font-size(24px)
+		@include font-size(22px)
 	}
 }
 
@@ -45,7 +45,7 @@
 	text-transform: $title-text-transform;
 }
 
-// Page title - responsive sizes
+// Page TITLE - responsive sizes
 @mixin responsive-page-title {
 	
 	@include breakpoint($small-up) {
@@ -59,7 +59,7 @@
 	}
 }
 
-// Section title - responsive sizes
+// Section TITLE - responsive sizes
 @mixin responsive-section-title {
 	
 	@include breakpoint($small-up) {
@@ -71,10 +71,9 @@
 	@include breakpoint($large-up) {
 		@include font-size(40px);
 	}
-
 }
 
-// Section title - responsive sizes
+// Section SUBTITLE - responsive sizes
 @mixin responsive-section-subtitle {
 	
 	@include breakpoint($small-up) {
@@ -88,7 +87,7 @@
 	}
 }
 
-// Cards title - responsive sizes
+// CARDS TITLE - responsive sizes
 @mixin responsive-card-title {
 
 	@include breakpoint($small-up) {
@@ -103,6 +102,7 @@
 }
 
 // Captions
+// these mixins are used in .dark-bg & .light-bg styles in _story-blocks.scss
 @mixin caption-light {
 	color: $caption-light-color;
 	

@@ -79,6 +79,7 @@
 	// story block title
 	.title {
 		@include responsive-section-title;
+		margin-bottom: 1em;
 	}
 	
 	// story block body text
@@ -161,7 +162,7 @@
 			}
 			
 			@include breakpoint($medium-up) {
-				padding: 8vw;
+				padding: 8vw 20vw;
 			}
 			
 			.group-left,
