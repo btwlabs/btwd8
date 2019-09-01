@@ -26,6 +26,7 @@ class ShipmentAddress extends ConditionBase {
   public function defaultConfiguration() {
     return [
       'zone' => NULL,
+      'negate' => NULL,
     ] + parent::defaultConfiguration();
   }
 
@@ -39,6 +40,13 @@ class ShipmentAddress extends ConditionBase {
       '#type' => 'address_zone',
       '#default_value' => $this->configuration['zone'],
       '#required' => TRUE,
+    ];
+
+    $form['negate'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Negate'),
+      '#description' => $this->t('If checked, the value(s) selected should not match.'),
+      '#default_value' => $this->configuration['negate'],
     ];
 
     return $form;
@@ -60,6 +68,7 @@ class ShipmentAddress extends ConditionBase {
     unset($values['zone']['label']);
 
     $this->configuration['zone'] = $values['zone'];
+    $this->configuration['negate'] = $values['negate'];
   }
 
   /**
@@ -82,6 +91,10 @@ class ShipmentAddress extends ConditionBase {
       'id' => 'shipping',
       'label' => 'N/A',
     ] + $this->configuration['zone']);
+
+    if ($this->configuration['negate']) {
+      return !$zone->match($address);
+    }
 
     return $zone->match($address);
   }

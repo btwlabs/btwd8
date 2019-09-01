@@ -49,13 +49,6 @@ class CartProvider implements CartProviderInterface {
    * - type: The order type.
    * - store_id: The store ID.
    *
-   * Example:
-   * @code
-   * 1 => [
-   *   10 => ['type' => 'default', 'store_id' => '1'],
-   * ]
-   * @endcode
-   *
    * @var array
    */
   protected $cartData = [];
@@ -236,7 +229,7 @@ class CartProvider implements CartProviderInterface {
         // Skip locked carts, the customer is probably off-site for payment.
         continue;
       }
-      if ($cart->getCustomerId() != $uid || empty($cart->cart) || $cart->getState()->getId() != 'draft') {
+      if ($cart->getCustomerId() != $uid || empty($cart->cart->value) || $cart->getState()->getId() != 'draft') {
         // Skip carts that are no longer eligible.
         $non_eligible_cart_ids[] = $cart->id();
         continue;

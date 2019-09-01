@@ -106,7 +106,7 @@ class TaxOrderProcessor implements OrderProcessorInterface {
             $tax_amount = $this->rounder->round($tax_amount);
             $unit_price = $unit_price->subtract($tax_amount);
           }
-          $order_item->setUnitPrice($unit_price);
+          $order_item->setUnitPrice($unit_price, $order_item->isUnitPriceOverridden());
         }
       }
     }
@@ -189,7 +189,7 @@ class TaxOrderProcessor implements OrderProcessorInterface {
       $profile_storage = $this->entityTypeManager->getStorage('profile');
       $this->storeProfiles[$store_id] = $profile_storage->create([
         'type' => 'customer',
-        'uid' => $store->getOwnerId(),
+        'uid' => 0,
         'address' => $store->getAddress(),
       ]);
     }

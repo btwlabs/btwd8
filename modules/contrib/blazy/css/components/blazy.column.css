@@ -153,7 +153,12 @@
     columns: 64.063em 1;
   }
 
-  .large-block-column-2,
+  .large-block-column-2 {
+    -webkit-columns: 2 auto;
+    -moz-columns: 2 auto;
+    columns: 2 auto;
+  }
+
   .large-block-column-3.block-count-2,
   .large-block-column-4.block-count-2 {
     -webkit-columns: 32.0315em 2;

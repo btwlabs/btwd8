@@ -226,6 +226,8 @@
       })
       .catch(function (status) {
         me.loaded(el, status);
+
+        el.removeAttribute('data-bio-hit');
       })
       .finally(function () {
         // Be sure to throttle, or debounce your method when calling this.

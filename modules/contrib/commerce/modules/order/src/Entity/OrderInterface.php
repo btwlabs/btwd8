@@ -4,7 +4,7 @@ namespace Drupal\commerce_order\Entity;
 
 use Drupal\commerce_order\EntityAdjustableInterface;
 use Drupal\commerce_price\Price;
-use Drupal\commerce_store\Entity\StoreInterface;
+use Drupal\commerce_store\Entity\EntityStoreInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\profile\Entity\ProfileInterface;
@@ -13,7 +13,7 @@ use Drupal\user\UserInterface;
 /**
  * Defines the interface for orders.
  */
-interface OrderInterface extends ContentEntityInterface, EntityAdjustableInterface, EntityChangedInterface {
+interface OrderInterface extends ContentEntityInterface, EntityAdjustableInterface, EntityChangedInterface, EntityStoreInterface {
 
   // Refresh states.
   const REFRESH_ON_LOAD = 'refresh_on_load';
@@ -37,42 +37,6 @@ interface OrderInterface extends ContentEntityInterface, EntityAdjustableInterfa
    * @return $this
    */
   public function setOrderNumber($order_number);
-
-  /**
-   * Gets the store.
-   *
-   * @return \Drupal\commerce_store\Entity\StoreInterface|null
-   *   The store entity, or null.
-   */
-  public function getStore();
-
-  /**
-   * Sets the store.
-   *
-   * @param \Drupal\commerce_store\Entity\StoreInterface $store
-   *   The store entity.
-   *
-   * @return $this
-   */
-  public function setStore(StoreInterface $store);
-
-  /**
-   * Gets the store ID.
-   *
-   * @return int
-   *   The store ID.
-   */
-  public function getStoreId();
-
-  /**
-   * Sets the store ID.
-   *
-   * @param int $store_id
-   *   The store ID.
-   *
-   * @return $this
-   */
-  public function setStoreId($store_id);
 
   /**
    * Gets the customer user.
@@ -151,8 +115,8 @@ interface OrderInterface extends ContentEntityInterface, EntityAdjustableInterfa
   /**
    * Gets the billing profile.
    *
-   * @return \Drupal\profile\Entity\ProfileInterface
-   *   The billing profile.
+   * @return \Drupal\profile\Entity\ProfileInterface|null
+   *   The billing profile, or NULL if none found.
    */
   public function getBillingProfile();
 
@@ -165,6 +129,17 @@ interface OrderInterface extends ContentEntityInterface, EntityAdjustableInterfa
    * @return $this
    */
   public function setBillingProfile(ProfileInterface $profile);
+
+  /**
+   * Collects all profiles that belong to the order.
+   *
+   * This includes the billing profile, plus other profiles added
+   * by modules through event subscribers (e.g. the shipping profile).
+   *
+   * @return \Drupal\profile\Entity\ProfileInterface[]
+   *   The order's profiles, keyed by scope (billing, shipping, etc).
+   */
+  public function collectProfiles();
 
   /**
    * Gets the order items.
@@ -376,6 +351,16 @@ interface OrderInterface extends ContentEntityInterface, EntityAdjustableInterfa
    * @return $this
    */
   public function setData($key, $value);
+
+  /**
+   * Unsets an order data value with the given key.
+   *
+   * @param string $key
+   *   The key.
+   *
+   * @return $this
+   */
+  public function unsetData($key);
 
   /**
    * Gets whether the order is locked.

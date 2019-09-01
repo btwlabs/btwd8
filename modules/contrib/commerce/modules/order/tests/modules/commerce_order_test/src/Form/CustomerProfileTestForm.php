@@ -72,14 +72,23 @@ class CustomerProfileTestForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state) {
-    $profile_storage = $this->entityTypeManager->getStorage('profile');
-    $profile = $profile_storage->create([
-      'type' => 'customer',
-      'uid' => $this->currentUser->id(),
-    ]);
+  public function buildForm(array $form, FormStateInterface $form_state, $profile = NULL, $admin = NULL) {
+    if (!$profile) {
+      $profile_storage = $this->entityTypeManager->getStorage('profile');
+      /** @var \Drupal\profile\Entity\ProfileInterface $profile */
+      $profile = $profile_storage->create([
+        'type' => 'customer',
+        'uid' => 0,
+      ]);
+    }
+
     $inline_form = $this->inlineFormManager->createInstance('customer_profile', [
-      'available_countries' => ['FR', 'RS'],
+      'profile_scope' => 'billing',
+      'available_countries' => ['FR', 'RS', 'US'],
+      'address_book_uid' => $this->currentUser->id(),
+      // Turn on copy_on_save for admins to exercise that code path as well.
+      'copy_on_save' => $admin,
+      'admin' => $admin,
     ], $profile);
 
     $form['profile'] = [
@@ -107,9 +116,10 @@ class CustomerProfileTestForm extends FormBase {
     /** @var \Drupal\address\AddressInterface $address */
     $address = $profile->get('address')->first();
 
-    $this->messenger()->addMessage(t('The street is "@street" and the country code is "@country_code".', [
+    $this->messenger()->addMessage(t('The street is "@street" and the country code is @country_code. Address book: @address_book.', [
       '@street' => $address->getAddressLine1(),
       '@country_code' => $address->getCountryCode(),
+      '@address_book' => $profile->getData('copy_to_address_book') ? 'Yes' : 'No',
     ]));
   }
 

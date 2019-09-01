@@ -2,28 +2,39 @@
   'use strict';
 
   Drupal.paypalCheckout = {
+    makeCall: function(url, settings) {
+      settings = settings || {};
+      var ajaxSettings = {
+        dataType: 'json',
+        url: url
+      };
+      $.extend(ajaxSettings, settings);
+      return $.ajax(ajaxSettings);
+    },
     renderButtons: function(settings) {
       $(settings['elementSelector']).once().each(function() {
         paypal.Buttons({
           createOrder: function() {
-            return fetch(settings.onCreateUri)
-              .then(function(res) {
-                return res.json();
-              }).then(function(data) {
-                return data.id ? data.id : '';
-              });
+            return Drupal.paypalCheckout.makeCall(settings.onCreateUrl).then(function(data) {
+              return data.id;
+            });
           },
           onApprove: function (data) {
-            return fetch(settings.onApproveUri, {
-              method: 'post',
-              body: JSON.stringify({
-                id: data.orderID
+            Drupal.paypalCheckout.addLoader();
+            return Drupal.paypalCheckout.makeCall(settings.onApproveUrl, {
+              type: 'POST',
+              contentType: "application/json; charset=utf-8",
+              data: JSON.stringify({
+                id: data.orderID,
+                flow: settings.flow
               })
-            }).then(function(res) {
-              return res.json();
             }).then(function(data) {
-              if (data.hasOwnProperty('redirectUri')) {
-                window.location.href = data.redirectUri;
+              if (data.hasOwnProperty('redirectUrl')) {
+                window.location.assign(data.redirectUrl);
+              }
+              else {
+                // Force a reload to see the eventual error messages.
+                location.reload(true);
               }
             });
           },
@@ -50,6 +61,12 @@
         }
       };
       waitForSdk(settings);
+    },
+    addLoader: function() {
+      var $background = $('<div id="paypal-background-overlay"></div>');
+      var $loader = $('<div class="paypal-background-overlay-loader"></div>');
+      $background.append($loader);
+      $('body').append($background);
     }
   };
 

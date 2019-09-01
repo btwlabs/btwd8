@@ -70,10 +70,11 @@ class BlazyTextFormatter extends FormatterBase implements ContainerFactoryPlugin
     }
 
     // Build the settings.
-    $settings              = $this->buildSettings();
-    $settings['namespace'] = 'blazy';
-    $settings['langcode']  = $langcode;
-    $settings['_grid']     = TRUE;
+    $settings               = $this->buildSettings();
+    $settings['namespace']  = 'blazy';
+    $settings['langcode']   = $langcode;
+    $settings['_grid']      = TRUE;
+    $settings['field_name'] = $items->getFieldDefinition()->getName();
 
     // The ProcessedText element already handles cache context & tag bubbling.
     // @see \Drupal\filter\Element\ProcessedText::preRenderText()

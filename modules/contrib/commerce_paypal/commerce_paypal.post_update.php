@@ -5,6 +5,8 @@
  * Post update functions for Commerce PayPal.
  */
 
+use Drupal\commerce_order\Entity\OrderInterface;
+
 /**
  * Import the PayPal Checkout flow config.
  */
@@ -34,4 +36,87 @@ function commerce_paypal_post_update_1() {
   }
 
   return $message;
+}
+
+/**
+ * Delete the PayPal Checkout payment methods.
+ */
+function commerce_paypal_post_update_2(&$sandbox = NULL) {
+  $payment_method_storage = \Drupal::entityTypeManager()->getStorage('commerce_payment_method');
+  if (!isset($sandbox['current_count'])) {
+    $query = $payment_method_storage->getQuery();
+    $query->condition('type', 'paypal_checkout');
+    $sandbox['total_count'] = $query->count()->execute();
+    $sandbox['current_count'] = 0;
+
+    if (empty($sandbox['total_count'])) {
+      $sandbox['#finished'] = 1;
+      return;
+    }
+  }
+  $query = $payment_method_storage->getQuery();
+  $query->condition('type', 'paypal_checkout');
+  $query->range(0, 20);
+  $result = $query->execute();
+  if (empty($result)) {
+    $sandbox['#finished'] = 1;
+    return;
+  }
+  /** @var \Drupal\commerce_payment\Entity\PaymentMethodInterface[] $payment_methods */
+  $payment_methods = $payment_method_storage->loadMultiple($result);
+  $order_storage = \Drupal::entityTypeManager()->getStorage('commerce_order');
+  foreach ($payment_methods as $payment_method) {
+    $query = $order_storage->getQuery();
+    $query->condition('payment_method', $payment_method->id());
+    $query->accessCheck(FALSE);
+    $result = $query->execute();
+    if (!$result) {
+      continue;
+    }
+    $orders = $order_storage->loadMultiple($result);
+    /** @var \Drupal\commerce_order\Entity\OrderInterface[] $orders */
+    foreach ($orders as $order) {
+      // Remove the reference to the payment method we're about to delete and
+      // migrate the Payment method data to the order's data.
+      $order->set('payment_method', NULL);
+      $order->setRefreshState(OrderInterface::REFRESH_SKIP);
+      if (!empty($payment_method->getRemoteId())) {
+        $paypal_checkout_data = [
+          'remote_id' => $payment_method->getRemoteId(),
+        ];
+        if ($payment_method->hasField('flow') && !$payment_method->get('flow')->isEmpty()) {
+          $paypal_checkout_data['flow'] = $payment_method->get('flow')->value;
+        }
+        $order->setData('commerce_paypal_checkout', $paypal_checkout_data);
+      }
+      $order->save();
+    }
+  }
+  $sandbox['current_count'] += count($payment_methods);
+  $payment_method_storage->delete($payment_methods);
+  if ($sandbox['current_count'] >= $sandbox['total_count']) {
+    $sandbox['#finished'] = 1;
+  }
+  else {
+    $sandbox['#finished'] = ($sandbox['total_count'] - $sandbox['current_count']) / $sandbox['total_count'];
+  }
+}
+
+/**
+ * Uninstall the PayPal Checkout payment method type.
+ */
+function commerce_paypal_post_update_3() {
+  $entity_type = \Drupal::entityTypeManager()->getDefinition('commerce_payment_method');
+  \Drupal::service('entity.bundle_plugin_installer')->uninstallBundles($entity_type, ['commerce_paypal']);
+}
+
+/**
+ * Uninstall the flow field.
+ */
+function commerce_paypal_post_update_4() {
+  $original_storage_definitions = \Drupal::service('entity.last_installed_schema.repository')->getLastInstalledFieldStorageDefinitions('commerce_payment_method');
+  if (isset($original_storage_definitions['flow'])) {
+    \Drupal::service('field_definition.listener')->onFieldDefinitionDelete($original_storage_definitions['flow']);
+    \Drupal::service('field_storage_definition.listener')->onFieldStorageDefinitionDelete($original_storage_definitions['flow']);
+  }
 }

@@ -91,7 +91,7 @@ class ProfileRevisionTest extends ProfileTestBase {
     ]);
     $this->drupalLogin($user);
 
-    $create_url = Url::fromRoute('entity.profile.type.user_profile_form', [
+    $create_url = Url::fromRoute('profile.user_page.single', [
       'user' => $this->loggedInUser->id(),
       'profile_type' => $this->type->id(),
     ]);
@@ -101,11 +101,11 @@ class ProfileRevisionTest extends ProfileTestBase {
     ];
     $this->submitForm($edit, 'Save');
 
-    $profile = $storage->loadDefaultByUser($this->loggedInUser, $this->type->id());
+    $profile = $storage->loadByUser($this->loggedInUser, $this->type->id());
     $existing_profile_id = $profile->id();
     $existing_revision_id = $profile->getRevisionId();
 
-    $create_url = Url::fromRoute('entity.profile.type.user_profile_form', [
+    $create_url = Url::fromRoute('profile.user_page.single', [
       'user' => $this->loggedInUser->id(),
       'profile_type' => $this->type->id(),
     ]);
@@ -116,7 +116,7 @@ class ProfileRevisionTest extends ProfileTestBase {
     $this->submitForm($edit, 'Save');
 
     $storage->resetCache([$profile->id()]);
-    $profile = $storage->loadDefaultByUser($this->loggedInUser, $this->type->id());
+    $profile = $storage->loadByUser($this->loggedInUser, $this->type->id());
     $this->assertEquals($existing_profile_id, $profile->id());
     $this->assertEquals($existing_revision_id, $profile->getRevisionId());
 
@@ -127,7 +127,7 @@ class ProfileRevisionTest extends ProfileTestBase {
     ]);
     $this->drupalLogin($user);
 
-    $create_url = Url::fromRoute('entity.profile.type.user_profile_form', [
+    $create_url = Url::fromRoute('profile.user_page.single', [
       'user' => $this->loggedInUser->id(),
       'profile_type' => $this->useRevisionsType->id(),
     ]);
@@ -138,11 +138,11 @@ class ProfileRevisionTest extends ProfileTestBase {
     ];
     $this->submitForm($edit, 'Save');
 
-    $profile = $storage->loadDefaultByUser($this->loggedInUser, $this->useRevisionsType->id());
+    $profile = $storage->loadByUser($this->loggedInUser, $this->useRevisionsType->id());
     $existing_profile_id = $profile->id();
     $existing_revision_id = $profile->getRevisionId();
 
-    $create_url = Url::fromRoute('entity.profile.type.user_profile_form', [
+    $create_url = Url::fromRoute('profile.user_page.single', [
       'user' => $this->loggedInUser->id(),
       'profile_type' => $this->useRevisionsType->id(),
     ]);
@@ -153,7 +153,7 @@ class ProfileRevisionTest extends ProfileTestBase {
     $this->submitForm($edit, 'Save');
 
     $storage->resetCache([$profile->id()]);
-    $profile = $storage->loadDefaultByUser($this->loggedInUser, $this->useRevisionsType->id());
+    $profile = $storage->loadByUser($this->loggedInUser, $this->useRevisionsType->id());
     $this->assertEquals($existing_profile_id, $profile->id());
     $this->assertNotEquals($existing_revision_id, $profile->getRevisionId());
 
@@ -167,7 +167,7 @@ class ProfileRevisionTest extends ProfileTestBase {
     ];
     $this->submitForm($edit, 'Save');
     $storage->resetCache([$profile->id()]);
-    $profile = $storage->loadDefaultByUser($this->loggedInUser, $this->useRevisionsType->id());
+    $profile = $storage->loadByUser($this->loggedInUser, $this->useRevisionsType->id());
     $this->assertEquals($existing_profile_id, $profile->id());
     $this->assertEquals($existing_revision_id, $profile->getRevisionId());
   }

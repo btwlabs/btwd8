@@ -99,7 +99,7 @@ class CouponRedemptionPaneTest extends CommerceWebDriverTestBase {
     $this->promotion->addCoupon($coupon);
     $this->promotion->save();
 
-    /** @var \Drupal\commerce_payment\Entity\PaymentGateway $gateway */
+    /** @var \Drupal\commerce_payment\Entity\PaymentGatewayInterface $offsite_gateway */
     $offsite_gateway = PaymentGateway::create([
       'id' => 'offsite',
       'label' => 'Off-site',
@@ -111,7 +111,7 @@ class CouponRedemptionPaneTest extends CommerceWebDriverTestBase {
     ]);
     $offsite_gateway->save();
 
-    /** @var \Drupal\commerce_payment\Entity\PaymentGateway $gateway */
+    /** @var \Drupal\commerce_payment\Entity\PaymentGatewayInterface $onsite_gateway */
     $onsite_gateway = PaymentGateway::create([
       'id' => 'onsite',
       'label' => 'On-site',
@@ -316,6 +316,8 @@ class CouponRedemptionPaneTest extends CommerceWebDriverTestBase {
 
     // Go back and edit the billing information, but don't submit it.
     $this->getSession()->getPage()->clickLink('Go back');
+    $this->getSession()->getPage()->pressButton('billing_edit');
+    $this->waitForAjaxToFinish();
     $address_prefix = 'payment_information[billing_information][address][0][address]';
     $this->getSession()->getPage()->fillField($address_prefix . '[given_name]', 'John');
     $this->getSession()->getPage()->fillField($address_prefix . '[family_name]', 'Smith');
@@ -334,10 +336,7 @@ class CouponRedemptionPaneTest extends CommerceWebDriverTestBase {
     // Refresh the page and ensure the billing information hasn't been modified.
     $this->drupalGet(Url::fromRoute('commerce_checkout.form', ['commerce_order' => $this->cart->id(), 'step' => 'order_information']));
     $page = $this->getSession()->getPage();
-    $given_name_field = $page->findField('payment_information[billing_information][address][0][address][given_name]');
-    $family_name_field = $page->findField('payment_information[billing_information][address][0][address][family_name]');
-    $this->assertEquals($given_name_field->getValue(), 'Johnny');
-    $this->assertEquals($family_name_field->getValue(), 'Appleseed');
+    $this->assertContains('Johnny Appleseed', $page->find('css', 'p.address')->getText());
   }
 
 }

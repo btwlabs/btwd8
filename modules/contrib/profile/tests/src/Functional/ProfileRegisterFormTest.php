@@ -59,7 +59,7 @@ class ProfileRegisterFormTest extends ProfileTestBase {
     $storage = $this->container->get('entity_type.manager')->getStorage('profile');
 
     // Verify that a new profile was created for the new user ID.
-    $profile = $storage->loadDefaultByUser($new_user, $this->type->id());
+    $profile = $storage->loadByUser($new_user, $this->type->id());
 
     $this->assertEquals($profile->get($field_name)->value, $edit[$id . "_profiles[0][entity][$field_name][0][value]"], 'Field value found in loaded profile.');
     // Verify that, as the first profile of this type for the user, it was set

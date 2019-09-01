@@ -2,7 +2,7 @@ name: Commerce
 type: module
 description: 'Defines common functionality for all Commerce modules.'
 package: Commerce
-# core: 8.x
+core: 8.x
 configure: commerce.configuration
 dependencies:
   - address:address
@@ -12,8 +12,7 @@ dependencies:
   - drupal:views
   - drupal:system (>=8.6.0)
 
-# Information added by Drupal.org packaging script on 2019-04-04
-version: '8.x-2.13'
-core: '8.x'
+# Information added by Drupal.org packaging script on 2019-08-30
+version: '8.x-2.14'
 project: 'commerce'
-datestamp: 1554337696
+datestamp: 1567123389

@@ -38,6 +38,14 @@ interface ShippingMethodInterface extends ConfigurablePluginInterface, PluginFor
   public function getServices();
 
   /**
+   * Gets the shipment workflow ID.
+   *
+   * @return string
+   *   The shipment workflow ID.
+   */
+  public function getWorkflowId();
+
+  /**
    * Calculates rates for the given shipment.
    *
    * @param \Drupal\commerce_shipping\Entity\ShipmentInterface $shipment

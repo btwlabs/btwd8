@@ -9,6 +9,6 @@
     "drupal/entity": "^1.0-rc2"
   },
   "require-dev": {
-    "drupal/token": "1.0"
+    "drupal/token": "^1.0"
   }
 }

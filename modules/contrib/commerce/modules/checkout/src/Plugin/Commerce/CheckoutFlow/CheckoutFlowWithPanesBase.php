@@ -9,6 +9,7 @@ use Drupal\Component\Utility\NestedArray;
 use Drupal\Component\Utility\SortArray;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -76,6 +77,14 @@ abstract class CheckoutFlowWithPanesBase extends CheckoutFlowBase implements Che
       $container->get('current_route_match'),
       $container->get('plugin.manager.commerce_checkout_pane')
     );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function __sleep() {
+    unset($this->panes);
+    return parent::__sleep();
   }
 
   /**
@@ -429,7 +438,7 @@ abstract class CheckoutFlowWithPanesBase extends CheckoutFlowBase implements Che
   }
 
   /**
-   * #element_validate callback: Validates for the pane configuration form.
+   * Validates the pane configuration form.
    *
    * @param array $pane_configuration_form
    *   The pane configuration form.
@@ -533,14 +542,6 @@ abstract class CheckoutFlowWithPanesBase extends CheckoutFlowBase implements Che
    */
   public function buildForm(array $form, FormStateInterface $form_state, $step_id = NULL) {
     $form = parent::buildForm($form, $form_state, $step_id);
-    if ($form_state->isRebuilding()) {
-      // The order reference on the panes might be outdated due to
-      // the form cache, so update the order manually once the
-      // parent class reloads it.
-      foreach ($this->panes as $pane_id => $pane) {
-        $this->panes[$pane_id] = $pane->setOrder($this->order);
-      }
-    }
 
     foreach ($this->getVisiblePanes($step_id) as $pane_id => $pane) {
       $form[$pane_id] = [
@@ -556,6 +557,8 @@ abstract class CheckoutFlowWithPanesBase extends CheckoutFlowBase implements Che
         '#pane_id' => $pane_id,
       ];
       $form[$pane_id] = $pane->buildPaneForm($form[$pane_id], $form_state, $form);
+      // Avoid rendering an empty container.
+      $form[$pane_id]['#access'] = (bool) Element::getVisibleChildren($form[$pane_id]);
     }
     if ($this->hasSidebar($step_id)) {
       // The base class adds a hardcoded order summary view to the sidebar.

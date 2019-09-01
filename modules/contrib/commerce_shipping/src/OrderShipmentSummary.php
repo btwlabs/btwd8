@@ -33,7 +33,7 @@ class OrderShipmentSummary implements OrderShipmentSummaryInterface {
   /**
    * {@inheritdoc}
    */
-  public function build(OrderInterface $order) {
+  public function build(OrderInterface $order, $view_mode = 'user') {
     if (!$order->hasField('shipments') || $order->get('shipments')->isEmpty()) {
       return [];
     }
@@ -61,10 +61,9 @@ class OrderShipmentSummary implements OrderShipmentSummaryInterface {
         '#title' => $shipment->getTitle(),
         '#open' => TRUE,
       ];
-      $summary[$index]['shipment'] = $shipment_view_builder->view($shipment, 'user');
-      // The shipping profile is already shown above, the state is internal.
+      $summary[$index]['shipment'] = $shipment_view_builder->view($shipment, $view_mode);
+      // The shipping profile is already shown above, so avoid duplication.
       $summary[$index]['shipment']['shipping_profile']['#access'] = FALSE;
-      $summary[$index]['shipment']['state']['#access'] = FALSE;
     }
 
     return $summary;

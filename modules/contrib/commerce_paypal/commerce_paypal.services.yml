@@ -9,6 +9,8 @@ services:
     abstract: true
     class: Drupal\commerce_paypal\CheckoutSdk
     factory: commerce_paypal.checkout_sdk_factory
+  commerce_paypal.smart_payment_buttons_builder:
+    class: Drupal\commerce_paypal\SmartPaymentButtonsBuilder
   logger.channel.commerce_paypal:
     class: Drupal\Core\Logger\LoggerChannel
     factory: logger.factory:get

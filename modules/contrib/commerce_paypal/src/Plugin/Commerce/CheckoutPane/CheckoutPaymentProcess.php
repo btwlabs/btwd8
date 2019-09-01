@@ -30,23 +30,24 @@ class CheckoutPaymentProcess extends CheckoutPaneBase {
       // No payment is needed if the order is free or has already been paid.
       return FALSE;
     }
-    return $this->checkoutFlow->getPluginId() == 'paypal_checkout';
+    if ($this->checkoutFlow->getPluginId() !== 'paypal_checkout' ||
+      empty($this->order->getData('commerce_paypal_checkout')) ||
+      $this->order->get('payment_gateway')->isEmpty()) {
+      return FALSE;
+    }
+    $checkout_data = $this->order->getData('commerce_paypal_checkout');
+    /** @var \Drupal\commerce_payment\Entity\PaymentGatewayInterface $payment_gateway */
+    $payment_gateway = $this->order->payment_gateway->entity;
+    return $checkout_data['flow'] == 'shortcut' && $payment_gateway->getPlugin() instanceof CheckoutInterface;
   }
 
   /**
    * {@inheritdoc}
    */
   public function buildPaneForm(array $pane_form, FormStateInterface $form_state, array &$complete_form) {
-    if ($this->order->get('payment_gateway')->isEmpty()) {
-      return;
-    }
     /** @var \Drupal\commerce_payment\Entity\PaymentGatewayInterface $payment_gateway */
     $payment_gateway = $this->order->payment_gateway->entity;
     $payment_gateway_plugin = $payment_gateway->getPlugin();
-    if (!$payment_gateway_plugin instanceof CheckoutInterface) {
-      return;
-    }
-
     $payment_storage = $this->entityTypeManager->getStorage('commerce_payment');
     /** @var \Drupal\commerce_payment\Entity\PaymentInterface $payment */
     $payment = $payment_storage->create([
@@ -58,13 +59,12 @@ class CheckoutPaymentProcess extends CheckoutPaneBase {
     $next_step_id = $this->checkoutFlow->getNextStepId($this->getStepId());
 
     try {
-      $payment->payment_method = $this->order->payment_method->entity;
       $payment_gateway_plugin->createPayment($payment);
       $this->checkoutFlow->redirectToStep($next_step_id);
     }
     catch (PaymentGatewayException $e) {
       \Drupal::logger('commerce_paypal')->error($e->getMessage());
-      $message = $this->t('We encountered an unexpected error processing your payment method. Please try again later.');
+      $message = $this->t('We encountered an unexpected error processing your payment. Please try again later.');
       $this->messenger()->addError($message);
       $this->redirectToCart();
     }

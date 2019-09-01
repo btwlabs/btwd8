@@ -1,4 +1,28 @@
 
+Blazy 8.x-2.0-dev, 2019-08-23
+-----------------------------
+- Issue #3070575 by gausarts, DuneBL: Notice: Undefined index: resimage
+- Issue #3057691 by recrit: Un-hidden images not loaded after resizing when
+  using minimal field markup
+- Issue #3059509 by gausarts, tepelena: Lazy load inline images error
+- Issue #3054051 by thalles, gausarts: hook_help return empty without Markdown
+  class
+- Issue #3075938 by recrit: dBlazy library uses incorrect polyfill for
+  CustomEvent
+- Issue #3072137 by ilchovuchkov: Update src/BlazyDefault.php and
+  src/BlazyEntity.php
+
+Blazy 8.x-2.0-dev, 2019-08-22
+-----------------------------
+- Issue #3065845 by GaëlG: Blazy library not loading if the first code using the
+Blazy text format filter does not handle the attachments
+
+Blazy 8.x-2.0-dev, 2019-06-14
+-----------------------------
+- Issue #3054230 by jigarius: Images added via RTE with caption enabled not
+  displayed.
+- Changed minimum grid from 1 to 2 to allow plain theme_item_list().
+
 Blazy 8.x-2.0-dev, 2019-04-19
 -----------------------------
 - Added tests for IO.

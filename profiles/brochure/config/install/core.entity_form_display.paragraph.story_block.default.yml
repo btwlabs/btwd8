@@ -14,6 +14,7 @@ dependencies:
     - image.style.thumbnail
     - paragraphs.paragraphs_type.story_block
   module:
+    - focal_point
     - image
     - link
     - text
@@ -43,8 +44,8 @@ content:
     weight: 5
     region: content
     settings:
-      progress_indicator: throbber
       preview_image_style: thumbnail
+      progress_indicator: throbber
     third_party_settings: {  }
   field_story_block_image_overlay_:
     type: options_select
@@ -53,12 +54,14 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_story_block_images:
-    type: image_image
+    type: image_focal_point
     weight: 4
     region: content
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
+      preview_link: true
+      offsets: '50,50'
     third_party_settings: {  }
   field_story_block_link:
     type: link_default

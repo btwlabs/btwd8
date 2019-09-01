@@ -39,6 +39,28 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
   protected $orderPaymentMethod;
 
   /**
+   * The default profile's address.
+   *
+   * @var array
+   */
+  protected $defaultAddress = [
+    'country_code' => 'US',
+    'administrative_area' => 'SC',
+    'locality' => 'Greenville',
+    'postal_code' => '29616',
+    'address_line1' => '9 Drupal Ave',
+    'given_name' => 'Bryan',
+    'family_name' => 'Centarro',
+  ];
+
+  /**
+   * The default profile.
+   *
+   * @var \Drupal\profile\Entity\ProfileInterface
+   */
+  protected $defaultProfile;
+
+  /**
    * Modules to enable.
    *
    * @var array
@@ -66,6 +88,9 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
   protected function setUp() {
     parent::setUp();
 
+    $this->store->set('billing_countries', ['FR', 'US']);
+    $this->store->save();
+
     $variation = $this->createEntity('commerce_product_variation', [
       'type' => 'default',
       'sku' => strtolower($this->randomMachineName()),
@@ -83,7 +108,7 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
       'stores' => [$this->store],
     ]);
 
-    /** @var \Drupal\commerce_payment\Entity\PaymentGateway $gateway */
+    /** @var \Drupal\commerce_payment\Entity\PaymentGatewayInterface $skipped_gateway */
     $skipped_gateway = PaymentGateway::create([
       'id' => 'onsite_skipped',
       'label' => 'On-site Skipped',
@@ -107,8 +132,8 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
     ]);
     $skipped_gateway->save();
 
-    /** @var \Drupal\commerce_payment\Entity\PaymentGateway $gateway */
-    $gateway = PaymentGateway::create([
+    /** @var \Drupal\commerce_payment\Entity\PaymentGatewayInterface $payment_gateway */
+    $payment_gateway = PaymentGateway::create([
       'id' => 'onsite',
       'label' => 'On-site',
       'plugin' => 'example_onsite',
@@ -117,10 +142,10 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
         'payment_method_types' => ['credit_card'],
       ],
     ]);
-    $gateway->save();
+    $payment_gateway->save();
 
-    /** @var \Drupal\commerce_payment\Entity\PaymentGateway $gateway */
-    $gateway = PaymentGateway::create([
+    /** @var \Drupal\commerce_payment\Entity\PaymentGatewayInterface $payment_gateway */
+    $payment_gateway = PaymentGateway::create([
       'id' => 'offsite',
       'label' => 'Off-site',
       'plugin' => 'example_offsite_redirect',
@@ -129,10 +154,10 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
         'payment_method_types' => ['credit_card'],
       ],
     ]);
-    $gateway->save();
+    $payment_gateway->save();
 
-    /** @var \Drupal\commerce_payment\Entity\PaymentGateway $gateway */
-    $gateway = PaymentGateway::create([
+    /** @var \Drupal\commerce_payment\Entity\PaymentGatewayInterface $payment_gateway */
+    $payment_gateway = PaymentGateway::create([
       'id' => 'manual',
       'label' => 'Manual',
       'plugin' => 'manual',
@@ -144,10 +169,16 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
         ],
       ],
     ]);
-    $gateway->save();
+    $payment_gateway->save();
 
+    $this->defaultProfile = $this->createEntity('profile', [
+      'type' => 'customer',
+      'uid' => $this->adminUser->id(),
+      'address' => $this->defaultAddress,
+    ]);
     $profile = $this->createEntity('profile', [
       'type' => 'customer',
+      'uid' => 0,
       'address' => [
         'country_code' => 'US',
         'postal_code' => '53177',
@@ -157,7 +188,6 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
         'given_name' => 'Frederick',
         'family_name' => 'Pabst',
       ],
-      'uid' => $this->adminUser->id(),
     ]);
     $payment_method = $this->createEntity('commerce_payment_method', [
       'uid' => $this->adminUser->id(),
@@ -208,17 +238,17 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
     $default_radio_button = $page->findField('Visa ending in 9999');
     $this->assertTrue($default_radio_button->getAttribute('checked'));
 
-    /** @var \Drupal\commerce_payment\Entity\PaymentGateway $gateway */
-    $gateway = PaymentGateway::create([
+    /** @var \Drupal\commerce_payment\Entity\PaymentGatewayInterface $payment_gateway */
+    $payment_gateway = PaymentGateway::create([
       'id' => 'onsite2',
       'label' => 'On-site 2',
       'plugin' => 'example_onsite',
     ]);
-    $gateway->getPlugin()->setConfiguration([
+    $payment_gateway->setPluginConfiguration([
       'api_key' => '2342fewfsfs',
       'payment_method_types' => ['credit_card'],
     ]);
-    $gateway->save();
+    $payment_gateway->save();
 
     $first_onsite_gateway = PaymentGateway::load('onsite');
     $first_onsite_gateway->setStatus(FALSE);
@@ -234,7 +264,7 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
     $this->drupalGet('checkout/1');
     $radio_button = $page->findField('Example');
     $this->assertNull($radio_button);
-    $this->assertSession()->fieldExists('payment_information[billing_information][address][0][address][postal_code]');
+    $this->assertRenderedAddress($this->defaultAddress, 'payment_information[billing_information]');
   }
 
   /**
@@ -255,6 +285,9 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
     $this->drupalGet('checkout/1');
     $radio_button = $this->getSession()->getPage()->findField('Credit card');
     $radio_button->click();
+    $this->waitForAjaxToFinish();
+    $this->assertRenderedAddress($this->defaultAddress, 'payment_information[add_payment_method][billing_information]');
+    $this->getSession()->getPage()->pressButton('billing_edit');
     $this->waitForAjaxToFinish();
 
     $this->submitForm([
@@ -278,12 +311,35 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
     $this->assertSession()->pageTextContains('Your order number is 1. You can view your order on your account page when logged in.');
 
     $order = Order::load(1);
+    $this->assertFalse($order->isLocked());
     $this->assertEquals('onsite', $order->get('payment_gateway')->target_id);
+    /** @var \Drupal\profile\Entity\ProfileInterface $order_billing_profile */
+    $order_billing_profile = $order->getBillingProfile();
     /** @var \Drupal\commerce_payment\Entity\PaymentMethodInterface $payment_method */
     $payment_method = $order->get('payment_method')->entity;
     $this->assertEquals('1881', $payment_method->get('card_number')->value);
-    $this->assertEquals('123 New York Drive', $payment_method->getBillingProfile()->get('address')->address_line1);
-    $this->assertFalse($order->isLocked());
+    // Confirm that the billing profile has the expected address.
+    $expected_address = [
+      'given_name' => 'Johnny',
+      'family_name' => 'Appleseed',
+      'address_line1' => '123 New York Drive',
+      'locality' => 'New York City',
+      'administrative_area' => 'NY',
+      'postal_code' => '10001',
+      'country_code' => 'US',
+    ];
+    $payment_method_profile = $payment_method->getBillingProfile();
+    $this->assertEquals($expected_address, array_filter($payment_method_profile->get('address')->first()->toArray()));
+    $this->assertNotEmpty($payment_method_profile->getData('address_book_profile_id'));
+    $this->assertEmpty($payment_method_profile->getData('copy_to_address_book'));
+    // Verify that the billing information was copied to the order.
+    $this->assertEquals($expected_address, array_filter($order_billing_profile->get('address')->first()->toArray()));
+    $this->assertNotEquals($order_billing_profile->id(), $payment_method_profile->id());
+    $this->assertNotEmpty($order_billing_profile->getData('address_book_profile_id'));
+    $this->assertEmpty($order_billing_profile->getData('copy_to_address_book'));
+    // Confirm that the address book profile was updated.
+    $this->defaultProfile = $this->reloadEntity($this->defaultProfile);
+    $this->assertEquals($expected_address, array_filter($this->defaultProfile->get('address')->first()->toArray()));
     // Verify that a payment was created.
     $payment = Payment::load(1);
     $this->assertNotNull($payment);
@@ -310,6 +366,8 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
     ]);
     $payment->save();
     $order = Order::load(1);
+    // Save the order to recalculate the balance.
+    $order->save();
     $this->assertEquals(new Price('20', 'USD'), $order->getTotalPaid());
     $this->assertEquals(new Price('19.99', 'USD'), $order->getBalance());
 
@@ -336,6 +394,16 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
     $this->assertEquals(new Price('19.99', 'USD'), $payment->getAmount());
     $this->assertEquals(new Price('39.99', 'USD'), $order->getTotalPaid());
     $this->assertEquals(new Price('0', 'USD'), $order->getBalance());
+
+    /** @var \Drupal\profile\Entity\ProfileInterface $order_billing_profile */
+    $order_billing_profile = $order->getBillingProfile();
+    /** @var \Drupal\commerce_payment\Entity\PaymentMethodInterface $payment_method */
+    $payment_method = $order->get('payment_method')->entity;
+    /** @var \Drupal\profile\Entity\ProfileInterface $payment_method_profile */
+    $payment_method_profile = $payment_method->getBillingProfile();
+    // Verify that the billing information was copied to the order.
+    $this->assertTrue($order_billing_profile->equalToProfile($payment_method_profile));
+    $this->assertNotEquals($order_billing_profile->id(), $payment_method_profile->id());
   }
 
   /**
@@ -347,6 +415,9 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
     $this->drupalGet('checkout/1');
     $radio_button = $this->getSession()->getPage()->findField('Credit card');
     $radio_button->click();
+    $this->waitForAjaxToFinish();
+    $this->assertRenderedAddress($this->defaultAddress, 'payment_information[add_payment_method][billing_information]');
+    $this->getSession()->getPage()->fillField('payment_information[add_payment_method][billing_information][select_address]', '_new');
     $this->waitForAjaxToFinish();
 
     $this->submitForm([
@@ -371,6 +442,12 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
 
     $order = Order::load(1);
     $this->assertFalse($order->isLocked());
+    /** @var \Drupal\commerce_payment\Entity\PaymentMethodInterface $payment_method */
+    $payment_method = $order->get('payment_method')->entity;
+    $this->assertEquals('123 New York Drive', $payment_method->getBillingProfile()->get('address')->address_line1);
+    // Confirm that the address book profile was not updated.
+    $this->defaultProfile = $this->reloadEntity($this->defaultProfile);
+    $this->assertEquals('9 Drupal Ave', $this->defaultProfile->get('address')->address_line1);
     // Verify a payment was not created.
     $payment = Payment::load(1);
     $this->assertNull($payment);
@@ -386,25 +463,22 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
     $radio_button = $this->getSession()->getPage()->findField('Example');
     $radio_button->click();
     $this->waitForAjaxToFinish();
+    $this->assertRenderedAddress($this->defaultAddress, 'payment_information[billing_information]');
 
-    $this->submitForm([
-      'payment_information[billing_information][address][0][address][given_name]' => 'Johnny',
-      'payment_information[billing_information][address][0][address][family_name]' => 'Appleseed',
-      'payment_information[billing_information][address][0][address][address_line1]' => '123 New York Drive',
-      'payment_information[billing_information][address][0][address][locality]' => 'New York City',
-      'payment_information[billing_information][address][0][address][administrative_area]' => 'NY',
-      'payment_information[billing_information][address][0][address][postal_code]' => '10001',
-    ], 'Continue to review');
+    $this->submitForm([], 'Continue to review');
     $this->assertSession()->pageTextContains('Payment information');
     $this->assertSession()->pageTextContains('Example');
-    $this->assertSession()->pageTextContains('Johnny Appleseed');
-    $this->assertSession()->pageTextContains('123 New York Drive');
+    $this->assertSession()->pageTextContains('Bryan Centarro');
+    $this->assertSession()->pageTextContains('9 Drupal Ave');
     $this->submitForm([], 'Pay and complete purchase');
     $this->assertSession()->pageTextContains('Your order number is 1. You can view your order on your account page when logged in.');
 
     $order = Order::load(1);
-    $this->assertEquals('offsite', $order->get('payment_gateway')->target_id);
     $this->assertFalse($order->isLocked());
+    $this->assertEquals('offsite', $order->get('payment_gateway')->target_id);
+    /** @var \Drupal\profile\Entity\ProfileInterface $billing_profile */
+    $billing_profile = $order->getBillingProfile();
+    $this->assertEquals('9 Drupal Ave', $billing_profile->get('address')->address_line1);
     // Verify that a payment was created.
     $payment = Payment::load(1);
     $this->assertNotNull($payment);
@@ -419,7 +493,7 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
    */
   public function testCheckoutWithOffsiteRedirectPostManual() {
     $payment_gateway = PaymentGateway::load('offsite');
-    $payment_gateway->getPlugin()->setConfiguration([
+    $payment_gateway->setPluginConfiguration([
       'redirect_method' => 'post_manual',
       'payment_method_types' => ['credit_card'],
     ]);
@@ -431,25 +505,19 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
     $radio_button = $this->getSession()->getPage()->findField('Example');
     $radio_button->click();
     $this->waitForAjaxToFinish();
+    $this->assertRenderedAddress($this->defaultAddress, 'payment_information[billing_information]');
 
-    $this->submitForm([
-      'payment_information[billing_information][address][0][address][given_name]' => 'Johnny',
-      'payment_information[billing_information][address][0][address][family_name]' => 'Appleseed',
-      'payment_information[billing_information][address][0][address][address_line1]' => '123 New York Drive',
-      'payment_information[billing_information][address][0][address][locality]' => 'New York City',
-      'payment_information[billing_information][address][0][address][administrative_area]' => 'NY',
-      'payment_information[billing_information][address][0][address][postal_code]' => '10001',
-    ], 'Continue to review');
+    $this->submitForm([], 'Continue to review');
     $this->assertSession()->pageTextContains('Payment information');
     $this->assertSession()->pageTextContains('Example');
-    $this->assertSession()->pageTextContains('Johnny Appleseed');
-    $this->assertSession()->pageTextContains('123 New York Drive');
+    $this->assertSession()->pageTextContains('Bryan Centarro');
+    $this->assertSession()->pageTextContains('9 Drupal Ave');
     $this->submitForm([], 'Pay and complete purchase');
 
     $this->assertSession()->addressEquals('checkout/1/payment');
     $order = Order::load(1);
-    $this->assertEquals('offsite', $order->get('payment_gateway')->target_id);
     $this->assertTrue($order->isLocked());
+    $this->assertEquals('offsite', $order->get('payment_gateway')->target_id);
 
     $this->submitForm([], 'Proceed to Example');
     $this->assertSession()->pageTextContains('Your order number is 1. You can view your order on your account page when logged in.');
@@ -478,7 +546,7 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
     $manual_gateway->save();
 
     $payment_gateway = PaymentGateway::load('offsite');
-    $payment_gateway->getPlugin()->setConfiguration([
+    $payment_gateway->setPluginConfiguration([
       'redirect_method' => 'get',
       'payment_method_types' => ['credit_card'],
     ]);
@@ -487,19 +555,13 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
     $this->drupalGet($this->product->toUrl()->toString());
     $this->submitForm([], 'Add to cart');
     $this->drupalGet('checkout/1');
+    $this->assertRenderedAddress($this->defaultAddress, 'payment_information[billing_information]');
 
-    $this->submitForm([
-      'payment_information[billing_information][address][0][address][given_name]' => 'Johnny',
-      'payment_information[billing_information][address][0][address][family_name]' => 'Appleseed',
-      'payment_information[billing_information][address][0][address][address_line1]' => '123 New York Drive',
-      'payment_information[billing_information][address][0][address][locality]' => 'New York City',
-      'payment_information[billing_information][address][0][address][administrative_area]' => 'NY',
-      'payment_information[billing_information][address][0][address][postal_code]' => '10001',
-    ], 'Continue to review');
+    $this->submitForm([], 'Continue to review');
     $this->assertSession()->pageTextContains('Payment information');
     $this->assertSession()->pageTextContains('Example');
-    $this->assertSession()->pageTextContains('Johnny Appleseed');
-    $this->assertSession()->pageTextContains('123 New York Drive');
+    $this->assertSession()->pageTextContains('Bryan Centarro');
+    $this->assertSession()->pageTextContains('9 Drupal Ave');
     $this->submitForm([], 'Pay and complete purchase');
     $this->assertSession()->pageTextContains('Your order number is 1. You can view your order on your account page when logged in.');
 
@@ -519,7 +581,7 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
    */
   public function testFailedCheckoutWithOffsiteRedirectGet() {
     $payment_gateway = PaymentGateway::load('offsite');
-    $payment_gateway->getPlugin()->setConfiguration([
+    $payment_gateway->setPluginConfiguration([
       'redirect_method' => 'get',
       'payment_method_types' => ['credit_card'],
     ]);
@@ -531,19 +593,17 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
     $radio_button = $this->getSession()->getPage()->findField('Example');
     $radio_button->click();
     $this->waitForAjaxToFinish();
+    $this->assertRenderedAddress($this->defaultAddress, 'payment_information[billing_information]');
+    $this->getSession()->getPage()->pressButton('billing_edit');
+    $this->waitForAjaxToFinish();
 
     $this->submitForm([
-      'payment_information[billing_information][address][0][address][given_name]' => 'Johnny',
       'payment_information[billing_information][address][0][address][family_name]' => 'FAIL',
-      'payment_information[billing_information][address][0][address][address_line1]' => '123 New York Drive',
-      'payment_information[billing_information][address][0][address][locality]' => 'New York City',
-      'payment_information[billing_information][address][0][address][administrative_area]' => 'NY',
-      'payment_information[billing_information][address][0][address][postal_code]' => '10001',
     ], 'Continue to review');
     $this->assertSession()->pageTextContains('Payment information');
     $this->assertSession()->pageTextContains('Example');
-    $this->assertSession()->pageTextContains('Johnny FAIL');
-    $this->assertSession()->pageTextContains('123 New York Drive');
+    $this->assertSession()->pageTextContains('Bryan FAIL');
+    $this->assertSession()->pageTextContains('9 Drupal Ave');
     $this->submitForm([], 'Pay and complete purchase');
     $this->assertSession()->pageTextNotContains('Your order number is 1. You can view your order on your account page when logged in.');
     $this->assertSession()->pageTextContains('We encountered an unexpected error processing your payment. Please try again later.');
@@ -564,7 +624,7 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
    */
   public function testCheckoutWithOffsitePaymentNotify() {
     $payment_gateway = PaymentGateway::load('offsite');
-    $payment_gateway->getPlugin()->setConfiguration([
+    $payment_gateway->setPluginConfiguration([
       'redirect_method' => 'post_manual',
       'payment_method_types' => ['credit_card'],
     ]);
@@ -576,19 +636,13 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
     $radio_button = $this->getSession()->getPage()->findField('Example');
     $radio_button->click();
     $this->waitForAjaxToFinish();
+    $this->assertRenderedAddress($this->defaultAddress, 'payment_information[billing_information]');
 
-    $this->submitForm([
-      'payment_information[billing_information][address][0][address][given_name]' => 'Johnny',
-      'payment_information[billing_information][address][0][address][family_name]' => 'Appleseed',
-      'payment_information[billing_information][address][0][address][address_line1]' => '123 New York Drive',
-      'payment_information[billing_information][address][0][address][locality]' => 'New York City',
-      'payment_information[billing_information][address][0][address][administrative_area]' => 'NY',
-      'payment_information[billing_information][address][0][address][postal_code]' => '10001',
-    ], 'Continue to review');
+    $this->submitForm([], 'Continue to review');
     $this->assertSession()->pageTextContains('Payment information');
     $this->assertSession()->pageTextContains('Example');
-    $this->assertSession()->pageTextContains('Johnny Appleseed');
-    $this->assertSession()->pageTextContains('123 New York Drive');
+    $this->assertSession()->pageTextContains('Bryan Centarro');
+    $this->assertSession()->pageTextContains('9 Drupal Ave');
     $this->submitForm([], 'Pay and complete purchase');
 
     $this->assertSession()->addressEquals('checkout/1/payment');
@@ -602,6 +656,8 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
     ]);
     $payment->save();
     $order = Order::load(1);
+    // Save the order to recalculate the balance.
+    $order->save();
     $this->assertTrue($order->isPaid());
     $this->assertFalse($order->isLocked());
 
@@ -620,7 +676,7 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
   /**
    * Tests checkout with a manual gateway.
    */
-  public function testCheckoutWithManual() {
+  public function testManual() {
     $this->drupalGet($this->product->toUrl()->toString());
     $this->submitForm([], 'Add to cart');
     $this->drupalGet('checkout/1');
@@ -636,25 +692,21 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
     ]);
     $payment->save();
     $order = Order::load(1);
+    // Save the order to recalculate the balance.
+    $order->save();
     $this->assertEquals(new Price('20', 'USD'), $order->getTotalPaid());
     $this->assertEquals(new Price('19.99', 'USD'), $order->getBalance());
 
     $radio_button = $this->getSession()->getPage()->findField('Cash on delivery');
     $radio_button->click();
     $this->waitForAjaxToFinish();
+    $this->assertRenderedAddress($this->defaultAddress, 'payment_information[billing_information]');
 
-    $this->submitForm([
-      'payment_information[billing_information][address][0][address][given_name]' => 'Johnny',
-      'payment_information[billing_information][address][0][address][family_name]' => 'Appleseed',
-      'payment_information[billing_information][address][0][address][address_line1]' => '123 New York Drive',
-      'payment_information[billing_information][address][0][address][locality]' => 'New York City',
-      'payment_information[billing_information][address][0][address][administrative_area]' => 'NY',
-      'payment_information[billing_information][address][0][address][postal_code]' => '10001',
-    ], 'Continue to review');
+    $this->submitForm([], 'Continue to review');
     $this->assertSession()->pageTextContains('Payment information');
-    $this->assertSession()->pageTextContains('Example');
-    $this->assertSession()->pageTextContains('Johnny Appleseed');
-    $this->assertSession()->pageTextContains('123 New York Drive');
+    $this->assertSession()->pageTextContains('Cash on delivery');
+    $this->assertSession()->pageTextContains('Bryan Centarro');
+    $this->assertSession()->pageTextContains('9 Drupal Ave');
     $this->submitForm([], 'Pay and complete purchase');
     $this->assertSession()->pageTextContains('Your order number is 1. You can view your order on your account page when logged in.');
     $this->assertSession()->pageTextContains('Sample payment instructions.');
@@ -671,19 +723,63 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
     $this->assertEquals(new Price('19.99', 'USD'), $payment->getAmount());
     $this->assertEquals(new Price('20', 'USD'), $order->getTotalPaid());
     $this->assertEquals(new Price('19.99', 'USD'), $order->getBalance());
-    // Complete the payment and confirm the updated totals.
-    $payment->setState('completed');
-    $payment->save();
+  }
+
+  /**
+   * Tests checkout with a manual gateway, without billing information.
+   */
+  public function testManualWithoutBilling() {
+    $payment_gateway = PaymentGateway::load('manual');
+    $payment_gateway->setPluginConfiguration([
+      'collect_billing_information' => FALSE,
+      'display_label' => 'Cash on delivery',
+      'instructions' => [
+        'value' => 'Sample payment instructions.',
+        'format' => 'plain_text',
+      ],
+    ]);
+    $payment_gateway->save();
+    $this->drupalGet($this->product->toUrl()->toString());
+    $this->submitForm([], 'Add to cart');
+    $this->drupalGet('checkout/1');
+    $radio_button = $this->getSession()->getPage()->findField('Cash on delivery');
+    $radio_button->click();
+    $this->waitForAjaxToFinish();
+    $this->assertSession()->pageTextNotContains('Country');
+    $this->submitForm([], 'Continue to review');
+    $this->assertSession()->pageTextContains('Payment information');
+    $this->assertSession()->pageTextContains('Cash on delivery');
+    $this->submitForm([], 'Pay and complete purchase');
+    $this->assertSession()->pageTextContains('Your order number is 1. You can view your order on your account page when logged in.');
+    $this->assertSession()->pageTextContains('Sample payment instructions.');
+
     \Drupal::entityTypeManager()->getStorage('commerce_order')->resetCache([1]);
     $order = Order::load(1);
-    $this->assertEquals(new Price('39.99', 'USD'), $order->getTotalPaid());
-    $this->assertEquals(new Price('0', 'USD'), $order->getBalance());
+    $this->assertEquals('manual', $order->get('payment_gateway')->target_id);
+    $this->assertNull($order->getBillingProfile());
+    $this->assertFalse($order->isLocked());
   }
 
   /**
    * Tests a free order, where only the billing information is collected.
    */
   public function testFreeOrder() {
+    // Prepare a different address book profile to test switching.
+    $new_address = [
+      'given_name' => 'Johnny',
+      'family_name' => 'Appleseed',
+      'address_line1' => '123 New York Drive',
+      'locality' => 'New York City',
+      'administrative_area' => 'NY',
+      'postal_code' => '10001',
+      'country_code' => 'US',
+    ];
+    $new_address_book_profile = $this->createEntity('profile', [
+      'type' => 'customer',
+      'uid' => $this->adminUser->id(),
+      'address' => $new_address,
+    ]);
+
     $this->drupalGet($this->product->toUrl()->toString());
     $this->submitForm([], 'Add to cart');
 
@@ -700,15 +796,12 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
     $this->drupalGet('checkout/1');
     $this->assertSession()->pageTextContains('Billing information');
     $this->assertSession()->pageTextNotContains('Payment information');
-    $this->submitForm([
-      'payment_information[billing_information][address][0][address][given_name]' => 'Johnny',
-      'payment_information[billing_information][address][0][address][family_name]' => 'Appleseed',
-      'payment_information[billing_information][address][0][address][address_line1]' => '123 New York Drive',
-      'payment_information[billing_information][address][0][address][locality]' => 'New York City',
-      'payment_information[billing_information][address][0][address][administrative_area]' => 'NY',
-      'payment_information[billing_information][address][0][address][postal_code]' => '10001',
-    ], 'Continue to review');
+    $this->assertRenderedAddress($this->defaultAddress, 'payment_information[billing_information]');
+    $this->getSession()->getPage()->fillField('payment_information[billing_information][select_address]', $new_address_book_profile->id());
+    $this->waitForAjaxToFinish();
+    $this->assertRenderedAddress($new_address, 'payment_information[billing_information]');
 
+    $this->submitForm([], 'Continue to review');
     $this->assertSession()->pageTextContains('Billing information');
     $this->assertSession()->pageTextNotContains('Payment information');
     $this->assertSession()->pageTextContains('Example');
@@ -723,6 +816,22 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
    * Tests a paid order, where only the billing information is collected.
    */
   public function testPaidOrder() {
+    // Prepare a different address book profile to test switching.
+    $new_address = [
+      'given_name' => 'Johnny',
+      'family_name' => 'Appleseed',
+      'address_line1' => '123 New York Drive',
+      'locality' => 'New York City',
+      'administrative_area' => 'NY',
+      'postal_code' => '10001',
+      'country_code' => 'US',
+    ];
+    $new_address_book_profile = $this->createEntity('profile', [
+      'type' => 'customer',
+      'uid' => $this->adminUser->id(),
+      'address' => $new_address,
+    ]);
+
     $this->drupalGet($this->product->toUrl()->toString());
     $this->submitForm([], 'Add to cart');
 
@@ -733,15 +842,12 @@ class PaymentCheckoutTest extends CommerceWebDriverTestBase {
     $this->drupalGet('checkout/1');
     $this->assertSession()->pageTextContains('Billing information');
     $this->assertSession()->pageTextNotContains('Payment information');
-    $this->submitForm([
-      'payment_information[billing_information][address][0][address][given_name]' => 'Johnny',
-      'payment_information[billing_information][address][0][address][family_name]' => 'Appleseed',
-      'payment_information[billing_information][address][0][address][address_line1]' => '123 New York Drive',
-      'payment_information[billing_information][address][0][address][locality]' => 'New York City',
-      'payment_information[billing_information][address][0][address][administrative_area]' => 'NY',
-      'payment_information[billing_information][address][0][address][postal_code]' => '10001',
-    ], 'Continue to review');
+    $this->assertRenderedAddress($this->defaultAddress, 'payment_information[billing_information]');
+    $this->getSession()->getPage()->fillField('payment_information[billing_information][select_address]', $new_address_book_profile->id());
+    $this->waitForAjaxToFinish();
+    $this->assertRenderedAddress($new_address, 'payment_information[billing_information]');
 
+    $this->submitForm([], 'Continue to review');
     $this->assertSession()->pageTextContains('Billing information');
     $this->assertSession()->pageTextNotContains('Payment information');
     $this->assertSession()->pageTextContains('Example');

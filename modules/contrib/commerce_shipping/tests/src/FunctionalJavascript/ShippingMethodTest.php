@@ -17,6 +17,7 @@ class ShippingMethodTest extends CommerceWebDriverTestBase {
    */
   public static $modules = [
     'commerce_shipping',
+    'commerce_shipping_test',
   ];
 
   /**
@@ -55,6 +56,7 @@ class ShippingMethodTest extends CommerceWebDriverTestBase {
     $shipping_method = ShippingMethod::load(1);
     $plugin = $shipping_method->getPlugin();
     $this->assertEquals(['number' => '10.00', 'currency_code' => 'USD'], $plugin->getConfiguration()['rate_amount']);
+    $this->assertEquals('shipment_default', $plugin->getConfiguration()['workflow']);
   }
 
   /**
@@ -79,13 +81,34 @@ class ShippingMethodTest extends CommerceWebDriverTestBase {
     /** @var \Drupal\commerce_shipping\Plugin\Commerce\ShippingMethod\ShippingMethodInterface $plugin */
     $plugin = $shipping_method->getPlugin();
     $this->assertEquals(['number' => '10.00', 'currency_code' => 'USD'], $plugin->getConfiguration()['rate_amount']);
+    $this->assertEquals('shipment_default', $plugin->getConfiguration()['workflow']);
 
     $this->drupalGet($shipping_method->toUrl('edit-form'));
     $this->assertSession()->fieldExists('name[0][value]');
     $new_shipping_method_name = $this->randomMachineName(8);
+
+    // Test that finalize transition is required.
     $edit = [
       'name[0][value]' => $new_shipping_method_name,
       'plugin[0][target_plugin_configuration][flat_rate][rate_amount][number]' => '20.00',
+      'plugin[0][target_plugin_configuration][flat_rate][workflow]' => 'shipment_missing_finalize',
+    ];
+    $this->submitForm($edit, 'Save');
+    $this->assertSession()->pageTextContains(t('The Missing finalize workflow does not have a "Finalize" transition.'));
+
+    // Test that cancel transition is required.
+    $edit = [
+      'name[0][value]' => $new_shipping_method_name,
+      'plugin[0][target_plugin_configuration][flat_rate][rate_amount][number]' => '20.00',
+      'plugin[0][target_plugin_configuration][flat_rate][workflow]' => 'shipment_missing_cancel',
+    ];
+    $this->submitForm($edit, 'Save');
+    $this->assertSession()->pageTextContains(t('The Missing cancel workflow does not have a "Cancel" transition.'));
+
+    $edit = [
+      'name[0][value]' => $new_shipping_method_name,
+      'plugin[0][target_plugin_configuration][flat_rate][rate_amount][number]' => '20.00',
+      'plugin[0][target_plugin_configuration][flat_rate][workflow]' => 'shipment_good_test',
     ];
     $this->submitForm($edit, 'Save');
 
@@ -95,6 +118,7 @@ class ShippingMethodTest extends CommerceWebDriverTestBase {
     /** @var \Drupal\commerce_shipping\Plugin\Commerce\ShippingMethod\ShippingMethodInterface $plugin */
     $plugin = $shipping_method_changed->getPlugin();
     $this->assertEquals(['number' => '20.00', 'currency_code' => 'USD'], $plugin->getConfiguration()['rate_amount']);
+    $this->assertEquals('shipment_good_test', $plugin->getConfiguration()['workflow']);
   }
 
   /**
