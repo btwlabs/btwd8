@@ -175,7 +175,7 @@ function blazy_preprocess_media_oembed_iframe(array &$variables) {
  * Provides a shortcut to parse the markdown string for better hook_help().
  */
 function blazy_parse_markdown($string) {
-  return BlazyMarkdown::isApplicable() ? BlazyMarkdown::parse($string) : FALSE;
+  return BlazyMarkdown::parse($string);
 }
 
 /**

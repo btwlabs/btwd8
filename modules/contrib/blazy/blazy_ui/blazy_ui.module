@@ -16,7 +16,7 @@ function blazy_ui_help($route_name) {
     $output .= file_get_contents(dirname(dirname(__FILE__)) . '/docs/ROADMAP.md');
     $output .= file_get_contents(dirname(dirname(__FILE__)) . '/docs/CONTRIBUTION.md');
     $output .= file_get_contents(dirname(dirname(__FILE__)) . '/docs/ISSUE_TEMPLATE.md');
-    return blazy_parse_markdown($output) ?: '<pre>' . $output . '</pre>';
+    return blazy_parse_markdown($output);
   }
   return '';
 }

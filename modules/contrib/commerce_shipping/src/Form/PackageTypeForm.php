@@ -60,13 +60,13 @@ class PackageTypeForm extends EntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        drupal_set_message($this->t('Created the %label package type.', [
+        $this->messenger()->addMessage($this->t('Created the %label package type.', [
           '%label' => $package_type->label(),
         ]));
         break;
 
       default:
-        drupal_set_message($this->t('Saved the %label package type.', [
+        $this->messenger()->addMessage($this->t('Saved the %label package type.', [
           '%label' => $package_type->label(),
         ]));
     }

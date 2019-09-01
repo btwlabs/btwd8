@@ -3,4 +3,5 @@ status: true
 dependencies: {  }
 id: default
 label: Default
+profileType: customer
 traits: {  }

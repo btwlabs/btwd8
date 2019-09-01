@@ -227,6 +227,10 @@ abstract class TaxTypeBase extends PluginBase implements TaxTypeInterface, Conta
     $event = new CustomerProfileEvent($customer_profile, $order_item);
     $this->eventDispatcher->dispatch(TaxEvents::CUSTOMER_PROFILE, $event);
     $customer_profile = $event->getCustomerProfile();
+    // Guard against broken profiles.
+    if ($customer_profile && $customer_profile->get('address')->isEmpty()) {
+      $customer_profile = NULL;
+    }
     if (!$customer_profile && $this->isDisplayInclusive()) {
       // The customer is still unknown, but prices are displayed tax-inclusive
       // (VAT scenario), better to show the store's default tax than nothing.
@@ -251,7 +255,7 @@ abstract class TaxTypeBase extends PluginBase implements TaxTypeInterface, Conta
       $profile_storage = $this->entityTypeManager->getStorage('profile');
       $this->storeProfiles[$store_id] = $profile_storage->create([
         'type' => 'customer',
-        'uid' => $store->getOwnerId(),
+        'uid' => 0,
         'address' => $store->getAddress(),
       ]);
     }

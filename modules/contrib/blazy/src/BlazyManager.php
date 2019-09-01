@@ -235,6 +235,8 @@ class BlazyManager extends BlazyManagerBase {
     $settings = $build['settings'];
     $settings['_grid'] = isset($settings['_grid']) ? $settings['_grid'] : (!empty($settings['style']) && !empty($settings['grid']));
 
+    $this->moduleHandler->alter('blazy_build_settings', $build['settings']);
+
     // If not a grid, pass the items as regular index children to theme_field().
     // This #pre_render doesn't work if called from Views results.
     if (empty($settings['_grid'])) {

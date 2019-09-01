@@ -59,8 +59,7 @@ class ProfileTest extends EntityKernelTestBase {
     $this->installSchema('user', ['users_data']);
     $this->installConfig(['profile', 'user']);
 
-    $this->profileStorage = $this->container->get('entity_type.manager')
-      ->getStorage('profile');
+    $this->profileStorage = $this->container->get('entity_type.manager')->getStorage('profile');
     $this->user1 = $this->createUser();
     $this->user2 = $this->createUser();
   }
@@ -268,17 +267,16 @@ class ProfileTest extends EntityKernelTestBase {
     ]);
     $profile_type->save();
 
-    // Create a new profile.
+    /** @var \Drupal\profile\Entity\ProfileInterface $profile1 */
     $profile1 = Profile::create([
       'type' => $profile_type->id(),
       'uid' => $this->user1->id(),
     ]);
     $profile1->save();
-
-    // Verify that the first profile of this type is default.
+    // Confirm that the profile was set as default.
     $this->assertTrue($profile1->isDefault());
 
-    // Create a second new profile.
+    /** @var \Drupal\profile\Entity\ProfileInterface $profile2 */
     $profile2 = Profile::create([
       'type' => $profile_type->id(),
       'uid' => $this->user1->id(),
@@ -286,57 +284,23 @@ class ProfileTest extends EntityKernelTestBase {
     $profile2->setDefault(TRUE);
     $profile2->save();
 
-    $this->assertFalse($this->reloadEntity($profile1)->isDefault());
-    $this->assertTrue($this->reloadEntity($profile2)->isDefault());
+    // Confirm that setting the second profile as default removed the
+    // flag from the first profile.
+    $profile2 = $this->reloadEntity($profile2);
+    $profile1 = $this->reloadEntity($profile1);
+    $this->assertTrue($profile2->isDefault());
+    $this->assertFalse($profile1->isDefault());
 
-    $profile1->setDefault(TRUE)->save();
-    $this->assertFalse($this->reloadEntity($profile2)->isDefault());
-    $this->assertTrue($this->reloadEntity($profile1)->isDefault());
-
-    // Verify that a deactivated profile cannot be the default and that if the
-    // current default is disactivated another default is set.
+    // Verify that an unpublished profile cannot be the default.
     $profile2->setUnpublished();
     $profile2->save();
+    $this->assertFalse($profile2->isDefault());
 
-    $this->assertFalse($this->reloadEntity($profile2)->isDefault());
-    $this->assertTrue($this->reloadEntity($profile1)->isDefault());
-  }
-
-  /**
-   * Tests loading default from storage handler.
-   */
-  public function testLoadDefaultProfile() {
-    $profile_type = ProfileType::create([
-      'id' => 'test_defaults',
-      'label' => 'test_defaults',
-    ]);
-    $profile_type->save();
-
-    // Create new profiles.
-    $profile1 = Profile::create([
-      'type' => $profile_type->id(),
-      'uid' => $this->user1->id(),
-    ]);
-    $profile1->setPublished();
+    $profile1 = $this->reloadEntity($profile1);
+    $this->assertFalse($profile1->isDefault());
+    // Confirm that re-saving the other published profile sets it as default.
     $profile1->save();
-    $profile2 = Profile::create([
-      'type' => $profile_type->id(),
-      'uid' => $this->user1->id(),
-    ]);
-    $profile2->setPublished();
-    $profile2->setDefault(TRUE);
-    $profile2->save();
-
-    /** @var \Drupal\profile\ProfileStorageInterface $storage */
-    $storage = \Drupal::entityTypeManager()->getStorage('profile');
-
-    $default_profile = $storage->loadDefaultByUser($this->user1, $profile_type->id());
-    $this->assertEquals($profile2->id(), $default_profile->id());
-
-    // Ensure that \Drupal\profile\Entity\Profile::preSave doesn't crash.
-    $anonymous_profile = Profile::create(['type' => $profile_type->id()]);
-    $anonymous_profile->save();
-    $this->assertTrue(empty($anonymous_profile->getOwner()));
+    $this->assertTrue($profile1->isDefault());
   }
 
   /**

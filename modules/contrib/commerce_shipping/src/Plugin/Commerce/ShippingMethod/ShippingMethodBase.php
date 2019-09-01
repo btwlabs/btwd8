@@ -91,6 +91,13 @@ abstract class ShippingMethodBase extends PluginBase implements ContainerFactory
   /**
    * {@inheritdoc}
    */
+  public function getWorkflowId() {
+    return $this->configuration['workflow'];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function calculateDependencies() {
     return [];
   }
@@ -102,6 +109,7 @@ abstract class ShippingMethodBase extends PluginBase implements ContainerFactory
     return [
       'default_package_type' => 'custom_box',
       'services' => [],
+      'workflow' => $this->pluginDefinition['workflow'],
     ];
   }
 
@@ -135,6 +143,8 @@ abstract class ShippingMethodBase extends PluginBase implements ContainerFactory
       $service_ids = array_keys($services);
       $this->configuration['services'] = array_combine($service_ids, $service_ids);
     }
+    $workflows = \Drupal::service('plugin.manager.workflow')->getGroupedLabels('commerce_shipment');
+    $workflows = $workflows['Shipment'];
 
     $form['default_package_type'] = [
       '#type' => 'select',
@@ -152,6 +162,14 @@ abstract class ShippingMethodBase extends PluginBase implements ContainerFactory
       '#required' => TRUE,
       '#access' => count($services) > 1,
     ];
+    $form['workflow'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Shipment workflow'),
+      '#options' => $workflows,
+      '#default_value' => $this->configuration['workflow'],
+      '#required' => TRUE,
+      '#access' => count($workflows) > 1,
+    ];
 
     return $form;
   }
@@ -159,7 +177,24 @@ abstract class ShippingMethodBase extends PluginBase implements ContainerFactory
   /**
    * {@inheritdoc}
    */
-  public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {}
+  public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {
+    $values = $form_state->getValue($form['#parents']);
+    /** @var \Drupal\state_machine\Plugin\Workflow\WorkflowInterface $workflow */
+    $workflow = \Drupal::service('plugin.manager.workflow')->createInstance($values['workflow']);
+
+    // Verify "Finalize" transition.
+    if (!$workflow->getTransition('finalize')) {
+      $form_state->setError($form['workflow'], $this->t('The @workflow workflow does not have a "Finalize" transition.', [
+        '@workflow' => $workflow->getLabel(),
+      ]));
+    }
+    // Verify "Cancel" transition.
+    if (!$workflow->getTransition('cancel')) {
+      $form_state->setError($form['workflow'], $this->t('The @workflow workflow does not have a "Cancel" transition.', [
+        '@workflow' => $workflow->getLabel(),
+      ]));
+    }
+  }
 
   /**
    * {@inheritdoc}
@@ -173,6 +208,7 @@ abstract class ShippingMethodBase extends PluginBase implements ContainerFactory
         $this->configuration['default_package_type'] = $values['default_package_type'];
         $this->configuration['services'] = array_keys($values['services']);
       }
+      $this->configuration['workflow'] = $values['workflow'];
     }
   }
 

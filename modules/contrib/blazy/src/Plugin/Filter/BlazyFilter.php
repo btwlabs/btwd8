@@ -356,8 +356,14 @@ class BlazyFilter extends FilterBase implements BlazyFilterInterface, ContainerF
       if ($caption->length > 0 && $caption->item(0) && $text = $caption->item(0)->nodeValue) {
         $build['captions']['alt'] = ['#markup' => Xss::filter($text, BlazyDefault::TAGS)];
 
+        // Mark the FIGCAPTION for deletion because the caption will be
+        // rendered in the Blazy way.
+        $caption->item(0)->setAttribute('class', 'blazy-removed');
+
         // Marks figures for removal as its contents are moved into grids.
-        $node->parentNode->setAttribute('class', 'blazy-removed');
+        if ($build['settings']['_grid']) {
+          $node->parentNode->setAttribute('class', 'blazy-removed');
+        }
       }
     }
   }
@@ -373,8 +379,8 @@ class BlazyFilter extends FilterBase implements BlazyFilterInterface, ContainerF
     if ($uuid && $file = $this->blazyManager->getEntityRepository()->loadEntityByUuid('file', $uuid)) {
       $data = $this->getImageItem($file);
       $item = $data['item'];
-      $item->alt = $node->hasAttribute('alt') ? $node->getAttribute('alt') : $item->alt;
-      $item->title = $node->hasAttribute('title') ? $node->getAttribute('title') : $item->title;
+      $item->alt = $node->hasAttribute('alt') ? $node->getAttribute('alt') : ($item ? $item->alt : '');
+      $item->title = $node->hasAttribute('title') ? $node->getAttribute('title') : ($item ? $item->title : '');
       $settings = array_merge($settings, $data['settings']);
     }
     else {
@@ -484,7 +490,7 @@ class BlazyFilter extends FilterBase implements BlazyFilterInterface, ContainerF
         'iframe' => $this->t('Video iframe'),
       ],
       '#default_value' => empty($this->settings['filter_tags']) ? [] : array_values((array) $this->settings['filter_tags']),
-      '#description' => $this->t('Best after Align/ Caption images, else broken. If any issue with display, do not embed Blazy within Caption filter. To disable per item, add attribute <code>data-unblazy</code>.'),
+      '#description' => $this->t('Recommended placement after Align / Caption images. To disable for individual items, add attribute <code>data-unblazy</code>.'),
     ];
 
     $form['media_switch'] = [

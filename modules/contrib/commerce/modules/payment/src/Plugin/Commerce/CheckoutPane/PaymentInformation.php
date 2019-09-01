@@ -125,14 +125,16 @@ class PaymentInformation extends CheckoutPaneBase {
       $view_builder = $this->entityTypeManager->getViewBuilder('commerce_payment_method');
       $summary = $view_builder->view($payment_method, 'default');
     }
-    elseif ($billing_profile) {
-      $view_builder = $this->entityTypeManager->getViewBuilder('profile');
+    else {
       $summary = [
         'payment_gateway' => [
           '#markup' => $payment_gateway->getPlugin()->getDisplayLabel(),
         ],
-        'profile' => $view_builder->view($billing_profile, 'default'),
       ];
+      if ($billing_profile) {
+        $view_builder = $this->entityTypeManager->getViewBuilder('profile');
+        $summary['profile'] = $view_builder->view($billing_profile, 'default');
+      }
     }
 
     return $summary;
@@ -206,7 +208,7 @@ class PaymentInformation extends CheckoutPaneBase {
     if ($payment_gateway->getPlugin() instanceof SupportsStoredPaymentMethodsInterface) {
       $pane_form = $this->buildPaymentMethodForm($pane_form, $form_state, $default_option);
     }
-    else {
+    elseif ($payment_gateway->getPlugin()->collectsBillingInformation()) {
       $pane_form = $this->buildBillingProfileForm($pane_form, $form_state);
     }
 
@@ -268,12 +270,16 @@ class PaymentInformation extends CheckoutPaneBase {
     $billing_profile = $this->order->getBillingProfile();
     if (!$billing_profile) {
       $billing_profile = $this->entityTypeManager->getStorage('profile')->create([
-        'uid' => $this->order->getCustomerId(),
         'type' => 'customer',
+        'uid' => 0,
       ]);
     }
     $inline_form = $this->inlineFormManager->createInstance('customer_profile', [
+      'profile_scope' => 'billing',
       'available_countries' => $this->order->getStore()->getBillingCountries(),
+      'address_book_uid' => $this->order->getCustomerId(),
+      // Don't copy the profile to address book until the order is placed.
+      'copy_on_save' => FALSE,
     ], $billing_profile);
 
     $pane_form['billing_information'] = [
@@ -312,14 +318,15 @@ class PaymentInformation extends CheckoutPaneBase {
    * {@inheritdoc}
    */
   public function submitPaneForm(array &$pane_form, FormStateInterface $form_state, array &$complete_form) {
-    $billing_profile = NULL;
     if (isset($pane_form['billing_information'])) {
       /** @var \Drupal\commerce\Plugin\Commerce\InlineForm\EntityInlineFormInterface $inline_form */
       $inline_form = $pane_form['billing_information']['#inline_form'];
       /** @var \Drupal\profile\Entity\ProfileInterface $billing_profile */
       $billing_profile = $inline_form->getEntity();
+      $this->order->setBillingProfile($billing_profile);
+      // The billing profile is provided either because the order is free,
+      // or the selected gateway is off-site. If it's the former, stop here.
       if ($this->order->isPaid() || $this->order->getTotalPrice()->isZero()) {
-        $this->order->setBillingProfile($billing_profile);
         return;
       }
     }
@@ -351,12 +358,29 @@ class PaymentInformation extends CheckoutPaneBase {
       /** @var \Drupal\commerce_payment\Entity\PaymentMethodInterface $payment_method */
       $this->order->set('payment_gateway', $payment_method->getPaymentGateway());
       $this->order->set('payment_method', $payment_method);
-      $this->order->setBillingProfile($payment_method->getBillingProfile());
+      // Copy the billing information to the order.
+      $payment_method_profile = $payment_method->getBillingProfile();
+      if ($payment_method_profile) {
+        $billing_profile = $this->order->getBillingProfile();
+        if (!$billing_profile) {
+          $billing_profile = $this->entityTypeManager->getStorage('profile')->create([
+            'type' => 'customer',
+            'uid' => 0,
+          ]);
+        }
+        $billing_profile->populateFromProfile($payment_method_profile);
+        // The address_book_profile_id flag need to be transferred as well.
+        $address_book_profile_id = $payment_method_profile->getData('address_book_profile_id');
+        if ($address_book_profile_id) {
+          $billing_profile->setData('address_book_profile_id', $address_book_profile_id);
+        }
+        $billing_profile->save();
+        $this->order->setBillingProfile($billing_profile);
+      }
     }
     else {
       $this->order->set('payment_gateway', $payment_gateway);
       $this->order->set('payment_method', NULL);
-      $this->order->setBillingProfile($billing_profile);
     }
   }
 

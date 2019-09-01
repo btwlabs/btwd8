@@ -14,7 +14,7 @@ use Drupal\profile\Entity\ProfileInterface;
  * Important:
  * A single order item can be added to multiple shipments only if all
  * shipments are going to share the same shipping profile.
- * This limitation is imposed by commerce_tax and CustomerProfileSubscriber
+ * This limitation is imposed by commerce_tax and TaxSubscriber
  * which need to select a shipping profile for each order item.
  */
 interface PackerInterface {

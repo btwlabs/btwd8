@@ -31,8 +31,12 @@ class BlazyLightbox {
     $url_attributes['data-' . $switch_css . '-trigger'] = TRUE;
 
     // If it is a video/audio, otherwise image to image.
-    $gallery_id             = empty($settings['view_name']) ? 'blazy-' . $switch_css : ($settings['view_name'] . '-' . $settings['current_view_mode']);
-    $settings['gallery_id'] = empty($settings['gallery_id']) ? $gallery_id : $settings['gallery_id'];
+    $gallery_enabled = !empty($settings['view_name']);
+    if (!$gallery_enabled && $switch === 'colorbox' && function_exists('colorbox_theme')) {
+      $gallery_enabled = (bool) \Drupal::config('colorbox.settings')->get('custom.slideshow.slideshow');
+    }
+    $gallery_id             = !$gallery_enabled ? NULL : (empty($settings['view_name']) ? 'blazy-' . $switch_css : ($settings['view_name'] . '-' . $settings['current_view_mode']));
+    $settings['gallery_id'] = !$gallery_enabled ? NULL : (empty($settings['gallery_id']) ? $gallery_id : $settings['gallery_id']);
     $settings['box_url']    = file_create_url($uri);
     $settings['icon']       = empty($settings['icon']) ? ['#markup' => '<span class="media__icon media__icon--litebox"></span>'] : $settings['icon'];
     $settings['lightbox']   = $switch;

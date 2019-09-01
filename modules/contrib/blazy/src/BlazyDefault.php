@@ -27,13 +27,6 @@ class BlazyDefault {
   private static $instance = NULL;
 
   /**
-   * Prevents this object from being constructed.
-   */
-  private function __construct() {
-    // Do nothing.
-  }
-
-  /**
    * Returns the static instance of this class.
    */
   public static function getInstance() {

@@ -211,15 +211,12 @@ class CheckoutSdk implements CheckoutSdkInterface {
     $item_total = NULL;
     $tax_total = NULL;
     foreach ($order->getItems() as $order_item) {
-      // We need to pass the adjusted unit/total because passing a discount
-      // in the breakdown isn't supported yet.
-      // See https://github.com/paypal/paypal-checkout-components/issues/1016.
-      $item_total = $item_total ? $item_total->add($order_item->getAdjustedTotalPrice(['promotion'])) : $order_item->getAdjustedTotalPrice(['promotion']);
+      $item_total = $item_total ? $item_total->add($order_item->getTotalPrice()) : $order_item->getTotalPrice();
       $item = [
         'name' => mb_substr($order_item->getTitle(), 0, 127),
         'unit_amount' => [
           'currency_code' => $order_item->getUnitPrice()->getCurrencyCode(),
-          'value' => $order_item->getAdjustedUnitPrice(['promotion'])->getNumber(),
+          'value' => Calculator::trim($order_item->getUnitPrice()->getNumber()),
         ],
         'quantity' => intval($order_item->getQuantity()),
       ];
@@ -254,16 +251,24 @@ class CheckoutSdk implements CheckoutSdkInterface {
         'value' => Calculator::trim($shipping_total->getNumber()),
       ];
     }
+
+    $promotion_total = $this->getAdjustmentsTotal($adjustments, ['promotion']);
+    if (!empty($promotion_total)) {
+      $breakdown['discount'] = [
+        'currency_code' => $promotion_total->getCurrencyCode(),
+        'value' => Calculator::trim($promotion_total->multiply(-1)->getNumber()),
+      ];
+    }
     $payer = [];
 
     if (!empty($order->getEmail())) {
       $payer['email_address'] = $order->getEmail();
     }
 
-    $billing_profile = $order->getBillingProfile();
-    if (!empty($billing_profile)) {
+    $profiles = $order->collectProfiles();
+    if (isset($profiles['billing'])) {
       /** @var \Drupal\address\AddressInterface $address */
-      $address = $billing_profile->address->first();
+      $address = $profiles['billing']->address->first();
       if (!empty($address)) {
         $payer += static::formatAddress($address);
       }
@@ -288,7 +293,15 @@ class CheckoutSdk implements CheckoutSdkInterface {
         'brand_name' => mb_substr($order->getStore()->label(), 0, 127),
       ],
     ];
-    $shipping_address = $this->collectShippingAddress($order);
+
+    $shipping_address = [];
+    if (isset($profiles['shipping'])) {
+      /** @var \Drupal\address\AddressInterface $address */
+      $address = $profiles['shipping']->address->first();
+      if (!empty($address)) {
+        $shipping_address = static::formatAddress($address, 'shipping');
+      }
+    }
     $shipping_preference = $this->config['shipping_preference'];
 
     // The shipping module isn't enabled, override the shipping preference
@@ -363,36 +376,6 @@ class CheckoutSdk implements CheckoutSdkInterface {
     }
 
     return $adjustments_total;
-  }
-
-  /**
-   * Collect the shipping address from the first referenced shipment.
-   *
-   * @param \Drupal\commerce_order\Entity\OrderInterface $order
-   *   The order.
-   *
-   * @return array
-   *   The formatted shipping address extracted from the first referenced
-   *   shipment, an empty array if no shipping profile was found.
-   */
-  protected function collectShippingAddress(OrderInterface $order) {
-    $shipping_address = [];
-
-    if (!$order->hasField('shipments') || $order->get('shipments')->isEmpty()) {
-      return $shipping_address;
-    }
-    /**
-     * @var \Drupal\commerce_shipping\Entity\ShipmentInterface $first_shipment
-     */
-    $first_shipment = $order->get('shipments')->first()->entity;
-    $shipping_profile = $first_shipment->getShippingProfile();
-    if (empty($shipping_profile) || $shipping_profile->get('address')->isEmpty()) {
-      return $shipping_address;
-    }
-    /** @var \Drupal\address\AddressInterface $address */
-    $address = $shipping_profile->get('address')->first();
-    $shipping_address = static::formatAddress($address, 'shipping');
-    return $shipping_address;
   }
 
   /**

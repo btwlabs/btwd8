@@ -2,7 +2,7 @@ name: Commerce Product
 type: module
 description: 'Defines the Product entity and associated features.'
 package: Commerce
-# core: 8.x
+core: 8.x
 configure: commerce_product.configuration
 dependencies:
   - commerce:commerce
@@ -35,8 +35,7 @@ config_devel:
     - core.entity_view_display.commerce_product_variation.default.cart
     - core.entity_view_mode.commerce_product_variation.cart
 
-# Information added by Drupal.org packaging script on 2019-04-04
-version: '8.x-2.13'
-core: '8.x'
+# Information added by Drupal.org packaging script on 2019-08-30
+version: '8.x-2.14'
 project: 'commerce'
-datestamp: 1554337696
+datestamp: 1567123389

@@ -2,13 +2,12 @@ name: Commerce Promotion Test
 type: module
 description: Provides items for testing Commerce Promotion.
 package: Testing
-# core: 8.x
+core: 8.x
 dependencies:
   - commerce:commerce_cart
   - commerce:commerce_promotion
 
-# Information added by Drupal.org packaging script on 2019-04-04
-version: '8.x-2.13'
-core: '8.x'
+# Information added by Drupal.org packaging script on 2019-08-30
+version: '8.x-2.14'
 project: 'commerce'
-datestamp: 1554337696
+datestamp: 1567123389

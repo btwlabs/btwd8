@@ -2,29 +2,43 @@
 
 namespace Drupal\commerce_paypal\Plugin\Commerce\PaymentGateway;
 
-use Drupal\commerce_order\Entity\OrderInterface;
-use Drupal\commerce_payment\Plugin\Commerce\PaymentGateway\OnsitePaymentGatewayInterface;
+use Drupal\commerce_payment\Entity\PaymentInterface;
+use Drupal\commerce_payment\Plugin\Commerce\PaymentGateway\OffsitePaymentGatewayInterface;
 use Drupal\commerce_payment\Plugin\Commerce\PaymentGateway\SupportsAuthorizationsInterface;
 use Drupal\commerce_payment\Plugin\Commerce\PaymentGateway\SupportsRefundsInterface;
 
 /**
  * Provides the interface for the Checkout payment gateway.
+ *
+ * The PayPal Checkout payment gateway supports 2 different flows:
+ * 1) The "shortcut" flow:
+ *   - Customer initiates the payment from the cart page through the Smart
+ *     payment buttons.
+ *   - Once the payment is approved on PayPal, the customer is redirected to
+ *     checkout and the checkout flow is set to "PayPal Checkout" (which is
+ *     provided by the module and can be customized).
+ *   - The payment is authorized/captured by the CheckoutPaymentProcess pane
+ *     which calls createPayment().
+ * 2) The "mark" flow:
+ *   - This flow requires the presence of the "review" checkout step. In case
+ *     no "review" step is configured, the Smart payment buttons can be shown
+ *     using the "commerce_paypal.smart_payment_buttons_builder" service.
+ *   - Customer initiates the payment from the checkout "review" step.
+ *   - Once the payment is approved on PayPal, the payment is created on
+ *     in onReturn() and the customer is redirected to the next checkout step
+ *     (usually "payment" which is skipped because the order is already paid).
  */
-interface CheckoutInterface extends OnsitePaymentGatewayInterface, SupportsAuthorizationsInterface, SupportsRefundsInterface {
+interface CheckoutInterface extends OffsitePaymentGatewayInterface, SupportsAuthorizationsInterface, SupportsRefundsInterface {
 
   /**
-   * Create/update the payment method when the payment is approved on PayPal.
+   * Creates a payment.
    *
-   * This is called by the onApprove JS SDK callback.
+   * @param \Drupal\commerce_payment\Entity\PaymentInterface $payment
+   *   The payment.
    *
-   * @param \Drupal\commerce_order\Entity\OrderInterface $order
-   *   The order.
-   * @param array $paypal_order
-   *   The PayPal order.
-   *
-   * @return \Symfony\Component\HttpFoundation\Response
-   *   A response.
+   * @throws \Drupal\commerce_payment\Exception\PaymentGatewayException
+   *   Thrown when the transaction fails for any reason.
    */
-  public function onApprove(OrderInterface $order, array $paypal_order);
+  public function createPayment(PaymentInterface $payment);
 
 }

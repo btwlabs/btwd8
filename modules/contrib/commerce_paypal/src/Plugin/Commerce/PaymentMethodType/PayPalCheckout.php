@@ -24,19 +24,4 @@ class PayPalCheckout extends PaymentMethodTypeBase {
     return $this->t('PayPal');
   }
 
-  /**
-   * {@inheritdoc}
-   */
-  public function buildFieldDefinitions() {
-    $fields = parent::buildFieldDefinitions();
-
-    $fields['flow'] = BundleFieldDefinition::create('string')
-      ->setLabel($this->t('Flow'))
-      ->setDescription($this->t('The flow (e.g "shortcut" or "mark").'))
-      ->setDisplayConfigurable('form', FALSE)
-      ->setRequired(TRUE);
-
-    return $fields;
-  }
-
 }

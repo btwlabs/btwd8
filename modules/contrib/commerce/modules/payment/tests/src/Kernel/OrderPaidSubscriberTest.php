@@ -83,7 +83,7 @@ class OrderPaidSubscriberTest extends CommerceKernelTestBase {
    * Confirms that on-site payments do not affect the order status.
    */
   public function testOnsiteGateway() {
-    /** @var \Drupal\commerce_payment\Entity\PaymentGateway $onsite_gateway */
+    /** @var \Drupal\commerce_payment\Entity\PaymentGatewayInterface $onsite_gateway */
     $onsite_gateway = PaymentGateway::create([
       'id' => 'onsite',
       'label' => 'On-site',
@@ -105,8 +105,8 @@ class OrderPaidSubscriberTest extends CommerceKernelTestBase {
       'state' => 'completed',
     ]);
     $payment->save();
+    $this->order->save();
 
-    $this->order = $this->reloadEntity($this->order);
     $this->assertEquals('draft', $this->order->getState()->getId());
     $this->assertEmpty($this->order->getOrderNumber());
     $this->assertEmpty($this->order->getPlacedTime());
@@ -117,7 +117,7 @@ class OrderPaidSubscriberTest extends CommerceKernelTestBase {
    * Confirms that off-site payments result in the order getting placed.
    */
   public function testOffsiteGateway() {
-    /** @var \Drupal\commerce_payment\Entity\PaymentGateway $gateway */
+    /** @var \Drupal\commerce_payment\Entity\PaymentGatewayInterface $offsite_gateway */
     $offsite_gateway = PaymentGateway::create([
       'id' => 'offsite',
       'label' => 'Off-site',
@@ -140,8 +140,8 @@ class OrderPaidSubscriberTest extends CommerceKernelTestBase {
       'state' => 'completed',
     ]);
     $payment->save();
+    $this->order->save();
 
-    $this->order = $this->reloadEntity($this->order);
     $this->assertEquals('completed', $this->order->getState()->getId());
     $this->assertFalse($this->order->isLocked());
     $this->assertNotEmpty($this->order->getOrderNumber());

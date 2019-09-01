@@ -10,7 +10,10 @@ use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Validation\Plugin\Validation\Constraint\NotNullConstraint;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Validator\ConstraintViolation;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 /**
  * Plugin implementation of 'commerce_shipping_rate'.
@@ -117,15 +120,21 @@ class ShippingRateWidget extends WidgetBase implements ContainerFactoryPluginInt
       $option_ids = array_keys($options);
       $default_value = reset($option_ids);
     }
-    $element['#type'] = 'radios';
-    $element['#options'] = array_column($options, 'label', 'id');
-    $element['#default_value'] = $default_value;
-    // Store relevant data for extractFormValues().
-    foreach ($options as $option_id => $option) {
-      $element[$option_id]['#shipping_method_id'] = $option['shipping_method_id'];
-      $element[$option_id]['#shipping_rate'] = $option['shipping_rate'];
+    if ($default_value) {
+      $element['#type'] = 'radios';
+      $element['#options'] = array_column($options, 'label', 'id');
+      $element['#default_value'] = $default_value;
+      // Store relevant data for extractFormValues().
+      foreach ($options as $option_id => $option) {
+        $element[$option_id]['#shipping_method_id'] = $option['shipping_method_id'];
+        $element[$option_id]['#shipping_rate'] = $option['shipping_rate'];
+      }
     }
-
+    else {
+      $element = [
+        '#markup' => $this->t('There are no shipping rates available for this address.'),
+      ];
+    }
     return $element;
   }
 
@@ -172,6 +181,32 @@ class ShippingRateWidget extends WidgetBase implements ContainerFactoryPluginInt
     $entity_type = $field_definition->getTargetEntityTypeId();
     $field_name = $field_definition->getName();
     return $entity_type == 'commerce_shipment' && $field_name == 'shipping_method';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function flagErrors(FieldItemListInterface $items, ConstraintViolationListInterface $violations, array $form, FormStateInterface $form_state) {
+    foreach ($violations as $offset => $violation) {
+      /** @var \Symfony\Component\Validator\ConstraintViolationInterface $violation */
+      if ($violation->getCode() == NotNullConstraint::IS_NULL_ERROR) {
+        // There are no setters on ConstraintValidation.
+        $new = new ConstraintViolation(
+          $this->t('A valid shipping method must be selected in order to check out.'),
+          $violation->getMessageTemplate(),
+          $violation->getParameters(),
+          $violation->getRoot(),
+          $violation->getPropertyPath(),
+          $violation->getInvalidValue(),
+          $violation->getPlural(),
+          $violation->getCode(),
+          new NotNullConstraint()
+        );
+        $violations->remove($offset);
+        $violations->add($new);
+      }
+    }
+    return parent::flagErrors($items, $violations, $form, $form_state);
   }
 
 }

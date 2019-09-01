@@ -86,11 +86,31 @@ class ShipmentAddressTest extends UnitTestCase {
     $condition = new ShipmentAddress([
       'zone' => [
         'territories' => [
+          ['country_code' => 'US', 'administrative_area' => 'CA'],
+        ],
+      ],
+      'negate' => TRUE,
+    ], 'shipment_address', ['entity_type' => 'commerce_shipment']);
+    $this->assertTrue($condition->evaluate($shipment));
+
+    $condition = new ShipmentAddress([
+      'zone' => [
+        'territories' => [
           ['country_code' => 'US', 'administrative_area' => 'SC'],
         ],
       ],
     ], 'shipment_address', ['entity_type' => 'commerce_shipment']);
     $this->assertTrue($condition->evaluate($shipment));
+
+    $condition = new ShipmentAddress([
+      'zone' => [
+        'territories' => [
+          ['country_code' => 'US', 'administrative_area' => 'SC'],
+        ],
+      ],
+      'negate' => TRUE,
+    ], 'shipment_address', ['entity_type' => 'commerce_shipment']);
+    $this->assertFalse($condition->evaluate($shipment));
   }
 
 }

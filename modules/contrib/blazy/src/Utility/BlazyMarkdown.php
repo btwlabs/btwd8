@@ -31,7 +31,7 @@ class BlazyMarkdown {
    */
   public static function parse($string = '', $sanitize = TRUE) {
     if (!self::isApplicable()) {
-      return $string;
+      return '<pre>' . $string . '</pre>';
     }
 
     if (class_exists('Michelf\MarkdownExtra')) {

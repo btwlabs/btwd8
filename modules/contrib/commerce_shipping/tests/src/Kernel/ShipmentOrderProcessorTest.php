@@ -113,8 +113,8 @@ class ShipmentOrderProcessorTest extends ShippingKernelTestBase {
   }
 
   /**
-   * ::covers process
-   * ::covers shouldRepack.
+   * @covers ::process
+   * @covers ::shouldRepack
    */
   public function testProcess() {
     $this->assertCount(1, $this->order->get('shipments')->referencedEntities());
@@ -149,6 +149,42 @@ class ShipmentOrderProcessorTest extends ShippingKernelTestBase {
     $this->order->set('checkout_step', 'review');
     $this->processor->process($this->order);
     $this->assertCount(1, $this->order->get('shipments')->referencedEntities());
+  }
+
+  /**
+   * Test the edge case of when admin deletes shipping profile.
+   *
+   * @covers ::process
+   */
+  public function testProcessWithoutProfile() {
+    // This shipment created in setup will be deleted.
+    $this->assertCount(1, $this->order->get('shipments')->referencedEntities());
+
+    // Add an item to trigger shouldRepack so that process() checks for profile.
+    $order_item = OrderItem::create([
+      'type' => 'default',
+      'quantity' => 2,
+      'title' => $this->variations[1]->getOrderItemTitle(),
+      'purchased_entity' => $this->variations[1],
+      'unit_price' => new Price('10', 'USD'),
+    ]);
+    $order_item->save();
+    $this->order->addItem($order_item);
+
+    $this->shipping_profile->delete();
+    $this->processor->process($this->order);
+    $this->assertEmpty($this->order->get('shipments')->referencedEntities());
+  }
+
+  /**
+   * Test the edge case of referencedEntities() method returning an empty array.
+   *
+   * @covers ::process
+   */
+  public function testProcessBrokenShipmentReference() {
+    $this->order->set('shipments', []);
+    $this->processor->process($this->order);
+    $this->assertEmpty($this->order->get('shipments')->referencedEntities());
   }
 
 }

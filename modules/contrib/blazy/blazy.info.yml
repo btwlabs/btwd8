@@ -1,7 +1,7 @@
 name: Blazy
 type: module
 description: "Provides basic Blazy integration for lazy loading and multi-serving images."
-# core: 8.x
+core: 8.x
 package: Blazy
 dependencies:
   - drupal:filter
@@ -13,8 +13,7 @@ test_dependencies:
 # Add a fake version so local drush and Git checkouts do not fail dependencies.
 # version: 8.x-2.x
 
-# Information added by Drupal.org packaging script on 2019-04-21
-version: '8.x-2.0-rc3'
-core: '8.x'
+# Information added by Drupal.org packaging script on 2019-08-31
+version: '8.x-2.0-rc4'
 project: 'blazy'
-datestamp: 1555885693
+datestamp: 1567239186

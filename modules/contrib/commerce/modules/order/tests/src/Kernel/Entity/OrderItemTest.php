@@ -69,6 +69,7 @@ class OrderItemTest extends CommerceKernelTestBase {
    * @covers ::getAdjustedUnitPrice
    * @covers ::getData
    * @covers ::setData
+   * @covers ::unsetData
    * @covers ::getCreatedTime
    * @covers ::setCreatedTime
    */
@@ -130,6 +131,9 @@ class OrderItemTest extends CommerceKernelTestBase {
     $this->assertEquals('default', $order_item->getData('test', 'default'));
     $order_item->setData('test', 'value');
     $this->assertEquals('value', $order_item->getData('test', 'default'));
+    $order_item->unsetData('test');
+    $this->assertNull($order_item->getData('test'));
+    $this->assertEquals('default', $order_item->getData('test', 'default'));
 
     $order_item->setCreatedTime(635879700);
     $this->assertEquals(635879700, $order_item->getCreatedTime());
@@ -174,6 +178,22 @@ class OrderItemTest extends CommerceKernelTestBase {
     $this->assertEquals(new Price('21.98', 'USD'), $order_item->getAdjustedTotalPrice());
     $this->assertEquals(new Price('17.98', 'USD'), $order_item->getAdjustedTotalPrice(['custom']));
     $this->assertEquals(new Price('23.98', 'USD'), $order_item->getAdjustedTotalPrice(['fee']));
+  }
+
+  /**
+   * Tests the handling of invalid bundles.
+   *
+   * @covers ::bundleFieldDefinitions
+   */
+  public function testInvalidBundle() {
+    $this->setExpectedException(\RuntimeException::class, 'Could not load the "invalid" order item type.');
+
+    $order_item = OrderItem::create([
+      'type' => 'invalid',
+      'title' => 'My order item',
+      'quantity' => '2',
+      'unit_price' => new Price('9.99', 'USD'),
+    ]);
   }
 
 }
