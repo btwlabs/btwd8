@@ -23,13 +23,17 @@
     // Cards Wrapper
     .cards-wrapper {
 	    display: flex;
+	    flex-wrap: wrap;
+		justify-content: center;
 	}
 	
 	// Individual card
     .card {
-	    flex: 0 0 33.333%;
-	    padding: 0 3vw;
+	    flex: 1 1 300px;
+	    padding: 0 25px;
+	    margin-bottom: 50px;
 	    text-align: center;
+	    max-width: 400px;
 	}
 	
 	// h3 title
@@ -60,18 +64,5 @@
 		    margin: 0 auto 30px;
 		    max-width: 150px;
 	    }
-	}
-	
-	.card-2 {
-		flex: 0 0 50%;
-		padding: 0 3vw;
-	}
-	.card-3 {
-		flex: 0 0 33.333%;
-		padding: 0 3vw;
-	}
-	.card-4 {
-		flex: 0 0 25%;
-		padding: 0 3vw;	
 	}
 }

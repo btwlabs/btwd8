@@ -102,8 +102,10 @@ dd {
 ----------------------------------------*/
 
 .grid {
+	// resets values for when class is placed on <ul>
 	margin: 0 0 3rem 0;
 	padding: 0;
+	
 	@include flexbox;
 	@include flex-wrap($value: wrap);
 	@include justify-content($value: space-between);
