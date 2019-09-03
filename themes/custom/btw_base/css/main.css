@@ -779,7 +779,6 @@ h6:after {
 }
 
 .l-header .l-constrained {
-  width: 90%;
   margin: 0 auto;
 }
 
@@ -2562,21 +2561,21 @@ footer .block-system-branding-block h1 {
   .l-branding {
     width: 170px;
     float: left;
-    margin: -22px 10px 0 20px;
+    margin: 0;
   }
 }
 @media (min-width: 64.063em) {
   .l-branding {
     width: 200px;
     float: left;
-    margin: -30px 20px 0 20px;
+    margin: 0;
   }
 }
 @media (min-width: 90.063em) {
   .l-branding {
     width: 260px;
     float: left;
-    margin: -42px 30px 0 20px;
+    margin: 0;
   }
 }
 .site-logo {
@@ -3253,7 +3252,7 @@ span.hamburger-label {
 }
 @media (min-width: 75.063em) {
   .l-header nav.menu--main .menu li ul.menu {
-    top: 64px;
+    top: 70px;
     min-width: 170px;
   }
 }
@@ -4177,7 +4176,7 @@ ul.pager__items li.pager__item--active a {
 }
 @media (min-width: 75.063em) {
   .slide-down-search-block h2 {
-    padding: 64px 0 0;
+    padding: 70px 0 0;
   }
 }
 .slide-down-search-block form {
@@ -4198,7 +4197,7 @@ ul.pager__items li.pager__item--active a {
 }
 @media (min-width: 75.063em) {
   .slide-down-search-block form {
-    top: 64px;
+    top: 70px;
   }
 }
 .slide-down-search-block form::before {
