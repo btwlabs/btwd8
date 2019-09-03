@@ -122,6 +122,7 @@ class ComposerStaticInit9d44b6420e9c13f3d4ddb65920689854
             'Psr\\Container\\' => 14,
             'Prophecy\\' => 9,
             'PhpParser\\' => 10,
+            'PantheonSystems\\CDNBehatHelpers\\' => 32,
         ),
         'N' => 
         array (
@@ -432,6 +433,10 @@ class ComposerStaticInit9d44b6420e9c13f3d4ddb65920689854
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
+        ),
+        'PantheonSystems\\CDNBehatHelpers\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/modules/contrib/pantheon_advanced_page_cache/tests/behat/helper_classes',
         ),
         'NicholasCreativeMedia\\FedExPHP\\' => 
         array (
