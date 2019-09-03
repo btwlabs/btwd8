@@ -779,7 +779,6 @@ h6:after {
 }
 
 .l-header .l-constrained {
-  width: 90%;
   margin: 0 auto;
 }
 
@@ -2562,21 +2561,21 @@ footer .block-system-branding-block h1 {
   .l-branding {
     width: 170px;
     float: left;
-    margin: -22px 10px 0 20px;
+    margin: 0;
   }
 }
 @media (min-width: 64.063em) {
   .l-branding {
     width: 200px;
     float: left;
-    margin: -30px 20px 0 20px;
+    margin: 0;
   }
 }
 @media (min-width: 90.063em) {
   .l-branding {
     width: 260px;
     float: left;
-    margin: -42px 30px 0 20px;
+    margin: 0;
   }
 }
 .site-logo {
@@ -3129,35 +3128,17 @@ span.hamburger-label {
 }
 
 .l-header nav.menu--main .menu li:hover {
-  background-color: #3e4246;
-}
-
-.l-header nav.menu--main .menu li:hover:before {
-  display: block;
-  content: "";
-  height: 3px;
-  background: #64BAFF;
-  text-align: center;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-      transform: translateX(-50%);
-  -webkit-animation: nav-border-animation 0.3s ease-in-out forwards;
-          animation: nav-border-animation 0.3s ease-in-out forwards;
-  -webkit-animation-delay: 0;
-          animation-delay: 0;
+  background-color: #ddd;
 }
 
 .l-header nav.menu--main .menu li:hover > a {
   background-color: #64BAFF;
-  color: #fff;
+  color: #64BAFF;
 }
 
 .l-header nav.menu--main .menu li > a.main-nav {
   display: block;
-  color: #fff;
+  color: #000;
   background-color: transparent;
   letter-spacing: 0.02em;
   font-weight: bold;
@@ -3192,8 +3173,8 @@ span.hamburger-label {
   }
 }
 .l-header nav.menu--main .menu li > a.main-nav:hover {
-  color: #fff;
-  background-color: #3e4246;
+  color: #64BAFF;
+  background-color: #ddd;
   text-decoration: none;
 }
 
@@ -3201,33 +3182,6 @@ span.hamburger-label {
   background-color: transparent;
 }
 
-.l-header nav.menu--main .menu li > a.main-nav.nav-user {
-  display: block;
-  overflow: hidden;
-  height: 0;
-  font-size: 0;
-  background: url(../images/icons/icon_user.svg) no-repeat scroll center center;
-  background-size: 25px auto;
-}
-
-.l-header nav.menu--main .menu li > a.main-nav.nav-user:hover {
-  background-color: #3e4246;
-}
-
-@media (min-width: 40.063em) {
-  .l-header nav.menu--main .menu li > a.main-nav.nav-user {
-    padding-top: 40px;
-    width: 30px;
-    background-size: 18px auto;
-  }
-}
-@media (min-width: 75.063em) {
-  .l-header nav.menu--main .menu li > a.main-nav.nav-user {
-    padding-top: 42px;
-    width: 50px;
-    background-size: 25px auto;
-  }
-}
 .l-header nav.menu--main .menu li ul.menu {
   position: absolute;
   left: 0;
@@ -3253,7 +3207,7 @@ span.hamburger-label {
 }
 @media (min-width: 75.063em) {
   .l-header nav.menu--main .menu li ul.menu {
-    top: 64px;
+    top: 70px;
     min-width: 170px;
   }
 }
@@ -3311,54 +3265,6 @@ span.hamburger-label {
   left: -80px;
 }
 
-.nav-contact {
-  margin-right: 30px;
-}
-
-@media (min-width: 0) and (max-width: 61.25em) {
-  .nav-contact {
-    display: none;
-  }
-}
-.nav-contact ul.menu {
-  margin: 0;
-  padding: 0;
-}
-
-.nav-contact ul.menu li {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-contact a {
-  color: #ccc;
-  padding: 6px 10px;
-  display: block;
-}
-
-.nav-contact a:hover {
-  background: #fc6c11;
-  color: #fff;
-  text-decoration: none;
-}
-
-@keyframes nav-border-animation {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
-  }
-}
-@-webkit-keyframes nav-border-animation {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
-  }
-}
 .page-node-32 .entity-pager-item-prev .inactive {
   display: none;
 }
@@ -4129,7 +4035,7 @@ ul.pager__items li.pager__item--active a {
 }
 
 .slide-down-search-block:hover h2 {
-  background-color: #3e4246;
+  background-color: #ddd;
 }
 
 .slide-down-search-block:hover h2:before {
@@ -4152,7 +4058,7 @@ ul.pager__items li.pager__item--active a {
 
 .slide-down-search-block:hover h2 > a {
   background-color: #64BAFF;
-  color: #fff;
+  color: #64BAFF;
 }
 
 .slide-down-search-block h2 {
@@ -4177,7 +4083,7 @@ ul.pager__items li.pager__item--active a {
 }
 @media (min-width: 75.063em) {
   .slide-down-search-block h2 {
-    padding: 64px 0 0;
+    padding: 70px 0 0;
   }
 }
 .slide-down-search-block form {
@@ -4198,7 +4104,7 @@ ul.pager__items li.pager__item--active a {
 }
 @media (min-width: 75.063em) {
   .slide-down-search-block form {
-    top: 64px;
+    top: 70px;
   }
 }
 .slide-down-search-block form::before {
@@ -4443,6 +4349,58 @@ ul.pager__items li.pager__item--active a {
   opacity: 1;
 }
 
+/*
+
+//---------------------- Navigation -------------------------
+
+// Animated border on main nav item
+// is placed around line 72 of _navigation.scss
+
+	// keeps main nav link <li> in a persistent hover state while cursor is moved to subnav list items
+	// .menu
+	// 	  li
+		&:hover {
+			background-color: $nav-button-bg-hover-color;
+
+			&:before {
+				display: block;
+			    content: "";
+			    height: 3px;
+			    background: $primary-color;
+			    text-align: center;
+			    position: absolute;
+			    top: 0;
+			    @include centerX;
+			    animation: nav-border-animation 0.3s ease-in-out forwards;
+			    animation-delay: 0;
+			}
+			> a {
+				background-color: $primary-color;
+				color: $nav-text-hover-color;
+			}
+		}
+
+
+// Animation for main nav item border
+@keyframes nav-border-animation {
+	0% {
+		width: 0;
+	}
+	100% {
+		width: 100%;
+	}
+}
+@-webkit-keyframes nav-border-animation {
+	0% {
+		width: 0;
+	}
+	100% {
+		width: 100%;
+	}
+}
+
+
+*/
 .page-user-register nav.tabs {
   max-width: 600px;
   margin: 0 auto;
