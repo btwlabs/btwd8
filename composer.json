@@ -41,6 +41,7 @@
         "drupal/better_exposed_filters": "^3.0@alpha",
         "drupal/block_field": "^1.0@alpha",
         "drupal/block_type_templates": "^1.0@alpha",
+        "drupal/captcha": "^1.0@beta",
         "drupal/commerce": "^2.13",
         "drupal/commerce_avatax": "^1.0@beta",
         "drupal/commerce_fedex": "^1.0@alpha",
