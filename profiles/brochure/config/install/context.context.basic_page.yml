@@ -30,7 +30,7 @@ reactions:
         weight: '-9'
         context_mapping: {  }
         theme: btw_base
-        css_class: .page-title
+        css_class: page-title
         unique: 0
         context_id: basic_page
         uuid: c30e6f81-8bdd-444c-9a8a-b7f62d49131c

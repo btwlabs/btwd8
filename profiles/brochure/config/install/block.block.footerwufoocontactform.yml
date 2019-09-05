@@ -1,10 +1,6 @@
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:basic:3e7f7967-aca9-4289-8c12-8816d3a09fef'
-  module:
-    - block_content
   theme:
     - btw_base
 id: footerwufoocontactform

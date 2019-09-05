@@ -45,6 +45,7 @@ third_party_settings:
           ds_hidden: {  }
     regions:
       ds_content:
+        - 'dynamic_token_field:paragraph-story_block_anchor'
         - 'dynamic_token_field:paragraph-image_overlay'
         - group_group_center
         - group_story_block_inner
@@ -74,9 +75,18 @@ third_party_settings:
             classes: {  }
       'dynamic_token_field:paragraph-image_overlay':
         plugin_id: 'dynamic_token_field:paragraph-image_overlay'
+        weight: 1
+        label: hidden
+        formatter: default
+      'dynamic_token_field:paragraph-story_block_anchor':
+        plugin_id: 'dynamic_token_field:paragraph-story_block_anchor'
         weight: 0
         label: hidden
         formatter: default
+        ft:
+          id: reset
+          settings:
+            lb: ''
   field_group:
     group_story_block_inner:
       children:
@@ -94,7 +104,7 @@ third_party_settings:
         effect: none
         speed: fast
       label: 'Story Block Inner'
-      region: content
+      region: hidden
     group_group_center:
       children:
         - 'display_field_copy:paragraph-story_block_mobile_image'
@@ -116,6 +126,7 @@ third_party_settings:
         effect: none
         speed: fast
       label: 'Group Center'
+      region: hidden
 id: paragraph.story_block.center_text_full_bg_image
 targetEntityType: paragraph
 bundle: story_block
@@ -123,7 +134,7 @@ mode: center_text_full_bg_image
 content:
   field_story_block_images:
     type: responsive_bg_image_formatter
-    weight: 5
+    weight: 6
     label: hidden
     settings:
       image_style: wide
@@ -149,7 +160,7 @@ content:
     region: ds_content
   field_story_block_link:
     type: link
-    weight: 7
+    weight: 8
     label: hidden
     settings:
       trim_length: 80
@@ -161,14 +172,14 @@ content:
     region: ds_content
   field_story_block_text:
     type: text_default
-    weight: 6
+    weight: 7
     label: hidden
     settings: {  }
     third_party_settings: {  }
     region: ds_content
   field_story_block_video:
     type: story_blocks_video_embed_field_magnific_popup
-    weight: 8
+    weight: 9
     label: hidden
     settings:
       gallery_type: all_items
@@ -186,7 +197,7 @@ content:
     region: ds_content
   field_title:
     type: text_default
-    weight: 4
+    weight: 5
     label: hidden
     settings: {  }
     third_party_settings:

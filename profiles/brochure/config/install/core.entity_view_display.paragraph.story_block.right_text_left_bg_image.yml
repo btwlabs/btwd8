@@ -45,11 +45,12 @@ third_party_settings:
           ds_hidden: {  }
     regions:
       ds_content:
-        - 'dynamic_token_field:paragraph-image_overlay'
+        - 'dynamic_token_field:paragraph-story_block_anchor'
         - 'display_field_copy:paragraph-story_block_mobile_image'
         - field_title
-        - group_story_block_inner
+        - 'dynamic_token_field:paragraph-image_overlay'
         - field_story_block_images
+        - group_story_block_inner
         - field_story_block_text
         - field_story_block_link
         - field_story_block_video
@@ -75,7 +76,7 @@ third_party_settings:
             classes: {  }
       'dynamic_token_field:paragraph-image_overlay':
         plugin_id: 'dynamic_token_field:paragraph-image_overlay'
-        weight: 0
+        weight: 1
         label: hidden
         formatter: default
         ft:
@@ -84,13 +85,22 @@ third_party_settings:
             lb: ''
             lb-col: false
             classes: {  }
+      'dynamic_token_field:paragraph-story_block_anchor':
+        plugin_id: 'dynamic_token_field:paragraph-story_block_anchor'
+        weight: 0
+        label: hidden
+        formatter: default
+        ft:
+          id: reset
+          settings:
+            lb: ''
   field_group:
     group_story_block_inner:
       children:
         - group_left_group
         - group_right_group
       parent_name: ''
-      weight: 1
+      weight: 2
       format_type: html_element
       format_settings:
         id: ''
@@ -102,7 +112,7 @@ third_party_settings:
         effect: none
         speed: fast
       label: 'Story Block Inner'
-      region: content
+      region: hidden
     group_left_group:
       children:
         - 'display_field_copy:paragraph-story_block_mobile_image'
@@ -120,7 +130,7 @@ third_party_settings:
         effect: none
         speed: fast
       label: 'Left Group'
-      region: content
+      region: hidden
     group_right_group:
       children:
         - field_title
@@ -140,7 +150,7 @@ third_party_settings:
         effect: none
         speed: fast
       label: 'Right Group'
-      region: content
+      region: hidden
 id: paragraph.story_block.right_text_left_bg_image
 targetEntityType: paragraph
 bundle: story_block

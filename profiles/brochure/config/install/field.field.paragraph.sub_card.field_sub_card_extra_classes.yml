@@ -2,19 +2,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_sub_card_title
+    - field.storage.paragraph.field_sub_card_extra_classes
     - paragraphs.paragraphs_type.sub_card
-  module:
-    - text
-id: paragraph.sub_card.field_sub_card_title
-field_name: field_sub_card_title
+id: paragraph.sub_card.field_sub_card_extra_classes
+field_name: field_sub_card_extra_classes
 entity_type: paragraph
 bundle: sub_card
-label: Title
+label: Classes
 description: ''
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: text
+field_type: string

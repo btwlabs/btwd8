@@ -1,0 +1,11 @@
+id: story_block_anchor
+label: 'Story Block Anchor'
+ui_limit: 'story_block|*'
+properties:
+  content:
+    value: '<div id="paragraph-[paragraph:id]"></div>'
+    format: no_editor
+type: token
+type_label: 'Token field'
+entities:
+  paragraph: paragraph

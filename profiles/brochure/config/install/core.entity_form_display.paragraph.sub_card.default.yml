@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.sub_card.field_sub_card_body
+    - field.field.paragraph.sub_card.field_sub_card_extra_classes
     - field.field.paragraph.sub_card.field_sub_card_image
     - field.field.paragraph.sub_card.field_sub_card_link
     - field.field.paragraph.sub_card.field_sub_card_title
@@ -24,6 +25,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
+  field_sub_card_extra_classes:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_sub_card_image:
     weight: 1
@@ -47,7 +56,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: text_textfield
     region: content
 hidden:
   created: true

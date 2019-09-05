@@ -2,19 +2,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_gallery_title
+    - field.storage.paragraph.field_gallery_extra_classes
     - paragraphs.paragraphs_type.gallery
-  module:
-    - text
-id: paragraph.gallery.field_gallery_title
-field_name: field_gallery_title
+id: paragraph.gallery.field_gallery_extra_classes
+field_name: field_gallery_extra_classes
 entity_type: paragraph
 bundle: gallery
-label: Title
+label: Classes
 description: ''
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: text
+field_type: string

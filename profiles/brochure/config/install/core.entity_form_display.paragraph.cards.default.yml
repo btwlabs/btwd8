@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.paragraph.cards.field_cards_body
     - field.field.paragraph.cards.field_cards_card_grid
+    - field.field.paragraph.cards.field_cards_extra_classes
     - field.field.paragraph.cards.field_cards_title
     - paragraphs.paragraphs_type.cards
   module:
@@ -34,13 +35,21 @@ content:
       default_paragraph_type: sub_card
     third_party_settings: {  }
     region: content
+  field_cards_extra_classes:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_cards_title:
     weight: 0
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: text_textfield
     region: content
 hidden:
   created: true

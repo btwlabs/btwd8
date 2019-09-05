@@ -45,6 +45,7 @@ third_party_settings:
           ds_hidden: {  }
     regions:
       ds_content:
+        - 'dynamic_token_field:paragraph-story_block_anchor'
         - 'dynamic_token_field:paragraph-image_overlay'
         - group_story_block_inner
         - group_grou
@@ -74,15 +75,24 @@ third_party_settings:
             classes: {  }
       'dynamic_token_field:paragraph-image_overlay':
         plugin_id: 'dynamic_token_field:paragraph-image_overlay'
+        weight: 1
+        label: hidden
+        formatter: default
+      'dynamic_token_field:paragraph-story_block_anchor':
+        plugin_id: 'dynamic_token_field:paragraph-story_block_anchor'
         weight: 0
         label: hidden
         formatter: default
+        ft:
+          id: reset
+          settings:
+            lb: ''
   field_group:
     group_story_block_inner:
       children:
         - group_grou
       parent_name: ''
-      weight: 1
+      weight: 2
       format_type: html_element
       format_settings:
         id: ''
@@ -94,7 +104,7 @@ third_party_settings:
         effect: none
         speed: fast
       label: 'Story Block Inner'
-      region: content
+      region: hidden
     group_grou:
       children:
         - 'display_field_copy:paragraph-story_block_mobile_image'
@@ -116,6 +126,7 @@ third_party_settings:
         effect: none
         speed: fast
       label: 'Group Center'
+      region: hidden
 id: paragraph.story_block.center_text_h1_title_bg_image
 targetEntityType: paragraph
 bundle: story_block

@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.gallery.field_gallery_body
+    - field.field.paragraph.gallery.field_gallery_extra_classes
     - field.field.paragraph.gallery.field_gallery_items
     - field.field.paragraph.gallery.field_gallery_title
     - paragraphs.paragraphs_type.gallery
@@ -29,6 +30,7 @@ third_party_settings:
         classes:
           layout_class:
             gallery-wrapper: gallery-wrapper
+            '[paragraph:field_gallery_extra_classes:value]': '[paragraph:field_gallery_extra_classes:value]'
           ds_content: {  }
           ds_hidden: {  }
     regions:
@@ -37,6 +39,8 @@ third_party_settings:
         - field_gallery_items
         - field_gallery_title
         - field_gallery_body
+      ds_hidden:
+        - field_gallery_extra_classes
   field_group:
     group_info:
       children:
@@ -46,7 +50,6 @@ third_party_settings:
       weight: 0
       format_type: html_element
       format_settings:
-        label: Info
         element: div
         show_label: false
         label_element: h3
@@ -56,24 +59,31 @@ third_party_settings:
         id: ''
         classes: gallery-intro
       label: Info
+      region: hidden
 id: paragraph.gallery.default
 targetEntityType: paragraph
 bundle: gallery
 mode: default
 content:
   field_gallery_body:
-    weight: 3
+    weight: 5
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: ds_content
+  field_gallery_extra_classes:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: ds_hidden
   field_gallery_items:
     weight: 1
     label: hidden
     settings:
-      lightgallery_core:
-        lightgallery_image_style: max_1300x1300
         thumb_image_style: thumbnail
         title_source: alt
         mode: lg-slide
@@ -121,39 +131,10 @@ content:
     type: lightgallery
     region: ds_content
   field_gallery_title:
-    weight: 2
+    weight: 4
     label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings:
-      ds:
-        ft:
-          id: expert
-          settings:
-            lb: ''
-            prefix: ''
-            lbw-el: ''
-            lbw-cl: ''
-            lbw-at: ''
-            ow-el: ''
-            ow-cl: ''
-            ow-at: ''
-            fis-el: ''
-            fis-cl: ''
-            fis-at: ''
-            fi: true
-            fi-el: h2
-            fi-cl: 'title subtitle'
-            fi-at: ''
-            suffix: ''
-            lbw: false
-            lb-col: false
-            ow: false
-            ow-def-at: false
-            ow-def-cl: false
-            fis: false
-            fis-def-at: false
-            fi-def-at: false
-    type: string
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
     region: ds_content
 hidden: {  }

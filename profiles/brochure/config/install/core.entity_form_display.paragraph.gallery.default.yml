@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.gallery.field_gallery_body
+    - field.field.paragraph.gallery.field_gallery_extra_classes
     - field.field.paragraph.gallery.field_gallery_items
     - field.field.paragraph.gallery.field_gallery_title
     - image.style.thumbnail
@@ -23,6 +24,14 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
+  field_gallery_extra_classes:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_gallery_items:
     weight: 2
     settings:
@@ -37,7 +46,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: text_textfield
     region: content
 hidden:
   created: true

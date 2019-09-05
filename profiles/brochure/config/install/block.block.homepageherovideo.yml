@@ -1,10 +1,6 @@
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:video_background:f25a99ca-be3c-4a29-ad93-1c88a1164e2a'
-  module:
-    - block_content
   theme:
     - btw_base
 id: homepageherovideo

@@ -1,10 +1,6 @@
 langcode: en
 status: false
 dependencies:
-  content:
-    - 'block_content:basic:b5e0ecff-6130-4cf1-98a4-eab7b97536aa'
-  module:
-    - block_content
   theme:
     - btw_base
 id: contactus
