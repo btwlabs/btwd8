@@ -1,6 +1,0 @@
-shipping:
-  label: 'Shipping'
-  singular_label: 'shipping cost'
-  plural_label: 'shipping costs'
-  has_ui: true
-  weight: 5

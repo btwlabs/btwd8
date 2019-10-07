@@ -1,9 +1,0 @@
-analytics:
-  version: 1.2
-  js:
-    js/analytics.js: {}
-    https://www.google-analytics.com/analytics.js:
-      type: external
-      attributes: { async: true }
-  dependencies:
-   - core/drupalSettings

@@ -1,8 +1,0 @@
-{
-    "require": {
-        "commerceguys/intl": {
-            "version": "v1.0.4",
-            "url": "https://github.com/commerceguys/intl/archive/v1.0.4.zip"
-        }
-    }
-}

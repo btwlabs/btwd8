@@ -1,5 +1,0 @@
-entity-pager:
-  version: VERSION
-  css:
-    component:
-      css/entity-pager.css: {}

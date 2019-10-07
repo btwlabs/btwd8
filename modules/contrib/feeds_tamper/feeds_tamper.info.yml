@@ -1,9 +1,0 @@
-name: Feeds Tamper
-type: module
-description: Modify feeds data before it gets saved.
-core: 8.x
-package: Feeds
-dependencies:
-  - drupal:system (>=8.5.0)
-  - feeds:feeds
-  - tamper:tamper

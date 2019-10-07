@@ -1,3 +1,0 @@
-views.field.commerce_reports_report_date_field:
-  type: 'views.field.field'
-  label: 'Report date field'
