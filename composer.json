@@ -195,10 +195,6 @@
             "drupal/commerce_stock": {
                 "Event subscriber assumes $order->original will always exist": "https://www.drupal.org/files/issues/2019-01-13/commerce_stock-handle_missing_original-3025662-2.patch"
             },
-            "drupal/fullcalendar_view": {
-                "Fix link url to content in Calendar": "https://www.drupal.org/files/issues/2019-05-10/link_to_entity_reference_fields-3017241-9.txt",
-                "Fix the title to a referenced content": "https://www.drupal.org/files/issues/2019-03-27/link_to_entity_reference_fields-3017241-4.patch"
-            },
             "drupal/commerce_usps": {
                 "Add use Drupal/Core/Url missing in base shipping method class": "patches/not-using-url.patch"
             },
