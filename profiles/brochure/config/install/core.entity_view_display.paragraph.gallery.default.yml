@@ -84,6 +84,8 @@ content:
     weight: 1
     label: hidden
     settings:
+      lightgallery_core:
+        lightgallery_image_style: max_1300x1300
         thumb_image_style: thumbnail
         title_source: alt
         mode: lg-slide
