@@ -127,6 +127,7 @@
         "drupal/video_embed_field": "^2.0",
         "drupal/view_mode_selector": "1.x@dev",
         "drupal/views_data_export": "^1.0@beta",
+        "drupal/views_field_formatter": "^1.0",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3",
