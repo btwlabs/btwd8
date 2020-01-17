@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.featured_article_node.field_featured_article_node
+    - paragraphs.paragraphs_type.featured_article_node
+  module:
+    - ds
+id: paragraph.featured_article_node.default
+targetEntityType: paragraph
+bundle: featured_article_node
+mode: default
+content:
+  field_featured_article_node:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: featured_article
+      link: false
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: entity_reference_entity_view
+    region: content
+hidden: {  }

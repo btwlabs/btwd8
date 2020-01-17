@@ -1,0 +1,11 @@
+id: btw_post_date
+label: 'BTW Post Date'
+ui_limit: '*|*'
+properties:
+  content:
+    value: '<div class="post-date">[node:created:custom:F j, Y]</div>'
+    format: no_editor
+type: token
+type_label: 'Token field'
+entities:
+  node: node

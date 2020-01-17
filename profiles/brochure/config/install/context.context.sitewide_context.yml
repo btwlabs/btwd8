@@ -181,6 +181,42 @@ reactions:
         unique: 1
         context_id: sitewide_context
         uuid: dbeb3fa8-b1c3-40c9-a94d-d9d29104163c
+      c65f5ddb-3809-470c-ac7c-37ae5d18695f:
+        id: 'menu_block:main'
+        label: 'Main navigation'
+        provider: menu_block
+        label_display: 0
+        level: '1'
+        depth: '0'
+        expand: 0
+        parent: 'main:'
+        suggestion: main
+        region: header
+        weight: '0'
+        context_mapping: {  }
+        theme: btw_base
+        css_class: ''
+        unique: 1
+        context_id: sitewide_context
+        uuid: c65f5ddb-3809-470c-ac7c-37ae5d18695f
+      3dfb1348-5374-4757-bfff-deaac248dfb7:
+        id: 'menu_block:main'
+        label: 'Main navigation'
+        provider: menu_block
+        label_display: 0
+        level: '1'
+        depth: '0'
+        expand: 0
+        parent: 'main:'
+        suggestion: main
+        region: mobile_nav
+        weight: '0'
+        context_mapping: {  }
+        theme: btw_base
+        css_class: mobile-nav
+        unique: 1
+        context_id: sitewide_context
+        uuid: 3dfb1348-5374-4757-bfff-deaac248dfb7
     id: blocks
     saved: false
     uuid: 6cd49a13-fb52-416a-8cb3-da8e67602968

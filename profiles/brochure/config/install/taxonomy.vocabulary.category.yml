@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+name: Category
+vid: category
+description: 'Site wide vocab for categorizing all content'
+weight: 0

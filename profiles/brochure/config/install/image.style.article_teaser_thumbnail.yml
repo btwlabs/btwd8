@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: article_teaser_thumbnail
+label: 'Article Teaser Thumbnail'
+effects:
+  601ac432-ac15-43ba-a5fe-10d6c3990846:
+    uuid: 601ac432-ac15-43ba-a5fe-10d6c3990846
+    id: focal_point_scale_and_crop
+    weight: 2
+    data:
+      width: 500
+      height: 375
+      crop_type: focal_point

@@ -1,0 +1,189 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.featured_article
+    - field.field.node.article.body
+    - field.field.node.article.comment
+    - field.field.node.article.field_article_category
+    - field.field.node.article.field_article_hero_image
+    - field.field.node.article.field_article_paragraphs
+    - field.field.node.article.field_article_subtitle
+    - field.field.node.article.field_image
+    - field.field.node.article.field_tags
+    - image.style.article_teaser_thumbnail
+    - node.type.article
+  module:
+    - ds
+    - field_group
+    - image
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          ds_content: div
+          ds_hidden: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          ds_content: {  }
+          ds_hidden: {  }
+    regions:
+      ds_content:
+        - group_article_featured_thumbnail
+        - field_image
+        - group_article_featured_text
+        - node_title
+        - field_article_subtitle
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 3
+        label: hidden
+        formatter: default
+        settings:
+          link: true
+          wrapper: h3
+          class: title
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_group:
+    group_article_featured_thumbnail:
+      children:
+        - field_image
+      parent_name: ''
+      weight: 0
+      format_type: html_element
+      format_settings:
+        description: ''
+        id: ''
+        classes: 'article-featured-thumbnail article-featured-column-1'
+        open: 0
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        effect: none
+        speed: fast
+        attributes: ''
+      label: article-featured-thumbnail
+      region: ds_content
+    group_article_featured_text:
+      children:
+        - node_title
+        - field_article_subtitle
+      parent_name: ''
+      weight: 1
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: 'article-featured-text article-featured-column-2'
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+      label: article-featured-text
+      region: ds_content
+id: node.article.featured_article
+targetEntityType: node
+bundle: article
+mode: featured_article
+content:
+  field_article_subtitle:
+    type: text_trimmed
+    weight: 4
+    region: ds_content
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow-el: ''
+            ow-cl: ''
+            ow-at: ''
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fi: true
+            fi-el: div
+            fi-cl: article-deck
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow: false
+            ow-def-at: false
+            ow-def-cl: false
+            fis: false
+            fis-def-at: false
+            fi-def-at: false
+  field_image:
+    type: image
+    weight: 1
+    region: ds_content
+    label: hidden
+    settings:
+      image_style: article_teaser_thumbnail
+      image_link: content
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: a
+            ow-cl: ''
+            ow-at: 'href="[node:url]"'
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fi: true
+            fi-el: figure
+            fi-cl: ''
+            fi-at: ''
+            fi-def-at: true
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow-def-at: false
+            ow-def-cl: false
+            fis: false
+            fis-def-at: false
+hidden:
+  body: true
+  comment: true
+  field_article_category: true
+  field_article_hero_image: true
+  field_article_paragraphs: true
+  field_tags: true
+  links: true

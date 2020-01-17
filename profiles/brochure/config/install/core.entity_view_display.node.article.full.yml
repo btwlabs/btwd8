@@ -1,0 +1,295 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.article.body
+    - field.field.node.article.comment
+    - field.field.node.article.field_article_category
+    - field.field.node.article.field_article_hero_image
+    - field.field.node.article.field_article_paragraphs
+    - field.field.node.article.field_article_subtitle
+    - field.field.node.article.field_image
+    - field.field.node.article.field_tags
+    - node.type.article
+  module:
+    - ds
+    - entity_reference_revisions
+    - field_group
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          ds_content: div
+          ds_hidden: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          ds_content: {  }
+          ds_hidden: {  }
+    regions:
+      ds_content:
+        - 'dynamic_block_field:node-breadcrumb'
+        - group_ar
+        - field_article_paragraphs
+        - field_article_hero_image
+        - group_hero_info
+        - 'dynamic_block_field:node-article_pager'
+        - group_hero_image
+        - field_article_category
+        - 'dynamic_block_field:node-related_articles'
+        - node_title
+        - field_article_subtitle
+        - 'dynamic_token_field:node-btw_post_date'
+        - user
+        - better_social_sharing_buttons
+    fields:
+      better_social_sharing_buttons:
+        plugin_id: better_social_sharing_buttons
+        weight: 9
+        label: hidden
+        formatter: default
+      'dynamic_token_field:node-btw_post_date':
+        plugin_id: 'dynamic_token_field:node-btw_post_date'
+        weight: 7
+        label: hidden
+        formatter: default
+      node_title:
+        plugin_id: node_title
+        weight: 5
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h1
+          class: title
+          link: false
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+      'dynamic_block_field:node-article_pager':
+        plugin_id: 'dynamic_block_field:node-article_pager'
+        weight: 3
+        label: hidden
+        formatter: default
+      'dynamic_block_field:node-breadcrumb':
+        plugin_id: 'dynamic_block_field:node-breadcrumb'
+        weight: 0
+        label: hidden
+        formatter: default
+        ft:
+          id: reset
+          settings:
+            lb: ''
+      'dynamic_block_field:node-related_articles':
+        plugin_id: 'dynamic_block_field:node-related_articles'
+        weight: 4
+        label: hidden
+        formatter: default
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+      user:
+        plugin_id: user
+        weight: 8
+        label: hidden
+        formatter: default
+        settings:
+          entity_view_mode: compact
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_group:
+    group_ar:
+      children:
+        - group_hero_info
+        - group_hero_image
+      parent_name: ''
+      weight: 1
+      format_type: html_element
+      format_settings:
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+        id: ''
+        classes: hero-wrapper
+      label: 'Article Header'
+      region: ds_content
+    group_hero_info:
+      children:
+        - field_article_category
+        - node_title
+        - field_article_subtitle
+        - 'dynamic_token_field:node-btw_post_date'
+        - user
+        - better_social_sharing_buttons
+      parent_name: group_ar
+      weight: 2
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: hero-info
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+      label: 'Hero Info'
+      region: ds_content
+    group_hero_image:
+      children:
+        - field_article_hero_image
+      parent_name: group_ar
+      weight: 3
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: hero-image
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+      label: 'Hero Image'
+      region: ds_content
+id: node.article.full
+targetEntityType: node
+bundle: article
+mode: full
+content:
+  field_article_category:
+    type: entity_reference_label
+    weight: 4
+    region: ds_content
+    label: hidden
+    settings:
+      link: true
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_article_hero_image:
+    type: entity_reference_entity_view
+    weight: 2
+    region: ds_content
+    label: hidden
+    settings:
+      view_mode: hero_image
+      link: false
+    third_party_settings:
+      ds:
+        ft:
+          id: reset
+          settings:
+            lb: ''
+  field_article_paragraphs:
+    type: entity_reference_revisions_entity_view
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: div
+            ow-cl: article-paragraph-wrapper
+            ow-at: ''
+            ow-def-at: true
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fi: true
+            fi-el: div
+            fi-cl: article-paragraph-item
+            fi-at: ''
+            fi-def-at: true
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow-def-cl: false
+            fis: false
+            fis-def-at: false
+    region: ds_content
+  field_article_subtitle:
+    type: text_trimmed
+    weight: 6
+    region: ds_content
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow-el: ''
+            ow-cl: ''
+            ow-at: ''
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fi: true
+            fi-el: h3
+            fi-cl: subtitle
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow: false
+            ow-def-at: false
+            ow-def-cl: false
+            fis: false
+            fis-def-at: false
+            fi-def-at: false
+hidden:
+  body: true
+  comment: true
+  field_image: true
+  field_tags: true
+  links: true

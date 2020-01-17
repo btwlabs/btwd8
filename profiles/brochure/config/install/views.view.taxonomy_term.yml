@@ -211,12 +211,14 @@ display:
             group_items: {  }
           plugin_id: boolean
       style:
-        type: default
+        type: html_list
         options:
-          grouping: {  }
-          row_class: ''
+          row_class: grid-item
           default_row_class: true
           uses_fields: false
+          type: ul
+          wrapper_class: grid
+          class: ''
       row:
         type: 'entity:node'
         options:
@@ -299,7 +301,8 @@ display:
         type: views_query
         options: {  }
       path: taxonomy/term/%
-      display_extenders: {  }
+      display_extenders:
+        metatag_display_extender: {  }
     cache_metadata:
       contexts:
         - 'languages:language_interface'

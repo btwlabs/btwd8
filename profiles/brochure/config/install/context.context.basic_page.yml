@@ -64,4 +64,8 @@ reactions:
     saved: false
     uuid: 2701eac9-000c-4dbe-9cc7-3f86d54a326c
     include_default_blocks: 0
+  body_class:
+    id: body_class
+    body_class: basic-page
+    saved: false
 weight: 0

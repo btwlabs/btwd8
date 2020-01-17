@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+name: article_node
+label: 'Article node'
+group: null
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      article: article
+    negate: 0
+    uuid: 42b2efb8-4797-41a0-95ff-91a4595c3660
+    context_mapping:
+      node: '@node.node_route_context:node'
+reactions:
+  body_class:
+    id: body_class
+    body_class: article-node
+    saved: false
+weight: 0

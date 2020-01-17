@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.embed.field_embed_code
+    - paragraphs.paragraphs_type.embed
+  module:
+    - text
+id: paragraph.embed.preview
+targetEntityType: paragraph
+bundle: embed
+mode: preview
+content:
+  field_embed_code:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden: {  }

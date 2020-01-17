@@ -1,0 +1,41 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+name: test_grid_page
+label: 'Test Grid Page'
+group: null
+description: 'DELETE THIS: just a test page for css'
+requireAllConditions: false
+disabled: false
+conditions:
+  request_path:
+    id: request_path
+    pages: grid-test
+    negate: 0
+    uuid: f37f2d12-f85d-4358-aff5-4ae80d091bc2
+    context_mapping: {  }
+reactions:
+  blocks:
+    blocks:
+      7bd8aca2-d2f5-4a56-baf4-bcf737599235:
+        id: 'views_block:test_grid_ct-block_1'
+        label: ''
+        provider: views
+        label_display: visible
+        views_label: ''
+        items_per_page: none
+        region: post_content
+        weight: '0'
+        context_mapping: {  }
+        theme: btw_base
+        css_class: test-grid
+        unique: 1
+        context_id: test_grid_page
+        uuid: 7bd8aca2-d2f5-4a56-baf4-bcf737599235
+    id: blocks
+    saved: false
+    uuid: 67259873-6cf0-484e-a057-aec0131ab7f6
+    include_default_blocks: 0
+weight: 0

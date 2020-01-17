@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.text.field_text_body
+    - paragraphs.paragraphs_type.text
+  module:
+    - ds
+    - text
+id: paragraph.text.preview
+targetEntityType: paragraph
+bundle: text
+mode: preview
+content:
+  field_text_body:
+    weight: 0
+    label: hidden
+    settings:
+      trim_length: 100
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: text_trimmed
+    region: content
+hidden: {  }

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_image_orientation
+    - paragraphs.paragraphs_type.image
+  module:
+    - options
+id: paragraph.image.field_image_orientation
+field_name: field_image_orientation
+entity_type: paragraph
+bundle: image
+label: 'Image Orientation'
+description: "Determines the image's width and/or height constraints within the page layout. \r\nChoose \"Landscape\" if image width exceeds height significantly. Choose \"Portrait\" if height exceeds the width."
+required: true
+translatable: false
+default_value:
+  -
+    value: landscape
+default_value_callback: ''
+settings: {  }
+field_type: list_string

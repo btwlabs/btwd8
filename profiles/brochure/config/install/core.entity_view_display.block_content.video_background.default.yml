@@ -68,9 +68,8 @@ content:
       link: false
     third_party_settings:
       ds:
-        ds_limit: ''
         ft:
-          id: default
+          id: minimal
           settings:
             lb: ''
             lb-col: false

@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+name: story_pages
+label: 'Story Pages'
+group: null
+description: 'Customization for story pages.'
+requireAllConditions: false
+disabled: false
+conditions:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      story_page: story_page
+    negate: 0
+    uuid: b756b5bf-bd75-4af2-be21-36d045363523
+    context_mapping:
+      node: '@node.node_route_context:node'
+reactions:
+  body_class:
+    id: body_class
+    body_class: story-page
+    saved: false
+weight: 0

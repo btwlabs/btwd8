@@ -63,10 +63,8 @@ third_party_settings:
         formatter: image
         settings:
           formatter:
-            image_style: story_block_small_fp
+            image_style: thumbnail_400x300
             image_link: ''
-            ds_limit: ''
-            offset: '0'
         ft:
           id: minimal
           settings:
@@ -104,7 +102,7 @@ third_party_settings:
         effect: none
         speed: fast
       label: 'Story Block Inner'
-      region: hidden
+      region: ds_content
     group_group_center:
       children:
         - 'display_field_copy:paragraph-story_block_mobile_image'
@@ -126,7 +124,7 @@ third_party_settings:
         effect: none
         speed: fast
       label: 'Group Center'
-      region: hidden
+      region: ds_content
 id: paragraph.story_block.center_text_full_bg_image
 targetEntityType: paragraph
 bundle: story_block

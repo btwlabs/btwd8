@@ -1,0 +1,68 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_article_paragraphs
+    - node.type.article
+    - paragraphs.paragraphs_type.cards
+    - paragraphs.paragraphs_type.embed
+    - paragraphs.paragraphs_type.featured_article_node
+    - paragraphs.paragraphs_type.gallery
+    - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.quote
+    - paragraphs.paragraphs_type.story_block
+    - paragraphs.paragraphs_type.text
+  module:
+    - entity_reference_revisions
+id: node.article.field_article_paragraphs
+field_name: field_article_paragraphs
+entity_type: node
+bundle: article
+label: 'Article Paragraphs'
+description: 'Add one or more paragraphs to be displayed vertically on the article page.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      image: image
+      text: text
+      quote: quote
+      featured_article_node: featured_article_node
+      gallery: gallery
+      cards: cards
+      embed: embed
+      story_block: story_block
+    target_bundles_drag_drop:
+      image:
+        enabled: true
+        weight: -19
+      text:
+        enabled: true
+        weight: -18
+      quote:
+        enabled: true
+        weight: -17
+      featured_article_node:
+        enabled: true
+        weight: -16
+      gallery:
+        enabled: true
+        weight: -15
+      cards:
+        enabled: true
+        weight: -14
+      embed:
+        enabled: true
+        weight: -13
+      story_block:
+        enabled: true
+        weight: -12
+      sub_card:
+        weight: -11
+        enabled: false
+field_type: entity_reference_revisions

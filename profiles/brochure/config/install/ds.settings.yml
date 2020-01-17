@@ -9,9 +9,13 @@ classes:
     - story-block
     - '[paragraph:field_story_block_image_overlay_:value]'
     - 'node-[node:nid]'
+    - card
     - gallery-wrapper
     - '[paragraph:field_cards_extra_classes:value]'
     - '[paragraph:field_sub_card_extra_classes:value]'
     - '[paragraph:field_gallery_extra_classes:value]'
+    - '[paragraph:field_image_orientation:value]'
+    - '[paragraph:field_sub_card_image_type:value]'
+    - card
   field: {  }
 use_field_names: true

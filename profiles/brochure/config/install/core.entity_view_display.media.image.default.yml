@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.media.image.field_image_byline
     - field.field.media.image.field_media_image
     - image.style.max_1300x1300
     - image.style.max_650x650
@@ -11,6 +12,7 @@ dependencies:
   module:
     - blazy
     - ds
+    - text
 third_party_settings:
   ds:
     layout:
@@ -40,6 +42,13 @@ targetEntityType: media
 bundle: image
 mode: default
 content:
+  field_image_byline:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
   field_media_image:
     type: blazy
     weight: 0

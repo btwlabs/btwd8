@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: article_hero
+label: 'Article Hero'
+effects:
+  8cd1470b-3512-43e7-ade7-14098646ef36:
+    uuid: 8cd1470b-3512-43e7-ade7-14098646ef36
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 1600
+      height: 1000
+      crop_type: focal_point

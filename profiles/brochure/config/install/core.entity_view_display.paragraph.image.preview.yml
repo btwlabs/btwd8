@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.image.field_image_image_file
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.image
+  module:
+    - ds
+    - image
+id: paragraph.image.preview
+targetEntityType: paragraph
+bundle: image
+mode: preview
+content:
+  field_image_image_file:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: thumbnail
+      image_link: ''
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: image
+    region: content
+hidden: {  }

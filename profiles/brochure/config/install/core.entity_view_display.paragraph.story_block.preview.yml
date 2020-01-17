@@ -15,19 +15,18 @@ dependencies:
     - paragraphs.paragraphs_type.story_block
   module:
     - ds
-    - field_group
     - text
 third_party_settings:
   ds:
     layout:
       id: ds_1col_wrapper
-      path: modules/custom/ds
-      library: ''
+      library: null
       disable_css: false
       entity_classes: all_classes
       settings:
         wrappers:
           ds_content: div
+          ds_hidden: div
         outer_wrapper: div
         attributes: ''
         link_attribute: ''
@@ -36,28 +35,12 @@ third_party_settings:
           layout_class:
             'paragraph-[paragraph:id]': 'paragraph-[paragraph:id]'
             story-block: story-block
-            '[paragraph:field_image_overlay_class:value]': '[paragraph:field_image_overlay_class:value]'
           ds_content: {  }
+          ds_hidden: {  }
     regions:
       ds_content:
         - field_title
-  field_group:
-    group_story_block_inner:
-      children: {  }
-      parent_name: ''
-      weight: 10
-      format_type: html_element
-      format_settings:
-        id: ''
-        classes: story-block-inner
-        element: div
-        show_label: false
-        label_element: h3
-        attributes: ''
-        effect: none
-        speed: fast
-      label: 'Story Block Inner'
-      region: content
+        - group_story_block_inner
 id: paragraph.story_block.preview
 targetEntityType: paragraph
 bundle: story_block

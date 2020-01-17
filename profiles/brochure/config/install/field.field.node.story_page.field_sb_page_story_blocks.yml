@@ -4,7 +4,10 @@ dependencies:
   config:
     - field.storage.node.field_sb_page_story_blocks
     - node.type.story_page
+    - paragraphs.paragraphs_type.cards
+    - paragraphs.paragraphs_type.gallery
     - paragraphs.paragraphs_type.story_block
+    - paragraphs.paragraphs_type.sub_card
   module:
     - entity_reference_revisions
 id: node.story_page.field_sb_page_story_blocks
@@ -23,8 +26,20 @@ settings:
     negate: 0
     target_bundles:
       story_block: story_block
+      cards: cards
+      gallery: gallery
+      sub_card: sub_card
     target_bundles_drag_drop:
       story_block:
         enabled: true
         weight: 2
+      cards:
+        enabled: true
+        weight: 5
+      gallery:
+        enabled: true
+        weight: 6
+      sub_card:
+        enabled: true
+        weight: 8
 field_type: entity_reference_revisions

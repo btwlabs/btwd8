@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_embed_code
+    - paragraphs.paragraphs_type.embed
+  module:
+    - text
+id: paragraph.embed.field_embed_code
+field_name: field_embed_code
+entity_type: paragraph
+bundle: embed
+label: Code
+description: 'Paste the embed code here.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

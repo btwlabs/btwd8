@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_image_byline
+    - media.type.image
+  module:
+    - text
+id: media.image.field_image_byline
+field_name: field_image_byline
+entity_type: media
+bundle: image
+label: Byline
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

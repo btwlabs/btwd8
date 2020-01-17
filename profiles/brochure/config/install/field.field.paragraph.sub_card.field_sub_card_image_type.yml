@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_sub_card_image_type
+    - paragraphs.paragraphs_type.sub_card
+  module:
+    - options
+id: paragraph.sub_card.field_sub_card_image_type
+field_name: field_sub_card_image_type
+entity_type: paragraph
+bundle: sub_card
+label: 'Card Image Type'
+description: 'Determines size of the card image, relative to the width of the card itself. "Photo" equals full-width of the card; "Icon" is smaller.'
+required: false
+translatable: false
+default_value:
+  -
+    value: photo
+default_value_callback: ''
+settings: {  }
+field_type: list_string

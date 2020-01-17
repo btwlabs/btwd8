@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: max_1800
+label: 'Max 1800'
+effects:
+  c2723082-c190-4037-9db1-7dff2acaa3ce:
+    uuid: c2723082-c190-4037-9db1-7dff2acaa3ce
+    id: image_scale
+    weight: 1
+    data:
+      width: 1800
+      height: null
+      upscale: false

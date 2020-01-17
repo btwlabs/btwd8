@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.featured_article_node.field_featured_article_node
+    - paragraphs.paragraphs_type.featured_article_node
+id: paragraph.featured_article_node.default
+targetEntityType: paragraph
+bundle: featured_article_node
+mode: default
+content:
+  field_featured_article_node:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+hidden:
+  created: true
+  status: true

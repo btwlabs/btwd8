@@ -59,6 +59,16 @@ third_party_settings:
         weight: 2
         label: hidden
         formatter: image
+        settings:
+          formatter:
+            image_style: thumbnail_400x300
+            image_link: ''
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
       'dynamic_token_field:paragraph-image_overlay':
         plugin_id: 'dynamic_token_field:paragraph-image_overlay'
         weight: 0
@@ -90,7 +100,7 @@ third_party_settings:
         effect: none
         speed: fast
       label: 'Story Block Inner'
-      region: content
+      region: ds_content
 id: paragraph.story_block.default
 targetEntityType: paragraph
 bundle: story_block

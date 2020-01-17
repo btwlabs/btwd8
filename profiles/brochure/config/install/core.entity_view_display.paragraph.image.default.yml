@@ -1,0 +1,88 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.image.field_image_image_file
+    - field.field.paragraph.image.field_image_orientation
+    - image.style.max_1800
+    - paragraphs.paragraphs_type.image
+  module:
+    - ds
+    - image
+    - options
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          ds_content: div
+          ds_hidden: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class:
+            'paragraph-[paragraph:id]': 'paragraph-[paragraph:id]'
+            '[paragraph:field_image_orientation:value]': '[paragraph:field_image_orientation:value]'
+          ds_content: {  }
+          ds_hidden: {  }
+    regions:
+      ds_content:
+        - field_image_image_file
+      ds_hidden:
+        - field_image_orientation
+id: paragraph.image.default
+targetEntityType: paragraph
+bundle: image
+mode: default
+content:
+  field_image_image_file:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: max_1800
+      image_link: ''
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow-el: ''
+            ow-cl: ''
+            ow-at: ''
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fi: true
+            fi-el: figure
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow: false
+            ow-def-at: false
+            ow-def-cl: false
+            fis: false
+            fis-def-at: false
+            fi-def-at: false
+    type: image
+    region: ds_content
+  field_image_orientation:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: ds_hidden
+hidden: {  }

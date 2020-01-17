@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.user.user.user_picture
-    - image.style.thumbnail
+    - image.style.user_profile_img
   module:
     - image
     - path
@@ -16,17 +16,23 @@ content:
   account:
     weight: -10
     region: content
+    settings: {  }
+    third_party_settings: {  }
   contact:
     weight: 5
     region: content
-  google_analytics:
-    weight: 3
     settings: {  }
     third_party_settings: {  }
+  google_analytics:
+    weight: 3
     region: content
+    settings: {  }
+    third_party_settings: {  }
   language:
     weight: 0
     region: content
+    settings: {  }
+    third_party_settings: {  }
   path:
     type: path
     weight: 30
@@ -36,11 +42,13 @@ content:
   timezone:
     weight: 6
     region: content
+    settings: {  }
+    third_party_settings: {  }
   user_picture:
     type: image_image
     settings:
+      preview_image_style: user_profile_img
       progress_indicator: throbber
-      preview_image_style: thumbnail
     third_party_settings: {  }
     weight: -1
     region: content

@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: thumbnail_400x300
+label: 'Thumbnail 400x300'
+effects:
+  611d7785-9ad6-48ca-a8f8-4e453367d7c2:
+    uuid: 611d7785-9ad6-48ca-a8f8-4e453367d7c2
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 400
+      height: 300
+      crop_type: focal_point

@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: paragraph_card_img
+label: 'Paragraph Card Img'
+effects:
+  4f932d6d-808f-406a-bdce-6640ee193636:
+    uuid: 4f932d6d-808f-406a-bdce-6640ee193636
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 400
+      height: 400
+      crop_type: focal_point

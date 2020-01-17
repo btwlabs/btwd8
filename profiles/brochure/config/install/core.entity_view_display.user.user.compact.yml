@@ -4,28 +4,113 @@ dependencies:
   config:
     - core.entity_view_mode.user.compact
     - field.field.user.user.user_picture
-    - image.style.thumbnail
+    - image.style.user_profile_img
   module:
+    - ds
     - image
     - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          ds_content: div
+          ds_hidden: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          ds_content: {  }
+          ds_hidden: {  }
+    regions:
+      ds_content:
+        - user_picture
+        - username
+    fields:
+      username:
+        plugin_id: username
+        weight: 1
+        label: inline
+        formatter: default
+        settings:
+          link: true
+          wrapper: ''
+          class: author-name
+        ft:
+          id: expert
+          settings:
+            lb: by
+            prefix: ''
+            lbw: true
+            lbw-el: span
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: span
+            ow-cl: author-name
+            ow-at: ''
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fi: true
+            fi-el: span
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lb-col: false
+            ow-def-at: false
+            ow-def-cl: false
+            fis: false
+            fis-def-at: false
+            fi-def-at: false
 id: user.user.compact
 targetEntityType: user
 bundle: user
 mode: compact
 content:
-  masquerade:
-    weight: 50
-    settings: {  }
-    third_party_settings: {  }
-    region: content
   user_picture:
     type: image
     weight: 0
-    region: content
+    region: ds_content
     settings:
-      image_style: thumbnail
+      image_style: user_profile_img
       image_link: content
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: span
+            ow-cl: author-picture
+            ow-at: ''
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow-def-at: false
+            ow-def-cl: false
+            fis: false
+            fis-def-at: false
+            fi: false
+            fi-def-at: false
     label: hidden
 hidden:
+  masquerade: true
   member_for: true

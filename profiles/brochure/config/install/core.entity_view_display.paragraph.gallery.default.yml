@@ -59,7 +59,7 @@ third_party_settings:
         id: ''
         classes: gallery-intro
       label: Info
-      region: hidden
+      region: ds_content
 id: paragraph.gallery.default
 targetEntityType: paragraph
 bundle: gallery
@@ -69,7 +69,35 @@ content:
     weight: 5
     label: hidden
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: div
+            ow-cl: gallery-body
+            ow-at: ''
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow-def-at: false
+            ow-def-cl: false
+            fis: false
+            fis-def-at: false
+            fi: false
+            fi-def-at: false
     type: text_default
     region: ds_content
   field_gallery_extra_classes:
@@ -84,9 +112,7 @@ content:
     weight: 1
     label: hidden
     settings:
-      lightgallery_core:
         lightgallery_image_style: max_1300x1300
-        thumb_image_style: thumbnail
         title_source: alt
         mode: lg-slide
         preload: '1'
@@ -136,7 +162,35 @@ content:
     weight: 4
     label: hidden
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: h2
+            ow-cl: gallery-title
+            ow-at: ''
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow-def-at: false
+            ow-def-cl: false
+            fis: false
+            fis-def-at: false
+            fi: false
+            fi-def-at: false
     type: text_default
     region: ds_content
 hidden: {  }

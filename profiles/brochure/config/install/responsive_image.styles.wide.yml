@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - image.style.max_1300x1300
-    - image.style.max_2600x2600
+    - image.style.max_1800x1200
     - image.style.max_325x325
     - image.style.max_650x650
 id: wide
@@ -16,9 +16,9 @@ image_style_mappings:
     image_mapping:
       sizes: '(min-width: 1290px) 1290px, 100vw'
       sizes_image_styles:
-        - max_2600x2600
         - max_1300x1300
-        - max_650x650
+        - max_1800x1200
         - max_325x325
+        - max_650x650
 breakpoint_group: responsive_image
 fallback_image_style: max_325x325
