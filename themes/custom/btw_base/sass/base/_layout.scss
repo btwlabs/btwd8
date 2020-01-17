@@ -13,6 +13,16 @@
     box-sizing: border-box;
 }
 
+html {
+	font-size: 18px;
+	text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+	@include base-text-style; // see /abstractions/_typography.scss & /variables/_typography.scss
+}
+
 
 //----------------------------------------
 // Define constrained containers sitewide
@@ -52,172 +62,3 @@
 .l-footer-wrapper {
 	@extend %clearfix;
 }
-
-
-/*----------------------------------------
-
- Admin menus
- 
-----------------------------------------*/
-
-
-
-
-/*----------------------------------------
-
- HEADER region Layout
-
-----------------------------------------*/
-
-
-.l-header {
-	position: relative;
-	z-index: 99;
-	background-color: #fff;
-	
-	.l-constrained {
-		//width: 90%;
-		margin: 0 auto;
-	}
-}
-
-
-.not-front .l-header {
-	background-color: #fff;
-	box-shadow: 1px 0 2px rgba(146, 146, 146, 0.8);
-	
-	.l-constrained {
-		position: relative;
-		
-		@include breakpoint($small-only) {
-			height: $header-height-small;
-		}
-		@include breakpoint($medium-up) {
-			height: $header-height-medium;
-		}
-		@include breakpoint($large-up) {
-			height: $header-height-large;
-		}
-	}
-
-}
-
-.l-header.fixed {
-	box-shadow: none;
-	height: $header-height-small;
-	
-	.l-constrained {
-		@include breakpoint($small-up) {
-			height: $header-height-small;
-		}
-		@include breakpoint($medium-up) {
-			height: $header-height-small;
-		}
-		@include breakpoint($large-up) {
-			height: $header-height-small;
-		}
-	}
-}
-
-
-/*----------------------------------------
-
- CONTENT region layout
-
-----------------------------------------*/
-
-
-
-//-------------------------------
-// for fixed footer
-//-------------------------------
-
-.l-inner-wrap {
-	@include breakpoint($medium-up) {
-		// allow space for fixed pos footer
-	    padding-bottom: 325px;
-    }
-}
-section#content {
-    background: #fff;   
-}
-
-section#content, 
-.l-pre-footer-wrapper {
-    position: relative;
-    z-index: 1;
-}
-
-
-// Pages without full width content - constrain to % width
-.section-user,
-.section-contact {
-	.block-system-main-block {
-		@include constrained;
-		padding-bottom: 5vw;
-	}
-}
-
-
-.l-content {
-	position: relative;
-	min-height: 500px;
-}
-
-
-.not-front .l-content-main {
-	padding: 8vw 0;
-	min-height: 500px;
-}
-
-/*----------------------------
- Section rows
------------------------------*/
-
-// use on inner blocks that are within a constrained style section
-// the idea is to keep padding consistent with that of story blocks
-.constrained-row {
-	padding: $constrained-row-padding;
-}
-
-// use on inner blocks not using constrained styles 
-.unconstrained-row {
-	padding: $unconstrained-row-padding;
-}
-
-
-
-/*----------------------------------------
-
- FOOTER region layout
-
-----------------------------------------*/
-
-.l-pre-footer-wrapper,
-.l-footer-wrapper {
-	.l-constrained {
-		@include breakpoint($medium-up) {
-			//width: 90%;
-		}
-	}
-}
-
-
-/*----------------------------------------
-
- STORY pages
-
-----------------------------------------*/
-
-.story-page {
-	.l-content-main-wrapper {
-		
-		// undo default constraints on container width
-		> .l-constrained {
-			width: 100%;
-			margin: 0;
-			padding: 0;
-		}
-	}
-}
-

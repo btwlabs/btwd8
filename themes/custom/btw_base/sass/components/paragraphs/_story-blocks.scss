@@ -188,20 +188,25 @@
 
 		@include breakpoint($medium-up) {
 			
-			// image column
+			// TEXT column
 			.group-left {
 				width: 50%;
 				padding: 8vw;
 			}
 			
-			// text column
+			// IMAGE column
 			.group-right {
 				width: 50%;
 				padding: 8vw 8vw 8vw 0;
 				
 				figure {
 					margin: 0;
+					
+					img {
+						width: 100%;
+					}
 				}
+				
 				figcaption {
 				    text-align: center;
 				    font-size: .8em;
@@ -218,14 +223,19 @@
 
 		@include breakpoint($medium-up) {
 			
-			// image column
+			// IMAGE column
 			.group-left {
 				width: 50%;
 				padding: 8vw 0 8vw 8vw;
 				
 				figure {
 					margin: 0;
+					
+					img {
+						width: 100%;
+					}
 				}
+				
 				figcaption {
 				    text-align: center;
 				    font-size: .8em;
@@ -233,7 +243,7 @@
 				}
 			}
 			
-			// text column
+			// TEXT column
 			.group-right {
 				width: 50%;
 				padding: 8vw;
@@ -264,20 +274,25 @@
 
 		@include breakpoint($medium-up) {
 			
-			// image column
+			// TEXT column
 			.group-left {
 				width: 50%;
 				padding: 8vw;
 			}
 			
-			// text column
+			// IMAGE column
 			.group-right {
 				width: 50%;
 				padding: 8vw 8vw 8vw 0;
 				
 				figure {
 					margin: 0;
+					
+					img {
+						width: 100%;
+					}
 				}
+				
 				figcaption {
 				    text-align: center;
 				    font-size: .8em;
@@ -301,22 +316,27 @@
 
 		@include breakpoint($medium-up) {
 			
-			// image column
+			// IMAGE column
 			.group-left {
 				width: 50%;
 				padding: 8vw 0 8vw 8vw;
 				
 				figure {
 					margin: 0;
+					
+					img {
+						width: 100%;
+					}
 				}
+				
 				figcaption {
 				    text-align: center;
 				    font-size: .8em;
-				    margin: .05em 0 0;
+				    margin: 0.5em 0 0;
 				}
 			}
 			
-			// text column
+			// TEXT column
 			.group-right {
 				width: 50%;
 				padding: 8vw;
@@ -499,9 +519,11 @@
 			color: $text-on-light-color;
 		}
 		
-		// button link
+		// button link and video popup link
 		.field-name-story-block-link,
-		.field-name-story-block-videos {		
+		.field-name-story-block-videos {
+			margin: 2em 0;
+					
 			a {
 				@include button-on-light;
 			}

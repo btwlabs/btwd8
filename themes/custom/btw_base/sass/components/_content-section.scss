@@ -1,0 +1,54 @@
+//----------------------------------------------
+//
+//	CONTENT MAIN - layout styles for main content section
+//
+//	location: 
+//      /sass/components/_content-section.scss
+//
+//----------------------------------------------
+
+
+
+
+// content section PARENT container
+section#content {
+    background: #fff;
+    position: relative;
+    z-index: 1;   
+}
+
+
+//----------------------------------------
+//
+//	PRE-CONTENT region layout
+//
+//----------------------------------------
+
+.pre-content {
+	
+}
+
+
+
+//----------------------------------------
+//
+//	CONTENT region layout
+//
+//----------------------------------------
+
+.l-content-main {
+	padding: 0 0 8vw 0;
+	min-height: 500px;
+}
+
+
+
+//----------------------------------------
+//
+//	PRE-CONTENT region layout
+//
+//----------------------------------------
+
+.post-content {
+	
+}

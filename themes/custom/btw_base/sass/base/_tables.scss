@@ -15,9 +15,11 @@
 table, tbody, tfoot, thead, tr, th, td {
 	vertical-align: middle;
 }
+
 table {
 	width: 100%;
 }
+
 thead th {
     background-color: $table-header-bg-color;
     @include border-all($border-color);
@@ -26,14 +28,17 @@ thead th {
     text-align: left;
     text-transform: uppercase;
 }
+
 td {
     @include border-all($border-color);
     padding: 15px; 
     @include font-size(12px);
 }
+
 tr.odd {
 	background-color: $table-odd-row-bg-color;
 }
+
 tr.even {
 	background-color: $table-even-row-bg-color;
 }
@@ -64,6 +69,7 @@ a.tabledrag-handle .handle {
 	padding: 0.42em 0.5em;
 	width: 14px;
 }
+
 a.tabledrag-handle-hover .handle {
 	background-position: 0 -13px;
 }

@@ -13,25 +13,19 @@
 .l-branding {
 	background-color: transparent;
 	height: auto;
+	padding: 10px;
 	
 	@include breakpoint($small-only) {
-		@include border-bottom(#555);
 		padding-left: 15px;
 	}
 	@include breakpoint($medium-up) {
 		width: 170px;
-		float: left;
-		margin: 0;
 	}
 	@include breakpoint($large-up) {
 		width: 200px;
-	    float: left;
-	    margin: 0;
 	}
 	@include breakpoint($xlarge-up) {
 		width: 260px;
-	    float: left;
-	    margin: 0;
 	}
 }
 

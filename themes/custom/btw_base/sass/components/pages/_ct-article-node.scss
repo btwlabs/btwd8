@@ -1,0 +1,396 @@
+//----------------------------------------------
+//
+//	ARTICLE NODE - styles 
+//
+//	location: 
+//      /sass/components/pages/_ct-article-node.scss
+//
+//----------------------------------------------
+
+
+
+//-------------------------------
+//	Style 1 - details at the top, 
+//	hero image below - full width
+//-----------------------------
+.article-node {
+	
+	// override defaults to give 100% width
+	// horizontal spacing is per element, not overall in page
+	.l-constrained {
+		width: 100%;
+		margin: 0;
+	}
+	
+	// paragraph outer containers
+	.article-paragraph-item {
+		margin: 4vw auto;
+		
+		@include breakpoint($small-only) {
+			margin: 3em auto;
+		}
+		
+		// margin not needed below hero image/above first paragraph
+		&:nth-of-type(1) {
+		    margin-top: 0;
+		}
+	}
+	
+	
+	//----------------------------------
+	//
+	//	Hero Wrapper - contains
+	//		title, subtitle, author, image
+	//
+	//----------------------------------
+	
+	.hero-wrapper {
+		padding: 8vw 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		
+		@include breakpoint($medium-up) {
+			padding-bottom: 4vw;
+		}
+		
+		// Title, subtitle, text, links
+		.hero-info {			
+			@include breakpoint($small-only) {
+				margin: 0 20px 40px;
+			}
+			@include breakpoint($medium-up) {
+				max-width: 728px;
+				margin: 0 24px 4vw;
+			}
+			
+			// page title
+			h1 {
+				margin-bottom: .38em;
+			}
+			
+			// sub-title
+			h3 {
+			    margin-bottom: .8em;
+			}
+			
+			.post-date {
+			    margin-bottom: .7em;
+			}
+			
+			// Author Image
+			span.author-picture {
+				display: inline-block;
+				vertical-align: middle;
+				margin-right: 10px;
+				
+				a {
+				    display: block;
+				    width: 48px;
+				    height: 48px;
+				    overflow: hidden;
+				    border-radius: 100%;
+				}
+				
+				img {
+			    	object-fit: cover;
+			    	width: 100%;
+			    	height: 100%;
+			    }
+			}
+		}
+		
+		// Image
+		.hero-image {
+			.field-name-image {
+			    max-height: 70vh;
+			    overflow: hidden;
+			    display: flex;
+			    width: 100%;
+			    padding: 0 8vw;
+			}
+			
+			img {
+				width: 100%;
+				height: auto;
+				object-fit: cover;
+				object-position: center center;
+			}
+			
+			figure {
+			    margin: 0;
+			}
+		}
+		
+		// Social Icons
+		.social-sharing-buttons {
+		    display: flex;
+		    justify-content: left;
+		    align-items: center;
+		    margin: 1em 0 0;
+		    
+		    a,
+		    button {
+			    background: #efefef;
+			    border-radius: 4px;
+			    padding: 3px;
+			    margin: 0 6px 0 0;
+			    
+			    &:hover {
+				    background-color: $primary-color;
+			    }
+			    
+			    svg {
+				    width: 26px;
+				    height: 26px;
+				}
+			}
+			.social-sharing-buttons__button {
+			    border: 0;
+			    padding: 5px;
+			    background: #efefef;
+			    
+			    &:hover {
+				    background-color: $primary-color;
+			    }
+			}
+		}
+	}
+}
+
+//-----------------------------
+// Style 2 - details on the left,
+// hero image on the right
+//-----------------------------
+/*.article-node {
+	
+	.l-constrained {
+	    width: calc(100% - 40px);
+	    margin: 0 20px;
+	}
+	
+	
+	.hero-wrapper {
+		padding: 8vw 0 0;
+		margin-bottom: 8vw;
+		display: flex;
+		align-items: center;
+		
+		@include breakpoint($small-only) {
+			padding: 0;
+		}
+		
+		@include breakpoint($medium-up) {
+			flex-direction: row;
+		}
+		
+		
+		.hero-info {
+			
+			// in mobile only, info is second
+			@include breakpoint($small-only) {
+				order: 2;	
+			}
+			
+			@include breakpoint($medium-up) {
+				margin: 0 4vw 4vw 8vw;
+			    flex: 2 1 auto;
+			    order: 1;
+		    }
+		}
+
+		.hero-image {
+		    width: 100%;
+		    padding: 0;
+		    flex: 1 1 auto;
+		    order: 2;
+		    
+		    // in mobile, image first
+		    @include breakpoint($small-only) {
+			    order: 1;
+			    margin-bottom: 20px;
+			}
+			
+			figure {
+				margin: 0;
+			}
+		}
+	}
+}
+
+//-----------------------------
+// Style 3 - details on the right,
+// hero image on the left
+//-----------------------------
+/*.article-node {
+	
+	.l-constrained {
+	    width: calc(100% - 40px);
+	    margin: 0 20px;
+	}
+	
+	
+	.hero-wrapper {
+		padding: 8vw 0 0;
+		margin-bottom: 8vw;
+		display: flex;
+		align-items: center;
+		
+		@include breakpoint($medium-up) {
+			flex-direction: row;
+		}
+		
+		
+		.hero-info {			
+			@include breakpoint($medium-up) {
+				margin: 0 4vw 4vw 8vw;
+			    flex: 2 1 auto;
+			    order: 2;
+		    }
+		}
+		.hero-image {
+		    width: 100%;
+		    padding: 0;
+		    flex: 1 1 auto;
+		    order: 1;
+		    
+		    // in mobile, image first
+		    @include breakpoint($small-only) {
+			    order: 1;
+			    margin-bottom: 20px;
+			}
+			
+			figure {
+				margin: 0;
+			}
+		}
+	}
+}
+
+//-----------------------------
+// Style 3 -  hero image over the top of the details
+//-----------------------------
+.article-node {
+	
+	.l-constrained {
+	    width: calc(100% - 40px);
+	    margin: 0 20px;
+	}
+	
+	
+	.hero-wrapper {
+		padding: 0;
+		
+	}
+}*/
+
+//-----------------------------------
+//
+//	Paragraph styling
+//
+//-----------------------------------
+
+.article-node {
+	.paragraph--type-cards {
+	    background: $xlight-gray;
+	}
+	
+	.entity-pager {
+		margin-bottom: 4vw;
+	}
+	
+	.paragraphy--type-embed {
+	    max-width: 1300px;
+	    margin: 0 auto;
+	}
+	
+	.paragraph--type-quote {
+	    margin: 0 auto;
+	    border-top: 1px solid $border-color;
+	    border-bottom: 1px solid $border-color;
+	    
+	    @include breakpoint($large-up) {
+		    max-width: 900px;
+	    }
+	    
+	    @include breakpoint($small-and-medium) {
+		    border: 0;
+		    
+		    blockquote {
+			    border-top: 1px solid $border-color;
+				border-bottom: 1px solid $border-color;
+		    }
+	    }
+	}
+}
+
+//-------------------------------------
+//
+//	Related Articles block
+//
+//-------------------------------------
+
+// outer wrapper
+.field-name-dynamic-block-fieldnode-related-articles {
+	margin: 4vw auto;
+	//max-width: 1200px;
+	
+	// inner wrapper
+	.block-views-blockarticles-cards-short {
+		@include breakpoint($small-only) {
+		    margin: 0 24px;
+	    }
+	    @include breakpoint($medium-only) {
+		    margin: 0 48px;
+	    }
+	    @include breakpoint($large-up) {
+		    margin: 0 64px;
+	    }
+	}
+	
+	// section title
+	h2 {
+		@include responsive-section-subtitle;
+	}
+	
+	// cards outer wrapper <div>
+	.article-teaser-cards {
+		
+		// grid Wrapper <ul>
+		.grid {
+			margin: 0 -15px; // offset .grid-item padding
+			padding: 0;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: left;
+		}
+	
+		// Individual card <li>
+	    .grid-item {
+		    flex: 1 1 250px;
+		    margin: 0 15px 50px;
+		    padding: 0;
+		    
+		    @include breakpoint($medium-up) {
+			    max-width: 33.333%;
+		    }
+		}
+	}
+	
+	// teaser thumbnail
+	.article-hero-img {
+		margin-bottom: 15px;
+	}
+	
+	// teaser title
+	.title-wrapper {
+		h3 {
+			@include responsive-card-title;
+			margin-bottom: 15px;
+		}
+	}
+	
+}
+
+
+

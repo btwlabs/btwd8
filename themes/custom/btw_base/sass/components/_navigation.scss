@@ -11,28 +11,9 @@
 // this selector (.l-header) is here to differentiate between 
 // this menu block and the one used for mobile nav
 .l-header {
-	@include breakpoint($nav-small-and-med) {
-		display: none;
-	}
-	
-	@include breakpoint($nav-large-up) {
-		display: block;
-		position: relative; // for non-fixed nav
-		left: 0;
-		width: 100%;
-		z-index: 6;
-		@include clearfix; // for non-fixed nav
-		height: $header-height-medium;
-	}
-	@include breakpoint($nav-xlarge-up) {
-		height: $header-height-large;
-	}
-
 	
 	// List items
-	nav.menu--main {
-		//@include align-self($value: flex-end); // .l-constrained container uses flexbox
-	    margin-left: auto; // somehow this makes it align right. magic!
+	nav.menu--main {	    
 				
 		.menu {
 			margin: 0;
@@ -51,22 +32,13 @@
 				font-weight: $nav-font-weight;
 				line-height: $nav-line-height;
 				
-				&.leaf {
-					list-style-image: none;
-				}
 				&.menu-item--active-trail {
 					background-color: $nav-button-bg-active-color;
 				}
-				&.collapsed {
-					list-style-image: none;
-				}
+				&.leaf,
+				&.collapsed,
 				&.expanded {
 					list-style-image: none;
-				}
-				
-				&:before {
-					transition: all 0.2s ease;
-					width: 0;
 				}
 				
 				// keeps main nav link in a persistent hover state while cursor moves to subnav list
@@ -115,7 +87,10 @@
 					}
 				}
 								
-				/* sub nav menus */
+				//--------------------------------------
+				//	sub nav menus 
+				//--------------------------------------
+				
 				ul.menu {
 					position: absolute;
 					left: 0;
@@ -136,9 +111,7 @@
 						top: $header-clear-nav-large;
 						min-width: 170px;
 					}
-					
-					
-				
+									
 					li {
 						float: none;
 						overflow: hidden;
@@ -168,7 +141,7 @@
 								text-decoration: none;
 							}
 							&:hover {
-								padding-left: 25px;
+								padding-left: 20px;
 							}
 						}
 						&:hover:before {

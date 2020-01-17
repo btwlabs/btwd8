@@ -1,0 +1,57 @@
+//----------------------------------------------
+//
+//	PARAGRAPH TYPE = GALLERY 
+//
+//	location: 
+//      /sass/components/paragraphs/_gallery-paragraph.scss
+//
+//----------------------------------------------
+
+
+
+.paragraph--type-gallery {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+	
+	// title and body
+	.gallery-intro {
+		text-align: center;
+	    max-width: 728px;
+	    margin-bottom: 4vw;
+	    
+	    p:last-of-type {
+		    margin: 0;
+	    }
+	}
+	
+	// section title
+	.gallery-title {
+		@include responsive-section-title;
+	}
+	
+	// thumbnails
+	.lightgallery-wrapper {
+	    padding: 0 8vw;
+	    width: 100%;
+	    
+	    ul {
+		    margin: 0;
+		    padding: 0;
+		    display: grid;
+		    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		    grid-gap: 40px 3.8%;
+		    
+		    li {
+			    list-style-type: none;
+			    margin: 0;
+			    padding: 0;
+			    
+			    img {
+				    width: 100%;
+				    height: auto;
+				}
+		    }
+		}
+	}
+}

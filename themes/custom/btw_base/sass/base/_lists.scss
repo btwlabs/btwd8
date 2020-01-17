@@ -15,50 +15,61 @@
 
 --------------------------------------------*/
 
-
-// !!!!!!! >>>>>>> review these vs normalize.css
-
 ol {
-  list-style: decimal;
-}
-ol li {
-	list-style-type: decimal;
-}
-ul {
-	list-style: disc;
-}
-ul li {
-	list-style: disc;
-}
-ul ul,
-ol ol {
-	padding-top: 0.5em;
-}
-ul ul li {
-	list-style: circle;
-}
-.node ol,
-.node ul {
-	padding-left: 2em;
-}
-.node ul.inline,
-.node ol.inline {
-	padding-left: 0;
+	li {
+		list-style-type: decimal;
+	}
+	
+	ol {
+		padding-top: 0.5em;
+		
+		li {
+			list-style-type: upper-roman;
+		}
+	}
 }
 
-/*-------- Definition Lists --------*/
-dt, .admin h3 {
-	font-size: 1.125rem; /* 18px */
+ul {
+	li {
+		list-style: disc;
+	}
+	
+	ul {
+		padding-top: 0.5em;
+		
+		li {
+			list-style: circle;
+		}
+	}
+}
+
+.node {
+	ol,
+	ul {
+		padding-left: 2em;
+	}
+}
+
+//--------------------------
+//	Definition Lists
+//--------------------------
+
+dt, 
+.admin h3 {
+	font-size: 1.125rem;
 	margin: 0;
 }
+
 dd {
 	padding-left: 10px;
-	font-size: 0.938rem; /* 15px */
+	font-size: 0.938rem;
 	font-style: italic;
 	margin-bottom: 20px;
 }
 
-/* LIST formatting classes */
+//--------------------------
+//	LIST formatting classes
+//--------------------------
 
 .upper-roman {
 	list-style-type: upper-roman;
@@ -86,31 +97,68 @@ dd {
 	}
 }
 
-/*---------------------------------------------------------
------------------------------------------------------------
+//---------------------------------------------------------
+//---------------------------------------------------------
+//
+//	LIST & GRID styles - without standard list formatting
+//  
+//---------------------------------------------------------
+//---------------------------------------------------------
 
- LIST & GRID styles - without standard list formatting
-  
------------------------------------------------------------
----------------------------------------------------------*/
-
-/*---------------------------------------
-
-	GRID CSS - for items to display in a
-			   grid layout
- 
-----------------------------------------*/
+//----------------------------------
+//
+//	FLEXBOX GRID -- for items to display 
+//			in a grid layout using
+//			FLEXBOX ONLY specs
+// 
+//----------------------------------
 
 .grid {
 	// resets values for when class is placed on <ul>
 	margin: 0 0 3rem 0;
 	padding: 0;
 	
-	@include flexbox;
-	@include flex-wrap($value: wrap);
-	@include justify-content($value: space-between);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;	
+    
+    li,
+	.grid-item {
+		list-style-type: none;
+
+		@include breakpoint($small-only) {
+			@include flexgrid-1;
+		}
+		@include breakpoint($medium-up) {
+			@include flexgrid-2;
+		}
+		@include breakpoint($large-up) {
+			@include flexgrid-3;
+		}
+		@include breakpoint($xlarge-up) {
+			@include flexgrid-4;
+		}
+	}
+}
+
+//----------------------------------
+//
+//	CSS GRID -- for items to display 
+//				in a grid layout using
+//				CSS GRID specs
+// 
+//----------------------------------
+
+.css-grid {
+	// resets values for when class is placed on <ul>
+	margin: 0 0 3rem 0;
+	padding: 0;
 	
-	// use mixins "grid-1", "grid-2" etc to establish unit widths per instance
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	
+	// if the browser supports css grid, then...
 	@supports (display:grid) {
 		display: grid;
 		grid-template-columns: repeat(auto-fit,minmax(250px, 1fr));
@@ -118,15 +166,16 @@ dd {
 	}	
     
     li,
-	.grid-row {
+	.grid-item {
 		list-style-type: none;
 		padding: 0;
 		margin: 0;
 		position: relative;
 	}
-	// for flexbox fallback
+	
+	// for flexbox fallback if css grid not supported
 	@supports not (display:grid) {
-		.grid-row {
+		.grid-item {
 			@include breakpoint($small-only) {
 				@include flexgrid-1;
 			}
@@ -145,37 +194,33 @@ dd {
 
 	
 
-/*---------------------------------------
-
- .LIST
- 
-----------------------------------------*/
+//----------------------------------
+//
+//	LISTS - items to display top-bottom
+//
+//----------------------------------
 
 .list {
 	padding: 0;
-}
-.list ul {
-	margin: 0;
-	padding: 0;
-}
-.list-row,
-.item-list li.list-row {
-	padding: $vert-spacing-unit/2 0;
-	@include border-bottom($border-color);
-	list-style-type: none;
-	margin: 0;
-	position: relative;
-	overflow: hidden;
-}
-
-/* first and last row alterations */
-.list-row:nth-of-type(1),
-.item-list li.list-row:first-child,
-.l-region--sidebar .list-row:first-child {
-	padding-top: 0;
-}
-.list-row:last-child,
-.item-list li.list-row:last-child,
-.l-region--sidebar .list-row:last-child {
-	border-bottom: 0;
+	
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+	
+	.list-item {
+		padding: $vert-spacing-unit/2 0;
+		@include border-bottom($border-color);
+		list-style-type: none;
+		margin: 0;
+		position: relative;
+		overflow: hidden;
+		
+		&:first-child {
+			padding-top: 0;
+		}
+		&:last-child {
+			border-bottom: 0;
+		}
+	}
 }

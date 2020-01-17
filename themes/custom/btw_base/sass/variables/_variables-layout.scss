@@ -34,19 +34,11 @@ $nav-height-large: 60px;
 $nav-height-xlarge: 64px;
 
 
-// default padding on content section rows using constrained styles
-$constrained-row-padding: 8vw 0;
-
-// use on inner blocks not using constrained styles
-$unconstrained-row-padding: 8vw;
-
-// story blocks
-// padding for columns
-$story-block-padding-left-copy: 8vw;
-$story-block-padding-right-copy: 8vw;
-
-$story-block-default-padding: 0;
-
-
 // Space from edge of screen to content on mobile devices
 $mobile-side-margin: 20px;
+
+
+// Content margins
+$small-side-margin: 24px;
+$medium-side-margin: 48px;
+$large-side-margin: 64px;

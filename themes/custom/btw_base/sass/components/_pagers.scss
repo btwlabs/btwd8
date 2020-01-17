@@ -8,27 +8,6 @@
 //------------------------------------------------------
 
 
-// HIDE previous / next on the first / last items in the list queue
-
-
-// PREVIOUS on first item in list = Nexus
-.page-node-32 {
-	.entity-pager-item-prev {
-		.inactive {
-	    	display: none;
-	    }
-	}
-}
-
-// NEXT on last item in list = 
-.page-node-35 {
-	.entity-pager-item-next {
-		.inactive {
-	    	display: none;
-	    }
-	}
-}
-
 /*--------------------------------------------------
 ----------------------------------------------------
 
@@ -97,6 +76,10 @@ ul.pager__items {
 	position: relative;
 	margin: 0 auto;
 	@include flexbox;
+	
+	ul {
+		padding: 0;
+	}
 }
 
 // list container <ul>
@@ -104,6 +87,7 @@ ul.pager__items {
 	width: 100%;
 	@include flexbox;
 	margin: 0;
+	background-color: $xlight-gray;
 	
 	.entity-pager-item {
 		margin: 0;
@@ -113,105 +97,107 @@ ul.pager__items {
 
 // list item <li>
 .entity-pager-item {
-	height: 15vw;
-	width: calc(50% - 15px);
+	height: 120px;
 	position: relative;
 	overflow: hidden;
+	display: flex;
+    align-items: center;
 	
-	@include breakpoint($medium-up) {
-		background-color: #eee;
+	@include breakpoint($small-only) {
+		height: 80px;
 	}
+
 	
 	// link wrapper
 	a {
 		color: #fff;
-		display: block;
+		display: flex;
+		align-items: center;
 		line-height: 1.3;
 		height: 100%;
 		position: relative;
 		text-decoration: none;
 		text-transform: capitalize;
 		@include transition(all, 0.2s, ease-in);
-	}
-	
-	// background image
-	img {
-	    position: absolute;
-	    width: 100%;
-	    height: auto;
-	    left: 50%;
-	    top: 50%;
-	    @include centerXY;
-	    @include transition(all, 0.2s, ease-out);
-	    
-	    // hide in mobile
-	    @include breakpoint($small-only) {
-		    display: none;
-	    }
-	}
-	
-	// overlay
-	span:nth-of-type(1) {
-	    display: block;
-	    background: rgba(0,0,0,0.5);
-	    width: 100%;
-	    height: 100%;
-	    position: absolute;
-	    left: 0;
-	    top: 0;
-	    z-index: 1;
-	    @include transition(all, 0.2s, ease-in);
-	    
-	    // hide in mobile
-	    @include breakpoint($small-only) {
-		    display: none;
-	    }
-	}
-	
-	// title
-	h4 {
-		width: calc(100% - 100px);
-		position: absolute;
-		color: #fff;
-		font-size: 2vw;
-		@include centerY;
-		z-index: 3;
-		margin: 0;
 		
-		@include breakpoint($small-only) {
-			font-size: 2.5vw;
-			color: #000;
-			width: calc(100% - 50px);
-			font-weight: normal;
+		&:hover {
+			text-decoration: none;
+			
+			// overlay
+			span:nth-of-type(1) {
+				//background-color: rgba(0,0,0,0.7);
+			}
+			
+			// arrow
+			span:nth-of-type(2) {
+				
+			}
 		}
-	}
+		
+		div {
+			display: flex;
+			width: 100%;
+			align-items: center;	
 	
-	// icon
-	span:nth-of-type(2) {
-	    width: 25px;
-	    height: 100%;
-	    display: block;
-	    position: absolute;
-	    top: 0;
-	    z-index: 2;
-	    
-	    @include breakpoint($medium-up) {
-		    width: 40px;
-		    background-color: rgba(254, 108, 0, 0.7);
-	    }
-	    @include breakpoint($large-up) {
-		    width: 54px;
-	    }
-	}
-	
-	&:hover {
-		span:nth-of-type(1) {
-			background-color: rgba(0,0,0,0.7);
-		}
-		img {
-			transform: translate(-50%,-50%) scale(1.2) rotate(-1deg);
-		    left: 50%;
-		    top: 50%;
+			// overlay
+			span:nth-of-type(1) {
+			    display: none;
+			    //background: rgba(0,0,0,0.5);
+			    width: 100%;
+			    height: 100%;
+			    position: absolute;
+			    left: 0;
+			    top: 0;
+			    z-index: 1;
+			    @include transition(all, 0.2s, ease-in);
+			    
+			    // hide in mobile
+			    @include breakpoint($small-only) {
+				    display: none;
+			    }
+			}
+			
+			// title
+			h4 {
+				width: calc(100% - 100px);
+				
+				z-index: 3;
+				margin: 0;
+				
+				@include breakpoint($small-only) {
+					font-size: 12px;
+					width: calc(100% - 52px);
+				}
+				@include breakpoint($medium-only) {
+					font-size: 16px;
+				}
+				@include breakpoint($medium-up) {
+					font-size: 22px;
+				}
+			}
+			
+			// icon
+			span:nth-of-type(2) {
+			    height: 40px;
+			    display: block;
+				z-index: 2;
+				flex: 0 0 24px;
+				position: relative;
+				
+				@include breakpoint($small-only) {
+					flex: 0 0 12px;
+				}
+			    
+			    &:before {
+				    display: block;
+				    width: 20px;
+					height: 34px;
+					
+					@include breakpoint($small-only) {
+						width: 12px;
+					}
+			    }
+			}
 		}
 	}
 }
@@ -230,27 +216,31 @@ ul.pager__items {
 
 .entity-pager-item-prev {
 
-    
+    a {		
+		div {
+			
+			@include breakpoint($medium-up) {
+				padding-left: 20px;
+			}
+		}
+	}
+	
+	
     // arrow icon
     span:nth-of-type(2) {
-	    @include breakpoint($medium-up) {
-	    	left: -100%;
-			transition: all 0.2s ease;
-	    }
+	    order: 1;
+	    margin-right: 20px;
 	    
 	    &:before {
 			content:"";
-			width: 20px;
-			height: 34px;
-			background: url(../images/icons/arrow-left-white.svg) no-repeat scroll right center;
+			background: url(../images/icons/arrow-left.svg) no-repeat scroll right center;
 			background-size: 100% auto;
 			position: absolute;
-			left: 15px;
+			left: 0;
 			@include centerY;
 			
 			@include breakpoint($small-only) {
-				background-image: url(../images/icons/arrow-left.svg);
-				left: 0;
+				left: 10px;
 			}
 		}
     }
@@ -258,51 +248,9 @@ ul.pager__items {
     // title
 	h4 {
 		text-align: left;
-		margin-left: 35px;
-		padding-right: 20px;
-		left: 0;
 		transition: all 0.2s ease;
-		display: inline-block;
-		vertical-align: middle;
-	}
-    
-    // ----- animate on hover -----
-    @include breakpoint($medium-up) {
-	    &:hover {
-	    	// icon
-			span:nth-of-type(2) {
-				left: 0;
-			}
-			
-			// title
-			h4 {
-				margin-left: 80px;
-			}
-		}
-	}
-
-	
-	a {
-	    position: relative;
-	    overflow: hidden;
-	    
-	    @include breakpoint($small-only) {
-		    overflow: hidden;
-	    }
-		
-	
-		&:hover {
-			text-decoration: none;
-			color: #333;
-			
-			&:before {
-				background-image: url(../images/icons/arrow-left.svg);
-				
-				@include breakpoint($medium-up) {
-					left: -20px;
-				}
-			}
-		}
+		order: 2;
+		margin: 0 0 0 20px;
 	}
 }
 
@@ -314,64 +262,42 @@ ul.pager__items {
 -------------------------*/
 
 .entity-pager-item-next {
+	
+	a {
+		div {
+			justify-content: flex-end;
+			
+			@include breakpoint($medium-up) {
+				padding-right: 20px;
+			}
+		}
+	}
    
     // arrow icon
 	span:nth-of-type(2) {
-		right: 0;
-		
-		// move offscreen and set animation transition time
-		@include breakpoint($medium-up) {
-	    	right: -100%;
-			transition: all 0.2s ease;
-	    }
+		order: 2;
+		margin-left: 20px;
 	    
 	    &:before {
 			content:"";
-			width: 20px;
-			height: 34px;
-			background: url(../images/icons/arrow-right-white.svg) no-repeat scroll right center;
+			background: url(../images/icons/arrow-right.svg) no-repeat scroll right center;
 			background-size: 100% auto;
 			position: absolute;
-			right: 15px;
+			right: 0;
 			@include centerY;
 			
 			@include breakpoint($small-only) {
-				background-image: url(../images/icons/arrow-right.svg);
-				right: 0px;
+				right: 10px;
 			}
 		}
     }
+    
     // title
 	h4 {
 		text-align: right;
-		right: 0;
-		margin-right: 35px;
-		padding-left: 20px;
 		transition: all 0.2s ease;
-	}
-    
-    // ----- animate on hover -----
-    @include breakpoint($medium-up) {
-	    &:hover {
-	    	// arrow icon
-			span:nth-of-type(2) {
-				right: 0;
-			}
-			h4 {
-				margin-right: 80px;
-			}
-		}
-	}
-        
-    a {
-		text-align: right;
-	    position: relative;
-	    overflow: hidden;
-	    
-	    @include breakpoint($small-only) {
-		    overflow: hidden;
-	    }
-	
+		order: 1;
+		margin: 0 20px 0 0;
 	}
 }
 
@@ -409,8 +335,9 @@ ul.pager__items {
 		height: 0;
 		width: 4.5vw;
 		padding-top: 4.5vw;
-		background: #000;
+		background: transparent;
 		display: block;
+		border-radius: 4px;
 	    
 	    @include breakpoint($small-only) {
 			width: 7.5vw;
@@ -419,7 +346,6 @@ ul.pager__items {
 	    
 	    &:hover {
 		    background-color: $primary-color;
-		    color: #fff;
 	    }
 		
 		// icon
@@ -427,7 +353,7 @@ ul.pager__items {
 			content: "";
 			display: block;
 			position: absolute;
-			background: url(../images/icons/bars-white.svg) no-repeat scroll center center;
+			background: url(../images/icons/bars.svg) no-repeat scroll center center;
 			vertical-align: middle;
 			speak: none;
 			background-size: 80% auto;
@@ -442,6 +368,10 @@ ul.pager__items {
 				height: 5vw;
 			}
 		}
+		&:hover:before {
+		    background: url(../images/icons/bars-white.svg) no-repeat scroll center center;
+		    background-size: 80% auto;
+	    }
 	}
 }
 

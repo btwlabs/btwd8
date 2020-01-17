@@ -1,0 +1,32 @@
+//----------------------------------------------
+//
+//	PARAGRAPH TYPE = TEXT 
+//
+//	location: 
+//      /sass/components/paragraphs/_text-paragraph.scss
+//
+//----------------------------------------------
+
+.paragraph--type--text {
+	@include responsive-body-text;
+	display: flex;
+    justify-content: center;
+	
+	.field-name-text-body {
+	    max-width: 728px;
+	    
+	    @include breakpoint($small-only) {
+		    margin: 0 24px;
+	    }
+	    @include breakpoint($medium-only) {
+		    margin: 0 48px;
+	    }
+	    @include breakpoint($large-up) {
+		    margin: 0 64px;
+	    }
+	    
+	    p:last-of-type {
+		    margin: 0;
+		}
+	}
+}

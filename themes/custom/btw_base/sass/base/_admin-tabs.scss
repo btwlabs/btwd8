@@ -10,56 +10,113 @@
 
 // Tabs container
 nav.tabs {
-	@include constrained;
-    padding: 30px 0;
+	//@include constrained;
+    //padding: 5vw 0;
+}
+
+
+nav.tabs {
+    background: #1f2123;
+    padding: 30px;
+    border-radius: 10px;
+    
+    @include breakpoint($small-only) {
+	    margin: 20px;
+    }
+    @include breakpoint($medium-up) {
+	   margin: 50px; 
+    }
+    
+    
+	&:before {
+	    display: block;
+	    content: "ADMIN LINKS";
+	    text-align: center;
+	    padding: 5px;
+	    color: #fff;
+	    font-weight: bold;
+	    margin: 0 auto 15px;
+		border-bottom: 1px solid #666;
+    }
 }
 
 
 .tabs.primary {
 	margin: 0;
 	padding: 0;
-	background-color: #eee;	
 	overflow: hidden;
-	border: 1px solid $border-color;
-	
+	text-align: center;
 	
 	&:before {
-	    content: "ADMIN";
 	    display: block;
-	    padding: 5px;
 	    background: #FFF;
 	    color: #000;
 	    text-align: center;
 	}
-}
-.tabs.primary li {
-	margin: 0;
-	padding: 0;
-	float: left;
-	list-style-type: none;
 	
-	&.tabs__tab--active a { // same as a:hover
-		background-color: $tabs-active-bg-color;
-		color: $tabs-active-text-color;
-		border-color: $tabs-active-bg-color;
+	li {
+		margin: 0 10px 10px 0;
+		padding: 0;
+		float: none;
+		display: inline-block;
+		list-style-type: none;
+		
+		&.tabs__tab--active a { // same as a:hover
+			background-color: $tabs-active-bg-color;
+			color: $tabs-active-text-color;
+			border-color: $tabs-active-bg-color;
+		}
+		
+		a {
+			background-color: $tabs-bg-color;
+			color: $tabs-text-color;
+			display: block;
+			padding: 6px 15px;
+			text-decoration: none;
+			text-transform: uppercase;
+			@include border-bottom($border-color);
+			@include border-radius(0 0 0 0);
+			border-bottom: 0;
+			text-align: center;
+			@include font-size(14px);
+			border-radius: 4px;
+			
+			&:hover {
+				background-color: $tabs-bg-hover-color;
+				color: $tabs-text-hover-color;
+				border-color: $tabs-bg-hover-color;
+				text-decoration: none;
+			}
+		}
 	}
 }
-.tabs.primary li a {
-	background-color: $tabs-bg-color;
-	color: $tabs-text-color;
-	display: block;
-	padding: 6px 15px;
-	text-decoration: none;
-	text-transform: uppercase;
-	border-radius: 0;
-	border-bottom: 0;
-	text-align: center;
-	@include font-size(14px);
-	
-	&:hover {
-		background-color: $tabs-bg-hover-color;
-		color: $tabs-text-hover-color;
-		border-color: $tabs-bg-hover-color;
-		text-decoration: none;
+
+// Site under maintenance - page
+
+body.maintenance-page {
+    background: #fff;
+    height: 100vh;
+    
+    header {
+	    text-align: center;
+	    padding: 4vw;
+	    background: #000;
+	    
+	    h1 {
+		    text-transform: uppercase;
+		    margin: .5em 0;
+		    font-weight: bold;
+		}
+	    
+	    img {
+	    	width: 300px;
+	    }
+	}
+    
+    main {
+	    max-width: 1200px;
+	    margin: 0 auto;
+	    padding: 5vw;
+	    text-align: center;
 	}
 }

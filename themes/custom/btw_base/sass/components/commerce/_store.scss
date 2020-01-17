@@ -1,0 +1,481 @@
+//-------------------------------------------------------
+//
+//	STORE - styling for product lists and nodes
+//
+//	location: 
+//      /sass/components/commerce/_store.scss
+//
+//------------------------------------------------------
+
+
+//--------------------------------------------------
+//
+//	SHOP - store product list page
+//
+//--------------------------------------------------
+
+
+// Department term filter
+#views-exposed-form-commerce-product-default-block-product-teaser-grid {
+	margin-bottom: 30px;	
+    border-bottom: 1px solid $border-color;
+    padding-bottom: 10px;
+
+	.form-item {
+		margin-right: 10px;
+		display: inline-block;
+		vertical-align: top;
+		margin-bottom: 0;
+		
+		// "departments" label
+		label {
+		    font-size: 23px;
+		    line-height: 1;
+		    display: inline-block;
+		    margin-right: 20px;
+		}
+		select {
+		    height: 35px;
+		    font-size: 17px;
+		    border: 1px solid $border-color;
+		    padding: 5px;
+		    line-height: 1;
+		}
+	}
+	
+	// "apply" button
+	.form-actions {
+		display: inline-block;
+		vertical-align: top;
+		
+		input {
+			padding: 7px 10px;
+			font-size: 14px;
+			letter-spacing: 0.03em;
+		}
+	}
+}
+
+// list of products - shop page
+.view_id-commerce-product-default-display_id-block-product-teaser-grid,
+.view_id-project-products-2-display_id-block-1,
+.view_id-product-shop-display_id-related-products-block, /* related products */ {	
+	.grid {
+		.grid-item {
+			text-align: center;
+			line-height: 1.2;
+			display: block;
+			border: 1px solid $border-color;
+			transition: all ease-in .2s;
+			
+			&:hover {
+				box-shadow: 0 0 25px rgba(50,50,50,0.3);
+			}
+			
+			a {
+				color: $text-color;
+			}
+			
+			// product title
+			h3 {
+			    margin: 0px;
+				font-weight: normal;
+				
+				a {
+					display: block;
+					padding: 10px;
+					height: auto;
+					min-height: 70px;
+					
+					&:hover {
+						background-color: $primary-color;
+						color: #fff;
+						text-decoration: none;
+						font-weight: bold;
+					}
+				}
+			}
+			
+			// Price
+			h4 {
+				margin: 0;
+				border-top: 1px solid $border-color;
+				padding: 10px;
+			}
+			
+			// product image
+			.views-field-field-product-image {
+			    padding: 10px;
+			    border: 1px solid #ddd;
+			    margin-bottom: 10px;
+			}
+		}
+	}
+}
+
+
+// Related products block - override
+.view_id-product-shop-display_id-related-products-block {
+	.price-and-title h3 {
+		padding-bottom: 0;
+		border-bottom: 0;
+	}
+}
+
+
+//--------------------------------------------------
+//
+//	Product Node
+//
+//--------------------------------------------------
+
+
+//---------------------------------
+//	BRAND HERO
+//---------------------------------
+
+.product-node {
+	section#brand-banner {
+	    height: 100px;
+	    
+	    @include breakpoint($large-up) {
+		    height: 15vw;
+		    max-height: 150px;
+	    }
+	}
+	
+	.brand-hero-image {
+		height: 100px;
+		
+		@include breakpoint($large-up) {
+		    height: 15vw;
+		    max-height: 150px;
+	    }
+	}
+	.brand-logo-image {
+	    max-height: 100px;
+	    max-width: 400px;
+	}
+}
+
+//---------------------------------
+//	TOP SECTION
+//---------------------------------
+
+.product-top {
+	@include flexbox;
+	
+	@include breakpoint($small-and-medium) {
+		@include flex-direction($value: column);
+		margin-bottom: 60px;
+	}
+	
+	@include breakpoint($large-up) {
+		@include flex-direction($value: row);
+		@include flex-wrap($value: nowrap);
+		margin-bottom: 5vw;
+	}	
+	
+	.group-left {
+		position: relative;
+		overflow: hidden;
+		
+		@include breakpoint($small-and-medium) {
+			margin-bottom: 30px;
+			padding-bottom: 30px;
+			border-bottom: 1px solid $border-color;
+		}
+		
+		@include breakpoint($large-up) {
+			@include flex($fg: 0, $fs: 0, $fb: 57%);
+		}
+		
+		.media--slick.media--image {
+		    border: 1px solid $border-color;
+		    padding: 10px;
+		}
+	}
+	.group-right {
+		@include breakpoint($large-up) {
+			@include flex($fg: 0, $fs: 0, $fb: 43%);
+			padding-left: 60px;
+		}
+		
+		h1.title {
+			@include responsive-section-subtitle;
+		}
+	}
+	
+	.product-variation {
+		margin-bottom: 20px;
+		
+		// label with no class
+		.field > div:nth-of-type(1) {
+			@include font-size(14px);
+			border-bottom: 1px solid $border-color;
+			margin-bottom: 5px;
+			
+			&:after {
+			    content: ":";
+			}
+		}
+	}
+	
+	// Price
+	.field-name-price {
+	    font-size: 30px;
+	    color: #444;
+	    
+	}
+	
+	// Quantity
+	.field--name-quantity {
+	    margin-bottom: 30px;
+	    
+	    label {
+		    display: block;
+	    }
+	    input {
+			padding: 10px;
+		    width: 75px;
+		    border: 1px solid $border-color;
+		}
+	}
+	
+	.button--add-to-cart {
+		@include breakpoint($small-only) {
+			width: 100%;
+		}
+	}
+}
+
+//------------------------------
+//	Slick Carousel - thumbnails
+//------------------------------
+
+.slick--main,
+ul.main-nav {
+	position: relative;
+	padding: 0 23px;
+}
+
+// container
+.slick--thumbnail,
+ul.thumbnail-nav {
+    margin: 30px 0px;
+    padding: 0 50px;
+    position: relative;
+    
+    @include breakpoint($small-only) {
+	    display: none;
+    }
+    
+    // immediate thumbnail item wrapper
+    // needs to use flexbox - items float has height issues with wrapping
+    // since thumbnails aren't all same size
+    .slick-track {
+	    @include flexbox;    
+    }
+	
+	// thumbnail item
+	.slick__slide {
+	    width: 130px;
+	    border: 1px solid $border-color;
+	    overflow: hidden;
+	    margin-right: 15px;
+	    
+	    @include breakpoint($medium-only) {
+		    height: 90px;
+	    }
+	    @include breakpoint($large-up) {
+		    height: 70px;
+	    }
+	    @include breakpoint($xlarge-up) {
+		    height: 100px;
+	    }
+	    
+	    &:hover {
+		    cursor: pointer;
+	    }
+    }
+    
+    // current slide - thumbnail
+    .slick-current {
+	    border: 2px solid $border-color;
+	}
+}
+
+//-------------------------------
+//	Slick Carousel - arrows
+//-------------------------------
+
+.section-store {
+	.slick-arrow {
+	    position: absolute;
+	    top: 50%;
+	    transform: translateY(-50%);
+	    background: transparent;
+	    height: 0;
+	    padding-top: 35px;
+	    overflow: hidden;
+	    border: 0;
+	    -webkit-appearance: none;
+	    width: 35px;
+	}
+	
+	a.slick-prev.slick-arrow {
+	    left: 0;
+	    background: url(../images/icons/arrow-left.svg) no-repeat scroll center left;
+	}
+	
+	a.slick-next.slick-arrow {
+	    right: 0;
+	    background: url(../images/icons/arrow-right.svg) no-repeat scroll center right;
+	}
+	
+	// arrow size in main slide section
+	.slick--main,
+	.variation-slider ul.main-nav {	
+		a.slick-arrow {
+			background-size: 15px auto;
+			
+		}
+	}
+	
+	// arrow size in thumbnail section
+	.slick--thumbnail,
+	.variation-slider ul.thumbnail-nav {	
+		a.slick-arrow {
+			background-size: 12px auto;
+		}
+	}
+}
+
+
+//---------------------------------
+//	BOTTOM SECTION
+//---------------------------------
+
+.product-bottom {
+	h2 {
+	    padding: 15px;
+	    text-align: center;
+	    background: #efefef;
+	    
+	    @include breakpoint($medium-up) {
+		    margin: 0 -15% 5vw -15%;
+		    width: 130%;
+	    }
+	}
+	h3 {
+		padding-bottom: 10px;
+		border-bottom: 1px solid $border-color;
+	}
+	
+	.product-description, 
+	.product-related {
+	    margin-bottom: 5vw;
+	}
+	
+	.product-related header h3 {
+	    text-align: center;
+	    border: 0;
+	    padding: 15px 0;
+	    font-size: 27px;
+	    background: #efefef;
+	    
+	    @include breakpoint($medium-up) {
+		    margin: 0 -15% 40px -15%;
+		    width: 130%;
+	    }
+	}
+}
+
+
+//----------------------------------------------
+//
+//	Product nodes with multiple Add To Cart buttons
+//
+//----------------------------------------------
+
+.product-top.multi {
+	
+	.group-left {
+		@include breakpoint($large-up) {
+			@include flex($fg: 0, $fs: 0, $fb: 45%);
+		}
+	}
+	.group-right {
+		@include breakpoint($large-up) {
+			@include flex($fg: 0, $fs: 0, $fb: 55%);
+			padding-left: 50px;
+		}
+	}
+	
+	.field-name-price {
+		@include font-size(20px);
+	}
+	.field-name-title {
+		font-weight: bold;
+	}
+	
+	form {
+		margin-bottom: 20px;
+		
+		.field--name-quantity {
+		    margin-bottom: 20px;
+		    display: block;
+		    
+		    label {
+			    @include font-size(14px);
+		    }
+		}
+		.form-item {
+			margin: 0;
+		}
+		.form-actions {
+		    display: inline-block;
+		    vertical-align: baseline;
+		    position: relative;
+		    top: -2px;
+		}
+		input.form-submit {
+		    font-size: 12px;
+		    letter-spacing: 0;
+		    padding: 10px;
+		    font-weight: bold;
+		}
+	}
+	
+	.field-name-variations {
+		@include flexbox;
+		@include flex-wrap($value: wrap);
+		
+		// add padding around one of the <div> wrappers
+		// around the data
+		div[data-quickedit-entity-instance-id="0"], // admin only class
+		> div > div {  // authenticated only - no class
+	    	padding-right: 20px;
+	    }
+	}
+}
+
+//----------------------------------------
+// SHOW FIELD for specific products
+//----------------------------------------
+
+
+body.product-show-instructions {
+	.field--name-field-prod-special-instructions {
+		display: block;
+	}
+}
+
+
+
+
+// related products blocks
+
+.view_id-project-products-display_id-block-1 {
+	
+}

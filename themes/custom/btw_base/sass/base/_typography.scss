@@ -22,13 +22,13 @@
 
 
 
-/*--------------------------------------------------------
-----------------------------------------------------------
-
- TEXT STYLES
- 
-----------------------------------------------------------
---------------------------------------------------------*/
+//--------------------------------------------------------
+//--------------------------------------------------------
+//
+//	TEXT STYLES
+// 
+//--------------------------------------------------------
+//--------------------------------------------------------
 
 // Text color when selected
 ::-moz-selection,
@@ -46,7 +46,7 @@ hr {
 	background: $border-color;
 }
 
-p, dl, hr, h1, h2, h3, h4, h5, h6, ol,
+dl, hr, h1, h2, h3, h4, h5, h6, ol,
 ul, pre, table, address, fieldset {
 	margin-bottom: 1em;
 	margin-top: 0;
@@ -55,17 +55,18 @@ ul, pre, table, address, fieldset {
 p {
 	word-wrap: break-word;
 	margin-bottom: 1.5em;
+	margin-top: 0;
 }
 
 .center {
 	text-align: center;
 }
 
-/*---------------------------------------------
+/*-----------------------------------
 
  HEADINGS & TITLES - general
  
------------------------------------------------*/
+------------------------------------*/
 
 h1, 
 h2, 
@@ -75,48 +76,38 @@ h5,
 h6 {
 	-webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    @include title-style;
-    letter-spacing: 0;
+    @include title-style; // _variables-typography.scss
 }
 
 h1, h2 {
 	//font-weight: normal; /* removes ugly bold rendering of custom title fonts - remove as necessary */
 }
 
-.block--views h2.block__title,
-.story-block h2.title,
-.cards-block h2.title,
-.field-name-recent-articles > h2.title,
-.node-type-news-article h1.title,
-.section-contact h1.title {
-	@include responsive-section-title;
-	position: relative;
-}
 
-/*------------------
 
- h1
- 
--------------------*/
+//------------------
+//
+//	h1
+// 
+//------------------
 
 h1 {
-	@include responsive-page-title;
+	@include responsive-page-title; // _variables-typography.scss
 }
 
+.page-title h1, // basic page 
 h1#page-title,
-h1.page-title,
-.block--blockify h1.title {
+h1.page-title {
 	color: $page-title-color;
 	padding-bottom: 10px;
-	border-bottom: 1px solid $border-color;	
+	border-bottom: 1px solid $border-color;
 }
 
-
-/*------------------
-
- h2
- 
---------------------*/
+//------------------
+//
+//	h2
+// 
+//------------------
 
 h2, 
 h2.node__title,
@@ -126,6 +117,13 @@ h2.views-title {
 	color: $section-title-color;
 }
 
+.block--views h2.block__title,
+.story-block h2.title,
+.cards-block h2.title,
+.field-name-recent-articles > h2.title {
+	@include responsive-section-title;
+	position: relative;
+}
 
 h2.node__title, 
 h2.block__title {
@@ -134,11 +132,11 @@ h2.block__title {
 
 
 
-/*--------------------
-
- h3 - h6
- 
----------------------*/
+//--------------------
+//
+//	h3 - h6
+// 
+//--------------------
 
 h3 {
 	@include font-size(21px);
@@ -158,43 +156,56 @@ h6 {
 }
 
 
-/*--------------------
-
-  Blockquotes
- 
----------------------*/
+//-----------------------------------
+//
+//  Blockquotes
+// 
+//-----------------------------------
 
 blockquote {
-	font-style: italic;
-    font-size: 18px;
-    padding: 30px 0 30px 50px;
-    margin: 40px 0 0;
+    font-style: italic;
+    font-size: 20px;
+    padding: 4vw 0;
+    margin: 0 auto;
     position: relative;
-    border-top: 1px solid #aaa;
-    border-bottom: 1px solid #aaa;
+    max-width: 728px;
     
-    &:before {
+    @include breakpoint($small-and-medium) {
+	    padding: 60px 0 30px 0;
+    }
+
+	&:before {
 	    content: "";
 	    display: block;
 	    position: absolute;
-	    left: 0px;
-	    top: 24px;
-	    z-index: 3;
+	    right: 102%;
+	    top: 3vw;
+	    z-index: 7;
 	    line-height: 1;
-	    width: 40px;
-	    height: 40px;
-	    background: url(../images/icon-quote-open_black.svg) no-repeat scroll left top;
+	    width: 60px;
+	    height: 60px;
+	    background: url(../images/icons/icon-quote-open_black.svg) no-repeat scroll left top;
 	    background-size: 100% auto;
-	    opacity: .3;
+	    opacity: 0.2;
+	    
+	    @include breakpoint($small-and-medium) {
+		    right: 50%;
+		    transform: translateX(50%);
+	    }
+    }
+    
+    .quote-attribution {
+	    margin: 0;
     }
 }
 
-/*--------------------
+//-----------------------------------
+//
+//  Span tags within titles
+//  HTML editor mode
+// 
+//------------------------------------
 
-  Span tags within titles
-  HTML editor mode
- 
----------------------*/
 .pre-title {
 	display: inline-block;
 	font-size: 50%;
@@ -215,8 +226,13 @@ blockquote {
     margin-top: 0.4em;
 }
 
+//-----------------------------------
+//	
+//  text alignment classes 
+//	for default overrides
+//	
+//-------------------------------------
 
-// alignment classes for default overrides
 .align-left {
 	text-align: left;
 }

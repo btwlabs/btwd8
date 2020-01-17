@@ -1,0 +1,193 @@
+//------------------------------------------------------
+//
+//	CART - styling for cart blocks and pages
+//
+//	location: 
+//      /sass/components/commerce/_cart.scss
+//
+//------------------------------------------------------
+
+
+//-----------------------------------------
+//
+//	Cart block - pre-header
+//
+//-----------------------------------------
+
+.block-commerce-cart {
+    
+    @include breakpoint($medium-up) {
+	    width: 135px;
+    }
+}
+
+.cart--cart-block {
+    min-width: 130px;
+    height: 40px;
+    font-size: 16px;
+    
+    @include breakpoint($small-only) {
+	    min-height: 40px;
+	    height: auto;
+    }
+    
+    h2 {
+	    display: none;
+    }
+    
+    .cart-block--summary {
+	    text-align: center;
+	    
+	    @include breakpoint($medium-up) {
+	    	text-align: right;
+	    }
+	}
+	
+    a.cart-block--link__expand {
+	    display: inline-block;
+		padding: 4px 20px;
+		background: $primary-color;
+		color: #fff;
+		width: 100%;
+		
+		&:hover {
+			background: lighten($primary-color,10%);
+			text-decoration: none;
+		}
+	    
+	    span {
+		    display: inline-block;
+			vertical-align: middle;
+	    }
+	}
+	
+	.cart-block--summary__icon {
+    	margin-right: 10px;
+	}
+	
+	// Drop down list of items in cart 
+	.cart-block--contents {
+		width: 300px;
+		box-shadow: 0 10px 10px rgba(40,40,40,0.4);
+		
+		@include breakpoint($small-only) {
+			width: 100%;
+		}
+		
+		// container with table list
+		.cart-block--contents__items {
+			overflow-y: auto;
+		}
+		
+		a {
+		    display: block;
+		    text-align: center;
+		    padding: 10px;
+		    background: $primary-color;
+		    color: #fff;
+		    font-weight: bold;
+		    text-transform: uppercase;
+		    border: 0;
+		    border-radius: 4px;
+		    
+		    &:hover {
+			    background-color: $button-bg-hover-color;
+			    color: $button-text-hover-color;
+			    text-decoration: none;
+		    }
+	    }
+	}
+}
+
+
+
+
+//----------------------------------------------
+//
+//	Cart page
+//
+//----------------------------------------------
+
+.page-cart {
+	.views-field-edit-quantity {
+		.form-item{
+			margin: 0;
+		}		
+	}
+	.views-field-remove-button input {
+		@include font-size(15px);
+	}
+	
+	// update cart button, remove button
+	.views-field-remove-button input,
+	input[data-drupal-selector="edit-submit"] {
+		border: 0;
+		background-color: transparent;
+		color: $text-color;
+		text-decoration: underline;
+	    padding: 0;
+	    margin: 20px 20px 20px 0;
+		display: inline-block;
+		
+		&:hover {
+			color: $primary-color;
+		}
+	}
+	
+	thead th {
+		font-size: 12px;
+	}
+	
+	// item title 
+	td.views-field-purchased-entity {
+	    min-width: 200px;
+	}
+	
+	
+	// checkout button
+	.form-actions {
+		input.form-submit {
+			margin-bottom: 20px;
+		}
+	}
+	
+	// responsive table stuff for mobile
+	.view_id-commerce-cart-form {
+	
+		@include breakpoint($small-only) {
+			
+			// "swipe to view full table"
+			.views-form {
+				&:before {
+				    display: block;
+				    content: "Swipe to view full table";
+				    font-size: 13px;
+				    text-align: center;
+				    margin-bottom: 10px;
+				    color: #999;
+			    }
+			}
+			form {
+			    display: block;
+			    width: 100%;
+			    overflow-x: auto;
+			    -webkit-overflow-scrolling: touch;
+			    -ms-overflow-style: -ms-autohiding-scrollbar;
+			    
+			    table {
+				    width: 100%;
+					max-width: 100%;
+					margin-bottom: 1rem;
+			    }
+			}
+		}
+	}
+	
+	// if a second cart form shows up below the first, in the 
+	// case of digital vs physical products...
+	.cart-form:nth-child(2) {
+	    margin-top: 30px;
+	    padding-top: 30px;
+	    border-top: 1px solid $border-color;
+	}
+}

@@ -1,0 +1,26 @@
+//----------------------------------------------
+//
+//	PARAGRAPH TYPE = QUOTE 
+//
+//	location: 
+//      /sass/components/paragraphs/_quote-paragraph.scss
+//
+//----------------------------------------------
+
+
+.paragraph--type-quote {
+    display: flex;
+    justify-content: center;
+    
+    blockquote {
+	    @include breakpoint($small-only) {
+		    margin: 0 24px;
+	    }
+	    @include breakpoint($medium-only) {
+		    margin: 0 48px;
+	    }
+	    @include breakpoint($large-up) {
+		    margin: 0 64px;
+	    }
+	}
+}

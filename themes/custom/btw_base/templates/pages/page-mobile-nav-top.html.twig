@@ -7,8 +7,6 @@
 ) }}>
 
   <div id="site-wrapper">
-  
-    <div id="l-inner-wrap" class="l-inner-wrap"><!-- wraps all content for mobile nav push - site canvas-->
 
       {% if page.mobile_nav|render %}
       
@@ -16,7 +14,21 @@
 
         <!-- mobile nav that sits outside of main site content -->
         <div class="l-menu-mobile">
+
+          <div class="l-menu-mobile-top">
+
+            <a class="nav-close-btn" id="mobile-nav-close-btn" href="#top">
+              <div class="nav-close-icon">
+                <span class="x1"></span>
+                <span class="x2"></span>
+              </div>
+              <span class="menu-title">Close Menu</span>
+            </a>
+
+          </div>
+
           {{ page.mobile_nav }}
+
         </div>
       {% endif %}
 
@@ -160,8 +172,7 @@
 
         </div>
       {% endif %}
-	
-	</div><!-- close #l-inner-wrap -->
+
 
   </div><!-- close #site-wrapper -->
 

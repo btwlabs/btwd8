@@ -10,142 +10,53 @@
 
 
 
-/*.l-video-wrapper {
-    transition: top 0.3s linear 0s;
-    position: relative;
-    width: 100vw;
-    height: calc(100vh - 70px);
-    overflow: hidden;
-    z-index: 0;
-    background: #090c1b url(../images/home-hero_vintage.jpg) no-repeat scroll center center;
-    background-size: cover;
+//-------------------------------------
+//
+//	HERO VIDEO Section
+//
+//-------------------------------------
+
+// this first selector may change per site
+.block-homepageherovideo {
+    height: 0;
+	overflow: hidden;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	position: relative;
     
-    @include breakpoint($small-only) {
-	    background-image: url(../images/home-hero-mobile.jpg);
-	    height: calc(100vh - $header-height-small);
-    }
-    @include breakpoint($medium-only) {
-	    background-image: url(../images/home-hero-tablet.jpg);
-	    height: calc(100vh - $header-height-medium);
-    }
-    
-    @include breakpoint($large-up) {
-	    display: block;
-		height: calc(100vh - $header-height-large);
-    }
-    @include breakpoint($xlarge-up) {
-	    display: block;
-		height: calc(100vh - $header-height-xlarge);
+    video {
+	    position: relative;
+	    display: block; // kills the white space below video that inline-block (default) causes
     }
 }
 
-video {
+.video-wrapper-img-text {
+	text-align: center;
     position: absolute;
-    top: 0%;
-    left: 0%;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
 }
-
-#overlay {
-	z-index: 2;
-	position: absolute;
-	top: 0;
-	left:0;
-	height: 100%;
-	width: 100%;
-	background-color: rgba(14, 52, 75, 0.45); // colors for blue 2 rgba(40, 40, 53, 0.45)
-	display: none;
-}
-#particles-js {
-	width: 100%;
-	height: 100%;
-	position: relative;
-	z-index: 3;
-}
-
-.l-mobile-splash,
-.l-tablet-splash {
-	position: relative;
-	z-index: 1;
-	
-	&:after {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		display: block;
-		background-color: rgba(28,46,50,0.65);
-		z-index: 2;
+.video_background__field-name-image {
+    text-align: center;
+    
+    img {
+	    max-width: 260px;
+	    margin: 0 auto;
+	    
+	    @include breakpoint($small-only) {
+		    width: 80%;
+	    }
 	}
-}*/
-
-
-
-// old with video
-.l-video-wrapper {
-    transition: top 0.3s linear 0s;
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    z-index: 0;
-    
-    @include breakpoint($small-only) {
-	    display: block;
-	    padding-bottom: 100vh;
-    }
-    @include breakpoint($medium-only) {
-	    display: block;
-	    padding-bottom: 100vh;
-    }
-    
-    @include breakpoint($small-up) {
-	    display: block;
-		padding-bottom: 100vh;
-    }
-    @include breakpoint($xlarge-up) {
-	    display: block;
-		padding-bottom: 100vh;
-    }
 }
-
-video {
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
-
-#overlay {
-	z-index: 2;
-	position: absolute;
-	top: 0;
-	left:0;
-	height: 100%;
-	width: 100%;
-	background-color: rgba(15, 37, 46, 0.7);
-}
-
-.l-mobile-splash,
-.l-tablet-splash {
-	position: relative;
-	z-index: 1;
+.video_background__field-name-body {
+	color: #fff;
+	max-width: 700px;
+	font-size: 2vw;
+	line-height: 1;
+	margin-top: 3vw;
 	
-	&:after {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		display: block;
-		background-color: rgba(28,46,50,0.65);
-		z-index: 2;
+	@include breakpoint($small-only) {
+		font-size: 17px;
 	}
 }

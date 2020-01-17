@@ -7,6 +7,7 @@
 //
 //------------------------------------------------------
 
+/*
 
 // hide the stupid h2 block title since drupal won't allow us to not render it
 h2#block-mainnavigation-mobile-menu {
@@ -14,12 +15,12 @@ h2#block-mainnavigation-mobile-menu {
 }
 
 
-/*-----------------------------------
- 
- mobile header - contains nav toggle 
- and site name
-   
-------------------------------------*/
+//-----------------------------------
+// 
+// mobile header - contains nav toggle 
+// and site name
+//   
+//------------------------------------
 
 
 // Container for userbar, nav
@@ -42,22 +43,22 @@ h2#block-mainnavigation-mobile-menu {
 	.l-constrained {
 		margin: 0;
 		width: 100%;
-		display: flex;
-		flex-wrap: nowrap;
 	}
 	
-	/* Site Name */
+	// Site Name 
 	.site-name {
 		
 		@include breakpoint($nav-small-and-med) {
 			display: block;
+			position: absolute;
+			top: 0;
 			width: 200px;
 		    @include font-size(25px);
 		    text-align: center;
 		    height: 50px;
 		    line-height: 1.2;
 		    vertical-align: middle;
-		    margin-left: auto; // pushes logo to right
+		    margin: 0;
 		    z-index: 0;
 		    
 		    & a {
@@ -85,23 +86,39 @@ h2#block-mainnavigation-mobile-menu {
 //-----------------------------------
 //
 //	hamburger nav toggle button
-//		#mobile-nav-open-btn
 //
 //-----------------------------------
 
+// container for close menu button inside nav wrapper
+.l-menu-mobile-top {
+	background-color: $mobile-nav-close-btn-bg;
+	height: 50px;
+	
+	// HIDE for now
+	display: none;
+}
 
-/*!
- * Hamburgers
- * @description Tasty CSS-animated hamburgers
- * @author Jonathan Suh @jonsuh
- * @site https://jonsuh.com/hamburgers
- * @link https://github.com/jonsuh/hamburgers
- */
+// toggle button
+button#mobile-nav-open-btn {
+	float: right;
+	padding: 12px 10px 5px;
+    border: 0;
+    
+    &:focus {
+	    outline: 0;
+	}
+}
 
+// !
+// * Hamburgers
+// * @description Tasty CSS-animated hamburgers
+// * @author Jonathan Suh @jonsuh
+// * @site https://jonsuh.com/hamburgers
+// * @link https://github.com/jonsuh/hamburgers
+// 
 
-// #mobile-nav-open-btn
 .hamburger {
-	padding: 13px 0 0 12px;
+	padding: 15px 15px;
 	display: inline-block;
 	cursor: pointer;
 	transition-property: opacity, filter;
@@ -114,22 +131,13 @@ h2#block-mainnavigation-mobile-menu {
 	border: 0;
 	margin: 0;
 	overflow: visible;
-	transform: translateX(0);
-	outline: none;
 	
 	&:hover {
-		opacity: 0.7;
-		background-color: transparent;
+		opacity: 0.7; 
 	}
 }
 
 .js-nav .hamburger {
-    position: absolute;
-    transform: translateX(-50px);
-    top: 0;
-    left: 0;
-    outline: none;
-    
 	&:hover {
 		opacity: 0.7; 
 	}
@@ -145,11 +153,7 @@ h2#block-mainnavigation-mobile-menu {
 	width: 40px;
 	height: 24px;
 	display: inline-block;
-	position: relative;
-	top: -2px; 
-}
-.js-nav .hamburger-box {
-	top: 0;
+	position: relative; 
 }
 
 .hamburger-inner {
@@ -202,8 +206,7 @@ h2#block-mainnavigation-mobile-menu {
 }
 .js-nav {
 	.hamburger:hover {
-		opacity: 0.7;
-		background-color: transparent;
+		opacity: 0.7; 
 		
 		.hamburger-inner,
 		.hamburger-inner::before,
@@ -229,7 +232,7 @@ h2#block-mainnavigation-mobile-menu {
 		}
 	}
 }
- /* end hamburgers css */
+ // end hamburgers css
 
 span.hamburger-label {
     font-size: 12px;
@@ -239,7 +242,8 @@ span.hamburger-label {
     //display: block;
     line-height: 1;
     font-weight: bold;
-    left: -2px;   
+    left: -2px;
+    
     display: none;
 }
 
@@ -263,27 +267,6 @@ span.hamburger-label {
 .l-inner-wrap { // site canvas
 	width: 100%;
 	height: 100%;
-	
-	// latest browser performance
-	//-webkit-transform: translate3d(0, 0, 0);
-	//transform: translate3d(0, 0, 0); 
-	
-	
-	-webkit-transition: .3s ease all;
-	transition: .3s ease all;
-}
-
-// .js-nav is added as body class via js onClick event
-
-.js-nav body {
-	overflow: hidden;
-}
-.js-nav .l-inner-wrap {
-	transform: translate3d(300px, 0, 0); // latest browser performance
-    backface-visibility: hidden;
-    transition: transform 500ms ease 0s;
-    position: relative;
-    width: 100%;
 }
 
 
@@ -305,7 +288,7 @@ span.hamburger-label {
 	height: 1000%;
 	display: block;
 	background: rgba(0,0,0,0.7);
-	position: absolute; // normally absolute
+	position: fixed; // normally absolute
 	top: 0px;
 	left: 0;
 	z-index: 10;
@@ -318,17 +301,16 @@ span.hamburger-label {
 
 .l-menu-mobile {
 	position: absolute;
-    left: -300px;
-    top: 0px;
-    width: 300px;
-    height: 100%;
+    right: 0;
+    top: -1022px;
+    width: 100%;
+    height: 1022px;
     background-color: $mobile-nav-bg-color;
     backface-visibility: hidden;
     display: block;
     z-index: 100;
     -webkit-transition: .3s ease all;
 	transition: .3s ease all;
-	padding-top: 50px;
 	
 	@include breakpoint($nav-large-up) {
 		display: none;
@@ -346,6 +328,8 @@ span.hamburger-label {
 	    backface-visibility: hidden;
 	    -webkit-transition: all 500ms ease 0s;
 	    transition: all 500ms ease 0s;
+	    width: 100%;
+	    top: 50px;
     }
 }
 
@@ -424,6 +408,6 @@ span.hamburger-label {
 // 
 //---------------------------------------
 
-
+*/
 
 

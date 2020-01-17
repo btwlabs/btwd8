@@ -15,7 +15,12 @@
 	font-size: ($font-size / $base-font-size)*1rem;
 }
 
-// Basic sitewide body text
+//-----------------------------------
+//
+//	BODY TEXT - Basic sitewide text
+//
+//-----------------------------------
+
 @mixin base-text-style {
 	font-family: $base-font-family;
 	font-weight: $base-font-weight;
@@ -35,7 +40,12 @@
 }
 
 
-// Titles
+//-----------------------------------
+//
+//	RESPONSIVE TITLES
+//
+//-----------------------------------
+
 @mixin title-style {
 	font-family: $title-font-family;
 	font-weight: $title-font-weight;
@@ -45,64 +55,80 @@
 	text-transform: $title-text-transform;
 }
 
-// Page TITLE - responsive sizes
-@mixin responsive-page-title {
+	//-----------------------------------
+	//	Page TITLE - h1
+	//-----------------------------------
 	
-	@include breakpoint($small-up) {
-		@include font-size(30px);
+	@mixin responsive-page-title {
+		
+		@include breakpoint($small-up) {
+			@include font-size(30px);
+		}
+		@include breakpoint($medium-up) {
+			@include font-size(40px);
+		}
+		@include breakpoint($large-up) {
+			@include font-size(45px);
+		}
 	}
-	@include breakpoint($medium-up) {
-		@include font-size(40px);
-	}
-	@include breakpoint($large-up) {
-		@include font-size(45px);
-	}
-}
-
-// Section TITLE - responsive sizes
-@mixin responsive-section-title {
 	
-	@include breakpoint($small-up) {
-		@include font-size(30px);
-	}
-	@include breakpoint($medium-up) {
-		@include font-size(35px);
-	}
-	@include breakpoint($large-up) {
-		@include font-size(40px);
-	}
-}
-
-// Section SUBTITLE - responsive sizes
-@mixin responsive-section-subtitle {
+	//-----------------------------------
+	//	Section TITLE - h2
+	//-----------------------------------
 	
-	@include breakpoint($small-up) {
-		@include font-size(25px);
+	@mixin responsive-section-title {
+		
+		@include breakpoint($small-up) {
+			@include font-size(30px);
+		}
+		@include breakpoint($medium-up) {
+			@include font-size(35px);
+		}
+		@include breakpoint($large-up) {
+			@include font-size(40px);
+		}
 	}
-	@include breakpoint($medium-up) {
-		@include font-size(22px);
+	
+	//-----------------------------------
+	//	Section SUBTITLE - h3
+	//-----------------------------------
+	
+	@mixin responsive-section-subtitle {
+		
+		@include breakpoint($small-up) {
+			@include font-size(25px);
+		}
+		@include breakpoint($medium-up) {
+			@include font-size(22px);
+		}
+		@include breakpoint($large-up) {
+			@include font-size(30px);
+		}
 	}
-	@include breakpoint($large-up) {
-		@include font-size(30px);
+	
+	//-----------------------------------
+	//	CARDS TITLE 
+	//-----------------------------------
+	
+	@mixin responsive-card-title {
+	
+		@include breakpoint($small-up) {
+			@include font-size(20px);
+		}
+		@include breakpoint($medium-up) {
+			@include font-size(22px);
+		}
+		@include breakpoint($large-up) {
+			@include font-size(24px);
+		}
 	}
-}
 
-// CARDS TITLE - responsive sizes
-@mixin responsive-card-title {
+//-----------------------------------
+//	CAPTIONS:
+//	these mixins are used in .dark-bg & 
+//	.light-bg styles in _story-blocks.scss
+//-----------------------------------
 
-	@include breakpoint($small-up) {
-		@include font-size(25px);
-	}
-	@include breakpoint($medium-up) {
-		@include font-size(22px);
-	}
-	@include breakpoint($large-up) {
-		@include font-size(30px);
-	}
-}
-
-// Captions
-// these mixins are used in .dark-bg & .light-bg styles in _story-blocks.scss
 @mixin caption-light {
 	color: $caption-light-color;
 	

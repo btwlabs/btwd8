@@ -27,6 +27,31 @@
 }
 
 
+//--------------------------------------
+//
+//	User Login form
+//
+//--------------------------------------
+
+.page-user-login {
+	nav.tabs,
+	div.description {
+		display: none;
+	}
+
+	label[for="edit-name"] {
+		font-size: 0px;
+
+		&::before {
+			content: "Email Address";
+			font-size: 18px;
+		}
+		&::after {
+			font-size: 18px;
+		}
+	}
+}
+
 //-------------------------
 //	Registration form
 //	 & User form
@@ -84,9 +109,30 @@ form.user-form {
 	nav.tabs {
 		width: 100%;
 		margin: 0 auto;
+		padding: 5vw;
 	}
-		
+	
+	//-------------------------
+	// Custom profile info
+	//-------------------------
+	
+	.user--view-mode-full {	
+		.field-label {
+		    font-weight: bold;
+		    display: inline-block;
+		    margin-right: 20px;
+		    min-width: 110px;
+		    
+		    @include breakpoint($small-only) {
+		    	margin-right: 10px;
+		    	min-width: 80px;
+	    	}
+		}
+	}
+	
+	//-------------------------
 	// Payment Methods Tab
+	//-------------------------
 	
 	.block-local-actions-block {
 	    margin: 0 0 30px 0;
@@ -101,13 +147,16 @@ form.user-form {
 	
 	// order number - title
 	.order-number h2 {
-	    border-bottom: 1px solid #ccc;
+	    border-bottom: 1px solid $border-color;
 	    padding-bottom: 10px;
 	    color: $text-color;
 	}
 	
+	//-------------------------
 	// Orders - table
 	// responsive table stuff for mobile
+	//-------------------------
+
 	.view_id-commerce-user-orders,
 	.view_id-commerce-order-item-table {
 	
@@ -141,8 +190,14 @@ form.user-form {
 		}
 	}
 	
+	//-------------------------
 	// Main user page - landing
+	//-------------------------
 	article {
+		.field-name-brand {
+		    @include font-size(25px);
+		    margin-bottom: 20px;
+		}
 		h4.label {
 		    margin: 0;
 		    display: inline-block;
@@ -285,6 +340,23 @@ form.user-form {
 				   text-decoration: underline; 
 			    }
 		    }
+		}
+	}
+}
+
+// Style the "unmasquerade" button when masquerading as authenticated
+.role--authenticated {
+	.menu--masquerade {
+	    display: inline-block;
+	    vertical-align: middle;
+	    text-align: left;
+	    margin-top: 15px;
+	    
+	    a {
+		    display: block;
+		    padding: 10px 20px;
+		    background: #fff;
+		    border-radius: 10px;
 		}
 	}
 }

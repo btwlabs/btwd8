@@ -9,27 +9,16 @@
 
 
 
-/*-------------------------------------
-
-  Site Images
-
---------------------------------------*/
+//-------------------------------------
+//
+//  Site Images
+//
+//-------------------------------------
 
 img, media {
 	max-width: 100%;
-	width: 100%;
 	height: auto;
 	vertical-align: middle; /* kills space between img, a, and container */
-}
-
-// exceptions to 100% img width; images whose container does not have a set width
-table img,
-img.file-icon,
-.feed-icon img,
-body.node-type-banner .field-type-image img,
-#toolbar img,
-.mollom-image-captcha img /* captcha */ {
-	width: auto;
 }
 
 // all images inside links 
@@ -38,11 +27,11 @@ a img {
 	@include transition(all, 0.2s, ease-in);
 }
 
-/*-------------------------------------
-
- video
-
--------------------------------------*/
+//-------------------------------------
+//
+//	video
+//
+//-------------------------------------
 
 // Sets video to be 100% width and responsive 
 
@@ -50,6 +39,8 @@ a img {
 	width: 100%;
 	max-width: 1200px;
 }
+
+// immediate wrapper around <iframe>
 .embedded-video {
 	height: 0;
 	overflow: hidden;
@@ -69,11 +60,17 @@ a img {
 
 // modal
 button.mfp-close {
-    background: #fff;
-    width: 35px;
-    height: 35px;
-    line-height: 1;
-    font-size: 26px;
+    background: transparent;
+    width: 30px;
+    height: 30px;
+    line-height: .5;
+    font-size: 30px;
+    padding: 6px;
+    color: #fff !important;
+    border-radius: 0;
+    opacity: 1;
+    top: 5px;
+    right: 3px;
 }
 
 // iphone 6,7,8 - landscape
@@ -90,7 +87,8 @@ and (orientation : landscape) {
 	    margin: 0 auto;
 	}
 	button.mfp-close {
-       right: -30px;
+       right: -27px;
+       top: 0px;
 	}
 	.mfp-embedded-video-popup {
 	    width: 75%;
@@ -112,7 +110,8 @@ and (orientation : landscape) {
 	    margin: 0 auto;
 	}
 	button.mfp-close {
-       right: -30px;
+       right: -27px;
+       top: 0px;
 	}
 	.mfp-embedded-video-popup {
 	    width: 75%;

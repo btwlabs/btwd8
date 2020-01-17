@@ -1,0 +1,108 @@
+//----------------------------------------------
+//
+//	PARAGRAPH TYPE = CARDS
+//
+//	location: 
+//      /sass/components/paragraphs/_cards.scss
+//
+//----------------------------------------------
+
+
+
+// Paragraph Outer Wrapper
+.paragraph--type-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    @include breakpoint($small-only) {
+	    padding: 8vw 0;
+    }
+    @include breakpoint($medium-up) {
+	    padding: 4vw 8vw;
+    }
+   
+    // Intro text
+    .cards-intro {
+	    text-align: center;
+	    max-width: 728px;
+	    margin-bottom: 3vw;
+	    
+	    @include breakpoint($small-and-medium) {
+		    padding: 0 20px;
+	    }
+		
+		.card-intro-title {
+			@include responsive-section-title;
+		}
+		.card-intro-body {
+			@include responsive-body-text;
+		}
+    }
+    
+    // Cards Wrapper
+    .cards-wrapper {
+	    display: flex;
+	    flex-wrap: wrap;
+		justify-content: center;
+	}
+	
+	// Individual card
+    .card {
+	    flex: 1 1 250px;
+	    padding: 0 25px;
+	    margin-bottom: 50px;
+	    //max-width: 250px;
+	}
+
+	// Card img
+	.card-image {
+	    margin-bottom: 20px;
+	}
+	
+	// h3 title
+	.card-title {
+		@include responsive-card-title;
+		margin-bottom: 0.5em;
+		text-align: center;
+	}
+	
+	// body
+	.card-body {
+	    font-size: .95em;
+	    text-align: left;
+	}
+	
+	// Card link
+	.card-link {
+		text-align: center;
+		
+		a {
+		    @include button;
+		    
+		    &:hover {
+			    @include button-hover;
+		    }
+		}
+	}
+	
+	// Sub Cards
+	.paragraph--type-sub-card {
+		&.icon {
+			.card-image {
+		    	margin: 0 auto 30px;
+			    max-width: 150px;
+			    
+			    img {
+				    width: 100%;
+				    height: auto;
+				}
+		    }
+		}
+		
+		&.photo {
+			margin: 0 auto 30px;
+			max-width: 100%;
+		}
+	}
+}

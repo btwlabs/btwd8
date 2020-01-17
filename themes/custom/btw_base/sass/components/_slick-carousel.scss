@@ -43,7 +43,7 @@
 
 // Flexbox used to align arrows on either side of the item list
 .slick-slider {
-	@include flexbox;
+	display: flex;
 	margin: 0;
 	padding: 0;
 	
@@ -54,8 +54,8 @@
 	    overflow: hidden;
 	    display: block;
 	    position: relative;
-	    @include align-self($value: center);
-	    @include flex($fg: 0, $fs: 0, $fb: 25px);
+	    align-self: center;
+	    flex: 0 0 25px;
 	    cursor: pointer;
 	    
 	    &::before {
@@ -89,10 +89,10 @@
 .front, // added these for specificity to override the module style sheet
 .not-front {
 	.slick-slider {
-		@include flexbox;
+		display: flex;
 		margin: 0;
 		padding: 0;
-		@include align-items($value: center);
+		align-items: center;
 		
 		.slick-track {
 			//max-height: 150px;
@@ -105,8 +105,8 @@
 		    overflow: hidden;
 		    display: block;
 		    position: relative;
-		    @include align-self($value: center);
-		    @include flex($fg: 0, $fs: 0, $fb: 25px);
+		    align-self: center;
+		    flex: 0 0, 25px;
 		    cursor: pointer;
 		    top: 0;
 			transform: none;
@@ -158,20 +158,3 @@
 		}
 	}
 }
-
-
-// arrow image on hover state on home page needs to be white
-//.front {
-//	.slick-slider {
-//		.prev-arrow.slick-arrow {
-//			&:hover:before {
-//				background-image: url(../images/icons/arrow-left-white.svg);
-//			}
-//		}
-//		.next-arrow.slick-arrow {	
-//			&:hover:before {
-//			/background-image: url(../images/icons/arrow-right-white.svg);
-//			}
-//		}
-//	}
-//}

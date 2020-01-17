@@ -1,0 +1,52 @@
+//----------------------------------------------
+//
+//	PARAGRAPH TYPE = IMAGE 
+//
+//	location: 
+//      /sass/components/paragraphs/_image-paragraph.scss
+//
+//----------------------------------------------
+
+
+.paragraph--type-image {
+	
+	// landscape oriented photo
+	&.landscape {
+		figure {
+			max-height: 70vh;
+		    overflow: hidden;
+		    display: flex;
+		    margin: 0 auto;
+		    
+			img {
+			    width: 100%;
+				height: auto;
+				object-fit: cover;
+				object-position: center center;
+		    }
+		}
+	}
+	
+	// portrait oriented photo
+	&.portrait {
+		figure {
+		    overflow: hidden;
+		    display: flex;
+		    
+		    // same as .paragraph--type--text
+		    @include breakpoint($small-only) {
+				width: calc(100% - 40px);
+				margin: 0 20px;
+			}
+		    @include breakpoint($medium-up) {
+				max-width: 728px;
+				margin: 0 auto;
+		    }
+		    
+			img {
+				object-fit: contain;
+				margin: 0 auto;
+		    }
+		}
+	}
+}

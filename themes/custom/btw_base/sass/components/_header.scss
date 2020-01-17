@@ -8,6 +8,14 @@
 //----------------------------------------------
 
 
+
+
+//---------------------------
+//
+//	PRE-HEADER region
+//
+//---------------------------
+
 .l-pre-header {
 	.mobile-brand-title {
 		background-color: #1E1F21;
@@ -34,94 +42,64 @@
 	}
 }
 
+
+//---------------------------
+//
+//	HEADER region
+//
+//---------------------------
+
 .l-header {
 	position: relative;
-	
-	@include breakpoint($small-only) {
+	z-index: 99;
+	background-color: #fff;
+	box-shadow: 1px 0 2px rgba(146, 146, 146, 0.8);
+
+	@include breakpoint($nav-small-and-med) {
 		display: none;
 	}
 	
-	@include breakpoint($medium-up) {
+	@include breakpoint($nav-large-up) {
 		display: block;
 		position: relative; // for non-fixed nav
 		left: 0;
 		width: 100%;
+		z-index: 6;
 		@include clearfix; // for non-fixed nav
 		height: $header-height-medium;
 	}
-	@include breakpoint($large-up) {
+	@include breakpoint($nav-xlarge-up) {
 		height: $header-height-large;
 	}
 	
- 
-    
-    // Search Form
-    .search-form {
-		position: absolute;
-		right: 20px;
-		z-index: 1;
+	
+	// for fixed position headers
+	&.fixed {
+		box-shadow: none;
+		height: $header-height-small;
 		
-		background-color: $xlight-gray;
-		padding: 8px;
-		
-		@include breakpoint($medium-up) {
-			display: none;
-			top: 60px;
-		}
-		@include breakpoint($large-up) {
-			top: 64px;
-		}
-		
-		&::before {
-			content: '';
-			display: block;
-			position: absolute;
-			right: 63px;
-			top: -12px;
-		    width: 0;
-		    height: 0;
-		    border-left: 10px solid transparent;
-		    border-right: 10px solid transparent;
-		    border-bottom: 12px solid $xlight-gray;
-		}
-	    
-	    h2,
-	    label {
-		    display: none;
-	    }
-	    
-	    // text input
-	    .form-item {
-		    display: inline-block;
-		    margin: 0 5px 0 0;
-		    
-		    input {
-			    padding: 5px;
-			    border-radius: 4px;
-			    border: 1px solid #aaa;
-			    display: inline-block;
-				vertical-align: top;
+		.l-constrained {
+			@include breakpoint($small-up) {
+				height: $header-height-small;
+			}
+			@include breakpoint($medium-up) {
+				height: $header-height-small;
+			}
+			@include breakpoint($large-up) {
+				height: $header-height-small;
 			}
 		}
-		.form-actions {
-			display: inline-block;
-			vertical-align: top;
-		}
-		
-		// submit button
-		input.form-submit {
-		    padding: 9px 10px;
-		    font-size: 14px;
-		    letter-spacing: 0;
-		    color: #fff;
-		    background: $primary-color;
-		    border: 0;
-		    border-radius: 4px;
-		    text-transform: capitalize;
-		    
-		    &::hover {
-			    background-color: #000;
-		    }
-		}
-    }
+	}
+	
+	// inner container
+	.l-constrained {
+		margin: 0 auto;
+		display: flex;
+	}
+
+	
+	// Main Navigation
+	nav.menu--main {
+		margin-left: auto; // makes it align right
+	}
 }

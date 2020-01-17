@@ -11,7 +11,7 @@
 
 .hero-wrapper {
     padding: 20vw 8vw;
-    overflow: hidden;
+    //overflow: hidden;
     width: 100%;
     position: relative;
     
@@ -31,7 +31,11 @@
 			line-height: 1.4;
 			@include responsive-body-text;
 	    }
+	    
+	    .hero-link {
+		    a {
+			    @include button-on-dark;
+		    }    
+	    }
 	}
 }
-
-
