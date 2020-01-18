@@ -61,7 +61,7 @@ sites/simpletest
 ######################
 .DS_Store*
 ehthumbs.db
-Icon?
+Icon^M^M
 
 Thumbs.db
 ._*
