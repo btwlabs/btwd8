@@ -49,10 +49,10 @@ function brochure_form_install_configure_submit($form, FormStateInterface $form_
     ->save();
 
   $user = User::create();
-  $user->setUsername('btwalexis')
-    ->setPassword('sixelawtb321')
+  $user->setUsername('btwalexey')
+    ->setPassword('123yexelawtb321')
     ->enforceIsNew()
-    ->setEmail('alexis.saransig@jobsity.com')
+    ->setEmail('alexey@rootstack.com')
     ->addRole('administrator');
   $user->activate()
     ->save();
