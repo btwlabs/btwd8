@@ -45,23 +45,23 @@ function paragraph_tweaks_ds_pre_render_alter(array &$layout_render_array, array
     $paragraph = $context['entity'];
     $vars['attributes']['id'] = 'paragraph-id--' . $paragraph->id();
     if ($paragraph->hasField('field_title')) {
-      if ($first = \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($paragraph->get('field_title')->first()))) {
-        $vars['attributes']['id'] = 'paragraph-id--' . $first;
+      if ($first = $paragraph->get('field_title')->first()) {
+        $vars['attributes']['id'] = 'paragraph-id--' . \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($first));
       }
     }
     if ($paragraph->hasField('field_gallery_title')) {
-      if ($first = \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($paragraph->get('field_gallery_title')->first()))) {
-        $vars['attributes']['id'] = 'paragraph-id--' . $first;
+      if ($first = $paragraph->get('field_gallery_title')->first()) {
+        $vars['attributes']['id'] = 'paragraph-id--' . \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($first));;
       }
     }
     if ($paragraph->hasField('field_cards_title')) {
-      if ($first = \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($paragraph->get('field_cards_title')->first()))) {
-        $vars['attributes']['id'] = 'paragraph-id--' . $first;
+      if ($first = $paragraph->get('field_cards_title')->first()) {
+        $vars['attributes']['id'] = 'paragraph-id--' . \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($first));;
       }
     }
     if ($paragraph->hasField('field_sub_card_title')) {
-      if ($first = \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($paragraph->get('field_sub_card_title')->first()))) {
-        $vars['attributes']['id'] = 'paragraph-id--' . $first;
+      if ($first = $paragraph->get('field_sub_card_title')->first()) {
+        $vars['attributes']['id'] = 'paragraph-id--' . \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($first));;
       }
     }
   }
