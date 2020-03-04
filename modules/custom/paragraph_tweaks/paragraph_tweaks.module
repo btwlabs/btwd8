@@ -46,22 +46,22 @@ function paragraph_tweaks_ds_pre_render_alter(array &$layout_render_array, array
     $vars['attributes']['id'] = 'paragraph-id--' . $paragraph->id();
     if ($paragraph->hasField('field_title')) {
       if ($first = $paragraph->get('field_title')->first()) {
-        $vars['attributes']['id'] = 'paragraph-id--' . \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($first));
+        $vars['attributes']['id'] = 'paragraph-id--' . \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($first->getValue()['value']));
       }
     }
     if ($paragraph->hasField('field_gallery_title')) {
       if ($first = $paragraph->get('field_gallery_title')->first()) {
-        $vars['attributes']['id'] = 'paragraph-id--' . \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($first));;
+        $vars['attributes']['id'] = 'paragraph-id--' . \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($first->getValue()['value']));;
       }
     }
     if ($paragraph->hasField('field_cards_title')) {
       if ($first = $paragraph->get('field_cards_title')->first()) {
-        $vars['attributes']['id'] = 'paragraph-id--' . \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($first));;
+        $vars['attributes']['id'] = 'paragraph-id--' . \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($first->getValue()['value']));;
       }
     }
     if ($paragraph->hasField('field_sub_card_title')) {
       if ($first = $paragraph->get('field_sub_card_title')->first()) {
-        $vars['attributes']['id'] = 'paragraph-id--' . \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($first));;
+        $vars['attributes']['id'] = 'paragraph-id--' . \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($first->getValue()['value']));;
       }
     }
   }
