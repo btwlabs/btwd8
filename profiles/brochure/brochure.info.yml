@@ -8,6 +8,7 @@ install:
  - admin_toolbar_tools
  - automated_cron
  - better_exposed_filters
+ - better_social_sharing_buttons
  - bg_image_formatter
  - big_pipe
  - blazy
@@ -89,6 +90,7 @@ install:
  - path
  - quickedit
  - rdf
+ - recaptcha
  - redirect
  - redirect_404
  - responsive_bg_image_formatter
