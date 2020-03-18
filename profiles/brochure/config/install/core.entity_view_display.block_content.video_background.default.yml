@@ -15,14 +15,11 @@ dependencies:
 third_party_settings:
   field_group:
     group_wrapper_img_text:
-      children:
-        - field_image
-        - body
+      children: {  }
       parent_name: ''
-      weight: 2
+      weight: 3
       format_type: html_element
       format_settings:
-        label: wrapper-img-text
         element: div
         show_label: false
         label_element: h3
@@ -32,6 +29,7 @@ third_party_settings:
         id: ''
         classes: video-wrapper-img-text
       label: wrapper-img-text
+      region: hidden
 id: block_content.video_background.default
 targetEntityType: block_content
 bundle: video_background
@@ -40,12 +38,12 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 2
+    weight: 0
     settings: {  }
     third_party_settings: {  }
     region: content
   field_image:
-    weight: 1
+    weight: 2
     label: hidden
     settings:
       image_style: max_650x650
@@ -61,13 +59,14 @@ content:
     type: image
     region: content
   field_video:
-    weight: 0
+    weight: 1
     label: hidden
     settings:
-      view_mode: default
+      view_mode: full
       link: false
     third_party_settings:
       ds:
+        ds_limit: ''
         ft:
           id: minimal
           settings:
