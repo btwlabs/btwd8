@@ -192,6 +192,32 @@ dd {
 	}
 }
 
+//-------------------------------------
+//
+//	Items within a grid (image, title)
+//
+//-------------------------------------
+
+.grid-item {
+	.grid-item-image {
+		margin-bottom: 20px;
+	}
+	.grid-item-titles {
+		text-align: left;
+		
+		h2, 
+		h2.title {
+			@include responsive-card-title;
+			margin-bottom: 0.5em;
+		}
+		
+		h3 {
+			@include responsive-body-text;
+			font-weight: normal;
+		}
+	}
+}
+
 	
 
 //----------------------------------

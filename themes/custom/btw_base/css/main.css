@@ -576,11 +576,13 @@ input[type=checkbox] {
 
 input[type=text],
 input[type=email],
+input[type=tel],
 input.form-text,
 textarea {
   max-width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
+  width: 100%;
 }
 
 input[type=file] {
@@ -726,10 +728,6 @@ h6:after {
   line-height: 1;
 }
 
-.social-icons {
-  text-align: center;
-}
-
 @media (min-width: 40.063em) {
   .social-icons {
     margin-right: 20px;
@@ -740,14 +738,23 @@ h6:after {
   padding: 0;
 }
 
+.social-icons ul li {
+  list-style-type: none;
+}
+
 .social-icons ul a {
   color: #666;
   padding: 6px 10px;
   display: block;
+  font-size: 22px;
 }
 
 .social-icons ul a:hover {
   color: #fff;
+}
+
+.social-icons ul a:first-child {
+  padding-left: 0;
 }
 
 .social-icons ul .fa-2x {
@@ -802,6 +809,18 @@ body {
  Add Clearfix to all main containers
 
 ----------------------------------------*/
+.l-content-main-wrapper {
+  padding: 6vw 0;
+}
+
+.section-user .l-content-main-wrapper {
+  padding: 6vw 0;
+}
+
+.block-page-title-block {
+  text-align: center;
+}
+
 /*-------------------------------------------
 
  LISTS - defaults for standard formatting
@@ -1004,6 +1023,56 @@ dd {
     }
   }
 }
+.grid-item .grid-item-image {
+  margin-bottom: 20px;
+}
+
+.grid-item .grid-item-titles {
+  text-align: left;
+}
+
+.grid-item .grid-item-titles h2,
+.grid-item .grid-item-titles h2.title {
+  margin-bottom: 0.5em;
+}
+
+@media (min-width: 0em) {
+  .grid-item .grid-item-titles h2,
+.grid-item .grid-item-titles h2.title {
+    font-size: 20px;
+    font-size: 1.1111111111rem;
+  }
+}
+@media (min-width: 40.063em) {
+  .grid-item .grid-item-titles h2,
+.grid-item .grid-item-titles h2.title {
+    font-size: 22px;
+    font-size: 1.2222222222rem;
+  }
+}
+@media (min-width: 64.063em) {
+  .grid-item .grid-item-titles h2,
+.grid-item .grid-item-titles h2.title {
+    font-size: 24px;
+    font-size: 1.3333333333rem;
+  }
+}
+.grid-item .grid-item-titles h3 {
+  font-weight: normal;
+}
+
+@media (min-width: 0em) and (max-width: 40em) {
+  .grid-item .grid-item-titles h3 {
+    font-size: 18px;
+    font-size: 1rem;
+  }
+}
+@media (min-width: 64.063em) {
+  .grid-item .grid-item-titles h3 {
+    font-size: 22px;
+    font-size: 1.2222222222rem;
+  }
+}
 .list {
   padding: 0;
 }
@@ -1189,7 +1258,6 @@ a.tabledrag-handle-hover .handle {
  Custom Fonts
 
 -----------------------------------*/
-::-moz-selection,
 ::-moz-selection {
   color: #fff;
   background-color: #64BAFF;

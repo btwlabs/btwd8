@@ -62,3 +62,26 @@ body {
 .l-footer-wrapper {
 	@extend %clearfix;
 }
+
+
+//---------------------------------------
+//
+//	Content section
+//
+//---------------------------------------
+
+.l-content-main-wrapper {
+    padding: 6vw 0;
+}
+
+// default top/bottom padding on non-story pages
+.section-user {
+	.l-content-main-wrapper {
+	    padding: 6vw 0;
+	}
+}
+
+// page titles within block
+.block-page-title-block {
+    text-align: center;
+}
