@@ -213,7 +213,7 @@ h2#block-mainnavigation-mobile-menu {
 		.hamburger-inner,
 		.hamburger-inner::before,
 		.hamburger-inner::after {
-			background-color: #fff; 
+			background-color: $mobile-nav-icon-color-open; 
 		}
 	}
 	.hamburger-inner {
