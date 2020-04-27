@@ -107,9 +107,11 @@ form.user-form {
 	
 	// admin tabs, links
 	nav.tabs {
-		width: 100%;
-		margin: 0 auto;
-		padding: 5vw;
+		//width: 100%;
+		//margin: 0 auto;
+		padding: 3vw;
+		width: calc(100% - 6vw);
+	    margin: 2vw 3vw;
 	}
 	
 	//-------------------------
@@ -281,13 +283,6 @@ form.user-form {
 		    color: #000;
 		    font-weight: 500;
 		}
-	}
-	
-	.l-pre-footer-wrapper {
-		background: #f5f5f5;
-	}
-	.pre-footer-inner {
-    	padding: 20px 0;
 	}
 	
 	// form container

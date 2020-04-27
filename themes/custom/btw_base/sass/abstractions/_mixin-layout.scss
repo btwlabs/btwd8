@@ -29,7 +29,7 @@
 // Constrained
 @mixin constrained {
 	@include breakpoint($small-only) {
-		margin: 0 30px;
+		margin: 0 24px;
 	}
 	@include breakpoint($medium-up) {
 		width: 80%;
@@ -42,7 +42,7 @@
 	width: 100%;
 	
 	@include breakpoint($small-only) {
-		padding: 0 30px;
+		padding: 0 24px;
 		margin: 0;
 	}
 }

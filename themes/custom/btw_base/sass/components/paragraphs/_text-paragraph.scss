@@ -32,8 +32,11 @@
 		    margin: 0 64px;
 	    }
 	    
-	    p:last-of-type {
-		    margin: 0;
+	    p {
+		    
+		    &:last-of-type {
+		    	margin: 0;
+		    }
 		}
 	}
 }

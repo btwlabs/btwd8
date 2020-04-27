@@ -159,8 +159,6 @@ ul.pager__items {
 			
 			// title
 			h4 {
-				width: calc(100% - 100px);
-				
 				z-index: 3;
 				margin: 0;
 				
@@ -169,10 +167,17 @@ ul.pager__items {
 					width: calc(100% - 52px);
 				}
 				@include breakpoint($medium-only) {
+					width: calc(100% - 110px);
 					font-size: 16px;
 				}
 				@include breakpoint($medium-up) {
 					font-size: 22px;
+				}
+				@include breakpoint($large-only) {
+					width: calc(100% - 120px);
+				}
+				@include breakpoint($xlarge-up) {
+					width: calc(100% - 140px);
 				}
 			}
 			
@@ -298,6 +303,13 @@ ul.pager__items {
 		transition: all 0.2s ease;
 		order: 1;
 		margin: 0 20px 0 0;
+	}
+}
+
+// specificity necessary to override default
+.entity-pager-list {
+	.entity-pager-item-next {
+		margin-left: auto; // aligns right if no 'prev' item
 	}
 }
 

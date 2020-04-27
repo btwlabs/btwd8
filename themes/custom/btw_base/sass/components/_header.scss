@@ -8,6 +8,15 @@
 //----------------------------------------------
 
 
+.l-header {
+	.l-constrained {
+		@include breakpoint($medium-up) {
+			@include unconstrained;
+			padding: 0 3vw;
+			//@include fadeInDown($count: $countDefault, $duration: $durationDefault, $delay: 1s, $function: $functionDefault, $fill: $fillDefault, $visibility: $visibilityDefault);
+		}
+	}
+}
 
 
 //---------------------------
