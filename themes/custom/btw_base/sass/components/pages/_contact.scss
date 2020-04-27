@@ -1,0 +1,96 @@
+//----------------------------------------------
+//
+//	CONTACT page
+//
+//	location: 
+//      /sass/components/pages/_contact.scss
+//
+//----------------------------------------------
+
+
+.page-contact {
+		.l-content-main-wrapper {
+		padding-bottom: 0;
+		
+		.l-content-main {
+			padding-bottom: 0;
+		}
+	}
+	
+	.contact-top {
+		display: flex;
+		flex-wrap: wrap;
+		margin-bottom: 4vw;
+		
+		@include breakpoint($medium-up) {
+			flex-wrap: nowrap;
+		}
+		
+		// form
+		.group-left {
+			margin-bottom: 50px;
+			max-width: 100%;
+			
+			@include breakpoint($small-only) {
+				margin-bottom: 50px;
+				border-bottom: 1px solid $border-color;
+				padding-bottom: 50px;
+			}
+			
+			@include breakpoint($medium-up) {
+		    	flex: 0 0 60%;
+		    }
+		    
+		    select#edit-occupation {
+			    height: 40px;
+			    border: 1px solid $border-color;
+			    
+			    @include breakpoint($small-only) {
+			    	max-width: 100%;
+			    }
+			}
+		}
+		
+		// address & info
+		.group-right {
+			margin-bottom: 50px;
+			
+			@include breakpoint($medium-up) {
+		    	flex: 0 0 40%;
+				padding-left: 4vw;
+		    }
+		}
+		
+		// logo
+		.contact-page-image {
+			max-width: 300px;
+			width: 100%;
+			font-size: 0;
+			display: flex;
+			margin: 0 0 20px;
+			
+			img {
+			    object-fit: cover;
+			    width: 100%;
+			}
+		}
+		
+		// address
+		.contact-page-address {
+			margin-bottom: 1em;
+		}
+	}
+	
+	// map
+	.field-name-field-map-address {
+	    width: 99vw;
+	    margin: 4vw -10vw 0;
+	    height: 40vw; 
+	    min-height: 400px;
+	    
+	    @include breakpoint($small-only) {
+		    width: auto;
+		    margin: 4vw -20px 0;
+	    }
+	}
+}

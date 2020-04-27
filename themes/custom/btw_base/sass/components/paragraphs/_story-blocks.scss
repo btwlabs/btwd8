@@ -618,3 +618,9 @@
 		}
 	}	
 }
+
+// Class to place on Story blocks when section needs to be
+// set apart from white bg above or below
+.bg-subtle {
+	background-color: $xlight-gray;
+}
