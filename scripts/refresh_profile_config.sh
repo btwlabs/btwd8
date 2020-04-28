@@ -8,25 +8,23 @@ echo '
 '
 
 # Copy and strip stamps from config files.
-
-echo 'What is the site multisite config dir to copy from? [e.g. www.venelsite.com]'
-read SOURCE_SITE
-
-echo 'What profile dir will you copy to? [e.g. veneld8]'
-read PROFILE_DIR
+read -p 'What is the FRESH INSTALL BASED site to copy from? [default is, well, default]' SOURCE_SITE
+SOURCE_SITE=${SOURCE_SITE:-default}
+read -p 'What profile dir will you copy to? [default is brochure]' PROFILE_DIR
+PROFILE_DIR=${PROFILE_DIR:-brochure}
 
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
-cd $SCRIPT_DIR || exit;
+cd "$SCRIPT_DIR" || exit;
 
 if [[ ! -e ../sites/$SOURCE_SITE/config ]]; then
-    echo "No such site config directory: $SOURCE_SITE/config"
-    exit
+    echo "No such site config directory: $SOURCE_SITE/config, assuming 'default'"
+    SOURCE_SITE='default'
 fi
 
 if [[ ! -e ../profiles/$PROFILE_DIR ]]; then
-    echo "No such profile directory: $PROFILE_DIR"
-    exit
+    echo "No such profile directory: $PROFILE_DIR, assuming 'veneld8'"
+    PROFILE_DIR='brochure'
 fi
 
 if [[ ! -e ../profiles/$PROFILE_DIR/config/install ]]; then
@@ -36,9 +34,14 @@ if [[ ! -e ../profiles/$PROFILE_DIR/config/install ]]; then
   mkdir ../profiles/"$PROFILE_DIR"/config/install
 fi
 
+if [ -z "$(ls -A ../sites/"$SOURCE_SITE"/config/*.yml)" ]; then
+   echo "The source site config is empty!"
+   exit
+fi
+
 echo "Now copying config from ${SOURCE_SITE} to ${PROFILE_DIR}..."
 
-rm -r ../profiles/"$PROFILE_DIR"/config/install/*
+rm -rf ../profiles/"$PROFILE_DIR"/config/install/*
 
 cp ../sites/"$SOURCE_SITE"/config/* ../profiles/"$PROFILE_DIR"/config/install
 
@@ -64,12 +67,18 @@ rm -rf "${PROFILE_DIR}".info.yml
   echo "EOF";
 ) > temp.yml
 . temp.yml
-#cat temp2.yml
 
-sed "\$d;s/: [0-9]*\$/ /;/${PROFILE_DIR}/d;s/  / - /;/module:/d;" temp2.yml > "${PROFILE_DIR}".info.yml
+sed "\$d;s/: [0-9]*\$/ /;/${PROFILE_DIR}/d;s/  / - /;/module:/d;s/theme/themes/g;" temp2.yml > "${PROFILE_DIR}".info.yml
 
 rm -rf temp.yml
 rm -rf temp2.yml
 
+echo "Now removing metatag display extender from views settings (breaks install)..."
+sed "s/display_extenders://;s/  - metatag_display_extender//;/^$/d" ./config/install/views.settings.yml > temp.yml
+mv temp.yml ./config/install/views.settings.yml
+rm -rf temp.yml
+
+echo "Now copying the admin role config to post-install"
+cp ./config/install/user.role.administrator.yml ./config/post-install/
 # END
 
