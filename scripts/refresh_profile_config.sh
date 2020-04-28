@@ -70,7 +70,7 @@ rm -rf "${PROFILE_DIR}".info.yml
 ) > temp.yml
 . temp.yml
 
-sed "\$d;s/: [0-9]*\$/ /;/${PROFILE_DIR}:/d;s/  / - /;/module:/d;s/theme/themes/g;" temp2.yml > "${PROFILE_DIR}".info.yml
+sed "/${PROFILE_DIR}: [0-9]*/d;\$d;s/: [0-9]*\$/ /;s/  / - /;/module:/d;s/theme/themes/g;" temp2.yml > "${PROFILE_DIR}".info.yml
 
 rm -rf temp.yml
 rm -rf temp2.yml
