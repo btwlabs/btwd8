@@ -23,7 +23,7 @@ if [[ ! -e ../sites/$SOURCE_SITE/config ]]; then
 fi
 
 if [[ ! -e ../profiles/$PROFILE_DIR ]]; then
-    echo "No such profile directory: $PROFILE_DIR, assuming 'veneld8'"
+    echo "No such profile directory: $PROFILE_DIR, assuming 'brochure'"
     PROFILE_DIR='brochure'
 fi
 
@@ -78,7 +78,5 @@ sed "s/display_extenders://;s/  - metatag_display_extender//;/^$/d" ./config/ins
 mv temp.yml ./config/install/views.settings.yml
 rm -rf temp.yml
 
-echo "Now copying the admin role config to post-install"
-cp ./config/install/user.role.administrator.yml ./config/post-install/
 # END
 
