@@ -33,9 +33,9 @@ $black: #000;
 
 
 // Body Text
-$text-color: rgba(0,0,0,0.6);
+$text-color: rgba(0,0,0,0.8);
 $text-on-dark-color: #ddd;
-$text-on-light-color: #000;
+$text-on-light-color: rgba(0,0,0,0.8);
 
 $link-color: $primary-color;
 $link-hover-color: $secondary-color;
@@ -44,9 +44,9 @@ $link-visited-color: #000;
 
 
 // Titles
-$title-color: #4A4A4A;
-$page-title-color: #4A4A4A;
-$section-title-color: #4A4A4A;
+$title-color: $text-color;
+$page-title-color: $text-color;
+$section-title-color: $text-color;
 
 $title-on-dark-color: #fff;
 $title-on-light-color: $title-color;
@@ -79,25 +79,25 @@ $button-border-hover-color: $button-bg-hover-color;
 
 // Button styling DARK BUTTON ON LIGHT BG
 $button-text-color-on-light: #fff;
-$button-text-hover-color-on-light: #222;
+$button-text-hover-color-on-light: #fff;
 
-$button-bg-color-on-light: #222;
-$button-bg-hover-color-on-light: #fff;
+$button-bg-color-on-light: $primary-color;
+$button-bg-hover-color-on-light: darken($primary-color, 15%);
 
-$button-border-color-on-light: #222;
-$button-border-hover-color-on-light: #fff;
+$button-border-color-on-light: $primary-color;
+$button-border-hover-color-on-light: darken($primary-color, 15%);
 
 
 
 // Button styling LIGHT BUTTON ON DARK BG
-$button-text-color-on-dark: #fff;
-$button-text-hover-color-on-dark: #222;
+$button-text-color-on-dark: $primary-color;
+$button-text-hover-color-on-dark: #fff;
 
-$button-bg-color-on-dark: $primary-color;
-$button-bg-hover-color-on-dark: #fff;
+$button-bg-color-on-dark: #fff;
+$button-bg-hover-color-on-dark: darken($primary-color, 15%);
 
 $button-border-color-on-dark: $primary-color;
-$button-border-hover-color-on-dark: #fff;
+$button-border-hover-color-on-dark: darken($primary-color, 15%);
 
 
 // Sitewide Borders
@@ -116,14 +116,14 @@ $table-even-row-bg-color: #f0f0f0;
 
 
 // Navigation
-$nav-text-color: $black;
+$nav-text-color: $text-color;
 $nav-text-hover-color: $primary-color;
 
 $nav-button-bg-color: transparent;
-$nav-button-bg-hover-color: #ddd;
+$nav-button-bg-hover-color: transparent;
 $nav-button-bg-active-color: transparent;
 
-$nav-bar-bg-color: $black;
+$nav-bar-bg-color: transparent;
 
 	// Sub-Navigation
 	$subnav-text-color: #fff;
@@ -136,7 +136,7 @@ $nav-bar-bg-color: $black;
 
 	// mobile nav only
 	$mobile-nav-text-color: #fff;
-	$mobile-nav-bg-color: #1c1c1d;
+	$mobile-nav-bg-color: $primary-color;
 	$mobile-nav-text-hover-color: #fff;
 	$mobile-nav-bg-hover-color: $primary-color;
 	$mobile-nav-border-color: rgba(255,255,255,0.2);
@@ -146,12 +146,12 @@ $nav-bar-bg-color: $black;
 	
 	
 	// mobile nav close button
-	$mobile-nav-close-text-color: #999;
-	$mobile-nav-close-btn-bg: #000;
+	$mobile-nav-icon-color-open: #fff;
+	$mobile-nav-icon-color-closed: #333;
 	
 	// mobile subnav
 	$mobile-subnav-text-color: #bbb;
-	$mobile-subnav-bg-color: #3e3e3e;
+	$mobile-subnav-bg-color: darken($primary-color, 15%);
 	
 	// Home page non-mobile
 	$home-nav-text-color: #fff;
@@ -208,11 +208,16 @@ $quote-bg-color-on-dark: #fff;
 
 
 
-// Footer
-$footer-text-color: #666;
+// Pre-Footer
+$pre-footer-bg-color: $primary-color;
 
-$footer-link-color: #666;
-$footer-link-hover-color: #fff;
+
+
+// Footer
+$footer-text-color: $text-color;
+
+$footer-link-color: $text-color;
+$footer-link-hover-color: $link-color;
 
 $footer-bg-color: #0d0e15;
 

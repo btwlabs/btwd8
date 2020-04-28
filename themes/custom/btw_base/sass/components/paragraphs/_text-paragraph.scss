@@ -11,6 +11,13 @@
 	@include responsive-body-text;
 	display: flex;
     justify-content: center;
+    margin: 2em 0;
+	
+	// title
+	.title {
+		@include responsive-section-title;
+		margin-bottom: 1em;
+	}
 	
 	.field-name-text-body {
 	    max-width: 728px;
@@ -25,8 +32,11 @@
 		    margin: 0 64px;
 	    }
 	    
-	    p:last-of-type {
-		    margin: 0;
+	    p {
+		    
+		    &:last-of-type {
+		    	margin: 0;
+		    }
 		}
 	}
 }

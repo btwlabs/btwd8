@@ -60,12 +60,11 @@ h6:after {
 
 //-----------------------------------
 //
-//	Social Icons - post-footer
+//	Social Icons - footer
 //
 //-----------------------------------
 
 .social-icons {
-	text-align: center;
 	
 	@include breakpoint($medium-up) {
 		margin-right: 20px;
@@ -75,13 +74,22 @@ h6:after {
 		margin: 0;
 		padding: 0;
 		
+		li {
+			list-style-type: none;
+		}
+		
 		a {
 			color: $footer-text-color;
 			padding: 6px 10px;
 			display: block;
+			font-size: 22px;
 			
 			&:hover {
-				color: #fff;
+				color: $footer-link-hover-color;
+			}
+			
+			&:first-child {
+				padding-left: 0;
 			}
 		}
 		

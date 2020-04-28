@@ -34,11 +34,13 @@ input[type="checkbox"] {
 }
 input[type="text"],
 input[type="email"],
+input[type="tel"],
 input.form-text,
 textarea  {
 	max-width: 100%;
 	padding: 10px;
 	border: 1px solid $border-color;
+	width: 100%;
 }
 
 input[type="file"] {

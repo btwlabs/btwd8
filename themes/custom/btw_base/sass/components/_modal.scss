@@ -1,0 +1,70 @@
+//----------------------------------------------
+//
+//	MODAL - popup at bottom of screen
+//
+//	location: 
+//      /sass/components/_modal.scss
+//
+//----------------------------------------------
+
+
+.block-feature-modal {
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    width: 260px;
+    z-index: 1000;
+    
+    // show/hide w/ js toggle
+    display: none;
+	    
+    &.is-visible {
+	    display: block;
+    }
+    
+    @include breakpoint($small-only) {
+	    width: 90%;
+    }
+    
+    #feature-modal-content {
+	    padding: 20px 20px 30px;
+	    background: darken($primary-color, 10%);
+	    color: #fff;
+	    text-align: center;
+	    font-size: 16px;
+	    
+	    // title
+	    .feature-modal-title {
+		    font-weight: bold;
+		    font-size: 22px;
+		    line-height: 1.3;
+		}
+	    
+	    // body
+	    p {
+		    line-height: 1.3;
+		}
+		
+		// button-link
+		.btn {
+		    padding: 10px 20px;
+		    background: #fff;
+		    border-radius: 4px;
+		    font-size: 16px;
+		}
+	}
+	
+	// close button
+	button.close {
+	    padding: 4px 7px 2px 9px;
+	    background: darken($primary-color, 10%);
+	    border: 0;
+	    border-radius: 0;
+	    text-align: center;
+	    font-size: 30px;
+	    text-transform: uppercase;
+	    font-weight: bold;
+	    line-height: 1;
+	}
+    
+}

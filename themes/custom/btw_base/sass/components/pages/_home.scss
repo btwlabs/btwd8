@@ -7,3 +7,46 @@
 //
 //----------------------------------------------
 
+
+.block-video-background {
+	position: relative;
+	height: 56vw;
+	@include fadeIn($count: $countDefault, $duration: 1s, $delay: 1.5s, $function: $functionDefault, $fill: $fillDefault, $visibility: $visibilityDefault);
+	
+	// mobile images in case video does not appear
+	@include breakpoint($small-only) {
+		background: url(../images/hero-home-mobile.jpg) no-repeat scroll center center;
+		background-size: cover;
+	}
+	@include breakpoint($medium-only) {
+		background: url(../images/hero-home.jpg) no-repeat scroll center center;
+		background-size: cover;
+	}
+	
+
+	.hero-body-wrapper {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 90%;
+		margin: 0;
+		z-index: 3;
+		
+		h2 {
+			@include responsive-section-title;
+			color: #fff;
+			margin: 0;
+			text-align: center;
+			text-shadow: 0 0 5px rgba(0,0,0,0.7);
+		}
+		
+		.field-name-image {
+			@include fadeInDown($count: $countDefault, $duration: 1s, $delay: 3s, $function: $functionDefault, $fill: $fillDefault, $visibility: $visibilityDefault);
+		}
+		.field-name-body {
+			margin: 0 auto;
+			@include fadeInDown($count: $countDefault, $duration: $durationDefault, $delay: 4.5s, $function: $functionDefault, $fill: $fillDefault, $visibility: $visibilityDefault);
+		}
+	}
+}

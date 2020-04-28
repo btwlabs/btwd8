@@ -1,0 +1,39 @@
+//----------------------------------------------
+//
+//	PARAGRAPH TYPE = VIEW 
+//
+//	location: 
+//      /sass/components/paragraphs/_view-paragraph.scss
+//
+//----------------------------------------------
+
+
+.paragraph--type--view {
+	@include breakpoint($small-only) {
+		padding: 8vw 20px 8vw;
+	}
+	
+	@include breakpoint($medium-up) {
+		padding: 8vw;
+	}
+	
+	h2.title {
+		@include responsive-section-title;
+		text-align: center;
+	}
+	
+	// titles in teaser cards
+	.grid-item-titles {
+		h2.title {
+			text-align: left;
+		}
+	}
+	
+	.more-link {
+		text-align: center;
+		
+		a {
+			@include button;
+		}
+	}
+}
