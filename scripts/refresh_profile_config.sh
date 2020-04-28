@@ -27,6 +27,8 @@ if [[ ! -e ../profiles/$PROFILE_DIR ]]; then
     PROFILE_DIR='brochure'
 fi
 
+export PROFILE_DIR
+
 if [[ ! -e ../profiles/$PROFILE_DIR/config/install ]]; then
   if [[ ! -e ../profiles/$PROFILE_DIR/config/ ]]; then
     mkdir ../profiles/"$PROFILE_DIR"/config
@@ -46,7 +48,7 @@ rm -rf ../profiles/"$PROFILE_DIR"/config/install/*
 cp ../sites/"$SOURCE_SITE"/config/* ../profiles/"$PROFILE_DIR"/config/install
 
 find ../profiles/"$PROFILE_DIR"/config/install -type f -exec sed -i '' '/^uuid: /d' {} \;
-find ../profiles/"$PROFILE_DIR"/config/install -type f -exec sed -i '' '/_core:/{N;d;}' {} \;
+find ../profiles/"$PROFILE_DIR"/config/install -type f -exec sed -i '' '/^_core:/{N;d;}' {} \;
 
 
 # Copy the extensions over from core.extensions.yml to the profile info file then delete it.
@@ -68,7 +70,7 @@ rm -rf "${PROFILE_DIR}".info.yml
 ) > temp.yml
 . temp.yml
 
-sed "\$d;s/: [0-9]*\$/ /;/${PROFILE_DIR}/d;s/  / - /;/module:/d;s/theme/themes/g;" temp2.yml > "${PROFILE_DIR}".info.yml
+sed "\$d;s/: [0-9]*\$/ /;/${PROFILE_DIR}:/d;s/  / - /;/module:/d;s/theme/themes/g;" temp2.yml > "${PROFILE_DIR}".info.yml
 
 rm -rf temp.yml
 rm -rf temp2.yml

@@ -1,6 +1,6 @@
-name: BTWD8 Site Install
+name: BTWD8 ${PROFILE_DIR} Site Install
 type: profile
-description: 'Installer for a btwd8 site.'
+description: "Installer for a ${PROFILE_DIR} site."
 core: 8.x
 install:
 ${EXTENSIONS}
