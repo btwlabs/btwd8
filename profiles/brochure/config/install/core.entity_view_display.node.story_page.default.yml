@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.story_page.body
+    - field.field.node.story_page.feeds_item
     - field.field.node.story_page.field_sb_page_hero_image
     - field.field.node.story_page.field_sb_page_hero_link
     - field.field.node.story_page.field_sb_page_story_blocks
@@ -213,4 +214,5 @@ content:
             fi-def-at: false
     region: content
 hidden:
+  feeds_item: true
   links: true

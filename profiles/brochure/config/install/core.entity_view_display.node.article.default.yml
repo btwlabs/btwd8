@@ -5,6 +5,7 @@ dependencies:
     - core.entity_view_display.comment.comment.default
     - field.field.node.article.body
     - field.field.node.article.comment
+    - field.field.node.article.feeds_item
     - field.field.node.article.field_article_category
     - field.field.node.article.field_article_hero_image
     - field.field.node.article.field_article_paragraphs
@@ -182,4 +183,5 @@ content:
     region: ds_content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  feeds_item: true

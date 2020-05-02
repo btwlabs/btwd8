@@ -3,6 +3,15 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.rss
+    - field.field.node.article.body
+    - field.field.node.article.comment
+    - field.field.node.article.feeds_item
+    - field.field.node.article.field_article_category
+    - field.field.node.article.field_article_hero_image
+    - field.field.node.article.field_article_paragraphs
+    - field.field.node.article.field_article_subtitle
+    - field.field.node.article.field_image
+    - field.field.node.article.field_tags
     - node.type.article
   module:
     - user
@@ -17,6 +26,10 @@ content:
 hidden:
   body: true
   comment: true
+  feeds_item: true
+  field_article_category: true
+  field_article_hero_image: true
   field_article_paragraphs: true
+  field_article_subtitle: true
   field_image: true
   field_tags: true

@@ -1,0 +1,105 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.story_page.body
+    - field.field.node.story_page.field_sb_page_hero_image
+    - field.field.node.story_page.field_sb_page_hero_link
+    - node.type.story_page
+  module:
+    - feeds_tamper
+    - node
+third_party_settings:
+  feeds_tamper:
+    tampers: {  }
+id: story_pages
+label: 'Story Page Import'
+description: 'Imports story page node fields only (no paragraphs)'
+help: ''
+import_period: -1
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  fallback_hub: ''
+  request_timeout: 30
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  langcode: en
+  update_existing: 2
+  update_non_existent: _delete
+  expire: -1
+  owner_feed_author: true
+  owner_id: 0
+  authorize: false
+  skip_hash_check: false
+  values:
+    type: story_page
+custom_sources:
+  title:
+    label: title
+    value: title
+    machine_name: title
+  body:
+    label: article_body
+    value: article_body
+    machine_name: body
+  field_sb_page_hero_image_url:
+    label: field_sb_page_hero_image_url
+    value: field_sb_page_hero_image_url
+    machine_name: field_sb_page_hero_image_url
+  field_sb_page_hero_image_alt_text:
+    label: field_sb_page_hero_image_alt_text
+    value: field_sb_page_hero_image_alt_text
+    machine_name: field_sb_page_hero_image_alt_text
+  field_sb_page_hero_image_title:
+    label: field_sb_page_hero_image_title
+    value: field_sb_page_hero_image_title
+    machine_name: field_sb_page_hero_image_title
+  field_sb_page_hero_link_uri:
+    label: field_sb_page_hero_link_uri
+    value: field_sb_page_hero_link_uri
+    machine_name: field_sb_page_hero_link_uri
+  field_sb_page_hero_link_text:
+    label: field_sb_page_hero_link_text
+    value: field_sb_page_hero_link_text
+    machine_name: field_sb_page_hero_link_text
+mappings:
+  -
+    target: title
+    map:
+      value: title
+    unique:
+      value: '1'
+    settings:
+      language: null
+  -
+    target: field_sb_page_hero_link
+    map:
+      uri: field_sb_page_hero_link_uri
+      title: field_sb_page_hero_link_text
+    settings:
+      language: null
+  -
+    target: body
+    map:
+      value: body
+    settings:
+      language: null
+      format: plain_text
+  -
+    target: field_sb_page_hero_image
+    map:
+      target_id: field_sb_page_hero_image_url
+      alt: field_sb_page_hero_image_alt_text
+      title: field_sb_page_hero_image_title
+    settings:
+      language: ''
+      reference_by: fid
+      autocreate: '1'
+      existing: '0'

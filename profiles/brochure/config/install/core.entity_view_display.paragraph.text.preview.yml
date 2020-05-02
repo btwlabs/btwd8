@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.text.feeds_item
     - field.field.paragraph.text.field_text_body
     - paragraphs.paragraphs_type.text
   module:
@@ -28,4 +29,5 @@ content:
             classes: {  }
     type: text_trimmed
     region: content
-hidden: {  }
+hidden:
+  feeds_item: true

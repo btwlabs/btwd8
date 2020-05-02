@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: team_thumbnail
+label: 'Team Thumbnail'
+effects:
+  1c82e94d-67e8-4dc8-8409-02f410fe4d30:
+    uuid: 1c82e94d-67e8-4dc8-8409-02f410fe4d30
+    id: image_scale
+    weight: 1
+    data:
+      width: 400
+      height: null
+      upscale: false

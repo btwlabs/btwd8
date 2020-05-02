@@ -1,0 +1,127 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.image.field_image_image_file
+    - field.field.paragraph.image.field_image_orientation
+    - paragraphs.paragraphs_type.image
+  module:
+    - feeds_tamper
+    - paragraphs
+third_party_settings:
+  feeds_tamper:
+    tampers:
+      e8d58746-7857-4302-8ca4-afb7f3aa5b3b:
+        entity_type: node
+        bundle: article
+        field: title
+        plugin: entity_finder
+        source: node_title_unique_
+        weight: 0
+        label: 'Entity Finder'
+        uuid: e8d58746-7857-4302-8ca4-afb7f3aa5b3b
+      875e7408-9309-431a-9311-c71a92f5bec7:
+        default_value: field_article_paragraphs
+        only_if_empty: false
+        plugin: default_value
+        source: 'parent:title'
+        weight: 0
+        label: 'Set value or default value'
+        uuid: 875e7408-9309-431a-9311-c71a92f5bec7
+      6ef5d5f8-01be-4ce9-8bfb-5ce488a8b431:
+        default_value: node
+        only_if_empty: false
+        plugin: default_value
+        source: 'parent:uuid'
+        weight: 0
+        label: 'Set value or default value'
+        uuid: 6ef5d5f8-01be-4ce9-8bfb-5ce488a8b431
+id: article_image_paragraphs
+label: 'Article Image Paragraphs'
+description: ''
+help: ''
+import_period: -1
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  fallback_hub: ''
+  request_timeout: 30
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:paragraph'
+processor_configuration:
+  langcode: en
+  update_existing: 2
+  update_non_existent: _keep
+  expire: -1
+  owner_feed_author: true
+  owner_id: 0
+  authorize: false
+  skip_hash_check: false
+  values:
+    type: image
+custom_sources:
+  field_image_image_file_url:
+    label: field_image_image_file_url
+    value: field_image_image_file_url
+    machine_name: field_image_image_file_url
+  field_image_image_file_alt_text:
+    label: field_image_image_file_alt_text
+    value: field_image_image_file_alt_text
+    machine_name: field_image_image_file_alt_text
+  field_image_image_file_title:
+    label: field_image_image_file_title
+    value: field_image_image_file_title
+    machine_name: field_image_image_file_title
+  field_image_orientation:
+    label: field_image_orientation
+    value: field_image_orientation
+    machine_name: field_image_orientation
+  node_title_unique_:
+    label: 'node title (unique)'
+    value: 'node title (unique)'
+    machine_name: node_title_unique_
+  node_constant_:
+    label: 'node (constant)'
+    value: 'node (constant)'
+    machine_name: node_constant_
+mappings:
+  -
+    target: field_image_image_file
+    map:
+      target_id: field_image_image_file_url
+      alt: field_image_image_file_alt_text
+      title: field_image_image_file_title
+    settings:
+      language: ''
+      reference_by: fid
+      autocreate: '1'
+      existing: '0'
+  -
+    target: field_image_orientation
+    map:
+      value: field_image_orientation
+    settings:
+      language: null
+  -
+    target: parent_field_name
+    map:
+      value: 'parent:title'
+    unique: {  }
+    settings: {  }
+  -
+    target: parent_type
+    map:
+      value: 'parent:uuid'
+    unique: {  }
+    settings: {  }
+  -
+    target: parent_id
+    map:
+      value: node_title_unique_
+    unique: {  }
+    settings: {  }

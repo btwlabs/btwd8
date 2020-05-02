@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.image.feeds_item
     - field.field.paragraph.image.field_image_image_file
     - field.field.paragraph.image.field_image_orientation
     - image.style.max_1800
@@ -85,4 +86,5 @@ content:
     third_party_settings: {  }
     type: list_default
     region: ds_hidden
-hidden: {  }
+hidden:
+  feeds_item: true

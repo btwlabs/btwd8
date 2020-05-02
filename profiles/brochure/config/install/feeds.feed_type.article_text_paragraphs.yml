@@ -1,0 +1,108 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.text.field_text_body
+    - paragraphs.paragraphs_type.text
+  module:
+    - feeds_tamper
+    - paragraphs
+third_party_settings:
+  feeds_tamper:
+    tampers:
+      66a541b9-4b30-4154-9be2-0418ca850cda:
+        default_value: field_article_paragraphs
+        only_if_empty: false
+        plugin: default_value
+        source: 'parent:title'
+        weight: 0
+        label: 'Set value or default value'
+        uuid: 66a541b9-4b30-4154-9be2-0418ca850cda
+      2bb9096a-8012-43e2-bb52-39c8dfd4e37b:
+        entity_type: node
+        bundle: article
+        field: title
+        plugin: entity_finder
+        source: node_title_unique_
+        weight: 0
+        label: 'Entity Finder'
+        uuid: 2bb9096a-8012-43e2-bb52-39c8dfd4e37b
+      db9a7c9b-ee30-4c7a-b252-0cc65d0e3596:
+        default_value: node
+        only_if_empty: false
+        plugin: default_value
+        source: 'parent:uuid'
+        weight: 0
+        label: 'Set value or default value'
+        uuid: db9a7c9b-ee30-4c7a-b252-0cc65d0e3596
+id: article_text_paragraphs
+label: 'Article Text Paragraphs'
+description: ''
+help: ''
+import_period: -1
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  fallback_hub: ''
+  request_timeout: 30
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:paragraph'
+processor_configuration:
+  langcode: en
+  update_existing: 1
+  update_non_existent: _keep
+  expire: -1
+  owner_feed_author: true
+  owner_id: 0
+  authorize: false
+  skip_hash_check: false
+  values:
+    type: text
+custom_sources:
+  '':
+    label: ''
+    value: ''
+    machine_name: ''
+  node_title_unique_:
+    label: 'node title (unique)'
+    value: 'node title (unique)'
+    machine_name: node_title_unique_
+  field_text_body:
+    label: field_text_body
+    value: field_text_body
+    machine_name: field_text_body
+  node_constant_:
+    label: 'node (constant)'
+    value: 'node (constant)'
+    machine_name: node_constant_
+mappings:
+  -
+    target: parent_field_name
+    map:
+      value: 'parent:title'
+    unique: {  }
+    settings: {  }
+  -
+    target: parent_id
+    map:
+      value: node_title_unique_
+    unique: {  }
+    settings: {  }
+  -
+    target: field_text_body
+    map:
+      value: field_text_body
+    settings:
+      language: null
+      format: plain_text
+  -
+    target: parent_type
+    map:
+      value: 'parent:uuid'
+    unique: {  }
+    settings: {  }

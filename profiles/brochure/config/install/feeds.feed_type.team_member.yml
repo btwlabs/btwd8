@@ -1,0 +1,172 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.base_field_override.node.team_member.title
+    - field.field.node.team_member.body
+    - field.field.node.team_member.field_team_member_contact
+    - field.field.node.team_member.field_team_member_email
+    - field.field.node.team_member.field_team_member_headshot
+    - field.field.node.team_member.field_team_member_phone
+    - field.field.node.team_member.field_team_member_title
+    - node.type.team_member
+  module:
+    - node
+id: team_member
+label: 'team member'
+description: 'feed import for team member nodes'
+help: ''
+import_period: -1
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  fallback_hub: ''
+  request_timeout: 30
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  langcode: en
+  update_existing: 2
+  update_non_existent: _keep
+  expire: -1
+  owner_feed_author: true
+  owner_id: 0
+  authorize: true
+  skip_hash_check: false
+  values:
+    type: team_member
+custom_sources:
+  name_title_:
+    label: 'Name (Title)'
+    value: 'Name (Title)'
+    machine_name: name_title_
+  job_title:
+    label: 'Job title'
+    value: 'Job title'
+    machine_name: job_title
+  biography_body_:
+    label: 'Biography (body)'
+    value: 'Biography (body)'
+    machine_name: biography_body_
+  summary:
+    label: Summary
+    value: Summary
+    machine_name: summary
+  status:
+    label: Status
+    value: Status
+    machine_name: status
+  name_title_csv:
+    label: 'Name (Title)'
+    value: 'Name (Title)'
+    machine_name: name_title_csv
+  job_title_csv:
+    label: 'Job title'
+    value: 'Job title'
+    machine_name: job_title_csv
+  biography_body_csv:
+    label: 'Biography (body)'
+    value: 'Biography (body)'
+    machine_name: biography_body_csv
+  summary_csv:
+    label: Summary
+    value: Summary
+    machine_name: summary_csv
+  status_csv:
+    label: status
+    value: status
+    machine_name: status_csv
+  contact_link:
+    label: 'contact link'
+    value: 'contact link'
+    machine_name: contact_link
+  contact_link_title:
+    label: 'contact link title'
+    value: 'contact link title'
+    machine_name: contact_link_title
+  email:
+    label: Email
+    value: Email
+    machine_name: email
+  phone:
+    label: Phone
+    value: Phone
+    machine_name: phone
+  headshot_image_url:
+    label: 'Headshot Image Url'
+    value: 'Headshot Image Url'
+    machine_name: headshot_image_url
+  headshot_image_alt_text:
+    label: 'Headshot Image Alt Text'
+    value: 'Headshot Image Alt Text'
+    machine_name: headshot_image_alt_text
+  headshot_image_title:
+    label: 'Headshot Image Title'
+    value: 'Headshot Image Title'
+    machine_name: headshot_image_title
+mappings:
+  -
+    target: title
+    map:
+      value: name_title_csv
+    unique: {  }
+    settings:
+      language: null
+  -
+    target: field_team_member_title
+    map:
+      value: job_title_csv
+    settings:
+      format: plain_text
+      language: null
+  -
+    target: body
+    map:
+      value: biography_body_csv
+      summary: summary_csv
+    settings:
+      format: plain_text
+      language: null
+  -
+    target: status
+    map:
+      value: status_csv
+    settings:
+      language: null
+  -
+    target: field_team_member_contact
+    map:
+      uri: contact_link
+      title: contact_link_title
+    settings:
+      language: null
+  -
+    target: field_team_member_email
+    map:
+      value: email
+    unique: {  }
+    settings:
+      language: null
+      defuse: false
+  -
+    target: field_team_member_phone
+    map:
+      value: phone
+    settings:
+      language: null
+  -
+    target: field_team_member_headshot
+    map:
+      target_id: headshot_image_url
+      alt: headshot_image_alt_text
+      title: headshot_image_title
+    settings:
+      language: ''
+      reference_by: filename
+      autocreate: '1'
+      existing: '0'

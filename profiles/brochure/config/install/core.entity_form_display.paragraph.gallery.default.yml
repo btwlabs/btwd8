@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.gallery.feeds_item
     - field.field.paragraph.gallery.field_gallery_body
     - field.field.paragraph.gallery.field_gallery_extra_classes
     - field.field.paragraph.gallery.field_gallery_items
@@ -50,4 +51,5 @@ content:
     region: content
 hidden:
   created: true
+  feeds_item: true
   status: true

@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.text.feeds_item
     - field.field.paragraph.text.field_text_body
     - paragraphs.paragraphs_type.text
   module:
@@ -21,4 +22,5 @@ content:
     region: content
 hidden:
   created: true
+  feeds_item: true
   status: true

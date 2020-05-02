@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.quote.feeds_item
     - field.field.paragraph.quote.field_quote_author_name
     - field.field.paragraph.quote.field_quote_author_title
     - field.field.paragraph.quote.field_quote_quote_text
@@ -159,4 +160,5 @@ content:
     third_party_settings: {  }
     type: text_default
     region: ds_content
-hidden: {  }
+hidden:
+  feeds_item: true

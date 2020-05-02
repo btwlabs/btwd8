@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - feeds.feed_type.story_blocks
+    - field.storage.feeds_feed.field_paragraph_field_name
+id: feeds_feed.story_blocks.field_paragraph_field_name
+field_name: field_paragraph_field_name
+entity_type: feeds_feed
+bundle: story_blocks
+label: 'Paragraph Field Machine Name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

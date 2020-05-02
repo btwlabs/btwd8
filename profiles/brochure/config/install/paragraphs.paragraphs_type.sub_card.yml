@@ -4,5 +4,6 @@ dependencies: {  }
 id: sub_card
 label: 'Sub Card'
 icon_uuid: null
+icon_default: null
 description: 'Sub Paragraph inside the main card paragraph'
 behavior_plugins: {  }

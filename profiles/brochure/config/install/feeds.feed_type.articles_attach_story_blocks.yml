@@ -1,0 +1,81 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.article.field_article_paragraphs
+    - node.type.article
+  module:
+    - feeds_tamper
+    - node
+    - paragraphs
+third_party_settings:
+  feeds_tamper:
+    tampers:
+      484e09bd-3bc8-42c1-b950-4ca6b9796e72:
+        entity_type: paragraph
+        bundle: story_block
+        field: field_title
+        plugin: entity_finder
+        source: field_title
+        weight: -9
+        label: 'Entity Finder'
+        uuid: 484e09bd-3bc8-42c1-b950-4ca6b9796e72
+id: articles_attach_story_blocks
+label: '(Articles) Attach Story Block Paragraphs'
+description: 'Attaches story block type paragraphs to a node'
+help: 'Article node and story block paragraph (field_title) must be exact.'
+import_period: -1
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  fallback_hub: ''
+  request_timeout: 30
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  langcode: en
+  update_existing: 2
+  update_non_existent: _keep
+  expire: -1
+  owner_feed_author: true
+  owner_id: 0
+  authorize: true
+  skip_hash_check: false
+  values:
+    type: article
+custom_sources:
+  title:
+    label: title
+    value: title
+    machine_name: title
+  story_block_title:
+    label: 'story block title'
+    value: 'story block title'
+    machine_name: story_block_title
+  field_title:
+    label: field_title
+    value: field_title
+    machine_name: field_title
+mappings:
+  -
+    target: title
+    map:
+      value: title
+    unique:
+      value: '1'
+    settings:
+      language: null
+  -
+    target: field_article_paragraphs
+    map:
+      value: field_title
+    settings:
+      paragraphs_type: story_block
+      paragraph_field: field_title
+      language: ''
+      format: plain_text

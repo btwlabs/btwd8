@@ -1,0 +1,133 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.article.body
+    - field.field.node.article.field_article_category
+    - field.field.node.article.field_article_hero_image
+    - field.field.node.article.field_article_subtitle
+    - field.field.node.article.field_image
+    - node.type.article
+  module:
+    - feeds_tamper
+    - node
+third_party_settings:
+  feeds_tamper:
+    tampers: {  }
+id: articles
+label: 'Articles Import'
+description: 'Imports articles fields only (no paragraphs)'
+help: ''
+import_period: -1
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  fallback_hub: ''
+  request_timeout: 30
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  langcode: en
+  update_existing: 2
+  update_non_existent: _delete
+  expire: -1
+  owner_feed_author: true
+  owner_id: 0
+  authorize: true
+  skip_hash_check: false
+  values:
+    type: article
+custom_sources:
+  title:
+    label: title
+    value: title
+    machine_name: title
+  hero_image_guid:
+    label: hero_image_guid
+    value: hero_image_guid
+    machine_name: hero_image_guid
+  article_body_summary:
+    label: article_body_summary
+    value: article_body_summary
+    machine_name: article_body_summary
+  body:
+    label: article_body
+    value: article_body
+    machine_name: body
+  article_image_url:
+    label: article_image_url
+    value: article_image_url
+    machine_name: article_image_url
+  article_image_alt_text:
+    label: article_image_alt_text
+    value: article_image_alt_text
+    machine_name: article_image_alt_text
+  article_image_title:
+    label: article_image_title
+    value: article_image_title
+    machine_name: article_image_title
+  article_subtitle:
+    label: article_subtitle
+    value: article_subtitle
+    machine_name: article_subtitle
+  article_category:
+    label: article_category
+    value: article_category
+    machine_name: article_category
+mappings:
+  -
+    target: title
+    map:
+      value: title
+    unique:
+      value: '1'
+    settings:
+      language: null
+  -
+    target: field_article_hero_image
+    map:
+      target_id: hero_image_guid
+    settings:
+      language: ''
+      reference_by: name
+      feeds_item: guid
+      autocreate: 0
+  -
+    target: body
+    map:
+      value: body
+      summary: article_body_summary
+    settings:
+      language: null
+      format: plain_text
+  -
+    target: field_image
+    map:
+      target_id: article_image_url
+      alt: article_image_alt_text
+      title: article_image_title
+    settings:
+      language: ''
+      reference_by: fid
+      autocreate: '1'
+      existing: '0'
+  -
+    target: field_article_subtitle
+    map:
+      value: article_subtitle
+    settings:
+      language: null
+      format: plain_text
+  -
+    target: field_article_category
+    map:
+      target_id: article_category
+    settings:
+      language: ''
+      reference_by: name
+      autocreate: '1'

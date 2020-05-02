@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+name: team_node
+label: 'Team Node'
+group: null
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      team_member: team_member
+    negate: 0
+    uuid: 06c3f7f1-cc0b-4cc9-b36a-2c45b5e9613f
+    context_mapping:
+      node: '@node.node_route_context:node'
+reactions:
+  body_class:
+    id: body_class
+    body_class: team-member
+    saved: false
+weight: 0

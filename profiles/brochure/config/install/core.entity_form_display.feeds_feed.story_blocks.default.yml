@@ -1,0 +1,53 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - feeds.feed_type.story_blocks
+    - field.field.feeds_feed.story_blocks.field_paragraph_field_name
+    - field.field.feeds_feed.story_blocks.field_parent_entity_type
+id: feeds_feed.story_blocks.default
+targetEntityType: feeds_feed
+bundle: story_blocks
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_paragraph_field_name:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_parent_entity_type:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    region: content
+    third_party_settings: {  }
+hidden: {  }

@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.image.feeds_item
     - field.field.paragraph.image.field_image_image_file
     - field.field.paragraph.image.field_image_orientation
     - image.style.thumbnail
@@ -29,4 +30,5 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  feeds_item: true
   status: true

@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.cards.feeds_item
     - field.field.paragraph.cards.field_cards_body
     - field.field.paragraph.cards.field_cards_card_grid
     - field.field.paragraph.cards.field_cards_extra_classes
@@ -180,4 +181,5 @@ content:
             fi-def-at: false
     type: text_default
     region: ds_content
-hidden: {  }
+hidden:
+  feeds_item: true

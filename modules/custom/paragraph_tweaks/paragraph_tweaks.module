@@ -5,7 +5,11 @@
  * Contains paragraph_tweaks.module.
  */
 
+use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
+use Drupal\Component\Plugin\Exception\PluginNotFoundException;
+use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\paragraphs\Entity\Paragraph as Paragraph;
 
 /**
  * Implements hook_help().
@@ -64,5 +68,31 @@ function paragraph_tweaks_ds_pre_render_alter(array &$layout_render_array, array
         $vars['attributes']['id'] = 'paragraph-id--' . \Drupal\Component\Utility\Html::cleanCssIdentifier(strtolower($first->getValue()['value']));;
       }
     }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for 'paragraph'.
+ * @param Paragraph $paragraph
+ * @throws InvalidPluginDefinitionException
+ * @throws PluginNotFoundException
+ * @throws EntityStorageException
+ */
+function paragraph_tweaks_paragraph_insert(Paragraph $paragraph) {
+  $parent_type = $paragraph->parent_type->value;
+  $parent_field_name = $paragraph->parent_field_name->value;
+  $parent_id = $paragraph->parent_id->value;
+  $entity = \Drupal::entityTypeManager()->getStorage($parent_type)->load($parent_id);
+  if ($entity) {
+    // Check if product already has a reference to this paragraph.
+    foreach ($entity->{$parent_field_name} as $item) {
+      if ($item->target_id == $paragraph->id()) {
+        // Paragraph found. Abort.
+        return;
+      }
+    }
+
+    $entity->{$parent_field_name}[] = $paragraph;
+    $entity->save();
   }
 }

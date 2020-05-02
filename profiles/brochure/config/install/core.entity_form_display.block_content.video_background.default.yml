@@ -8,9 +8,8 @@ dependencies:
     - field.field.block_content.video_background.field_video
     - image.style.thumbnail
   module:
-    - entity_browser_entity_form
     - image
-    - inline_entity_form
+    - media_library
     - text
 id: block_content.video_background.default
 targetEntityType: block_content
@@ -24,7 +23,6 @@ content:
       rows: 9
       summary_rows: 3
       placeholder: ''
-      show_summary: false
     third_party_settings: {  }
     region: content
   field_image:
@@ -37,22 +35,9 @@ content:
     region: content
   field_video:
     weight: 27
-    settings:
-      form_mode: default
-      label_singular: ''
-      label_plural: ''
-      allow_new: true
-      allow_existing: true
-      match_operator: CONTAINS
-      revision: false
-      override_labels: false
-      collapsible: false
-      collapsed: false
-      allow_duplicate: false
-    third_party_settings:
-      entity_browser_entity_form:
-        entity_browser_id: _none
-    type: inline_entity_form_complex
+    settings: {  }
+    third_party_settings: {  }
+    type: media_library_widget
     region: content
   info:
     type: string_textfield

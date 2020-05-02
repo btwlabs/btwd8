@@ -1,0 +1,11 @@
+id: our_team_view
+label: 'Our Team View'
+ui_limit: 'team_member|*'
+properties:
+  block: 'views_block:team-block_1'
+  use_block_title: true
+  add_block_wrappers: true
+type: block
+type_label: 'Block field'
+entities:
+  node: node

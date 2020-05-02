@@ -1,0 +1,211 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.team_member.body
+    - field.field.node.team_member.feeds_item
+    - field.field.node.team_member.field_team_member_contact
+    - field.field.node.team_member.field_team_member_email
+    - field.field.node.team_member.field_team_member_headshot
+    - field.field.node.team_member.field_team_member_phone
+    - field.field.node.team_member.field_team_member_title
+    - node.type.team_member
+  module:
+    - ds
+    - field_group
+    - image
+    - link
+    - telephone
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          ds_content: div
+          ds_hidden: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          ds_content: {  }
+          ds_hidden: {  }
+    regions:
+      ds_content:
+        - group_top
+        - 'dynamic_block_field:node-our_team_view'
+        - group_right
+        - group_bottom
+        - field_team_member_headshot
+        - group_left
+        - node_title
+        - field_team_member_title
+        - body
+        - field_team_member_email
+        - field_team_member_phone
+        - field_team_member_contact
+    fields:
+      'dynamic_block_field:node-our_team_view':
+        plugin_id: 'dynamic_block_field:node-our_team_view'
+        weight: 0
+        label: hidden
+        formatter: default
+      node_title:
+        plugin_id: node_title
+        weight: 18
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h1
+          class: ''
+          link: false
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_group:
+    group_top:
+      children:
+        - group_left
+      parent_name: ''
+      weight: 0
+      format_type: html_element
+      region: ds_content
+      format_settings:
+        id: ''
+        classes: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Top
+    group_left:
+      children:
+        - field_team_member_headshot
+      parent_name: group_top
+      weight: 4
+      format_type: html_element
+      region: ds_content
+      format_settings:
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+        id: ''
+        classes: group-left
+      label: Left
+    group_right:
+      children:
+        - node_title
+        - field_team_member_title
+        - body
+        - field_team_member_email
+        - field_team_member_phone
+        - field_team_member_contact
+      parent_name: ''
+      weight: 1
+      format_type: html_element
+      region: ds_content
+      format_settings:
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+        id: ''
+        classes: group-right
+      label: Right
+    group_bottom:
+      children:
+        - 'dynamic_block_field:node-our_team_view'
+      parent_name: ''
+      weight: 2
+      format_type: html_element
+      region: ds_content
+      format_settings:
+        id: ''
+        classes: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Bottom
+id: node.team_member.default
+targetEntityType: node
+bundle: team_member
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 20
+    settings: {  }
+    third_party_settings: {  }
+    region: ds_content
+  field_team_member_contact:
+    weight: 23
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: ds_content
+  field_team_member_email:
+    weight: 21
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: email_mailto
+    region: ds_content
+  field_team_member_headshot:
+    weight: 3
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: ds_content
+  field_team_member_phone:
+    weight: 22
+    label: hidden
+    settings:
+      title: ''
+    third_party_settings: {  }
+    type: telephone_link
+    region: ds_content
+  field_team_member_title:
+    weight: 19
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: ds_content
+hidden:
+  feeds_item: true
+  links: true

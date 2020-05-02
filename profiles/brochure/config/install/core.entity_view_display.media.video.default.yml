@@ -7,6 +7,30 @@ dependencies:
   module:
     - ds
     - file
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          ds_content: div
+          ds_hidden: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          ds_content: {  }
+          ds_hidden: {  }
+    regions:
+      ds_content:
+        - field_media_video_file
+      ds_hidden:
+        - name
 id: media.video.default
 targetEntityType: media
 bundle: video
@@ -15,7 +39,7 @@ content:
   field_media_video_file:
     type: file_video
     weight: 0
-    region: content
+    region: ds_content
     label: hidden
     settings:
       controls: true
@@ -33,8 +57,15 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+  name:
+    type: string
+    weight: 1
+    region: ds_hidden
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
 hidden:
   created: true
-  name: true
   thumbnail: true
   uid: true

@@ -1,0 +1,208 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.story_block.field_story_block_classes
+    - field.field.paragraph.story_block.field_story_block_extra_image
+    - field.field.paragraph.story_block.field_story_block_image_overlay_
+    - field.field.paragraph.story_block.field_story_block_images
+    - field.field.paragraph.story_block.field_story_block_link
+    - field.field.paragraph.story_block.field_story_block_text
+    - field.field.paragraph.story_block.field_story_block_video
+    - field.field.paragraph.story_block.field_title
+    - paragraphs.paragraphs_type.story_block
+  module:
+    - feeds_tamper
+    - paragraphs
+    - video_embed_field
+third_party_settings:
+  feeds_tamper:
+    tampers:
+      e98fe7e2-240a-4237-81d5-3503e3a2046f:
+        entity_type: node
+        bundle: article
+        field: title
+        plugin: entity_finder
+        source: node_title_unique_
+        weight: 0
+        label: 'Entity Finder'
+        uuid: e98fe7e2-240a-4237-81d5-3503e3a2046f
+id: article_paragraphs
+label: 'Articles Paragraph Import'
+description: 'Imports Paragraphs'
+help: 'Import paragraphs for article nodes only indexed by the article title. Title must be exact.'
+import_period: -1
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  fallback_hub: ''
+  request_timeout: 30
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:paragraph'
+processor_configuration:
+  langcode: en
+  update_existing: 2
+  update_non_existent: _keep
+  expire: -1
+  owner_feed_author: true
+  owner_id: 0
+  authorize: false
+  skip_hash_check: false
+  values:
+    type: story_block
+custom_sources:
+  parent_entity_type:
+    label: 'Parent Entity Type'
+    value: 'Parent Entity Type'
+    machine_name: parent_entity_type
+  paragraph_field_name:
+    label: 'Paragraph Field Name'
+    value: 'Paragraph Field Name'
+    machine_name: paragraph_field_name
+  field_story_block_text:
+    label: field_story_block_text
+    value: field_story_block_text
+    machine_name: field_story_block_text
+  field_title:
+    label: field_title
+    value: field_title
+    machine_name: field_title
+  field_story_block_images_url:
+    label: field_story_block_images_url
+    value: field_story_block_images_url
+    machine_name: field_story_block_images_url
+  field_story_block_images_alt:
+    label: field_story_block_images_alt_text
+    value: field_story_block_images_alt_text
+    machine_name: field_story_block_images_alt
+  field_story_block_images_title:
+    label: field_story_block_images_title
+    value: field_story_block_images_title
+    machine_name: field_story_block_images_title
+  field_story_block_extra_image_url:
+    label: field_story_block_extra_image_url
+    value: field_story_block_extra_image_url
+    machine_name: field_story_block_extra_image_url
+  field_story_block_extra_image_alt_text:
+    label: field_story_block_extra_image_alt_text
+    value: field_story_block_extra_image_alt_text
+    machine_name: field_story_block_extra_image_alt_text
+  field_story_block_extra_image_title:
+    label: field_story_block_extra_image_title
+    value: field_story_block_extra_image_title
+    machine_name: field_story_block_extra_image_title
+  field_story_block_classes:
+    label: field_story_block_classes
+    value: field_story_block_classes
+    machine_name: field_story_block_classes
+  field_story_block_image_overlay_classes:
+    label: field_story_block_image_overlay_classes
+    value: field_story_block_image_overlay_classes
+    machine_name: field_story_block_image_overlay_classes
+  field_story_block_link_uri:
+    label: field_story_block_link_uri
+    value: field_story_block_link_uri
+    machine_name: field_story_block_link_uri
+  field_story_block_link_text:
+    label: field_story_block_link_text
+    value: field_story_block_link_text
+    machine_name: field_story_block_link_text
+  field_story_block_video:
+    label: field_story_block_video
+    value: field_story_block_video
+    machine_name: field_story_block_video
+  node_title_unique_:
+    label: 'node title (unique)'
+    value: 'node title (unique)'
+    machine_name: node_title_unique_
+  guid:
+    label: GUID
+    value: GUID
+    machine_name: guid
+mappings:
+  -
+    target: parent_type
+    map:
+      value: 'parent:field_parent_entity_type'
+    unique: {  }
+    settings: {  }
+  -
+    target: parent_field_name
+    map:
+      value: 'parent:field_paragraph_field_name'
+    unique: {  }
+    settings: {  }
+  -
+    target: parent_id
+    map:
+      value: node_title_unique_
+    unique: {  }
+    settings: {  }
+  -
+    target: field_title
+    map:
+      value: field_title
+    settings:
+      language: ''
+      format: no_editor
+  -
+    target: field_story_block_text
+    map:
+      value: field_story_block_text
+    settings:
+      language: ''
+      format: no_editor
+  -
+    target: field_story_block_images
+    map:
+      target_id: field_story_block_images_url
+      alt: field_story_block_images_alt
+      title: field_story_block_images_title
+    settings:
+      language: ''
+      reference_by: fid
+      existing: '0'
+      autocreate: 0
+  -
+    target: field_story_block_extra_image
+    map:
+      target_id: field_story_block_extra_image_url
+      alt: field_story_block_extra_image_alt_text
+      title: field_story_block_extra_image_title
+    settings:
+      language: ''
+      reference_by: fid
+      existing: '0'
+      autocreate: 0
+  -
+    target: field_story_block_classes
+    map:
+      value: field_story_block_classes
+    unique: {  }
+    settings:
+      language: null
+  -
+    target: field_story_block_image_overlay_
+    map:
+      value: field_story_block_image_overlay_classes
+    settings:
+      language: null
+  -
+    target: field_story_block_link
+    map:
+      uri: field_story_block_link_uri
+      title: field_story_block_link_text
+    settings:
+      language: null
+  -
+    target: field_story_block_video
+    map:
+      value: field_story_block_video
+    unique: {  }
+    settings:
+      language: null

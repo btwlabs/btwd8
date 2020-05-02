@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.sub_card.feeds_item
     - field.field.paragraph.sub_card.field_sub_card_body
     - field.field.paragraph.sub_card.field_sub_card_extra_classes
     - field.field.paragraph.sub_card.field_sub_card_image
@@ -67,4 +68,5 @@ content:
     region: content
 hidden:
   created: true
+  feeds_item: true
   status: true

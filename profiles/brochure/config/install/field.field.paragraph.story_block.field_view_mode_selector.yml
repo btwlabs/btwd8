@@ -16,7 +16,7 @@ required: false
 translatable: false
 default_value:
   -
-    value: default
+    value: center_text_full_bg_image
 default_value_callback: ''
 settings:
   view_modes:

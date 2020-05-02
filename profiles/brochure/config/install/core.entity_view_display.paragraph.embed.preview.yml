@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.embed.feeds_item
     - field.field.paragraph.embed.field_embed_code
     - paragraphs.paragraphs_type.embed
   module:
@@ -19,4 +20,5 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
-hidden: {  }
+hidden:
+  feeds_item: true

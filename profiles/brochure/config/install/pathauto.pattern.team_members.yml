@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: team_members
+label: 'team member'
+type: 'canonical_entities:node'
+pattern: 'our-story/[node:title]'
+selection_criteria:
+  de810fff-2c07-428e-b563-61d799eff439:
+    id: node_type
+    bundles:
+      team_member: team_member
+    negate: false
+    context_mapping:
+      node: node
+    uuid: de810fff-2c07-428e-b563-61d799eff439
+selection_logic: and
+weight: -5
+relationships: {  }

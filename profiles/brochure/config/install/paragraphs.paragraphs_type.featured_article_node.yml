@@ -4,5 +4,6 @@ dependencies: {  }
 id: featured_article_node
 label: 'Featured Article'
 icon_uuid: null
+icon_default: null
 description: ''
 behavior_plugins: {  }

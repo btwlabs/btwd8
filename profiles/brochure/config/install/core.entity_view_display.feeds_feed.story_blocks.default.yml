@@ -1,0 +1,59 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - feeds.feed_type.story_blocks
+    - field.field.feeds_feed.story_blocks.field_paragraph_field_name
+    - field.field.feeds_feed.story_blocks.field_parent_entity_type
+  module:
+    - feeds
+    - user
+id: feeds_feed.story_blocks.default
+targetEntityType: feeds_feed
+bundle: story_blocks
+mode: default
+content:
+  field_paragraph_field_name:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_parent_entity_type:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  imported:
+    label: inline
+    type: timestamp_ago
+    weight: 1
+    region: content
+    settings:
+      future_format: '@interval hence'
+      past_format: '@interval ago'
+      granularity: 2
+    third_party_settings: {  }
+  next:
+    label: inline
+    type: timestamp
+    weight: 1
+    region: content
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+  source:
+    label: inline
+    type: feeds_uri_link
+    weight: -3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

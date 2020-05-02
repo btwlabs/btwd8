@@ -1,0 +1,138 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.cards.field_cards_body
+    - field.field.paragraph.cards.field_cards_card_grid
+    - field.field.paragraph.cards.field_cards_extra_classes
+    - field.field.paragraph.cards.field_cards_title
+    - paragraphs.paragraphs_type.cards
+  module:
+    - feeds_tamper
+    - paragraphs
+third_party_settings:
+  feeds_tamper:
+    tampers:
+      8771a7ed-807d-49be-9d6c-ba9e0c4a7ed:
+        entity_type: node
+        bundle: story_page
+        field: title
+        plugin: entity_finder
+        source: node_title_unique_
+        weight: 0
+        label: 'Entity Finder'
+        uuid: 8770a7ed-806d-49be-9d6c-ba9e0c44a7ed
+      ce066d99-87dc-45c3-9278-e089ui4b27fd:
+        default_value: field_sb_page_story_blocks
+        only_if_empty: false
+        plugin: default_value
+        source: 'parent:title'
+        weight: 0
+        label: 'Set value or default value'
+        uuid: ce086d99-87dc-4543-92f8-e089344b27fd
+      153792bc-06c9-4df3-8e57-98d5e0116yf2:
+        default_value: node
+        only_if_empty: false
+        plugin: default_value
+        source: 'parent:uuid'
+        weight: 0
+        label: 'Set value or default value'
+        uuid: 155792bc-06c6-4d43-8657-98d5e011bd72
+id: story_page_cards_paragraphs
+label: 'Story Page Cards Paragraphs'
+description: ''
+help: ''
+import_period: -1
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  fallback_hub: ''
+  request_timeout: 30
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:paragraph'
+processor_configuration:
+  langcode: en
+  update_existing: 2
+  update_non_existent: _delete
+  expire: -1
+  owner_feed_author: true
+  owner_id: 0
+  authorize: false
+  skip_hash_check: false
+  values:
+    type: cards
+custom_sources:
+  node_title_unique_:
+    label: 'node title (unique)'
+    value: 'node title (unique)'
+    machine_name: node_title_unique_
+  field_cards_title:
+    label: field_cards_title
+    value: field_cards_title
+    machine_name: field_cards_title
+  field_cards_body:
+    label: field_cards_body
+    value: field_cards_body
+    machine_name: field_cards_body
+  field_cards_extra_classes:
+    label: field_cards_extra_classes
+    value: field_cards_extra_classes
+    machine_name: field_cards_extra_classes
+  field_cards_card_grid:
+    label: field_cards_card_grid
+    value: field_cards_card_grid
+    machine_name: field_cards_card_grid
+mappings:
+  -
+    target: parent_id
+    map:
+      value: node_title_unique_
+    unique: {  }
+    settings: {  }
+  -
+    target: parent_field_name
+    map:
+      value: 'parent:title'
+    unique: {  }
+    settings: {  }
+  -
+    target: parent_type
+    map:
+      value: 'parent:uuid'
+    unique: {  }
+    settings: {  }
+  -
+    target: field_cards_title
+    map:
+      value: field_cards_title
+    settings:
+      language: null
+      format: plain_text
+  -
+    target: field_cards_body
+    map:
+      value: field_cards_body
+    settings:
+      language: null
+      format: plain_text
+  -
+    target: field_cards_extra_classes
+    map:
+      value: field_cards_extra_classes
+    unique: {  }
+    settings:
+      language: null
+  -
+    target: field_cards_card_grid
+    map:
+      value: field_cards_card_grid
+    settings:
+      language: null
+      format: plain_text
+      paragraphs_type: null
+      paragraph_field: null

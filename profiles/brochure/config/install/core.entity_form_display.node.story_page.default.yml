@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.story_page.body
+    - field.field.node.story_page.feeds_item
     - field.field.node.story_page.field_sb_page_hero_image
     - field.field.node.story_page.field_sb_page_hero_link
     - field.field.node.story_page.field_sb_page_story_blocks
@@ -12,6 +13,7 @@ dependencies:
     - image
     - link
     - paragraphs
+    - paragraphs_features
     - path
     - text
 id: node.story_page.default
@@ -26,6 +28,7 @@ content:
       rows: 9
       summary_rows: 3
       placeholder: ''
+      show_summary: false
     third_party_settings: {  }
     region: content
   created:
@@ -51,16 +54,28 @@ content:
     type: link_default
     region: content
   field_sb_page_story_blocks:
-    type: entity_reference_paragraphs
+    type: paragraphs
     weight: 4
     settings:
       title: 'Story Block'
       title_plural: 'Story Blocks'
-      edit_mode: preview
-      add_mode: dropdown
+      edit_mode: closed
+      closed_mode: preview
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: modal
       form_display_mode: default
-      default_paragraph_type: story_block
-    third_party_settings: {  }
+      default_paragraph_type: _none
+      features:
+        duplicate: duplicate
+        collapse_edit_all: collapse_edit_all
+        add_above: '0'
+    third_party_settings:
+      paragraphs_features:
+        delete_confirmation: true
+        add_in_between: true
+        show_drag_and_drop: true
+        split_text: false
     region: content
   path:
     type: path
@@ -104,6 +119,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     region: content
     third_party_settings: {  }
   url_redirects:
@@ -111,4 +127,5 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  feeds_item: true

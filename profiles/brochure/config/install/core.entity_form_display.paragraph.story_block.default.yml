@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.story_block.feeds_item
     - field.field.paragraph.story_block.field_story_block_classes
     - field.field.paragraph.story_block.field_story_block_extra_image
     - field.field.paragraph.story_block.field_story_block_image_overlay_
@@ -114,5 +115,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  feeds_item: true

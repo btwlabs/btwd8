@@ -3,7 +3,9 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.image.feeds_item
     - field.field.paragraph.image.field_image_image_file
+    - field.field.paragraph.image.field_image_orientation
     - image.style.thumbnail
     - paragraphs.paragraphs_type.image
   module:
@@ -30,4 +32,6 @@ content:
             classes: {  }
     type: image
     region: content
-hidden: {  }
+hidden:
+  feeds_item: true
+  field_image_orientation: true
