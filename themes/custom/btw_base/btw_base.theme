@@ -19,6 +19,11 @@ function btw_base_preprocess_html(&$variables) {
   $variables['attributes']['class'][] = 'page-' .  $variables['path_info']['args'];
 
   if ($node = \Drupal::request()->attributes->get('node')) {
-    $variables['attributes']['class'][] = 'page-node-' . $node->id();
+    $id = $node;
+    if (is_callable([$node, 'id'])) {
+      $id = $node->id();
+    }
+    $variables['attributes']['class'][] = 'page-node-' . $id;
   }
 }
+
