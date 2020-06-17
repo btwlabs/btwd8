@@ -129,7 +129,7 @@
         "drupal/slick_media": "^2.0@alpha",
         "drupal/slick_views": "^2.0",
         "drupal/social_media_links": "^2.6",
-        "drupal/tamper": "^1.0",
+        "drupal/tamper": "1.x-dev",
         "drupal/thunder_admin": "^3.3",
         "drupal/token": "^1.5",
         "drupal/twig_tweak": "^2.1",
@@ -225,7 +225,7 @@
                 "Add token support to css classes": "https://www.drupal.org/files/issues/2019-05-28/ds-tokens_for_layout_classes-2863420-8.patch"
             },
             "drupal/tamper": {
-                "D7 EFQ Finder to D8 Entity finder" : "https://www.drupal.org/files/issues/2019-08-08/2976175-16.patch"
+                "D7 EFQ Finder to D8 Entity finder" : "https://www.drupal.org/files/issues/2020-06-17/tamper-add_d7_efq_finder_to_d8_entity_finder-2976175-29.patch"
             },
             "drupal/video_embed_field": {
                 "Mapping for Feeds module missing": "https://www.drupal.org/files/issues/2019-09-02/3056385-feeds-mapping-missing-5.patch"
