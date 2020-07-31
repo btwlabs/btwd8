@@ -73,26 +73,40 @@ function paragraph_tweaks_ds_pre_render_alter(array &$layout_render_array, array
 
 /**
  * Implements hook_ENTITY_TYPE_insert() for 'paragraph'.
+ * This is for feeds importer to attach the paragraphs to the parent field.
  * @param Paragraph $paragraph
  * @throws InvalidPluginDefinitionException
  * @throws PluginNotFoundException
  * @throws EntityStorageException
  */
 function paragraph_tweaks_paragraph_insert(Paragraph $paragraph) {
-  $parent_type = $paragraph->parent_type->value;
-  $parent_field_name = $paragraph->parent_field_name->value;
-  $parent_id = $paragraph->parent_id->value;
-  $entity = \Drupal::entityTypeManager()->getStorage($parent_type)->load($parent_id);
-  if ($entity) {
+  if (empty($type_stub = $paragraph->get('parent_type')->getValue())) {
+    return;
+  }
+  if (empty($field_name_stub = $paragraph->get('parent_field_name')->getValue())) {
+    return;
+  }
+  if (empty($parent_id_stub = $paragraph->get('parent_id')->getValue())) {
+    return;
+  }
+  $parent_type = $type_stub[0]['value'];
+  $parent_field_name = $field_name_stub[0]['value'];
+  $parent_id = $parent_id_stub[0]['value'];
+
+  $parent_entity = \Drupal::entityTypeManager()->getStorage($parent_type)->load($parent_id);
+  if ($parent_entity) {
     // Check if product already has a reference to this paragraph.
-    foreach ($entity->{$parent_field_name} as $item) {
-      if ($item->target_id == $paragraph->id()) {
-        // Paragraph found. Abort.
-        return;
+    foreach ($parent_entity->get($parent_field_name)->getValue() as $item) {
+      if (!empty($this_sub_item = Paragraph::load($item['target_id']))) {
+        if ($this_sub_item->id() == $paragraph->id()) {
+          // Paragraph found. Abort.
+          return;
+        }
       }
     }
 
-    $entity->{$parent_field_name}[] = $paragraph;
-    $entity->save();
+    //$parent_entity->set($parent_field_name, $field_items);
+    $parent_entity->get($parent_field_name)->appendItem($paragraph);
+    $parent_entity->save();
   }
 }
