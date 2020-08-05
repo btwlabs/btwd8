@@ -52,7 +52,55 @@ class ShipstationXmlNormalizer extends NormalizerBase {
 
       /** @var $shipping_profile \Drupal\profile\Entity\Profile */
       // If there is no shipping profile then the order had no shipping.
-        if (empty($shipping_profile = $first_shipment->getShippingProfile())) {
+      if (empty($shipping_profile = $first_shipment->getShippingProfile())) {
+        continue;
+      }
+
+      // Get a list of the order items.
+      $items = (function($items, $order) {
+        $itemList = [];
+        // Go through the Items.
+        foreach($items as $key => $item) {
+          /** @var $item \Drupal\commerce_order\Entity\OrderItem */
+          // If there is no purchased entity then we skip this item.
+          if (!($purchased_entity = $item->getPurchasedEntity())) {
+            \Drupal::logger('shipstation_error')->notice("Item index=$key had no purchased entity attached in order #{$order->id()} ");
+            continue;
+          }
+          $listItem = [
+            'SKU' => $item->getPurchasedEntity()->get('sku')->first()->getValue()['value'],
+            'Name' => $item->getTitle(),
+            'Quantity' => number_format($item->getQuantity(), 0),
+            'UnitPrice' => number_format($item->getUnitPrice()->getNumber(), 2),
+          ];
+          if ($purchased_entity->hasField('weight')) {
+            $listItem['Weight'] = (function($unit, $number) {
+              // If for some reason the weight is in KG, need to convert to G.
+              if ($unit == 'kg') {
+                return $number * 1000;
+              }
+              return $number;
+            })($item->getPurchasedEntity()->get('weight')->first()->getValue()['unit'], $item->getPurchasedEntity()->get('weight')->first()->getValue()['number']);
+            $listItem['WeightUnits'] = (function($unit) {
+              switch ($unit) {
+                case 'g' :
+                  return 'Grams';
+                case 'lb' :
+                  return 'Pounds';
+                case 'kg' :
+                  return 'Grams';
+                case 'oz' :
+                  return 'Ounces';
+              }
+            })($item->getPurchasedEntity()->get('weight')->first()->getValue()['unit']);
+          }
+          if (is_array($listItem)) {
+            $itemList[] = $listItem;
+          }
+        }
+        return $itemList;
+      })($order->getItems(), $order);
+      if (empty($items)) {
         continue;
       }
 
@@ -60,7 +108,7 @@ class ShipstationXmlNormalizer extends NormalizerBase {
         'OrderID' => $order->id(),
         'OrderNumber' => $order->getOrderNumber(),
         'OrderDate' => date('m/d/Y H:m A', $order->getPlacedTime()),
-        'OrderStatus' => $order->getState()->getLabel()->render(),
+        'OrderStatus' => $order->getState()->getLabel(),
         'LastModified' => date('m/d/Y H:m', $order->getChangedTime()),
         'ShippingMethod' => (!empty($first_shipment->getShippingMethod())) ? $first_shipment->getShippingMethod()->getName() : 'UNKNOWN',
         'OrderTotal' => number_format($order->getTotalPrice()->getNumber(), 2),
@@ -81,44 +129,7 @@ class ShipstationXmlNormalizer extends NormalizerBase {
           ],
         ],
         'Items' => [
-          'Item' => (function($items) {
-            $itemList = [];
-            // Go through the Items.
-            foreach($items as $item) {
-              /** @var $item \Drupal\commerce_order\Entity\OrderItem */
-
-              $purchased_entity = $item->getPurchasedEntity();
-              $listItem = [
-                'SKU' => $item->getPurchasedEntity()->get('sku')->first()->getValue()['value'],
-                'Name' => $item->getTitle(),
-                'Quantity' => number_format($item->getQuantity(), 0),
-                'UnitPrice' => number_format($item->getUnitPrice()->getNumber(), 2),
-              ];
-              if ($purchased_entity->hasField('weight')) {
-                $listItem['Weight'] = (function($unit, $number) {
-                  // If for some reason the weight is in KG, need to convert to G.
-                  if ($unit == 'kg') {
-                    return $number * 1000;
-                  }
-                  return $number;
-                })($item->getPurchasedEntity()->get('weight')->first()->getValue()['unit'], $item->getPurchasedEntity()->get('weight')->first()->getValue()['number']);
-                $listItem['WeightUnits'] = (function($unit) {
-                  switch ($unit) {
-                    case 'g' :
-                      return 'Grams';
-                    case 'lb' :
-                      return 'Pounds';
-                    case 'kg' :
-                      return 'Grams';
-                    case 'oz' :
-                      return 'Ounces';
-                  }
-                })($item->getPurchasedEntity()->get('weight')->first()->getValue()['unit']);
-              }
-              $itemList[] = $listItem;
-            }
-            return $itemList;
-          })($order->getItems()),
+          'Item' => $items,
         ]
       ];
     }

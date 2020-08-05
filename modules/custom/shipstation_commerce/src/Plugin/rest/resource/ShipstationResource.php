@@ -115,7 +115,7 @@ class ShipstationResource extends ResourceBase {
   }
 
   /**
-   * Responds to GET requests.
+   * Responds to POST requests.
    *
    * @return \Drupal\rest\ResourceResponse
    *   The HTTP response object.
@@ -135,6 +135,9 @@ class ShipstationResource extends ResourceBase {
 
     $action = urldecode($this->request->get('action'));
     if ($action == 'shipnotify') {
+
+      \Drupal::logger('shipstation_post')->notice($this->request->getUri());
+
       // Load Order.
       $order = \Drupal\commerce_order\Entity\Order::load($data['OrderID']);
 
@@ -151,7 +154,6 @@ class ShipstationResource extends ResourceBase {
       }
 
       // Move Order to completed.
-      // All order items are licenses.
       // Validation -> Completed.
       $transition = $order->getState()->getWorkflow()->getTransition('validate');
       $order->getState()->applyTransition($transition);
@@ -160,7 +162,7 @@ class ShipstationResource extends ResourceBase {
       $order->getState()->applyTransition($transition);
       $order->save();
       $order->unlock();
-        return (new ResourceResponse(('Success, 200')));
+      return (new ResourceResponse(('Success, 200')));
     }
     return (new ResourceResponse('Missing required \'action\' parameter.', 402))->addCacheableDependency($build_nocache);
   }
