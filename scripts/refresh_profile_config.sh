@@ -80,5 +80,10 @@ sed "s/display_extenders://;s/  - metatag_display_extender//;/^$/d" ./config/ins
 mv temp.yml ./config/install/views.settings.yml
 rm -rf temp.yml
 
+# Checkout some files that shouldnt get overridden.
+echo "Now resetting site settngs and update settings config files."
+git checkout ./config/install/system.site.yml
+git checkout ./config/install/update.settings.yml
+
 # END
 
