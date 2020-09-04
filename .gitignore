@@ -79,3 +79,11 @@ Thumbs.db
 
 # Profile template copies
 profiles/*/*.copy.yml
+
+# Ignore vendor dir. Comment the below line to add vendor to the index.
+vendor
+
+# Ignore contrib dirs. Comment the below line to add contrib modules/themes to the index.
+modules/contrib
+themes/contrib
+core
