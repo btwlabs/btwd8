@@ -80,6 +80,7 @@ install:
  - media_library 
  - menu_block 
  - menu_link_attributes 
+ - menu_link_content 
  - menu_ui 
  - metatag 
  - metatag_facebook 
@@ -132,7 +133,6 @@ install:
  - views_field_formatter 
  - views_ui 
  - ds 
- - menu_link_content 
  - pathauto 
  - ds_extras 
  - views 
