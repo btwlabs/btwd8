@@ -167,6 +167,7 @@
     },
     "scripts": {
         "remove-git-submodules": "find . -mindepth 2 -type d -name .git | xargs rm -rf",
+        "undo-composer-changes-to-dev-services-file": "git checkout sites/development.services.yml",
         "pre-install-cmd": [
             "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
         ],
@@ -179,7 +180,8 @@
         ],
         "post-update-cmd": [
             "DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
-            "@remove-git-submodules"
+            "@remove-git-submodules",
+            "@undo-composer-changes-to-dev-services-file"
         ]
     },
     "extra": {
