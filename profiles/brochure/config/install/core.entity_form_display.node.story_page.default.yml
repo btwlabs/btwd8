@@ -4,12 +4,12 @@ dependencies:
   config:
     - field.field.node.story_page.body
     - field.field.node.story_page.feeds_item
-    - field.field.node.story_page.field_sb_hero_title
+    - field.field.node.story_page.field_sb_page_hero_title
     - field.field.node.story_page.field_sb_page_hero_image
     - field.field.node.story_page.field_sb_page_hero_link
     - field.field.node.story_page.field_sb_page_story_blocks
     - field.field.node.story_page.field_sb_page_use_hero
-    - field.field.node.story_page.field_sb_use_node_title
+    - field.field.node.story_page.field_sb_page_use_node_title
     - image.style.thumbnail
     - node.type.story_page
   module:
@@ -26,8 +26,8 @@ third_party_settings:
     group_hero_section:
       children:
         - field_sb_page_use_hero
-        - field_sb_use_node_title
-        - field_sb_hero_title
+        - field_sb_page_use_node_title
+        - field_sb_page_hero_title
         - body
         - field_sb_page_hero_link
       parent_name: ''
@@ -78,7 +78,7 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_sb_hero_title:
+  field_sb_page_hero_title:
     weight: 5
     settings:
       size: 60
@@ -86,7 +86,7 @@ content:
     third_party_settings:
       conditional_fields:
         862b7ebb-6079-4893-81fa-6103231ad68c:
-          dependee: field_sb_use_node_title
+          dependee: field_sb_page_use_node_title
           settings:
             state: visible
             condition: '!checked'
@@ -183,7 +183,7 @@ content:
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
-  field_sb_use_node_title:
+  field_sb_page_use_node_title:
     weight: 4
     settings:
       display_label: true
