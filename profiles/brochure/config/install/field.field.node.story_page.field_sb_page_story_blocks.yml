@@ -41,6 +41,7 @@ settings:
       quote: quote
       text: text
       view: view
+      block: block
     target_bundles_drag_drop:
       cards:
         enabled: true
@@ -72,4 +73,7 @@ settings:
       view:
         enabled: true
         weight: 20
+      block:
+        enabled: true
+        weight: 21
 field_type: entity_reference_revisions
