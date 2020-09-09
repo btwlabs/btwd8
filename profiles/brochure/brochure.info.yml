@@ -14,6 +14,7 @@ install:
  - blazy 
  - block 
  - block_content 
+ - block_field 
  - block_type_templates 
  - breakpoint 
  - captcha 
