@@ -1,0 +1,56 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_block_pg_block_reference
+    - paragraphs.paragraphs_type.block
+  module:
+    - block_field
+id: paragraph.block.field_block_pg_block_reference
+field_name: field_block_pg_block_reference
+entity_type: paragraph
+bundle: block
+label: 'Block Reference'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  selection: blocks
+  selection_settings:
+    plugin_ids:
+      better_social_sharing_buttons_block: better_social_sharing_buttons_block
+      'entity_view:node': 'entity_view:node'
+      'entity_view:user': 'entity_view:user'
+      contact_block: contact_block
+      page_title_block: page_title_block
+      local_actions_block: local_actions_block
+      local_tasks_block: local_tasks_block
+      devel_switch_user: devel_switch_user
+      masquerade: masquerade
+      search_form_block: search_form_block
+      user_login_block: user_login_block
+      help_block: help_block
+      'system_menu_block:admin': 'system_menu_block:admin'
+      'menu_block:admin': 'menu_block:admin'
+      'menu_block:devel': 'menu_block:devel'
+      'system_menu_block:devel': 'system_menu_block:devel'
+      'system_menu_block:footer': 'system_menu_block:footer'
+      'menu_block:footer': 'menu_block:footer'
+      'system_menu_block:main': 'system_menu_block:main'
+      'menu_block:main': 'menu_block:main'
+      shortcuts: shortcuts
+      'menu_block:tools': 'menu_block:tools'
+      'system_menu_block:tools': 'system_menu_block:tools'
+      'menu_block:account': 'menu_block:account'
+      'system_menu_block:account': 'system_menu_block:account'
+      social_media_links_block: social_media_links_block
+      system_breadcrumb_block: system_breadcrumb_block
+      system_main_block: system_main_block
+      system_messages_block: system_messages_block
+      system_powered_by_block: system_powered_by_block
+      system_branding_block: system_branding_block
+      node_syndicate_block: node_syndicate_block
+      'views_block:who_s_new-block_1': 'views_block:who_s_new-block_1'
+field_type: block_field
