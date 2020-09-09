@@ -63,6 +63,7 @@
         "drupal/commerce_ups": "3.x-dev",
         "drupal/commerce_usps": "^1.0",
         "drupal/commerce_variation_cart_form": "^1.0",
+        "drupal/conditional_fields": "^1.0@alpha",
         "drupal/console": "^1.0.2",
         "drupal/contact_block": "^1.4",
         "drupal/contact_storage": "^1.0@beta",
