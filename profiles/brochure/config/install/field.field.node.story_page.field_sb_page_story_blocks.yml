@@ -5,17 +5,23 @@ dependencies:
     - field.storage.node.field_sb_page_story_blocks
     - node.type.story_page
     - paragraphs.paragraphs_type.cards
+    - paragraphs.paragraphs_type.embed
+    - paragraphs.paragraphs_type.featured_article_node
     - paragraphs.paragraphs_type.gallery
+    - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.quote
     - paragraphs.paragraphs_type.story_block
     - paragraphs.paragraphs_type.sub_card
+    - paragraphs.paragraphs_type.text
+    - paragraphs.paragraphs_type.view
   module:
     - entity_reference_revisions
 id: node.story_page.field_sb_page_story_blocks
 field_name: field_sb_page_story_blocks
 entity_type: node
 bundle: story_page
-label: 'Story Blocks'
-description: ''
+label: 'Story Paragraphs'
+description: 'Add paragraphs to tell your story.'
 required: false
 translatable: false
 default_value: {  }
@@ -29,17 +35,41 @@ settings:
       cards: cards
       gallery: gallery
       sub_card: sub_card
+      embed: embed
+      featured_article_node: featured_article_node
+      image: image
+      quote: quote
+      text: text
+      view: view
     target_bundles_drag_drop:
-      story_block:
-        enabled: true
-        weight: 2
       cards:
         enabled: true
         weight: 5
+      embed:
+        enabled: true
+        weight: 12
+      featured_article_node:
+        enabled: true
+        weight: 13
       gallery:
         enabled: true
         weight: 6
+      image:
+        enabled: true
+        weight: 15
+      quote:
+        enabled: true
+        weight: 16
+      story_block:
+        enabled: true
+        weight: 2
       sub_card:
         enabled: true
         weight: 8
+      text:
+        enabled: true
+        weight: 19
+      view:
+        enabled: true
+        weight: 20
 field_type: entity_reference_revisions

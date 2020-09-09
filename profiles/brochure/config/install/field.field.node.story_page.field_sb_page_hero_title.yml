@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sb_page_hero_title
+    - node.type.story_page
+id: node.story_page.field_sb_page_hero_title
+field_name: field_sb_page_hero_title
+entity_type: node
+bundle: story_page
+label: 'Hero Title'
+description: 'Provide the title that will appear within the hero section as the H1.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

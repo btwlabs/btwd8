@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sb_page_use_node_title
+    - node.type.story_page
+id: node.story_page.field_sb_page_use_node_title
+field_name: field_sb_page_use_node_title
+entity_type: node
+bundle: story_page
+label: 'Use Node Title?'
+description: 'If checked then the node title will be used in the hero section, if not then the hero title will be used.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

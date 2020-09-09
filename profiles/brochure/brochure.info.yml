@@ -20,6 +20,7 @@ install:
  - ckeditor 
  - color 
  - comment 
+ - conditional_fields 
  - config 
  - config_update 
  - contact 
@@ -132,6 +133,7 @@ install:
  - view_mode_selector 
  - views_field_formatter 
  - views_ui 
+ - viewsreference 
  - ds 
  - pathauto 
  - ds_extras 

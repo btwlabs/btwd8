@@ -10,8 +10,8 @@ id: node.story_page.field_sb_page_hero_image
 field_name: field_sb_page_hero_image
 entity_type: node
 bundle: story_page
-label: 'Hero Image'
-description: ''
+label: Image
+description: 'This image will be used in the hero section (if selected) and in teasers and search as desired.'
 required: false
 translatable: false
 default_value: {  }

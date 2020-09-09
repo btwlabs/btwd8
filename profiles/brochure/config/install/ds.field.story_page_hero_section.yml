@@ -1,0 +1,9 @@
+id: story_page_hero_section
+label: 'Story Page Hero Section'
+ui_limit: 'story_page|*'
+properties:
+  content: "{% if node.field_sb_page_use_hero.value == 1 %}\r\n<div id=\"hero-wrapper\" class=\"hero-wrapper\">\r\n    <div class=\"hero-text-wrapper\">\r\n        <h1 class=\"title\">\r\n            {% if node.field_sb_page_use_node_title.value == 1 %}\r\n                {{ node.field_sb_page_hero_title.value }}\r\n            {% else %}\r\n                {{ node.title.value }}\r\n            {% endif %}\r\n        </h1>\r\n          {{ node.body|view }}\r\n          {{ node.field_sb_page_hero_link|view }}\r\n    </div>\r\n</div>\r\n{% else %}\r\n<h1 class=\"title\">{{ node.title|view }}</h1>\r\n{% endif %}"
+type: twig
+type_label: 'Twig field'
+entities:
+  node: node

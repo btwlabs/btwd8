@@ -4,18 +4,42 @@ dependencies:
   config:
     - field.field.node.story_page.body
     - field.field.node.story_page.feeds_item
+    - field.field.node.story_page.field_sb_hero_title
     - field.field.node.story_page.field_sb_page_hero_image
     - field.field.node.story_page.field_sb_page_hero_link
     - field.field.node.story_page.field_sb_page_story_blocks
+    - field.field.node.story_page.field_sb_page_use_hero
+    - field.field.node.story_page.field_sb_use_node_title
     - image.style.thumbnail
     - node.type.story_page
   module:
+    - conditional_fields
+    - field_group
     - image
     - link
     - paragraphs
     - paragraphs_features
     - path
     - text
+third_party_settings:
+  field_group:
+    group_hero_section:
+      children:
+        - field_sb_page_use_hero
+        - field_sb_use_node_title
+        - field_sb_hero_title
+        - body
+        - field_sb_page_hero_link
+      parent_name: ''
+      weight: 2
+      format_type: fieldset
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Hero Section'
 id: node.story_page.default
 targetEntityType: node
 bundle: story_page
@@ -23,22 +47,80 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 1
+    weight: 6
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
       show_summary: false
-    third_party_settings: {  }
+    third_party_settings:
+      conditional_fields:
+        d7e1d445-4bfa-4098-8300-31f14c014050:
+          dependee: field_sb_page_use_hero
+          settings:
+            state: visible
+            condition: checked
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              value: 1
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: node
+          bundle: story_page
     region: content
   created:
     type: datetime_timestamp
-    weight: 6
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_sb_hero_title:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        862b7ebb-6079-4893-81fa-6103231ad68c:
+          dependee: field_sb_use_node_title
+          settings:
+            state: visible
+            condition: '!checked'
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              value: false
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: node
+          bundle: story_page
+        cbbc6c10-3b00-48fc-bda8-4aa284e5adfb:
+          dependee: field_sb_page_use_hero
+          settings:
+            state: visible
+            condition: checked
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              value: 1
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: node
+          bundle: story_page
+    type: string_textfield
+    region: content
   field_sb_page_hero_image:
-    weight: 2
+    weight: 1
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
@@ -46,19 +128,36 @@ content:
     type: image_image
     region: content
   field_sb_page_hero_link:
-    weight: 3
+    weight: 7
     settings:
       placeholder_url: ''
       placeholder_title: ''
-    third_party_settings: {  }
+    third_party_settings:
+      conditional_fields:
+        3643b61e-5eea-4ede-81fa-fdf595dd0870:
+          dependee: field_sb_page_use_hero
+          settings:
+            state: visible
+            condition: checked
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: '1'
+            value_form:
+              value: 1
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: node
+          bundle: story_page
     type: link_default
     region: content
   field_sb_page_story_blocks:
     type: paragraphs
-    weight: 4
+    weight: 8
     settings:
-      title: 'Story Block'
-      title_plural: 'Story Blocks'
+      title: 'Story Paragraph'
+      title_plural: 'Story Paragraphs'
       edit_mode: closed
       closed_mode: preview
       autocollapse: all
@@ -67,9 +166,9 @@ content:
       form_display_mode: default
       default_paragraph_type: _none
       features:
-        duplicate: duplicate
-        collapse_edit_all: collapse_edit_all
         add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
     third_party_settings:
       paragraphs_features:
         delete_confirmation: true
@@ -77,9 +176,40 @@ content:
         show_drag_and_drop: true
         split_text: false
     region: content
+  field_sb_page_use_hero:
+    weight: 3
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_sb_use_node_title:
+    weight: 4
+    settings:
+      display_label: true
+    third_party_settings:
+      conditional_fields:
+        c17a7457-4a67-4414-aee6-05dff1b65353:
+          dependee: field_sb_page_use_hero
+          settings:
+            state: visible
+            condition: checked
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              value: 1
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: node
+          bundle: story_page
+    type: boolean_checkbox
+    region: content
   path:
     type: path
-    weight: 9
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -87,21 +217,21 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 7
+    weight: 11
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 11
+    weight: 15
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 8
+    weight: 12
     region: content
     third_party_settings: {  }
   title:
@@ -114,7 +244,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 9
     settings:
       match_operator: CONTAINS
       size: 60
@@ -123,7 +253,7 @@ content:
     region: content
     third_party_settings: {  }
   url_redirects:
-    weight: 10
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }

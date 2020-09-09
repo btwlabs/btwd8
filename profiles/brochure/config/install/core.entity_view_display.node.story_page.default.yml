@@ -4,9 +4,12 @@ dependencies:
   config:
     - field.field.node.story_page.body
     - field.field.node.story_page.feeds_item
+    - field.field.node.story_page.field_sb_hero_title
     - field.field.node.story_page.field_sb_page_hero_image
     - field.field.node.story_page.field_sb_page_hero_link
     - field.field.node.story_page.field_sb_page_story_blocks
+    - field.field.node.story_page.field_sb_page_use_hero
+    - field.field.node.story_page.field_sb_use_node_title
     - node.type.story_page
   module:
     - ds
@@ -23,9 +26,11 @@ third_party_settings:
       library: layout_discovery/onecol
       disable_css: false
       entity_classes: all_classes
-      settings: {  }
+      settings:
+        label: null
     regions:
       content:
+        - 'dynamic_twig_field:node-story_page_hero_section'
         - group_hero
         - 'dynamic_block_field:node-breadcrumb'
         - field_sb_page_story_blocks
@@ -35,6 +40,20 @@ third_party_settings:
         - group_hero_text_wrapper
         - field_sb_page_hero_link
     fields:
+      'dynamic_twig_field:node-story_page_hero_section':
+        plugin_id: 'dynamic_twig_field:node-story_page_hero_section'
+        weight: 0
+        label: hidden
+        formatter: default
+        ft:
+          id: reset
+          settings:
+            lb: ''
+      'dynamic_block_field:node-breadcrumb':
+        plugin_id: 'dynamic_block_field:node-breadcrumb'
+        weight: 2
+        label: hidden
+        formatter: default
       node_title:
         plugin_id: node_title
         weight: 6
@@ -50,18 +69,13 @@ third_party_settings:
             lb: ''
             lb-col: false
             classes: {  }
-      'dynamic_block_field:node-breadcrumb':
-        plugin_id: 'dynamic_block_field:node-breadcrumb'
-        weight: 1
-        label: hidden
-        formatter: default
   field_group:
     group_hero:
       children:
         - field_sb_page_hero_image
         - group_hero_text_wrapper
       parent_name: ''
-      weight: 0
+      weight: 1
       format_type: html_element
       format_settings:
         element: div
@@ -177,7 +191,7 @@ content:
     region: content
   field_sb_page_story_blocks:
     type: entity_reference_revisions_entity_view
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       view_mode: view_mode_selector
@@ -215,4 +229,7 @@ content:
     region: content
 hidden:
   feeds_item: true
+  field_sb_hero_title: true
+  field_sb_page_use_hero: true
+  field_sb_use_node_title: true
   links: true
