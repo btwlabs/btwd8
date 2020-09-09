@@ -4,9 +4,9 @@ dependencies:
   config:
     - field.field.node.story_page.body
     - field.field.node.story_page.feeds_item
-    - field.field.node.story_page.field_sb_page_hero_title
     - field.field.node.story_page.field_sb_page_hero_image
     - field.field.node.story_page.field_sb_page_hero_link
+    - field.field.node.story_page.field_sb_page_hero_title
     - field.field.node.story_page.field_sb_page_story_blocks
     - field.field.node.story_page.field_sb_page_use_hero
     - field.field.node.story_page.field_sb_page_use_node_title
@@ -14,6 +14,9 @@ dependencies:
   module:
     - ds
     - entity_reference_revisions
+    - link
+    - responsive_bg_image_formatter
+    - text
     - user
 third_party_settings:
   ds:
@@ -26,14 +29,17 @@ third_party_settings:
         label: ''
     regions:
       content:
+        - field_sb_page_hero_image
         - 'dynamic_twig_field:node-story_page_hero_section'
         - field_sb_page_story_blocks
-        - group_hero
-        - group_hero_text_wrapper
+      ds_hidden:
+        - field_sb_page_hero_title
+        - body
+        - field_sb_page_hero_link
     fields:
       'dynamic_twig_field:node-story_page_hero_section':
         plugin_id: 'dynamic_twig_field:node-story_page_hero_section'
-        weight: 0
+        weight: 1
         label: hidden
         formatter: default
         ft:
@@ -45,9 +51,92 @@ targetEntityType: node
 bundle: story_page
 mode: default
 content:
+  body:
+    type: text_default
+    weight: 4
+    region: ds_hidden
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_sb_page_hero_image:
+    type: responsive_bg_image_formatter
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: wide
+      css_settings:
+        bg_image_selector: '#hero-wrapper'
+        bg_image_z_index: auto
+        bg_image_color: '#FFFFFF'
+        bg_image_x: center
+        bg_image_y: center
+        bg_image_attachment: scroll
+        bg_image_repeat: no-repeat
+        bg_image_background_size: cover
+        bg_image_gradient: ''
+        bg_image_path_format: absolute
+        bg_image_background_size_ie8: 0
+        bg_image_important: 0
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_sb_page_hero_link:
+    type: link
+    weight: 5
+    region: ds_hidden
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: div
+            ow-cl: hero-link
+            ow-at: ''
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow-def-at: false
+            ow-def-cl: false
+            fis: false
+            fis-def-at: false
+            fi: false
+            fi-def-at: false
+  field_sb_page_hero_title:
+    type: string
+    weight: 3
+    region: ds_hidden
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   field_sb_page_story_blocks:
     type: entity_reference_revisions_entity_view
-    weight: 1
+    weight: 2
     label: hidden
     settings:
       view_mode: view_mode_selector
@@ -84,11 +173,7 @@ content:
             fi-def-at: false
     region: content
 hidden:
-  body: true
   feeds_item: true
-  field_sb_page_hero_title: true
-  field_sb_page_hero_image: true
-  field_sb_page_hero_link: true
   field_sb_page_use_hero: true
   field_sb_page_use_node_title: true
   links: true

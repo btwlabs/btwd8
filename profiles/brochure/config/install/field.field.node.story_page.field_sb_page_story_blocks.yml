@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.storage.node.field_sb_page_story_blocks
     - node.type.story_page
+    - paragraphs.paragraphs_type.block
     - paragraphs.paragraphs_type.cards
     - paragraphs.paragraphs_type.embed
     - paragraphs.paragraphs_type.featured_article_node

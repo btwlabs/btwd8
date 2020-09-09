@@ -4,9 +4,9 @@ dependencies:
   config:
     - field.field.node.story_page.body
     - field.field.node.story_page.feeds_item
-    - field.field.node.story_page.field_sb_page_hero_title
     - field.field.node.story_page.field_sb_page_hero_image
     - field.field.node.story_page.field_sb_page_hero_link
+    - field.field.node.story_page.field_sb_page_hero_title
     - field.field.node.story_page.field_sb_page_story_blocks
     - field.field.node.story_page.field_sb_page_use_hero
     - field.field.node.story_page.field_sb_page_use_node_title
@@ -78,6 +78,39 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_sb_page_hero_image:
+    weight: 1
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_sb_page_hero_link:
+    weight: 7
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings:
+      conditional_fields:
+        3643b61e-5eea-4ede-81fa-fdf595dd0870:
+          dependee: field_sb_page_use_hero
+          settings:
+            state: visible
+            condition: checked
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: '1'
+            value_form:
+              value: 1
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: node
+          bundle: story_page
+    type: link_default
+    region: content
   field_sb_page_hero_title:
     weight: 5
     settings:
@@ -118,39 +151,6 @@ content:
           entity_type: node
           bundle: story_page
     type: string_textfield
-    region: content
-  field_sb_page_hero_image:
-    weight: 1
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
-    third_party_settings: {  }
-    type: image_image
-    region: content
-  field_sb_page_hero_link:
-    weight: 7
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings:
-      conditional_fields:
-        3643b61e-5eea-4ede-81fa-fdf595dd0870:
-          dependee: field_sb_page_use_hero
-          settings:
-            state: visible
-            condition: checked
-            grouping: AND
-            values_set: 1
-            value: ''
-            values: '1'
-            value_form:
-              value: 1
-            effect: show
-            effect_options: {  }
-            selector: ''
-          entity_type: node
-          bundle: story_page
-    type: link_default
     region: content
   field_sb_page_story_blocks:
     type: paragraphs
