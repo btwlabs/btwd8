@@ -4,12 +4,12 @@ dependencies:
   config:
     - field.field.node.story_page.body
     - field.field.node.story_page.feeds_item
-    - field.field.node.story_page.field_sb_hero_title
+    - field.field.node.story_page.field_sb_page_hero_title
     - field.field.node.story_page.field_sb_page_hero_image
     - field.field.node.story_page.field_sb_page_hero_link
     - field.field.node.story_page.field_sb_page_story_blocks
     - field.field.node.story_page.field_sb_page_use_hero
-    - field.field.node.story_page.field_sb_use_node_title
+    - field.field.node.story_page.field_sb_page_use_node_title
     - node.type.story_page
   module:
     - ds
@@ -86,9 +86,9 @@ content:
 hidden:
   body: true
   feeds_item: true
-  field_sb_hero_title: true
+  field_sb_page_hero_title: true
   field_sb_page_hero_image: true
   field_sb_page_hero_link: true
   field_sb_page_use_hero: true
-  field_sb_use_node_title: true
+  field_sb_page_use_node_title: true
   links: true
