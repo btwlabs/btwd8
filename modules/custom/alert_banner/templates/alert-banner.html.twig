@@ -1,0 +1,39 @@
+{#
+/**
+* @file
+* Display Dismissable Alert Banner.
+*
+* @see template_preprocess_block()
+*
+* @ingroup themeable
+*/
+#}
+{% set classes = [
+  'clear-both',
+] %}
+<div{{ attributes.addClass(classes) }}>
+	<div class="alert-banner-popup" role="alert">
+		<div class="alert-banner-popup-container">
+			<div class="banner-content">
+				<div class="banner-header">
+					<button type="button alert-banner-popup-close" class="close" data-dismiss="banner" aria-label="Close" href="#">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<div class="row">
+					<div id="alert-banner-content" class="col-12">
+						<div class="alert-banner-title">
+							{{ content.banner_title }}
+						</div>
+						<p>{{ content.banner_body}}</p>
+
+						<div class="alert-banner-popup-button">
+							<a class="btn btn-primary" href="{{ content.dismiss_alert_button.button_link }}">{{ content.dismiss_alert_button.button_label }}</a>
+						</div>
+					</div>
+				</div>
+      </div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,5 @@
+name: 'Alert Banner'
+type: module
+description: 'Dismissable Alert Banner Block'
+core: 8.x
+package: 'Custom'

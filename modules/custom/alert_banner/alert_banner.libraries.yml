@@ -1,0 +1,11 @@
+alert_banner_cookies:
+  js:
+    '//cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js': { type: external, minified: true }
+alert_banner_block:
+  js:
+    js/alert_banner.js: {}
+  css:
+    theme:
+      css/alert_banner.css: {}
+  dependencies:
+    - alert_banner/alert_banner_cookies
