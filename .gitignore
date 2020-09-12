@@ -8,6 +8,7 @@ vendor
 modules/contrib
 themes/contrib
 core
+drush
 
 # Ignore lando
 .lando.yml
