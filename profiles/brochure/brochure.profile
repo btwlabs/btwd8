@@ -27,7 +27,7 @@ function brochure_install_tasks() {
       'display' => true,
       'type' => 'normal'
     ],
-    'brochure_create_feeds' => [
+    /*'brochure_create_feeds' => [
       'display_name' => t('Create Feed Importers'),
       'display' => true,
       'type' => 'normal'
@@ -36,7 +36,7 @@ function brochure_install_tasks() {
       'display_name' => t('Import Demo Content'),
       'display' => true,
       'type' => 'batch'
-    ]
+    ]*/
   ];
 }
 
