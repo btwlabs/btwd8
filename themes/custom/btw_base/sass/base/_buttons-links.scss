@@ -59,7 +59,7 @@ input[type="button"] {
 	@include button; // sass/abstractions/_mixins-buttons.scss
 	position: relative;
 	
-	@include breakpoint($small-only) {
+	/*@include breakpoint($small-only) {
 		display: block;
 	}
 	@include breakpoint($medium-up) {
@@ -71,7 +71,7 @@ input[type="button"] {
 		color: $button-text-hover-color;
 		border-color: $button-border-hover-color;
 		text-decoration: none;
-	}
+	}*/
 }
 
 

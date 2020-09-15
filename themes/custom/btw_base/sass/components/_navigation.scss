@@ -13,7 +13,8 @@
 .l-header {
 	
 	// List items
-	nav.menu--main {	    
+	nav.menu--main {
+		height: 50%;    
 				
 		.menu {
 			margin: 0;
@@ -122,22 +123,21 @@
 				
 				ul.menu {
 					position: absolute;
-					left: 0;
 					visibility: hidden;
 					@include transition-opacity;
 					background-color: $subnav-bar-bg-color;
 					left: -9999px; // hide offscreen when not needed - more accessible than display:none
 					
 					@include breakpoint($nav-medium-only) {
-						top: $header-clear-nav-medium;
+						top: $header-height-md;
 						min-width: 170px;
 					}
-					@include breakpoint($nav-large-up) {
-						top: $header-clear-nav-medium;
+					@include breakpoint($nav-large-only) {
+						top: $header-height-md;
 						min-width: 170px;
 					}
 					@include breakpoint($nav-xlarge-up) {
-						top: $header-clear-nav-large;
+						top: $header-height-xl;
 						min-width: 170px;
 					}
 									

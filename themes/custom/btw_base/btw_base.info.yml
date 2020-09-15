@@ -16,7 +16,9 @@ regions:
   post_content: Post-Content
   sidebar: Sidebar
   pre_footer: Pre-Footer
-  footer: Footer
+  footer1: Footer1
+  footer2: Footer2
+  footer3: Footer3
   post_footer: Post Footer
 libraries-override:
   basic/global: false

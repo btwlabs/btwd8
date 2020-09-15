@@ -13,7 +13,6 @@
 		@include breakpoint($medium-up) {
 			@include unconstrained;
 			padding: 0 3vw;
-			//@include fadeInDown($count: $countDefault, $duration: $durationDefault, $delay: 1s, $function: $functionDefault, $fill: $fillDefault, $visibility: $visibilityDefault);
 		}
 	}
 }
@@ -75,35 +74,21 @@
 		width: 100%;
 		z-index: 6;
 		@include clearfix; // for non-fixed nav
-		height: $header-height-medium;
+		height: $header-height-md;
 	}
 	@include breakpoint($nav-xlarge-up) {
-		height: $header-height-large;
+		height: $header-height-lg;
 	}
 	
-	
+	//! ! ! ! ! * * * * * * * * * * *
 	// for fixed position headers
-	&.fixed {
-		box-shadow: none;
-		height: $header-height-small;
-		
-		.l-constrained {
-			@include breakpoint($small-up) {
-				height: $header-height-small;
-			}
-			@include breakpoint($medium-up) {
-				height: $header-height-small;
-			}
-			@include breakpoint($large-up) {
-				height: $header-height-small;
-			}
-		}
-	}
+	// see /abstractions/_mixin-layout.scss
 	
 	// inner container
 	.l-constrained {
 		margin: 0 auto;
 		display: flex;
+		height: 100%;
 	}
 
 	

@@ -32,10 +32,13 @@
 
 @mixin responsive-body-text {
 	@include breakpoint($small-only) {
-		@include font-size(18px);
+		@include font-size($body-text-sm);
+	}
+	@include breakpoint($medium-only) {
+		@include font-size($body-text-md)
 	}
 	@include breakpoint($large-up) {
-		@include font-size(22px)
+		@include font-size($body-text-lg)
 	}
 }
 
@@ -60,15 +63,16 @@
 	//-----------------------------------
 	
 	@mixin responsive-page-title {
+		text-align: $page-title-text-align;
 		
 		@include breakpoint($small-up) {
-			@include font-size(30px);
+			@include font-size($page-title-sm);
 		}
 		@include breakpoint($medium-up) {
-			@include font-size(40px);
+			@include font-size($page-title-md);
 		}
 		@include breakpoint($large-up) {
-			@include font-size(45px);
+			@include font-size($page-title-lg);
 		}
 	}
 	
@@ -79,13 +83,13 @@
 	@mixin responsive-section-title {
 		
 		@include breakpoint($small-up) {
-			@include font-size(30px);
+			@include font-size($section-title-sm);
 		}
 		@include breakpoint($medium-up) {
-			@include font-size(35px);
+			@include font-size($section-title-md);
 		}
 		@include breakpoint($large-up) {
-			@include font-size(40px);
+			@include font-size($section-title-lg);
 		}
 	}
 	
@@ -96,13 +100,13 @@
 	@mixin responsive-section-subtitle {
 		
 		@include breakpoint($small-up) {
-			@include font-size(25px);
+			@include font-size($section-subtitle-sm);
 		}
 		@include breakpoint($medium-up) {
-			@include font-size(22px);
+			@include font-size($section-subtitle-md);
 		}
 		@include breakpoint($large-up) {
-			@include font-size(30px);
+			@include font-size($section-subtitle-lg);
 		}
 	}
 	
@@ -113,13 +117,13 @@
 	@mixin responsive-card-title {
 	
 		@include breakpoint($small-up) {
-			@include font-size(20px);
+			@include font-size($card-title-sm);
 		}
 		@include breakpoint($medium-up) {
-			@include font-size(22px);
+			@include font-size($card-title-md);
 		}
 		@include breakpoint($large-up) {
-			@include font-size(24px);
+			@include font-size($card-title-lg);
 		}
 	}
 

@@ -113,6 +113,10 @@
 		.mfp-video-embed-popup {
 			@include button;
 			cursor: pointer;
+			
+			&::hover {
+				@include button-hover;
+			}
 		}
 	}
 	
@@ -449,12 +453,6 @@
 	
 	// Center Text, h1 with BG image
 	&.paragraph--view-mode-center-text-h1-title-bg-image {
-		text-align: center;
-		
-		@include breakpoint($small-only) {
-			text-align: left;
-		}
-		
 		.story-block-inner {
 			display: block; // override flexbox
 		}
@@ -465,11 +463,6 @@
 	
 	// Center text with BG image
 	&.paragraph--view-mode-center-text-full-bg-image {
-		text-align: center;
-		
-		@include breakpoint($small-only) {
-			text-align: left;
-		}
 		.story-block-inner {
 			display: block; // override flexbox
 		}
@@ -488,25 +481,21 @@
 		
 	@include breakpoint($medium-up) {
 		.image-overlay {
-			background-color: $overlay-bg-color-on-light;
+			background-color: $overlay-bg-color-light;
 		}
 		
 		// on SB with full img bg and L or R text (not centered or h1), 
 		// make overlay only cover half
 		&.paragraph--view-mode-right-text-full-bg-image {
 			.image-overlay {
-				//right: 0;
-				//width: 50%;
-				background: rgba(255,255,255,0.7);
-				background: linear-gradient(90deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.70) 55%);
+				background: rgba($overlay-gradient-base-color-light, 0.7);
+				background: linear-gradient(90deg, rgba($overlay-gradient-base-color-light, 0) 35%, rgba($overlay-gradient-base-color-light, .25) 42%,rgba($overlay-gradient-base-color-light, 0.35) 46%, rgba($overlay-gradient-base-color-light, 0.55) 55.5%, rgba($overlay-gradient-base-color-light, 0.65) 60%, rgba($overlay-gradient-base-color-light, 0.7) 65%);
 			}
 		}
 		&.paragraph--view-mode-left-text-full-bg-image {
 			.image-overlay {
-				//left: 0;
-				//width: 50%;
-				background: rgba(31,31,31,0.7);
-				background: linear-gradient(90deg, rgba(31,31,31,0.70) 40%, rgba(31,31,31,0) 55%);
+				background: rrgba($overlay-gradient-base-color-light, 0.7);
+				background: linear-gradient(90deg, rgba($overlay-gradient-base-color-light, 0.7) 36%, rgba($overlay-gradient-base-color-light, 0.65) 41%, rgba($overlay-gradient-base-color-light, 0.55) 46%, rgba($overlay-gradient-base-color-light, 0.35) 55.5%, rgba($overlay-gradient-base-color-light, .25) 59%,rgba($overlay-gradient-base-color-light, 0) 65%);
 			}
 		}
 
@@ -538,6 +527,10 @@
 		.mfp-video-embed-all-items {
 			.mfp-video-embed-popup {
 				@include button-on-light;
+				
+				&::hover {
+					@include button-on-light-hover;
+				}
 			}
 		}
 		
@@ -558,27 +551,24 @@
 			display: block;
 			position: absolute;
 			top: 0;
+			left: 0;
 			width: 100%;
 			height: 100%;
-			background-color: $overlay-bg-color-on-dark;
+			background-color: $overlay-bg-color-dark;
 		}
 		
 		// on SB with full img bg and L or R text (not centered or h1), 
 		// make overlay only cover half
 		&.paragraph--view-mode-right-text-full-bg-image {
 			.image-overlay {
-				//right: 0;
-				//width: 50%;
-				background: rgba(31,31,31,0.7);
-				background: linear-gradient(90deg, rgba(31,31,31,0) 40%, rgba(31,31,31,0.70) 55%);
+				background: rgba($overlay-gradient-base-color-dark,0.7);
+				background: linear-gradient(90deg, rgba($overlay-gradient-base-color-dark, 0) 35%, rgba($overlay-gradient-base-color-dark, .25) 42%,rgba($overlay-gradient-base-color-dark, 0.35) 46%, rgba($overlay-gradient-base-color-dark, 0.55) 55.5%, rgba($overlay-gradient-base-color-dark, 0.65) 60%, rgba($overlay-gradient-base-color-dark, 0.7) 65%);
 			}
 		}
 		&.paragraph--view-mode-left-text-full-bg-image {
 			.image-overlay {
-				//left: 0;
-				//width: 50%;
-				background: rgba(31,31,31,0.7);
-				background: linear-gradient(90deg, rgba(31,31,31,0.70) 40%, rgba(31,31,31,0) 55%);
+				background: rgba($overlay-gradient-base-color-dark,0.7);
+				background: linear-gradient(90deg, rgba($overlay-gradient-base-color-dark, 0.7) 36%, rgba($overlay-gradient-base-color-dark, 0.65) 41%, rgba($overlay-gradient-base-color-dark, 0.55) 46%, rgba($overlay-gradient-base-color-dark, 0.35) 55.5%, rgba($overlay-gradient-base-color-dark, .25) 59%,rgba($overlay-gradient-base-color-dark, 0) 65%);
 			}
 		}
 		

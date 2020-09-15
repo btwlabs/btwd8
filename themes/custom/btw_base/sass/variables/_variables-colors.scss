@@ -8,7 +8,9 @@
 //------------------------------------------------------
 
 
+//-------------------------------
 // Main Site Colors
+//-------------------------------
 
 $primary-color: #64BAFF; // blue
 $secondary-color: #222222; // dark gray
@@ -32,7 +34,25 @@ $black: #000;
 
 
 
+//---------------------------------------
+//
+//	BODY - Settings for the `<body>` element.
+//
+//---------------------------------------
+
+$body-bg: $white;
+
+
+
+//------------------------------------
+//
+//	General typography colors
+//
+//------------------------------------
+
+//--------------------------
 // Body Text
+//--------------------------
 $text-color: rgba(0,0,0,0.8);
 $text-on-dark-color: #ddd;
 $text-on-light-color: rgba(0,0,0,0.8);
@@ -43,7 +63,9 @@ $link-visited-color: #000;
 
 
 
+//--------------------------
 // Titles
+//--------------------------
 $title-color: $text-color;
 $page-title-color: $text-color;
 $section-title-color: $text-color;
@@ -53,31 +75,45 @@ $title-on-light-color: $title-color;
 
 
 
+//--------------------------
 // Selected text color
+//--------------------------
 $selection-text-color: #fff;
 $selection-background-color: $primary-color;
 
 
 
+//--------------------------
 // Captions
+//--------------------------
 $caption-light-color: #fff;
 $caption-dark-color: $text-color;
 
 
 
+//------------------------------------
+//
+//	BUTTONS
+//
+//------------------------------------
+
+//--------------------------
 // Button styling NORMAL
+//--------------------------
 $button-text-color: #fff;
-$button-text-hover-color: $primary-color;
+$button-text-hover-color: #fff;
 
 $button-bg-color: $primary-color;
-$button-bg-hover-color: #fff;
+$button-bg-hover-color: darken($primary-color, 15%);
 
 $button-border-color: $primary-color;
-$button-border-hover-color: $button-bg-hover-color;
+$button-border-hover-color: darken($primary-color, 15%);
 
 
-
-// Button styling DARK BUTTON ON LIGHT BG
+//--------------------------
+// Button styling 
+// DARK button on LIGHT bg
+//--------------------------
 $button-text-color-on-light: #fff;
 $button-text-hover-color-on-light: #fff;
 
@@ -89,18 +125,24 @@ $button-border-hover-color-on-light: darken($primary-color, 15%);
 
 
 
-// Button styling LIGHT BUTTON ON DARK BG
+//-------------------------------
+// Button styling 
+// LIGHT button on DARK bg
+//-------------------------------
 $button-text-color-on-dark: $primary-color;
 $button-text-hover-color-on-dark: #fff;
 
 $button-bg-color-on-dark: #fff;
 $button-bg-hover-color-on-dark: darken($primary-color, 15%);
 
-$button-border-color-on-dark: $primary-color;
+$button-border-color-on-dark: #fff;
 $button-border-hover-color-on-dark: darken($primary-color, 15%);
 
 
+
+//--------------------------
 // Sitewide Borders
+//--------------------------
 $border-color: $light-gray;
 $sidebar-border-color: $light-gray;
 
@@ -108,14 +150,21 @@ $section-title-border-color: rgba(252,108,17,0.7);
 
 
 
+//--------------------------
 // Tables 
+//--------------------------
 $table-header-bg-color: #eee;
 $table-odd-row-bg-color: #fff;
 $table-even-row-bg-color: #f0f0f0;
 
 
 
-// Navigation
+//-------------------------------
+//
+//	Navigation
+//
+//-------------------------------
+
 $nav-text-color: $text-color;
 $nav-text-hover-color: $primary-color;
 
@@ -162,18 +211,37 @@ $nav-bar-bg-color: transparent;
 	$site-name-text-color: #fff;
 
 
+
+//--------------------------
 // Hero section
-$hero-title-color: #fff;
-$hero-text-color: #ccc;
+//--------------------------
+$hero-title-color: $title-on-dark-color;
+$hero-text-color: $text-on-dark-color;
+
+// Story Page hero block
+$hero-overlay-bg-color: rgba(0,0,0,0.7);
 
 
 
+//--------------------------
 // Story Blocks
-$overlay-bg-color-on-dark: rgba(0,0,0,0.7);
-$overlay-bg-color-on-light: rgba(255,255,255,0.7);
+//--------------------------
+
+// Overlay - solid color
+$overlay-bg-color-dark: rgba(0,0,0,0.7);
+$overlay-bg-color-light: rgba(255,255,255,0.7);
 
 
+// Overlays for Left/right image left/right text blocks
+// Using gradients
+// USE HEX Values - will be converted to RGBa 
+$overlay-gradient-base-color-dark: #1F1F1F;
+$overlay-gradient-base-color-light: #fff;
+
+
+//--------------------------
 // Sidebar blocks
+//--------------------------
 $sidebar-block-bg-color: rgba(0,0,0,0.8);
 
 $sidebar-text-color: #aaa;
@@ -201,19 +269,25 @@ $sidebar-link-hover-color: red;
 
 
 
+//--------------------------
 // Quotes
+//--------------------------
 $quote-text-color: $text-color;
 $quote-bg-color-on-light: #eaeaea;
 $quote-bg-color-on-dark: #fff;
 
 
 
+//--------------------------
 // Pre-Footer
+//--------------------------
 $pre-footer-bg-color: $primary-color;
 
 
 
+//--------------------------
 // Footer
+//--------------------------
 $footer-text-color: $text-color;
 
 $footer-link-color: $text-color;
@@ -223,11 +297,16 @@ $footer-bg-color: #0d0e15;
 
 
 
+//--------------------------
 // Post-Footer
+//--------------------------
 $post-footer-bg-color: #0d0e15;
 
 
+
+//--------------------------
 // Social icons
+//--------------------------
 $social-icon-color: #fff;
 $social-icon-hover-color: #777;
 
@@ -238,11 +317,35 @@ $social-icon-border-color: #fff;
 
 
 
+
+//--------------------------
+// Alert Banner
+//--------------------------
+
+$alert-banner-bg-color: #F44336;
+$alert-banner-text-color: #fff;
+
+// close button
+$alert-banner-close-button-bg-color: #000;
+$alert-banner-close-text-color: #fff;
+
+// link button
+$alert-banner-button-bg-color: #000;
+$alert-banner-button-text-color: #fff;
+$alert-banner-button-border-color: #000;
+
+
+
+//--------------------------
 // Messages
+//--------------------------
 $messages-background-color: #A3E3F8;
 
 
+
+//--------------------------
 // Admin Tabs 
+//--------------------------
 $tabs-text-color: #000;
 $tabs-text-hover-color: #fff;
 

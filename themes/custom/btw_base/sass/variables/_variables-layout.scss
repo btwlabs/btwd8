@@ -13,25 +13,32 @@
 $vert-spacing-unit: 1em;
 $horz-spacing-unit: 1em;
 
+
+
 // height of header element
 // used for content section clearing fixed top pos items
 
-$header-height-small: 50px;
-$header-height-medium: 120px;
-$header-height-large: 128px;
-$header-height-xlarge: 128px;
+$header-height-sm: 50px;
+$header-height-md: 120px;
+$header-height-lg: 128px;
+$header-height-xl: 128px;
 
-$header-clear-nav-small: 50px;
-$header-clear-nav-medium: 120px;
-$header-clear-nav-large: 120px;
-$header-clear-nav-xlarge: 148px;
+// Use the header height to offset scroll snap
+// when using fixed headers
+// offset position of the content on scroll snap from nav link, equal to height of navbar
+
+$scroll-top-offset-sm: $header-height-sm;
+$scroll-top-offset-md: $header-height-md;
+$scroll-top-offset-lg: $header-height-lg;
+$scroll-top-offset-xl: $header-height-xl;
 
 
-// height of main navigation
-$nav-height-small: 50px;
-$nav-height-medium: 128px;
-$nav-height-large: 128px;
-$nav-height-xlarge: 128px;
+// offset the top of <body> if fixed nav equal to height of navbar
+$fixed-navbar-body-offset-lg: $header-height-sm;
+$fixed-navbar-body-offset-sm: $header-height-md;
+$fixed-navbar-body-offset-sm: $header-height-lg;
+$fixed-navbar-body-offset-sm: $header-height-xl;
+
 
 
 // Space from edge of screen to content on mobile devices
@@ -42,3 +49,6 @@ $mobile-side-margin: 24px;
 $small-side-margin: 24px;
 $medium-side-margin: 48px;
 $large-side-margin: 64px;
+
+
+	

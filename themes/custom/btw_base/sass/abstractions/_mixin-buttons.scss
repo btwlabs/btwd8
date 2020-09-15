@@ -28,7 +28,7 @@
 	border: $button-border-width solid $button-border-color;
 	font-weight: $button-font-weight;
 	position: relative;
-	letter-spacing: 0.1em;
+	letter-spacing: 0;
 	
 	@include breakpoint($small-only) {
 		display: block;
@@ -76,7 +76,7 @@
 	@include button-padding($button-padding);
 	font-weight: $button-font-weight;
 	position: relative;
-	letter-spacing: 0.1em;
+	letter-spacing: 0;
 	
 	@include breakpoint($small-only) {
 		display: block;

@@ -15,10 +15,41 @@
     width: 100%;
     position: relative;
     
-    .hero-title-body-wrapper {
+    // Overlay div for shading bg images
+	.image-overlay {
+		background: $hero-overlay-bg-color;
+		
+		@include breakpoint($small-only) {
+			display: none;
+		}
+		
+		@include breakpoint($medium-up) {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			display: block;
+			z-index: 0;
+		}
+	}
+    
+    .hero-text-wrapper {
 	    text-align: center;
 	    max-width: 50em;
 		margin: 0 auto;
+		position: relative;
+		z-index: 1;
+		
+		@include breakpoint($small-only) {
+			width: calc(100% - 40px);
+			margin: 0 20px;
+		}
+		@include breakpoint($medium-up) {
+			text-align: center;
+			max-width: 800px;
+			margin: 0 auto;
+		}
 	    
 	    .title {
 		    color: $hero-title-color;

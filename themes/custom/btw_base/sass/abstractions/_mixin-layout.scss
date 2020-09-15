@@ -48,18 +48,41 @@
 }
 
 
-// padding on top element to clear the page header
-@mixin clear-header {
+// padding on top element to clear the page header when header is fixed position
+@mixin fixed-navbar-body-offset {
+
 	@include breakpoint($small-only) {
-		padding-top: $header-clear-nav-small;
+		padding-top: $scroll-top-offset-sm;
 	}
 	@include breakpoint($medium-up) {
-		padding-top: $header-clear-nav-medium;
+		padding-top: $scroll-top-offset-md;
 	}
 	@include breakpoint($large-up){
-		padding-top: $header-clear-nav-large;
+		padding-top: $scroll-top-offset-lg;
 	}
 	@include breakpoint($xlarge-up) {
-		padding-top: $header-clear-nav-xlarge;
+		padding-top: $scroll-top-offset-xl;
+	}
+}
+
+//--------------------------
+// Page Sections - defaults
+//--------------------------
+@mixin scroll-top-offset {
+	position: relative;
+
+	// offset scroll snap from html {scroll-behavior:smooth;}
+
+	@include breakpoint($small-only) {
+		scroll-margin-top: $scroll-top-offset-sm;
+	}
+	@include breakpoint($medium-only) {
+		scroll-margin-top: $scroll-top-offset-md;
+	}
+	@include breakpoint($large-up) {
+		scroll-margin-top: $scroll-top-offset-lg;
+	}
+	@include breakpoint($xlarge-up) {
+		scroll-margin-top: $scroll-top-offset-xl;
 	}
 }

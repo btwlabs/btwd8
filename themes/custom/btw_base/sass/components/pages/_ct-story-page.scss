@@ -9,6 +9,7 @@
 
 .story-page {
 	.l-content-main-wrapper {
+		padding: 0; // override defaults
 		
 		// undo default constraints on container width
 		> .l-constrained {
@@ -19,33 +20,6 @@
 		
 		.l-content-main {
 			padding: 0;
-		}
-	}
-	
-	.hero-wrapper {
-		
-		.hero-text-wrapper {
-			@include breakpoint($small-only) {
-				width: calc(100% - 40px);
-				margin: 0 20px;
-			}
-			@include breakpoint($medium-up) {
-				text-align: center;
-				max-width: 800px;
-				margin: 0 auto;
-			}
-		}
-		
-		h1.title {
-			color: #fff;
-		}
-		.field-name-body {
-			color: #ddd;
-		}
-		.hero-link {
-			a {
-				@include button-on-dark;
-			}
 		}
 	}
 }

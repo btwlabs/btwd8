@@ -3,7 +3,7 @@
 //	PARAGRAPH TYPE = CARDS
 //
 //	location: 
-//      /sass/components/paragraphs/_cards.scss
+//      /sass/components/paragraphs/_cards-paragraph.scss
 //
 //----------------------------------------------
 
@@ -44,7 +44,7 @@
     .cards-wrapper {
 	    display: flex;
 	    flex-wrap: wrap;
-		justify-content: center;
+		justify-content: center; // this aligns cards to center vertically
 	}
 	
 	// Individual card
@@ -52,42 +52,112 @@
 	    flex: 1 1 250px;
 	    padding: 0 25px;
 	    margin-bottom: 50px;
-	    //max-width: 250px;
+	    display: flex;
+	}
+	
+	// set card widths - add classes to main cards via
+	// "classes" field in cards paragraph form
+	// class should appear on same <div> as ".paragraph--type-cards"
+	@include breakpoint($small-only) {
+		&.sm-12 .card {
+			flex: 0 0 100%;
+		}
+		&.sm-6 .card {
+			flex: 0 0 50%;
+		}
+	}
+	@include breakpoint($medium-only) {
+		&.md-12 .card {
+			flex: 0 0 100%;
+		}
+		&.md-6 .card {
+			flex: 0 0 50%;
+		}
+		&.md-3 .card {
+			flex: 0 0 33.333%;
+		}
+	}
+	@include breakpoint($large-only) {
+		&.lg-12 .card {
+			flex: 0 0 100%;
+		}
+		&.lg-6 .card {
+			flex: 0 0 50%;
+		}
+		&.lg-3 .card {
+			flex: 0 0 33.333%;
+		}
+		&.lg-4 .card {
+			flex: 0 0 25%;
+		}
+		&.lg-5 .card {
+			flex: 0 0 20%;
+		}
 	}
 
 	// Card img
 	.card-image {
-	    margin-bottom: 20px;
+	    margin-bottom: 1.5rem;
+	    width: 100%;
+	    
+	    img {
+		    width: 100%;
+		    height: auto;
+	    }
 	}
 	
-	// h3 title
-	.card-title {
-		@include responsive-card-title;
-		margin-bottom: 0.5em;
-		text-align: center;
-	}
-	
-	// body
+	// body: title, text, link
 	.card-body {
-	    font-size: .95em;
-	    text-align: left;
-	}
-	
-	// Card link
-	.card-link {
-		text-align: center;
+		padding: 0; // bs override
 		
-		a {
-		    @include button;
-		    
-		    &:hover {
-			    @include button-hover;
-		    }
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+		justify-content: center;
+		height: 100%;
+		
+		// extend too 100% of height available
+		align-self: stretch;
+		
+		// h3 title
+		.card-title {
+			@include responsive-card-title;
+			margin-bottom: 0.5em;
+			text-align: center;
+		}
+		
+		// body
+		.card-text {
+			font-size: .85em;
+			text-align: left;
+			
+			p:last-child {
+				margin-bottom: 0;
+			}
+		}
+		
+		// Card link
+		.card-link {
+			text-align: center;
+			margin-top: 2rem;
+			flex: 1 1 100%;
+			
+			// make button align to the bottom
+			align-self: flex-end;
+
+			a {
+			    @include button;
+			    display: block !important; // override inline-block from mixin
+			}
 		}
 	}
 	
 	// Sub Cards
 	.paragraph--type-sub-card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		
 		&.icon {
 			.card-image {
 		    	margin: 0 auto 30px;
@@ -103,6 +173,15 @@
 		&.photo {
 			margin: 0 auto 30px;
 			max-width: 100%;
+		}
+		
+		.sub-card-title {
+			text-align: center;
+			font-size: 1.3em;
+			
+			p {
+				margin: 0;
+			}
 		}
 	}
 }

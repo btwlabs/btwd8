@@ -126,10 +126,13 @@
 	
 	@include breakpoint($medium-up) {
 		display: none;
-		top: $header-clear-nav-medium;
+		top: $header-height-md;
 	}
 	@include breakpoint($large-up) {
-		top: $header-clear-nav-large;
+		top: $header-height-lg;
+	}
+	@include breakpoint($xlarge-up) {
+		top: $header-height-xl;
 	}
 	
 	&::before {

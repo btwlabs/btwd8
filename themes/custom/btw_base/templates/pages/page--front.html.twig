@@ -79,9 +79,7 @@
             <div class="pre-content l-pre-content-wrapper"><!-- 100% width wrapper -->
 
               <div class="l-content-inner">
-
                   {{ page.pre_content }}
-
               </div> <!-- close .l-content-inner -->
 
             </div> <!-- close pre-content -->
@@ -115,9 +113,7 @@
             <div class="post-content l-post-content-wrapper"><!-- 100% width wrapper -->
 
               <div class="l-content-inner">
-
                   {{ page.post_content }}
-
               </div> <!-- close .l-content-inner -->
 
             </div> <!-- close post-content -->
@@ -138,14 +134,20 @@
       <footer class="l-footer-wrapper" role="contentinfo">
 
         <div class="l-footer-inner l-constrained">
-          {% if page.footer|render %}
-            <div class="l-footer-region footer-region">
-
-              <div class="footer-inner">
-                {{ page.footer }}
-              </div> <!-- close .footer-inner -->
-
-            </div>
+          {% if page.footer1|render %}
+        	<div class="footer1">
+        	  {{ page.footer1 }}
+        	</div>
+          {% endif %}
+          {% if page.footer2|render %}
+			<div class="footer2">
+        	  {{ page.footer2 }}
+        	</div>
+          {% endif %}
+          {% if page.footer3|render %}
+			<div class="footer3">
+        	  {{ page.footer3 }}
+        	</div>
           {% endif %}
         </div>
       </footer>

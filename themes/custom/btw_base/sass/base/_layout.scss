@@ -17,10 +17,34 @@ html {
 	font-size: 18px;
 	text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
 }
 
+/**
+ * Disable smooth scrolling when users have prefers-reduced-motion enabled
+ */
+@media screen and (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+
 body {
+	background-color: $body-bg;
 	@include base-text-style; // see /abstractions/_typography.scss & /variables/_typography.scss
+	@include responsive-body-text; // DEFAULT FONT SIZES AT BREAKPOINTS
+
+	// ONLY enable for fixed position headers
+	// then go to _variables-layout and edit the header heights
+	
+	//@include fixed-navbar-body-offset;
+	
+}
+
+
+.clear-both {
+	clear: both;
 }
 
 

@@ -47,3 +47,39 @@ $nav-line-height: 1;
 $subnav-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $subnav-font-weight: 400;
 $subnav-line-height: 1;
+
+
+
+//-----------------------------
+// Define Responsive Text Sizes
+//-----------------------------
+
+// correspond to responsive text mixins in mixins.scss
+// which define size according to breakpoint
+
+// General body text
+$body-text-sm: 18px;
+$body-text-md: 20px;
+$body-text-lg: 22px;
+
+// Page TITLE - h1
+$page-title-sm: 30px;
+$page-title-md: 40px;
+$page-title-lg: 45px;
+$page-title-text-align: center;
+
+// Section title - h2
+$section-title-sm: 30px;
+$section-title-md: 35px;
+$section-title-lg: 40px;
+
+// Section subtitle - h3
+$section-subtitle-sm: 25px;
+$section-subtitle-md: 22px;
+$section-subtitle-lg: 30px;
+
+// Card title - h3 
+$card-title-sm: 20px;
+$card-title-md: 22px;
+$card-title-lg: 24px;
+

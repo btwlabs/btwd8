@@ -257,8 +257,14 @@ span.hamburger-label {
 //------------------------------------
 
 #site-wrapper {
-	overflow: hidden;
 	width: 100%;
+	
+	// limit to mobile so that "position: sticky; top: 0;" works
+	// for sticky nav or sidebars. overflow:hidden breaks this 
+	// functionality
+	@include breakpoint($small-and-medium) {
+		overflow: hidden;
+	}
 }
 
 // Outer container which contains all content
@@ -410,6 +416,7 @@ span.hamburger-label {
 .mobile-nav {
 	ul ul {
 		margin-bottom: 10px;
+		background-color: $mobile-subnav-bg-color;
 	
 		li {
 			border: 0;

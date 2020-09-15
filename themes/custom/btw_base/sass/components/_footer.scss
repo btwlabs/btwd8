@@ -17,7 +17,7 @@
 //-------------------------------------------------
 
 .l-pre-footer-wrapper {
-	background-color: $footer-bg-color;
+	background-color: $pre-footer-bg-color;
 	position: relative;	
 		
 	.l-constrained {
@@ -60,7 +60,7 @@
 	
 	// rows for larger layouts
 	@include breakpoint($large-up) {
-		padding: 3em 0 0;
+		padding: 4vw 3vw;
 		text-align: left;
 	}
 	
