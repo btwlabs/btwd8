@@ -2,18 +2,18 @@ langcode: en
 status: true
 dependencies:
   theme:
-    - custom_admin
-id: custom_admin_secondary_local_tasks
-theme: custom_admin
-region: pre_content
-weight: 0
+    - thunder_admin
+id: thunder_admin_primary_local_tasks
+theme: thunder_admin
+region: header
+weight: -1
 provider: null
 plugin: local_tasks_block
 settings:
   id: local_tasks_block
-  label: 'Secondary tabs'
+  label: 'Primary tabs'
   provider: core
   label_display: '0'
-  primary: false
-  secondary: true
+  primary: true
+  secondary: false
 visibility: {  }

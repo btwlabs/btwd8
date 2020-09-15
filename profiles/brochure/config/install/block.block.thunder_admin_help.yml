@@ -4,9 +4,9 @@ dependencies:
   module:
     - help
   theme:
-    - custom_admin
-id: custom_admin_help
-theme: custom_admin
+    - thunder_admin
+id: thunder_admin_help
+theme: thunder_admin
 region: help
 weight: 0
 provider: null
