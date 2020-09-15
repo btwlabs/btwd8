@@ -4,9 +4,9 @@ dependencies:
   module:
     - system
   theme:
-    - thunder_admin
-id: thunder_admin_breadcrumbs
-theme: thunder_admin
+    - custom_admin
+id: custom_admin_breadcrumbs
+theme: custom_admin
 region: header
 weight: -2
 provider: null

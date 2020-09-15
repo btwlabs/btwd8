@@ -2,9 +2,9 @@ langcode: en
 status: true
 dependencies:
   theme:
-    - thunder_admin
-id: thunder_admin_page_title
-theme: thunder_admin
+    - custom_admin
+id: custom_admin_page_title
+theme: custom_admin
 region: header
 weight: -3
 provider: null
