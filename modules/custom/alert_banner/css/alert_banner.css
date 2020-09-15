@@ -1,0 +1,8 @@
+/* Banner alert block */
+
+.block-alert-banner {
+    display: none;
+}    
+.block-alert-banner.is-visible {
+	display: block;
+}

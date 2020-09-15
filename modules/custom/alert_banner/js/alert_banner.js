@@ -10,7 +10,7 @@
         $('.block-alert-banner', context).delay(1000).addClass('is-visible');
       }
       // Close Popup
-      $('.alert-banner-popup button', context).click(function(event){
+      $('.alert-banner-inner button', context).click(function(event){
         event.preventDefault();
         $('.block-alert-banner', context).removeClass('is-visible');
         // If custom alert message is closed then set a cookie

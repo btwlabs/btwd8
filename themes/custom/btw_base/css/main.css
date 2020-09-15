@@ -409,7 +409,7 @@ input[type=button] {
   }
 
   &:hover {
-  	background: $button-bg-hover-color;
+  	background: $button-bg-hover-color; 
   	color: $button-text-hover-color;
   	border-color: $button-border-hover-color;
   	text-decoration: none;
@@ -675,7 +675,7 @@ select {
 -----------------------------------*/
 /*---------------------------------------
 
- Font Icons - reset
+ Font Icons - reset 
 
 ---------------------------------------*/
 * a:before,
@@ -2013,7 +2013,7 @@ blockquote .quote-attribution {
 }
 
 /*--------------------------------------
- Colorbox Popups
+ Colorbox Popups  
 ---------------------------------------*/
 #cboxContent {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -2636,10 +2636,10 @@ h2#block-mainnavigation-mobile-menu {
 
 
 //-----------------------------------
-//
-// mobile header - contains nav toggle
+// 
+// mobile header - contains nav toggle 
 // and site name
-//
+//   
 //------------------------------------
 
 
@@ -2665,7 +2665,7 @@ h2#block-mainnavigation-mobile-menu {
 		width: 100%;
 	}
 
-	// Site Name
+	// Site Name 
 	.site-name {
 
 		@include breakpoint($nav-small-and-med) {
@@ -2735,7 +2735,7 @@ button#mobile-nav-open-btn {
 // * @author Jonathan Suh @jonsuh
 // * @site https://jonsuh.com/hamburgers
 // * @link https://github.com/jonsuh/hamburgers
-//
+// 
 
 .hamburger {
 	padding: 15px 15px;
@@ -2753,19 +2753,19 @@ button#mobile-nav-open-btn {
 	overflow: visible;
 
 	&:hover {
-		opacity: 0.7;
+		opacity: 0.7; 
 	}
 }
 
 .js-nav .hamburger {
 	&:hover {
-		opacity: 0.7;
+		opacity: 0.7; 
 	}
 
 	.hamburger-inner,
 	.hamburger-inner::before,
 	.hamburger-inner::after {
-		background-color: #fff;
+		background-color: #fff; 
 	}
 }
 
@@ -2773,16 +2773,16 @@ button#mobile-nav-open-btn {
 	width: 40px;
 	height: 24px;
 	display: inline-block;
-	position: relative;
+	position: relative; 
 }
 
 .hamburger-inner {
 	display: block;
 	top: 50%;
-	margin-top: -2px;
+	margin-top: -2px; 
 }
-.hamburger-inner,
-.hamburger-inner::before,
+.hamburger-inner, 
+.hamburger-inner::before, 
 .hamburger-inner::after {
 	width: 34px;
 	height: 3px;
@@ -2791,18 +2791,18 @@ button#mobile-nav-open-btn {
 	position: absolute;
 	transition-property: transform;
 	transition-duration: 0.15s;
-	transition-timing-function: ease;
+	transition-timing-function: ease; 
 }
-.hamburger-inner::before,
+.hamburger-inner::before, 
 .hamburger-inner::after {
 	content: "";
-	display: block;
+	display: block; 
 }
 .hamburger-inner::before {
-	top: -10px;
+	top: -10px; 
 }
 .hamburger-inner::after {
-	bottom: -10px;
+	bottom: -10px; 
 }
 
 //---------------------------
@@ -2826,12 +2826,12 @@ button#mobile-nav-open-btn {
 }
 .js-nav {
 	.hamburger:hover {
-		opacity: 0.7;
+		opacity: 0.7; 
 
 		.hamburger-inner,
 		.hamburger-inner::before,
 		.hamburger-inner::after {
-			background-color: #fff;
+			background-color: #fff; 
 		}
 	}
 	.hamburger-inner {
@@ -2870,9 +2870,9 @@ span.hamburger-label {
 
 
 //-----------------------------------
-//
+// 
 //  Layout
-//
+//   
 //------------------------------------
 
 #site-wrapper {
@@ -2957,7 +2957,7 @@ span.hamburger-label {
 //------------------------------------
 //
 // Main Links styling
-//
+// 
 //-------------------------------------
 
 .mobile-nav {
@@ -3003,7 +3003,7 @@ span.hamburger-label {
 //---------------------------------------
 //
 // SUB NAV
-//
+// 
 //---------------------------------------
 
 .mobile-nav {
@@ -3025,7 +3025,7 @@ span.hamburger-label {
 //---------------------------------------
 //
 //  CUSTOM - hide items
-//
+// 
 //---------------------------------------
 
 */
@@ -3035,7 +3035,7 @@ h2#block-mainnavigation-mobile-menu {
 
 /*-----------------------------------
 
- mobile header - contains nav toggle
+ mobile header - contains nav toggle 
  and site name
 
 ------------------------------------*/
@@ -3771,7 +3771,7 @@ ul.pager__items li.pager__item--active a {
 
 /*------------------------------------
 
- ENTITY PAGER - Previous / Next
+ ENTITY PAGER - Previous / Next 
 
 -------------------------------------*/
 .entity-pager-wrapper {
@@ -3942,7 +3942,7 @@ ul.pager__items li.pager__item--active a {
 }
 
 /*-----------------------
- << PREVIOUS
+ << PREVIOUS 
 ------------------------*/
 @media (min-width: 40.063em) {
   .entity-pager-item-prev a div {
@@ -3985,7 +3985,7 @@ ul.pager__items li.pager__item--active a {
 }
 
 /*-----------------------
- NEXT >>
+ NEXT >> 
 -------------------------*/
 .entity-pager-item-next a div {
   -webkit-box-pack: end;
@@ -4038,7 +4038,7 @@ ul.pager__items li.pager__item--active a {
 }
 
 /*-------------------------
- ALL - list link
+ ALL - list link 
 --------------------------*/
 .grid .entity-pager li.entity-pager-item-all {
   position: absolute;
@@ -5988,7 +5988,7 @@ body.product-show-instructions .field--name-field-prod-special-instructions {
 
 			// in mobile only, info is second
 			@include breakpoint($small-only) {
-				order: 2;
+				order: 2;	
 			}
 
 			@include breakpoint($medium-up) {
@@ -6040,7 +6040,7 @@ body.product-show-instructions .field--name-field-prod-special-instructions {
 		}
 
 
-		.hero-info {
+		.hero-info {			
 			@include breakpoint($medium-up) {
 				margin: 0 4vw 4vw 8vw;
 			    flex: 2 1 auto;
@@ -6067,7 +6067,7 @@ body.product-show-instructions .field--name-field-prod-special-instructions {
 }
 
 //-----------------------------
-//	Style 3 -  hero image over
+//	Style 3 -  hero image over 
 //	the top of the details
 //-----------------------------
 .article-node {
@@ -6860,7 +6860,7 @@ body.product-show-instructions .field--name-field-prod-special-instructions {
   position: relative;
   /*-----------------------------------------------
 
-  	DEFAULT View mode - encourage admin to change
+  	DEFAULT View mode - encourage admin to change 
   	from default with color and text
 
   ------------------------------------------------*/
@@ -6876,17 +6876,17 @@ body.product-show-instructions .field--name-field-prod-special-instructions {
 
   	Single Text Column with FULL WIDTH bg image
 
-  ------------------------------------------------
+  ------------------------------------------------	
   ----------------------------------------------*/
   /*-----------------------------------------------
   -------------------------------------------------
 
   	Text Column + Image Column (no backgrounds)
 
-  -------------------------------------------------
+  -------------------------------------------------	
   -----------------------------------------------*/
   /*----------------------------------------------
-  ------------------------------------------------
+  ------------------------------------------------	
 
   	Text Column + BG image column
 
@@ -6897,7 +6897,7 @@ body.product-show-instructions .field--name-field-prod-special-instructions {
 
   	Mobile image
 
-  -----------------------------------------------
+  -----------------------------------------------	
   ----------------------------------------------*/
   /*----------------------------------------------
   ------------------------------------------------
@@ -7334,7 +7334,7 @@ body.product-show-instructions .field--name-field-prod-special-instructions {
 
 /*---------------------------------------------
 
-	Story block View modes - LIGHT background
+	Story block View modes - LIGHT background 
 	colors or images
 
 ----------------------------------------------*/
