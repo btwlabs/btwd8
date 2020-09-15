@@ -6,6 +6,7 @@ install:
  - admin_toolbar 
  - admin_toolbar_links_access_filter 
  - admin_toolbar_tools 
+ - alert_banner 
  - automated_cron 
  - better_exposed_filters 
  - better_social_sharing_buttons 

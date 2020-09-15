@@ -221,6 +221,25 @@ reactions:
         unique: 1
         context_id: sitewide_context
         uuid: 3dfb1348-5374-4757-bfff-deaac248dfb7
+      15524a58-d006-400e-89d1-9f8d3941b5d8:
+        id: alert_banner
+        label: 'Dismissable Alert Banner'
+        provider: alert_banner
+        label_display: 0
+        region: pre_content
+        weight: '0'
+        alert_banner:
+          banner_title: 'Test Alert Banner'
+          banner_body: "This is a test alert banner. It may be about COVID-19, or about panties. Your choice.\r\nPersonally, I'd chose panties."
+          dismiss_alert_button:
+            button_label: Panties!
+            banner_link: 'https://bythewaylabs.com'
+        context_mapping: {  }
+        theme: btw_base
+        css_class: ''
+        unique: 0
+        context_id: sitewide_context
+        uuid: 15524a58-d006-400e-89d1-9f8d3941b5d8
     id: blocks
     saved: false
     uuid: 6cd49a13-fb52-416a-8cb3-da8e67602968

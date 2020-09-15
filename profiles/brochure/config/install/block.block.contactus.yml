@@ -5,7 +5,7 @@ dependencies:
     - btw_base
 id: contactus
 theme: btw_base
-region: footer
+region: mobile_nav
 weight: 0
 provider: null
 plugin: 'block_content:b5e0ecff-6130-4cf1-98a4-eab7b97536aa'

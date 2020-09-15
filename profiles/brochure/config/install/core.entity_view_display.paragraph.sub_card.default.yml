@@ -13,6 +13,7 @@ dependencies:
     - paragraphs.paragraphs_type.sub_card
   module:
     - ds
+    - field_group
     - image
     - link
     - options
@@ -25,6 +26,7 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        label: ''
         wrappers:
           ds_content: div
           ds_hidden: div
@@ -41,19 +43,60 @@ third_party_settings:
     regions:
       ds_content:
         - field_sub_card_image
+        - group_card_text_group
         - field_sub_card_title
         - field_sub_card_body
+        - group_body_text_group
         - field_sub_card_link
       ds_hidden:
         - field_sub_card_image_type
         - field_sub_card_extra_classes
+  field_group:
+    group_card_text_group:
+      children:
+        - group_body_text_group
+        - field_sub_card_link
+      parent_name: ''
+      weight: 1
+      format_type: html_element
+      region: ds_content
+      format_settings:
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+        id: ''
+        classes: card-body
+      label: 'Card Body Group'
+    group_body_text_group:
+      children:
+        - field_sub_card_title
+        - field_sub_card_body
+      parent_name: group_card_text_group
+      weight: 23
+      format_type: html_element
+      region: ds_content
+      format_settings:
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+        id: ''
+        classes: card-text-group
+      label: 'Body Text Group'
 id: paragraph.sub_card.default
 targetEntityType: paragraph
 bundle: sub_card
 mode: default
 content:
   field_sub_card_body:
-    weight: 2
+    weight: 22
     label: hidden
     settings: {  }
     third_party_settings:
@@ -68,7 +111,7 @@ content:
             lbw-at: ''
             ow: true
             ow-el: div
-            ow-cl: card-body
+            ow-cl: card-text
             ow-at: ''
             fis-el: ''
             fis-cl: ''
@@ -88,7 +131,7 @@ content:
     type: text_default
     region: ds_content
   field_sub_card_extra_classes:
-    weight: 5
+    weight: 6
     label: hidden
     settings:
       link_to_entity: false
@@ -133,14 +176,14 @@ content:
     type: image
     region: ds_content
   field_sub_card_image_type:
-    weight: 4
+    weight: 5
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: ds_hidden
   field_sub_card_link:
-    weight: 3
+    weight: 23
     label: hidden
     settings:
       trim_length: 80
@@ -180,7 +223,7 @@ content:
     type: link
     region: ds_content
   field_sub_card_title:
-    weight: 1
+    weight: 21
     label: hidden
     settings: {  }
     third_party_settings:
