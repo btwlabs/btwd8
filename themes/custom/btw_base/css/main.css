@@ -6428,7 +6428,7 @@ body.product-show-instructions .field--name-field-prod-special-instructions {
             flex: 0 0 50%;
   }
 }
-@media (min-width: 40.063em) and (max-width: 64em) {
+@media (min-width: 40.063em) {
   .paragraph--type-cards.md-12 .card {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 100%;
@@ -6446,8 +6446,14 @@ body.product-show-instructions .field--name-field-prod-special-instructions {
         -ms-flex: 0 0 33.333%;
             flex: 0 0 33.333%;
   }
+
+  .paragraph--type-cards.md-4 .card {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 25%;
+            flex: 0 0 25%;
+  }
 }
-@media (min-width: 64.063em) and (max-width: 90em) {
+@media (min-width: 64.063em) {
   .paragraph--type-cards.lg-12 .card {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 100%;
@@ -6473,6 +6479,25 @@ body.product-show-instructions .field--name-field-prod-special-instructions {
   }
 
   .paragraph--type-cards.lg-5 .card {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 20%;
+            flex: 0 0 20%;
+  }
+}
+@media (min-width: 90.063em) {
+  .paragraph--type-cards.xl-3 .card {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 33.333%;
+            flex: 0 0 33.333%;
+  }
+
+  .paragraph--type-cards.xl-4 .card {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 25%;
+            flex: 0 0 25%;
+  }
+
+  .paragraph--type-cards.xl-5 .card {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 20%;
             flex: 0 0 20%;

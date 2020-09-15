@@ -66,7 +66,7 @@
 			flex: 0 0 50%;
 		}
 	}
-	@include breakpoint($medium-only) {
+	@include breakpoint($medium-up) {
 		&.md-12 .card {
 			flex: 0 0 100%;
 		}
@@ -76,8 +76,11 @@
 		&.md-3 .card {
 			flex: 0 0 33.333%;
 		}
+		&.md-4 .card {
+			flex: 0 0 25%;
+		}
 	}
-	@include breakpoint($large-only) {
+	@include breakpoint($large-up) {
 		&.lg-12 .card {
 			flex: 0 0 100%;
 		}
@@ -91,6 +94,18 @@
 			flex: 0 0 25%;
 		}
 		&.lg-5 .card {
+			flex: 0 0 20%;
+		}
+	}
+	
+	@include breakpoint($xlarge-up) {
+		&.xl-3 .card {
+			flex: 0 0 33.333%;
+		}
+		&.xl-4 .card {
+			flex: 0 0 25%;
+		}
+		&.xl-5 .card {
 			flex: 0 0 20%;
 		}
 	}
