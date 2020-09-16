@@ -27,4 +27,4 @@ LC_ALL=C sed -i '' -e "s/BTW Base/$SUB_THEME_NAME/" "$SUB_THEME.info.yml"
 
 echo "If you are using a Mac the illegal byte error is shown, but it is harmless. In GNU the error occurs but it is not reported."
 echo "# Check the themes/custom folder for your new sub-theme."
-d
+
