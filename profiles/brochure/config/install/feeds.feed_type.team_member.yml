@@ -21,9 +21,9 @@ fetcher: http
 fetcher_configuration:
   auto_detect_feeds: false
   use_pubsubhubbub: false
+  always_download: false
   fallback_hub: ''
   request_timeout: 30
-  always_download: false
 parser: csv
 parser_configuration:
   delimiter: ','
@@ -37,7 +37,7 @@ processor_configuration:
   expire: -1
   owner_feed_author: true
   owner_id: 0
-  authorize: true
+  authorize: false
   skip_hash_check: false
   values:
     type: team_member
@@ -115,7 +115,8 @@ mappings:
     target: title
     map:
       value: name_title_csv
-    unique: {  }
+    unique:
+      value: '1'
     settings:
       language: null
   -
@@ -123,7 +124,7 @@ mappings:
     map:
       value: job_title_csv
     settings:
-      format: plain_text
+      format: full_html
       language: null
   -
     target: body
@@ -131,7 +132,7 @@ mappings:
       value: biography_body_csv
       summary: summary_csv
     settings:
-      format: plain_text
+      format: full_html
       language: null
   -
     target: status
@@ -168,6 +169,6 @@ mappings:
       title: headshot_image_title
     settings:
       language: ''
-      reference_by: filename
+      reference_by: fid
       autocreate: '1'
       existing: '0'

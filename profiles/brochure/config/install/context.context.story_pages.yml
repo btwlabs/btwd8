@@ -14,7 +14,7 @@ conditions:
     id: 'entity_bundle:node'
     bundles:
       story_page: story_page
-    negate: 0
+    negate: false
     uuid: b756b5bf-bd75-4af2-be21-36d045363523
     context_mapping:
       node: '@node.node_route_context:node'

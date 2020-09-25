@@ -3,19 +3,19 @@ status: true
 dependencies:
   module:
     - node
-id: team_members
-label: 'Team Member Entity View Page'
+id: basic_page_entity_view_page
+label: 'Basic Page Entity View Page'
 type: 'canonical_entities:node'
-pattern: 'about/[node:title]'
+pattern: '[node:title]'
 selection_criteria:
-  5d941f41-88cd-4810-85b7-862864433084:
+  a039f1e5-45b7-4263-8807-ae7cdd2feb43:
     id: node_type
     bundles:
-      team_member: team_member
+      page: page
     negate: false
     context_mapping:
       node: node
-    uuid: 5d941f41-88cd-4810-85b7-862864433084
+    uuid: a039f1e5-45b7-4263-8807-ae7cdd2feb43
 selection_logic: and
 weight: -5
 relationships: {  }

@@ -2,10 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.text.feeds_item
-    - field.field.paragraph.text.field_text_body
-    - field.field.paragraph.text.field_title
-    - paragraphs.paragraphs_type.text
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.view.field_title
+    - field.field.paragraph.view.field_view_pg_view
+    - paragraphs.paragraphs_type.view
   module:
     - ds
     - text
@@ -28,24 +28,31 @@ third_party_settings:
         classes:
           layout_class:
             'paragraph-[paragraph:id]': 'paragraph-[paragraph:id]'
+            story-block: story-block
           ds_content: {  }
           ds_hidden: {  }
     regions:
       ds_content:
-        - field_text_body
-id: paragraph.text.default
+        - 'bundle_field:paragraph'
+        - field_title
+    fields:
+      'bundle_field:paragraph':
+        plugin_id: 'bundle_field:paragraph'
+        weight: 0
+        label: hidden
+        formatter: default
+id: paragraph.view.preview
 targetEntityType: paragraph
-bundle: text
-mode: default
+bundle: view
+mode: preview
 content:
-  field_text_body:
-    weight: 0
+  field_title:
+    type: text_default
+    weight: 1
+    region: ds_content
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
-    region: ds_content
 hidden:
-  feeds_item: true
-  field_title: true
+  field_view_pg_view: true
   search_api_excerpt: true

@@ -19,12 +19,26 @@ conditions:
   request_path:
     id: request_path
     pages: '<front>'
-    negate: 0
+    negate: false
     uuid: e2e0d616-03c1-4f38-b025-ec8b232ceb82
     context_mapping: {  }
 reactions:
   blocks:
-    blocks: {  }
+    blocks:
+      3ea880d2-c3e2-4bfd-887d-40994e6fe5ce:
+        id: system_main_block
+        label: 'Main page content'
+        provider: system
+        label_display: '0'
+        region: content
+        weight: '1'
+        context_mapping: {  }
+        custom_id: system_main_block
+        theme: btw_base
+        css_class: ''
+        unique: 0
+        context_id: homepage
+        uuid: 3ea880d2-c3e2-4bfd-887d-40994e6fe5ce
     id: blocks
     saved: false
     uuid: 2710148f-b3f3-44c6-abea-564517a458d0

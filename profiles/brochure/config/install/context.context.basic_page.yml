@@ -14,7 +14,7 @@ conditions:
     id: 'entity_bundle:node'
     bundles:
       page: page
-    negate: 0
+    negate: false
     uuid: f803776e-d425-408b-86a9-fbff4bf8e88c
     context_mapping:
       node: '@node.node_route_context:node'
@@ -25,7 +25,7 @@ reactions:
         id: page_title_block
         label: 'Page title'
         provider: core
-        label_display: 0
+        label_display: '0'
         region: content
         weight: '-9'
         context_mapping: {  }
@@ -38,7 +38,7 @@ reactions:
         id: system_main_block
         label: 'Main page content'
         provider: system
-        label_display: 0
+        label_display: '0'
         region: content
         weight: '-8'
         context_mapping: {  }
@@ -51,7 +51,7 @@ reactions:
         id: system_breadcrumb_block
         label: Breadcrumbs
         provider: system
-        label_display: 0
+        label_display: '0'
         region: pre_content
         weight: '-1'
         context_mapping: {  }

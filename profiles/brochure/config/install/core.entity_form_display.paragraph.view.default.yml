@@ -2,17 +2,27 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.view.field_title
     - field.field.paragraph.view.field_view_pg_view
     - paragraphs.paragraphs_type.view
   module:
+    - text
     - viewsreference
 id: paragraph.view.default
 targetEntityType: paragraph
 bundle: view
 mode: default
 content:
-  field_view_pg_view:
+  field_title:
     weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textfield
+    region: content
+  field_view_pg_view:
+    weight: 1
     settings:
       match_operator: CONTAINS
       match_limit: 10

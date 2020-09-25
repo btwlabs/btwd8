@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.paragraph.text.feeds_item
     - field.field.paragraph.text.field_text_body
+    - field.field.paragraph.text.field_title
     - paragraphs.paragraphs_type.text
   module:
     - text
@@ -13,12 +14,20 @@ bundle: text
 mode: default
 content:
   field_text_body:
-    weight: 0
+    weight: 1
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
+  field_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textfield
     region: content
 hidden:
   created: true

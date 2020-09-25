@@ -3,19 +3,19 @@ status: true
 dependencies:
   module:
     - node
-id: team_members
-label: 'Team Member Entity View Page'
+id: article_nodes
+label: 'Article Entity View Page'
 type: 'canonical_entities:node'
-pattern: 'about/[node:title]'
+pattern: 'news/[node:title]'
 selection_criteria:
-  5d941f41-88cd-4810-85b7-862864433084:
+  0b068e2a-254f-4601-9ec2-5a7c09901910:
     id: node_type
     bundles:
-      team_member: team_member
+      article: article
     negate: false
     context_mapping:
       node: node
-    uuid: 5d941f41-88cd-4810-85b7-862864433084
+    uuid: 0b068e2a-254f-4601-9ec2-5a7c09901910
 selection_logic: and
 weight: -5
 relationships: {  }

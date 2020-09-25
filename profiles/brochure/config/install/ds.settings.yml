@@ -17,5 +17,6 @@ classes:
     - '[paragraph:field_image_orientation:value]'
     - '[paragraph:field_sub_card_image_type:value]'
     - card
+    - slide-content-wrapper
   field: {  }
 use_field_names: true

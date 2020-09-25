@@ -19,120 +19,15 @@ conditions:
 reactions:
   blocks:
     blocks:
-      a4cc3ee7-51cd-4421-8ed4-2e75aa8a1830:
-        id: social_media_links_block
-        label: 'Social Media Links'
-        provider: social_media_links
-        label_display: 0
-        region: post_footer
-        weight: '0'
-        platforms:
-          twitter:
-            value: 'https://twitter.com/realmusictvco'
-            description: ''
-            weight: '-10'
-          contact:
-            value: ''
-            description: ''
-            weight: '-9'
-          linkedin:
-            value: ''
-            description: ''
-            weight: '-8'
-          vimeo:
-            value: ''
-            description: ''
-            weight: '-7'
-          pinterest:
-            value: ''
-            description: ''
-            weight: '-6'
-          rss:
-            value: ''
-            description: ''
-            weight: '-5'
-          vkontakte:
-            value: ''
-            description: ''
-            weight: '-4'
-          slideshare:
-            value: ''
-            description: ''
-            weight: '-3'
-          googleplus:
-            value: ''
-            description: ''
-            weight: '-2'
-          flickr:
-            value: ''
-            description: ''
-            weight: '-1'
-          bitbucket:
-            value: ''
-            description: ''
-            weight: '0'
-          drupal:
-            value: ''
-            description: ''
-            weight: '1'
-          github:
-            value: ''
-            description: ''
-            weight: '2'
-          email:
-            value: ''
-            description: ''
-            weight: '3'
-          instagram:
-            value: 'https://www.instagram.com/realmusictvco/'
-            description: ''
-            weight: '4'
-          youtube_channel:
-            value: ''
-            description: ''
-            weight: '5'
-          youtube:
-            value: ''
-            description: ''
-            weight: '6'
-          tumblr:
-            value: ''
-            description: ''
-            weight: '7'
-          facebook:
-            value: 'https://facebook.com/realmusictvco'
-            description: ''
-            weight: '8'
-          behance:
-            value: ''
-            description: ''
-            weight: '9'
-        appearance:
-          orientation: h
-          show_name: 0
-        link_attributes:
-          target: _blank
-          rel: '<none>'
-        iconset:
-          style: 'fontawesome:2x'
-          installed_iconsets:
-            fontawesome:
-              examples: ''
-        context_mapping: {  }
-        theme: btw_base
-        css_class: social-icons
-        unique: 1
-        context_id: sitewide_context
-        uuid: a4cc3ee7-51cd-4421-8ed4-2e75aa8a1830
       740862bd-09c6-431e-87f3-e5a9e2604e77:
         id: local_tasks_block
         label: Tabs
         provider: core
-        label_display: 0
+        label_display: '0'
         primary: 1
         secondary: 1
         region: pre_content
-        weight: '-1'
+        weight: '-3'
         context_mapping: {  }
         theme: btw_base
         css_class: ''
@@ -156,9 +51,9 @@ reactions:
         id: local_actions_block
         label: 'Primary admin actions'
         provider: core
-        label_display: 0
+        label_display: '0'
         region: pre_content
-        weight: '0'
+        weight: '-2'
         context_mapping: {  }
         theme: btw_base
         css_class: ''
@@ -169,7 +64,7 @@ reactions:
         id: system_branding_block
         label: 'Site branding'
         provider: system
-        label_display: 0
+        label_display: '0'
         use_site_logo: 1
         use_site_name: 0
         use_site_slogan: 0
@@ -185,27 +80,28 @@ reactions:
         id: 'menu_block:main'
         label: 'Main navigation'
         provider: menu_block
-        label_display: 0
+        label_display: '0'
         follow: 0
         follow_parent: child
         level: '1'
-        depth: '0'
+        depth: '1'
         expand: 0
         parent: 'main:'
         suggestion: main
         region: header
-        weight: '0'
+        weight: '-10'
         context_mapping: {  }
         theme: btw_base
         css_class: ''
         unique: 1
         context_id: sitewide_context
         uuid: c65f5ddb-3809-470c-ac7c-37ae5d18695f
+        custom_id: menu_block_main
       3dfb1348-5374-4757-bfff-deaac248dfb7:
         id: 'menu_block:main'
         label: 'Main navigation'
         provider: menu_block
-        label_display: 0
+        label_display: '0'
         follow: 0
         follow_parent: child
         level: '1'
@@ -225,14 +121,14 @@ reactions:
         id: alert_banner
         label: 'Dismissable Alert Banner'
         provider: alert_banner
-        label_display: 0
-        region: pre_content
-        weight: '0'
+        label_display: '0'
+        region: pre_header
+        weight: '-4'
         alert_banner:
           banner_title: 'Test Alert Banner'
           banner_body: "This is a test alert banner. It may be about COVID-19, or about panties. Your choice.\r\nPersonally, I'd chose panties."
           dismiss_alert_button:
-            button_label: Panties!
+            button_label: 'Read More'
             banner_link: 'https://bythewaylabs.com'
         context_mapping: {  }
         theme: btw_base

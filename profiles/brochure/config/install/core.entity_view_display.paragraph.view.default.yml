@@ -2,10 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.view.field_title
     - field.field.paragraph.view.field_view_pg_view
     - paragraphs.paragraphs_type.view
   module:
     - ds
+    - text
     - viewsreference
 third_party_settings:
   ds:
@@ -37,6 +39,13 @@ targetEntityType: paragraph
 bundle: view
 mode: default
 content:
+  field_title:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
   field_view_pg_view:
     weight: 0
     label: hidden
@@ -45,5 +54,6 @@ content:
         - block
     third_party_settings: {  }
     type: viewsreference_formatter
-    region: content
-hidden: {  }
+    region: ds_content
+hidden:
+  search_api_excerpt: true

@@ -17,6 +17,7 @@ dependencies:
   module:
     - ds
     - text
+    - view_mode_selector
 third_party_settings:
   ds:
     layout:
@@ -25,6 +26,7 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        label: ''
         wrappers:
           ds_content: div
           ds_hidden: div
@@ -40,8 +42,15 @@ third_party_settings:
           ds_hidden: {  }
     regions:
       ds_content:
+        - 'bundle_field:paragraph'
         - field_title
-        - group_story_block_inner
+        - field_view_mode_selector
+    fields:
+      'bundle_field:paragraph':
+        plugin_id: 'bundle_field:paragraph'
+        weight: 0
+        label: hidden
+        formatter: default
 id: paragraph.story_block.preview
 targetEntityType: paragraph
 bundle: story_block
@@ -49,11 +58,18 @@ mode: preview
 content:
   field_title:
     type: text_default
-    weight: 0
-    label: inline
+    weight: 1
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     region: ds_content
+  field_view_mode_selector:
+    type: view_mode_selector
+    weight: 2
+    region: ds_content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   created: true
   feeds_item: true
@@ -64,5 +80,5 @@ hidden:
   field_story_block_link: true
   field_story_block_text: true
   field_story_block_video: true
-  field_view_mode_selector: true
+  search_api_excerpt: true
   uid: true
