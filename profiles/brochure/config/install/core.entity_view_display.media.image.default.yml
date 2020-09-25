@@ -22,6 +22,7 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        label: ''
         wrappers:
           ds_content: div
           ds_hidden: div
@@ -36,6 +37,7 @@ third_party_settings:
     regions:
       ds_content:
         - field_media_image
+        - field_image_byline
       ds_hidden:
         - name
 id: media.image.default
@@ -49,7 +51,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
-    region: content
+    region: ds_content
   field_media_image:
     type: blazy
     weight: 0
@@ -95,7 +97,6 @@ content:
       layout: ''
       view_mode: ''
       cache: 0
-      optionset: default
       skin: ''
       style: ''
       box_media_style: ''
@@ -103,6 +104,8 @@ content:
       grid_header: ''
       grid_medium: 0
       grid_small: 0
+      fx: ''
+      _uri: ''
     third_party_settings:
       ds:
         ft:
@@ -122,5 +125,6 @@ content:
 hidden:
   created: true
   feeds_item: true
+  search_api_excerpt: true
   thumbnail: true
   uid: true

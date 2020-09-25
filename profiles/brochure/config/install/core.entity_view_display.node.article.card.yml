@@ -17,7 +17,7 @@ dependencies:
   module:
     - ds
     - field_group
-    - image
+    - media
     - text
     - user
 third_party_settings:
@@ -28,6 +28,7 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        label: ''
         wrappers:
           ds_content: div
           ds_hidden: div
@@ -43,7 +44,7 @@ third_party_settings:
           ds_hidden: {  }
     regions:
       ds_content:
-        - field_image
+        - field_article_hero_image
         - group_title_group
         - node_title
         - field_article_subtitle
@@ -100,15 +101,8 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: ds_content
-  field_article_subtitle:
-    weight: 3
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-    region: ds_content
-  field_image:
-    type: image
+  field_article_hero_image:
+    type: media_thumbnail
     weight: 0
     region: ds_content
     label: hidden
@@ -118,32 +112,18 @@ content:
     third_party_settings:
       ds:
         ft:
-          id: expert
+          id: minimal
           settings:
             lb: ''
-            prefix: ''
-            lbw-el: ''
-            lbw-cl: ''
-            lbw-at: ''
-            ow: true
-            ow-el: div
-            ow-cl: article-hero-img
-            ow-at: ''
-            fis-el: ''
-            fis-cl: ''
-            fis-at: ''
-            fi-el: ''
-            fi-cl: ''
-            fi-at: ''
-            suffix: ''
-            lbw: false
             lb-col: false
-            ow-def-at: false
-            ow-def-cl: false
-            fis: false
-            fis-def-at: false
-            fi: false
-            fi-def-at: false
+            classes: {  }
+  field_article_subtitle:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: ds_content
   field_tags:
     type: entity_reference_label
     weight: 6
@@ -185,6 +165,7 @@ hidden:
   body: true
   comment: true
   feeds_item: true
-  field_article_hero_image: true
   field_article_paragraphs: true
+  field_image: true
   links: true
+  search_api_excerpt: true

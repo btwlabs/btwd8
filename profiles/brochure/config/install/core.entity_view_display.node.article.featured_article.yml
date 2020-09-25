@@ -17,7 +17,7 @@ dependencies:
   module:
     - ds
     - field_group
-    - image
+    - media
     - text
     - user
 third_party_settings:
@@ -28,6 +28,7 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        label: ''
         wrappers:
           ds_content: div
           ds_hidden: div
@@ -42,8 +43,8 @@ third_party_settings:
     regions:
       ds_content:
         - group_article_featured_thumbnail
-        - field_image
         - group_article_featured_text
+        - field_article_hero_image
         - node_title
         - field_article_subtitle
     fields:
@@ -65,7 +66,7 @@ third_party_settings:
   field_group:
     group_article_featured_thumbnail:
       children:
-        - field_image
+        - field_article_hero_image
       parent_name: ''
       weight: 0
       format_type: html_element
@@ -107,6 +108,22 @@ targetEntityType: node
 bundle: article
 mode: featured_article
 content:
+  field_article_hero_image:
+    type: media_thumbnail
+    weight: 2
+    region: ds_content
+    label: hidden
+    settings:
+      image_style: article_teaser_thumbnail
+      image_link: content
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_article_subtitle:
     type: text_trimmed
     weight: 4
@@ -143,49 +160,13 @@ content:
             fis: false
             fis-def-at: false
             fi-def-at: false
-  field_image:
-    type: image
-    weight: 1
-    region: ds_content
-    label: hidden
-    settings:
-      image_style: article_teaser_thumbnail
-      image_link: content
-    third_party_settings:
-      ds:
-        ft:
-          id: expert
-          settings:
-            lb: ''
-            prefix: ''
-            lbw-el: ''
-            lbw-cl: ''
-            lbw-at: ''
-            ow: true
-            ow-el: a
-            ow-cl: ''
-            ow-at: 'href="[node:url]"'
-            fis-el: ''
-            fis-cl: ''
-            fis-at: ''
-            fi: true
-            fi-el: figure
-            fi-cl: ''
-            fi-at: ''
-            fi-def-at: true
-            suffix: ''
-            lbw: false
-            lb-col: false
-            ow-def-at: false
-            ow-def-cl: false
-            fis: false
-            fis-def-at: false
 hidden:
   body: true
   comment: true
   feeds_item: true
   field_article_category: true
-  field_article_hero_image: true
   field_article_paragraphs: true
+  field_image: true
   field_tags: true
   links: true
+  search_api_excerpt: true
