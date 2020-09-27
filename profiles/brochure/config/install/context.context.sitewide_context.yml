@@ -34,6 +34,7 @@ reactions:
         unique: 1
         context_id: sitewide_context
         uuid: 740862bd-09c6-431e-87f3-e5a9e2604e77
+        custom_id: local_tasks_tabs
       e1dc1971-c951-44cf-960b-1a22d7f2908b:
         id: system_messages_block
         label: Messages
@@ -47,6 +48,7 @@ reactions:
         unique: 1
         context_id: sitewide_context
         uuid: e1dc1971-c951-44cf-960b-1a22d7f2908b
+        custom_id: system_messages
       9c9d3617-87f9-4b17-a9d8-53ad22bd9df4:
         id: local_actions_block
         label: 'Primary admin actions'
@@ -60,6 +62,7 @@ reactions:
         unique: 1
         context_id: sitewide_context
         uuid: 9c9d3617-87f9-4b17-a9d8-53ad22bd9df4
+        custom_id: local_tasks_admin_actions
       dbeb3fa8-b1c3-40c9-a94d-d9d29104163c:
         id: system_branding_block
         label: 'Site branding'
@@ -76,6 +79,7 @@ reactions:
         unique: 1
         context_id: sitewide_context
         uuid: dbeb3fa8-b1c3-40c9-a94d-d9d29104163c
+        custom_id: site_branding
       c65f5ddb-3809-470c-ac7c-37ae5d18695f:
         id: 'menu_block:main'
         label: 'Main navigation'
@@ -117,6 +121,7 @@ reactions:
         unique: 1
         context_id: sitewide_context
         uuid: 3dfb1348-5374-4757-bfff-deaac248dfb7
+        custom_id: menu_block_main_child_1
       15524a58-d006-400e-89d1-9f8d3941b5d8:
         id: alert_banner
         label: 'Dismissable Alert Banner'
@@ -136,6 +141,7 @@ reactions:
         unique: 0
         context_id: sitewide_context
         uuid: 15524a58-d006-400e-89d1-9f8d3941b5d8
+        custom_id: alert_banner
     id: blocks
     saved: false
     uuid: 6cd49a13-fb52-416a-8cb3-da8e67602968
