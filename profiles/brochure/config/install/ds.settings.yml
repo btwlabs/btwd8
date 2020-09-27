@@ -16,6 +16,7 @@ classes:
     - '[paragraph:field_gallery_extra_classes:value]'
     - '[paragraph:field_image_orientation:value]'
     - '[paragraph:field_sub_card_image_type:value]'
+    - '[paragraph:field_font_awesome_icon_code:value]'
     - card
     - slide-content-wrapper
   field: {  }

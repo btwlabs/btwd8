@@ -1,0 +1,9 @@
+id: sub_card_image_icon_switcher
+label: 'Sub Card Image/Icon Switcher'
+ui_limit: 'sub_card|*'
+properties:
+  content: "{% if entity.field_sub_card_image_type.0.value == 'fontawesome' %}\r\n  <div class=\"card-icon\">\r\n     {{ entity.field_font_awesome_icon_code.0.value | raw }}\r\n  </div>\r\n{% else %}\r\n  {% if not entity.field_sub_card_image is empty %}\r\n    <div class=\"card-image\">\r\n       {% if entity.field_sub_card_image_type.0.value == 'icon' %}\r\n         <img class=\"{{ entity.field_sub_card_image_type.0.value }}\" src=\"{{ base_url ~ file_url(entity.field_sub_card_image.0.entity.fileuri) }}\" alt=\"{{ entity.field_sub_card_image.0.alt }}\">\r\n       {% else %}\r\n         <img class=\"{{ entity.field_sub_card_image_type.0.value }}\" src=\"{{ base_url ~ file_url(entity.field_sub_card_image.0.entity.fileuri | image_style('paragraph_card_img')) }}\" alt=\"{{ entity.field_sub_card_image.0.alt }}\">\r\n       {% endif %}\r\n    </div>\r\n  {% endif %}\r\n{% endif %}"
+type: twig
+type_label: 'Twig field'
+entities:
+  paragraph: paragraph

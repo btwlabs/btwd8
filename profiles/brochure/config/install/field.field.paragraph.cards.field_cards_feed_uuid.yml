@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_cards_feed_uuid
+    - paragraphs.paragraphs_type.cards
+id: paragraph.cards.field_cards_feed_uuid
+field_name: field_cards_feed_uuid
+entity_type: paragraph
+bundle: cards
+label: 'Cards Feed UUID'
+description: "Provide a unique value for the cards paragraph so that sub-card feeds can identify it.\r\nYou can copy and use the value below:\r\n<big>[random:hash:sha256]</big>\r\n"
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

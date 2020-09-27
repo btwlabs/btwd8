@@ -39,7 +39,7 @@ reactions:
         id: system_messages_block
         label: Messages
         provider: system
-        label_display: 0
+        label_display: '0'
         region: pre_content
         weight: '-2'
         context_mapping: {  }

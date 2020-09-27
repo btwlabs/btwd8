@@ -8,7 +8,7 @@ id: paragraph.cards.field_cards_extra_classes
 field_name: field_cards_extra_classes
 entity_type: paragraph
 bundle: cards
-label: Classes
+label: 'Cards Classes'
 description: ''
 required: false
 translatable: false

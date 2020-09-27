@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.cards.field_cards_body
     - field.field.paragraph.cards.field_cards_card_grid
     - field.field.paragraph.cards.field_cards_extra_classes
+    - field.field.paragraph.cards.field_cards_feed_uuid
     - field.field.paragraph.cards.field_cards_title
     - paragraphs.paragraphs_type.cards
   module:
@@ -146,6 +147,14 @@ content:
     third_party_settings: {  }
     type: string
     region: ds_hidden
+  field_cards_feed_uuid:
+    weight: 6
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
   field_cards_title:
     weight: 4
     label: hidden

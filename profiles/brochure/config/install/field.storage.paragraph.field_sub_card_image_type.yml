@@ -15,7 +15,10 @@ settings:
       label: Photo
     -
       value: icon
-      label: Icon
+      label: 'Upload Icon'
+    -
+      value: fontawesome
+      label: 'Font Awesome Icon'
   allowed_values_function: ''
 module: options
 locked: false

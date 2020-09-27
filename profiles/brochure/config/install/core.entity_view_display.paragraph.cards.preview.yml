@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.cards.field_cards_body
     - field.field.paragraph.cards.field_cards_card_grid
     - field.field.paragraph.cards.field_cards_extra_classes
+    - field.field.paragraph.cards.field_cards_feed_uuid
     - field.field.paragraph.cards.field_cards_title
     - paragraphs.paragraphs_type.cards
   module:
@@ -67,4 +68,5 @@ hidden:
   field_cards_body: true
   field_cards_card_grid: true
   field_cards_extra_classes: true
+  field_cards_feed_uuid: true
   search_api_excerpt: true

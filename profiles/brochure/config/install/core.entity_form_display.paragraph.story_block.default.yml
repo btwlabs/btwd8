@@ -75,7 +75,7 @@ content:
       better_links_target_force: _self
       better_links_class_mode: manual
       better_links_class_force: ''
-      better_links_class_select: ""
+      better_links_class_select: ''
     third_party_settings: {  }
   field_story_block_text:
     type: text_textarea

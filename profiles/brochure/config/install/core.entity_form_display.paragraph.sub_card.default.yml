@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.sub_card.feeds_item
+    - field.field.paragraph.sub_card.field_font_awesome_icon_code
     - field.field.paragraph.sub_card.field_sub_card_body
     - field.field.paragraph.sub_card.field_sub_card_extra_classes
     - field.field.paragraph.sub_card.field_sub_card_image
@@ -20,8 +21,16 @@ targetEntityType: paragraph
 bundle: sub_card
 mode: default
 content:
-  field_sub_card_body:
+  field_font_awesome_icon_code:
     weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_sub_card_body:
+    weight: 4
     settings:
       rows: 5
       placeholder: ''
@@ -29,7 +38,7 @@ content:
     type: text_textarea
     region: content
   field_sub_card_extra_classes:
-    weight: 5
+    weight: 6
     settings:
       size: 60
       placeholder: ''
@@ -51,7 +60,7 @@ content:
     type: options_select
     region: content
   field_sub_card_link:
-    weight: 4
+    weight: 5
     settings:
       placeholder_url: ''
       placeholder_title: ''

@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.sub_card.feeds_item
+    - field.field.paragraph.sub_card.field_font_awesome_icon_code
     - field.field.paragraph.sub_card.field_sub_card_body
     - field.field.paragraph.sub_card.field_sub_card_extra_classes
     - field.field.paragraph.sub_card.field_sub_card_image
@@ -42,15 +43,27 @@ third_party_settings:
           ds_hidden: {  }
     regions:
       ds_content:
-        - field_sub_card_image
+        - 'dynamic_twig_field:paragraph-sub_card_image_icon_switcher'
         - group_card_text_group
         - field_sub_card_title
         - field_sub_card_body
         - group_body_text_group
         - field_sub_card_link
       ds_hidden:
+        - field_sub_card_image
+        - field_font_awesome_icon_code
         - field_sub_card_image_type
         - field_sub_card_extra_classes
+    fields:
+      'dynamic_twig_field:paragraph-sub_card_image_icon_switcher':
+        plugin_id: 'dynamic_twig_field:paragraph-sub_card_image_icon_switcher'
+        weight: 0
+        label: hidden
+        formatter: default
+        ft:
+          id: reset
+          settings:
+            lb: ''
   field_group:
     group_card_text_group:
       children:
@@ -95,6 +108,14 @@ targetEntityType: paragraph
 bundle: sub_card
 mode: default
 content:
+  field_font_awesome_icon_code:
+    weight: 3
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: ds_hidden
   field_sub_card_body:
     weight: 22
     label: hidden
@@ -131,7 +152,7 @@ content:
     type: text_default
     region: ds_content
   field_sub_card_extra_classes:
-    weight: 6
+    weight: 5
     label: hidden
     settings:
       link_to_entity: false
@@ -139,7 +160,7 @@ content:
     type: string
     region: ds_hidden
   field_sub_card_image:
-    weight: 0
+    weight: 2
     label: hidden
     settings:
       image_style: paragraph_card_img
@@ -174,10 +195,10 @@ content:
             fis-def-at: false
             fi-def-at: false
     type: image
-    region: ds_content
+    region: ds_hidden
   field_sub_card_image_type:
-    weight: 5
-    label: above
+    weight: 4
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
