@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains custom_fields.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function custom_fields_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the btw_custom module.
+    case 'help.page.custom_fields':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Custom code to tweak the site') . '</p>';
+      return $output;
+
+    default:
+  }
+}
