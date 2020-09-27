@@ -15,9 +15,9 @@ dependencies:
     - image.style.thumbnail
     - paragraphs.paragraphs_type.story_block
   module:
+    - custom_fields
     - focal_point
     - image
-    - link
     - text
     - video_embed_field
     - view_mode_selector
@@ -65,12 +65,17 @@ content:
       offsets: '50,50'
     third_party_settings: {  }
   field_story_block_link:
-    type: link_default
+    type: enhanced_links_widget
     weight: 7
     region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
+      better_links_target_mode: manual
+      better_links_target_force: _self
+      better_links_class_mode: manual
+      better_links_class_force: ''
+      better_links_class_select: ""
     third_party_settings: {  }
   field_story_block_text:
     type: text_textarea
